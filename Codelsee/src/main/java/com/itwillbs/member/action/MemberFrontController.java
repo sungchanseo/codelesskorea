@@ -163,16 +163,7 @@ public class MemberFrontController extends HttpServlet {
 		    }
 		    }
 		
-		//비번재설정 페이지로
-		  else if(command.equals("/PwReset.me")) {
-		  System.out.println(" C : /PwReset.me 호출 ");
-		  System.out.println(" C : DB사용x, view페이지 이동(패턴1)");
-		  
-		  forward = new ActionForward();
-		  forward.setPath("./member/pwResetForm.jsp");
-		  forward.setRedirect(false);
-		    
-		    }
+
 		
 		
 		
