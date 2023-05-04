@@ -2,18 +2,17 @@
 
 <!-- 디비연결에 필요한 연결정보 저장 -->
 <Context>
-   <Resource 
-   	 name="jdbc/mvc7" 
-   	 auth="Container" 
-   	 type="javax.sql.DataSource" 
-   	 driverClassName="com.mysql.cj.jdbc.Driver" 
-   	 url ="jdbc:mysql://localhost:3306/jspdb" 
-   	 username ="root" 
-   	 password ="1234" 
-   	 maxWait="5000"	
+   <Resource
+   	 name="jdbc/class7_230118_team1"
+   	 auth="Container"
+   	 type="javax.sql.DataSource"
+   	 driverClassName="com.mysql.cj.jdbc.Driver"
+   	 url ="jdbc:mysql://db.itwillbs.dev:3306/class7_230118_team1"
+   	 username ="class7_230118_team1"
+   	 password ="1234"
+   	 maxWait="5000"	 	
    />
 </Context>
-
 
 
 

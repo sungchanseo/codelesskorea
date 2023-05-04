@@ -1,15 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h1>noticeContent</h1>
-<a href="./NoticeUpdate.me">°Ô½Ã±Û ¼öÁ¤</a>
-<a href="./NoticeDelete.me">°Ô½Ã±Û »èÁ¦</a>
-<a href="./NoticeList.me">¸ñ·ÏÀ¸·Î</a>
+
+${requestScope.dto }
+
+
+	<table border="1">
+		   <tr>
+		     <th>ê¸€ë²ˆí˜¸</th>
+		     <td>${dto.notice_id }</td>
+		   </tr> 
+		   <tr>
+		     <td>ì œëª©</td>
+		     <td>${dto.title }</td>
+		   </tr> 
+		   <tr>
+		     <td>ì‘ì„±ì¼</td>
+		     <td>${dto.date }</td>
+		   </tr> 
+		   <tr>
+		     <td>ì¡°íšŒìˆ˜</td>
+		     <td>${dto.count }</td>
+		   </tr> 
+		   <tr>
+		     <td>ë‚´ìš©</td>
+		     <td>${dto.content }</td>
+		   </tr> 
+		</table>
+
+
+<a href="./NoticeUpdate.me">ê²Œì‹œê¸€ ìˆ˜ì •</a>
+<a href="./NoticeDelete.me">ê²Œì‹œê¸€ ì‚­ì œ</a>
+<a href="./NoticeList.me">ëª©ë¡ìœ¼ë¡œ</a>
 </body>
 </html>

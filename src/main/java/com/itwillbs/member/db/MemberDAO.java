@@ -25,7 +25,7 @@ public class MemberDAO {
 		// Context 객체생성
 		Context initCTX = new InitialContext();
 		// DB 연결정보 로드
-		DataSource ds = (DataSource)initCTX.lookup("java:comp/env/jdbc/mvc7");
+		DataSource ds = (DataSource)initCTX.lookup("java:comp/env/jdbc/class7_230118_team1");
 		// DB 연결
 		con = ds.getConnection();
 		System.out.println(" DAO : DB 연결 성공! " + con);
@@ -284,6 +284,126 @@ public class MemberDAO {
 		}
 		
 		return memberList;		
-}
-	//getMemberList()
+}//getMemberList()
+
+	
+	//공지사항 글쓰기 noticeWrite()메소드 시작
+	public int noticeWrite(NoticeDTO dto) {
+		int result = -1;
+		try {
+			con = getCon();
+			int bno=0;
+			
+			sql = "select max(notice_id) from notice";
+			pstmt = con.prepareStatement(sql);
+
+			rs= pstmt.executeQuery();
+
+			if(rs.next()){
+				bno = rs.getInt(1)+1;
+				System.out.println("참");
+			}
+			System.out.println("bno: "+bno);
+
+			sql = "insert into notice (notice_id, title, date, count, content, notice_image) "
+					+ " values(?,?,current_date(), ?,?,?)";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setInt(3, dto.getCount());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getNotice_image());
+			
+			result= pstmt.executeUpdate();
+			System.out.println("공지쓰기 완료");
+			
+		} catch (Exception e) {
+			result =0;
+			e.printStackTrace();
+			
+		} finally {
+			closeDB();
+			result=-1;
+		}
+		
+		return result;
+	}	//공지사항 글쓰기 noticeWrite()메소드 끝
+	
+	
+	//공지리스트를 불러오는 getNoticeList()메소드 시작
+		public List<NoticeDTO> getNoticeList() {
+		
+			List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+			
+			try {
+				con = getCon();
+				sql = "select * from notice";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				// DB정보(rs) -> DTO -> list
+				while (rs.next()) {
+					NoticeDTO dto = new NoticeDTO();
+					
+					dto.setNotice_id(rs.getInt("notice_id"));
+					dto.setContent(rs.getString("content"));
+					dto.setCount(rs.getInt("count"));
+					dto.setDate(rs.getDate("date"));
+					dto.setNotice_image(rs.getString("notice_image"));
+					dto.setTitle(rs.getString("title"));
+					
+					
+					noticeList.add(dto);
+				}
+				
+				System.out.println(" DAO : 공지목록 조회성공! ");
+				System.out.println(" DAO : 목록 수 " + noticeList.size());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return noticeList;		
+	}//공지리스트를 불러오는 getNoticeList()메소드 시작
+	
+	//공지리스트의 공지글을 불러오는 getNoticeContent()메소드 시작
+		public NoticeDTO getNoticeContent(String notice_id) {
+			
+			NoticeDTO dto = new NoticeDTO();
+			
+			try {
+				con = getCon();
+				sql = "select * from notice where notice_id=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, notice_id);
+				
+				rs = pstmt.executeQuery();
+				// DB정보(rs) -> DTO -> list
+				while (rs.next()) {
+					
+					dto.setNotice_id(rs.getInt("notice_id"));
+					dto.setContent(rs.getString("content"));
+					dto.setCount(rs.getInt("count"));
+					dto.setDate(rs.getDate("date"));
+					dto.setNotice_image(rs.getString("notice_image"));
+					dto.setTitle(rs.getString("title"));
+					
+				}
+				
+				System.out.println(" DAO : 회원정보 조회 조회성공! ");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return dto;
+		}
+		
+		//공지리스트의 공지글을 불러오는 getNoticeContent()메소드 시작
+	
 } // DAO

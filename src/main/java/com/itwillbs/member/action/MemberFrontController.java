@@ -265,19 +265,57 @@ public class MemberFrontController extends HttpServlet{
 		// 공지사항
 		else if (command.equals("/NoticeList.me")) {
 			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./notice/noticeList.jsp");
-			forward.setRedirect(false);
+			/*
+			 * 공지리스트 보기로 이동
+			 * noticeListAcion으로 가서 먼저 처리한 다음에 페이지 이동처리를 해야 한다.
+			 * DB사용 O, view 페이지 출력 O(패턴3) 
+			 */
+			action = new NoticeListAction();
+			
+			try {
+				forward=action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			삭제할 코드
+//			forward.setPath("./notice/noticeList.jsp");
+//			forward.setRedirect(false);
 		}else if (command.equals("/NoticeWrite.me")) {
 			//임시 이동 코드
+			/*
+			 * 공지사항 글쓰기 메소드 
+			 * DB사용 X, 페이지 이동O(패턴1)
+			 */
 			forward = new ActionForward();
 			forward.setPath("./notice/noticeWrite.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/NoticeWriteAction.me")) {
+			/*
+			 * 공지사항 글쓰고 업데이트 하는 모델로 이동
+			 * DB사용 O, 페이지 이동(패턴2)
+			 */
+			action = new NoticeWriteAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if (command.equals("/NoticeContent.me")) {
 			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./notice/noticeContent.jsp");
-			forward.setRedirect(false);
+			/*
+			 * 게시판 글을 눌렀을 때 해당 글 페이지로 이동하는 동작
+			 * DB사용 O, 페이지출력(패턴3)
+			 */
+			
+			action = new NoticeContentAction();
+			
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if (command.equals("/NoticeUpdate.me")) {
 			//임시 이동 코드
 			forward = new ActionForward();
