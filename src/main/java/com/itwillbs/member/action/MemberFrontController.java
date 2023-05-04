@@ -318,9 +318,19 @@ public class MemberFrontController extends HttpServlet{
 			}
 		}else if (command.equals("/NoticeUpdate.me")) {
 			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./notice/noticeUpdate.jsp");
-			forward.setRedirect(false);
+			/*
+			 * 공지글 불러오기 액션(model)으로 이동하기 전 액션
+			 * 공지글보기(view) -> 공지글불러오기(model) -> 공지글수정양식(view) -> 공지글업데이트(model) -> 공지글보기(view) 
+			 * DB사용 O, 페지이 이동O, view페이지 출력 O(패턴3) 
+			 */
+			action= new NoticeProUpdateAction();
+			
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if (command.equals("/NoticeDelete.me")) {
 			//임시 이동 코드
 			forward = new ActionForward();

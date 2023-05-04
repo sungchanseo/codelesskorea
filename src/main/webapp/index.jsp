@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
+		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
 	<body>
 		<h1>index.jsp</h1>
 		<%
-			// MVC ÇÁ·ÎÁ§Æ®ÀÇ ½ÃÀÛÁöÁ¡
-			// ÇØ´ç ÇÁ·ÎÁ§Æ®¿¡¼­ ½ÇÇà°¡´ÉÇÑ À¯ÀÏÇÑ jsp ÆäÀÌÁö
+			// MVC í”„ë¡œì íŠ¸ì˜ ì‹œì‘ì§€ì 
+			// í•´ë‹¹ í”„ë¡œì íŠ¸ì—ì„œ ì‹¤í–‰ê°€ëŠ¥í•œ ìœ ì¼í•œ jsp í˜ì´ì§€
 			
-			// -> ¸¸¾à, ½ÇÇà½ÃÅ² ÆäÀÌÁö ÁÖ¼Ò°¡ ~.jsp µ¿ÀÛ => Àß¸øµÈ ±¸Çö
+			// -> ë§Œì•½, ì‹¤í–‰ì‹œí‚¨ í˜ì´ì§€ ì£¼ì†Œê°€ ~.jsp ë™ì‘ => ì˜ëª»ëœ êµ¬í˜„
 			
 // 			response.sendRedirect("./itwill.me");
 // 			response.sendRedirect("./MemberJoin.me");

@@ -393,7 +393,7 @@ public class MemberDAO {
 					
 				}
 				
-				System.out.println(" DAO : 회원정보 조회 조회성공! ");
+				System.out.println(" DAO : 공지정보 조회 조회성공! ");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -20,17 +20,12 @@
    </tr> 
    
    <c:forEach var="dto" items="${requestScope.noticeList }">
-   <c:set var="notice_id" property="${notice_id}"/>
 <!-- rs <- DTO <- List -->
    <tr>
-   <form action="./NoticeContent.me" method="post">
-     <td>${dto.notice_id }<input type="hidden" value="${dto.notice_id }"></td>
-     <td><a href="noticeContent.jsp?bno=${dto.notice_id}">${dto.title}</a></td>
-     <td><a href="./NoticeContent.me">${dto.title}</a></td>
-     <td><input type="submit" value="${dto.title}"></td>
-     <td></td>
+     <td>${dto.notice_id }<input type="hidden" name="notice_id" value="${dto.notice_id }"></td>
+     <td><a href="./NoticeContent.me?notice_id=${dto.notice_id }">${dto.title }</a></td>
+     <td>${dto.date}</td>
      <td>${dto.count }</td>
-   </form> 
    </tr>
 	</c:forEach>
 	

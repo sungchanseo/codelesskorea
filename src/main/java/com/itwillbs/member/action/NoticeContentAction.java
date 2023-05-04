@@ -26,12 +26,11 @@ public class NoticeContentAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		
-		System.out.println("아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ"+dto.getNotice_id());
 		MemberDAO dao = new MemberDAO();
 
-//		NoticeDTO dto = dao.getNoticeContent(notice_id);
+		NoticeDTO dto1 = dao.getNoticeContent(notice_id);
 		
-		request.setAttribute("dto", dto);
+		request.setAttribute("dto", dto1);
 		
 		forward.setPath("./notice/noticeContent.jsp");
 		forward.setRedirect(false);
