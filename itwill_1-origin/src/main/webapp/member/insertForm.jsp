@@ -1,27 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
 <%@ include file="../head.jsp"%>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
-<script src="../js/jquery-3.6.4.js"></script>
+
 <script type="text/javascript">
+
 	function addr() {
 		new daum.Postcode({
-			oncomplete : function(data) {
+			    oncomplete : function(data) {
 				document.getElementById("zipcode").value = data.zonecode; // 우편 번호 넣기
 				document.getElementById("address").value = data.address; // 주소 넣기
 			}
 		}).open();
 	}; //우편주소창부르기
-
+	
 	
 	$(document).ready(function () {
 		
+		$('#id').keyup(function(){
+
+			  if(!$('#id').val().includes('@') && !$('#id').val() == ""){
+				  $('#idmsg').css('color','red');
+				  $('#idmsg').text("이메일 형식으로 입력해주세요.");  
+				  $('#submit').attr('disabled','disabled'); 
+				  return;
+			  }//이메일형식으로 입력하지않을 시 제어
+			  $.ajax({
+				  url : "./AjaxAction.ta",
+				  data: {"id": $('#id').val()},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes" && !$('#id').val() == ""){
+					
+					  $('#idmsg').css('color','green');
+					  $('#idmsg').text("사용가능한 아이디입니다.");
+					  $('#submit').removeAttr('disabled');
+					  return;
+					  }else if ( result=="no" && !$('#id').val() == ""){
+					 
+					  $('#idmsg').css('color','red');
+					  $('#idmsg').text("이미 존재하는 아이디입니다.");  
+					  $('#submit').attr('disabled','disabled');
+					  return;
+					  }
+				  }//success 
+			  });// ajax
+			  if($('#id').val() == ""){
+				  $('#idmsg').css('color','red');
+				  $('#idmsg').text("아이디를 입력해주세요.");  
+				  $('#submit').attr('disabled','disabled'); 
+				  return;
+			  }
+		  }); // 아이디중복확인 
+				
 		
 		$('#alert-success').hide();
 		$('#alert-danger').hide();
+		
 		
 		$('input').keyup(function() {
 		  var pas1 = $('#password').val();
@@ -37,7 +77,7 @@
 			$('#submit').attr('disabled','disabled');
 		  }}
 		   
-		});
+		});//비밀번호 일치불일치 체크
 		
 		
 		$('#fr').submit(function() {
@@ -100,9 +140,14 @@
 				$('#password2').focus();
 				return false;
 			}
-		});
+		});//정보 입력안하면 submit기능 제어 끝
 		
-	});
+		  
+	});//총function끝
+	
+
+		
+		
 
 </script>
 </head>
@@ -123,10 +168,12 @@
 				<h2 style="margin-bottom: 50px;">
 					<b>정보를 입력해주세요:)</b>
 				</h2>
-
-				아이디 <input type="email" class="form-control" id="id"
-					placeholder="이메일 형식으로 입력해주세요." name="id"> <br> 
-					
+	
+				   아이디 <input type="email" class="form-control" id="id"
+					placeholder="아이디를 입력해주세요." name="id" >  
+		
+				<span id="idmsg"></span>
+				<br>	 				
 				비밀번호 <input type="password" class="form-control" id="password"
 					placeholder="비밀번호를 입력해주세요." name="password">
 					 <br> 
@@ -137,14 +184,14 @@
 					 <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 					 <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 					
-				이름 <input type="text" class="form-control" name="name" id="name">
+				이름 <input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="20">
 					 <br>
 				
-				닉네임 <input type="text" class="form-control" name="nickname" id="nickname">
+				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요.">
 					 <br> 
 				
 				연락처 <input type="text" class="form-control"
-					name="phone_number" placeholder="010-0000-0000 형태로 입력해주세요." id="phone_number">
+					name="phone_number" placeholder="010-0000-0000 형태로 입력해주세요." id="phone_number" maxlength="13">
 					 <br> 
 				
 				생년월일 <input type="date" class="form-control"
@@ -157,7 +204,10 @@
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="address" id="address" size="45"></td>
+						<td><input type="text" name="address" id="address" size="45" onclick="addr();"></td>
+					<tr>
+					<tr>
+						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."></td>
 					<tr>
 				</table>
 				<br> 프로필사진 <input type="file" name="user_image">

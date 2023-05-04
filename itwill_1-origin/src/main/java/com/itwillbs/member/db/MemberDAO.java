@@ -124,6 +124,8 @@ public class MemberDAO {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally {
+				closeDB();
 			}
 			return result;
 			
@@ -157,11 +159,38 @@ public class MemberDAO {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally {
+				closeDB();
 			}
 			return result;
 			
 		}//비번찾기
 		
+		public String idCheck(String id) {
+			String check = "";
+			try {
+				con = getCon();
+				sql = "select id from user where id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					check = "1";//중복됨
+				}else {
+					check = "0";
+				}
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			return check;
+		}//아이디 중복
 
 	
 

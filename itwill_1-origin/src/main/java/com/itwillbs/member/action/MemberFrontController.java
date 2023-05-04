@@ -164,6 +164,21 @@ public class MemberFrontController extends HttpServlet {
 		    }
 		    }
 		
+		//아이디 중복 처리
+		  else if(command.equals("/idCheck.me")) {
+		  System.out.println(" C : /idCheck.me 호출 ");
+		  System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
+		  
+		    action = new IdCheckAction(); 
+		    try { 
+		    	forward  = action.execute(request, response); 
+		    } catch (Exception e) {
+		    	 e.printStackTrace(); 
+		    }
+		    }
+
+		
+		
 		//마이페이지로
 		  else if(command.equals("/MemberMypage.me")) {
 				System.out.println(" C : /MemberMypage.me 실행");
