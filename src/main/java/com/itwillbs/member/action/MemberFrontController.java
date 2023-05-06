@@ -290,6 +290,7 @@ public class MemberFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./notice/noticeWrite.jsp");
 			forward.setRedirect(false);
+			
 		}else if(command.equals("/NoticeWriteAction.me")) {
 			/*
 			 * 공지사항 글쓰고 업데이트 하는 모델로 이동
@@ -316,7 +317,7 @@ public class MemberFrontController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeUpdate.me")) {
+		}else if (command.equals("/NoticeProUpdateAction.me")) {
 			//임시 이동 코드
 			/*
 			 * 공지글 불러오기 액션(model)으로 이동하기 전 액션
@@ -331,11 +332,36 @@ public class MemberFrontController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if (command.equals("/NoticeUpdateAction.me")) {
+			//임시 이동 코드
+			/*
+			 * noticeUpdate.jsp페이지에서 공지사항 수정을 완료하면 정보를 전달받아 
+			 * 수정하는 액션으로 이동. 해당 페이지에서 수정을 업데이트하고 noticeList로 이동한다. 
+			 * DB사용 O, 페이지 이동 O (패턴2)
+			 */
+			action = new NoticeUpdateAction();
+			
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if (command.equals("/NoticeDelete.me")) {
 			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./notice/noticeDelete.jsp");
-			forward.setRedirect(false);
+			/*
+			 * 공지사항 게시글 삭제 주소로 이동
+			 * 삭제 액션페이지로 이동, 해당 페이지에서 삭제를 완료하고 noticeList페이지로 이동한다.  
+			 * DB사용 O, 페이지이동 O (패턴2)
+			 */
+			action = new NoticeDeleteAction();
+			
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// FAQ

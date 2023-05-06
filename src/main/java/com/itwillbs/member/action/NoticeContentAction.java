@@ -21,8 +21,8 @@ public class NoticeContentAction implements Action{
 //		String notice_id = (String) session.getAttribute("notice_id");
 		
 		String notice_id = request.getParameter("notice_id");
-		
-		System.out.println("여기여기보세요================"+notice_id);
+		String pageNum = request.getParameter("pageNum");
+//		System.out.println("여기여기보세요================"+notice_id);
 		
 		ActionForward forward = new ActionForward();
 		
@@ -31,6 +31,7 @@ public class NoticeContentAction implements Action{
 		NoticeDTO dto1 = dao.getNoticeContent(notice_id);
 		
 		request.setAttribute("dto", dto1);
+		request.setAttribute("pageNum", pageNum);
 		
 		forward.setPath("./notice/noticeContent.jsp");
 		forward.setRedirect(false);

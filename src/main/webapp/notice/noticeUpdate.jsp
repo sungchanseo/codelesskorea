@@ -14,7 +14,9 @@
  
   <form action="./NoticeUpdateAction.me" method="post">
 
-   
+   	글번호 ${dto.notice_id }
+   	<input type="hidden" name="notice_id" value="${dto.notice_id }">
+	<br>
     <label>글제목<br>
     <input type="text" name="title" value="${dto.title }">
 	</label>

@@ -10,7 +10,13 @@ import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.NoticeDTO;
-
+/**
+ * 수정 전 처리 페이지 
+ * 공지사항 업데이트를 하기 위해서 디비에서 정보를 불러오는 페이지 
+ * 해당 페이지의 기능은 디비에서 정보를 불러와 수정페이지에 출력한다. 
+ * @author YURAN
+ *
+ */
 public class NoticeProUpdateAction implements Action {
 
 	@Override
@@ -33,7 +39,7 @@ public class NoticeProUpdateAction implements Action {
 		
 		MemberDAO dao = new MemberDAO();
 		NoticeDTO dto = dao.getNoticeContent(notice_id);
-		
+		System.out.println("M : 공지사항 정보 불러오기 완료!");
 		
 		System.out.println("공지업데이트프로 액션의 "+dto);
 		//정보 저장
