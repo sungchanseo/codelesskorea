@@ -200,7 +200,7 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15">
+						<td><input type="text" name="zipcode" id="zipcode" size="15" onclick="addr();">
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>

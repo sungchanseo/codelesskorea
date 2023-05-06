@@ -19,7 +19,16 @@
 				</c:if>
 				<c:if test="${!empty id }">
 					<li class="nav-item"><a href="./MemberLogout.me" class="nav-link"><b>로그아웃</b></a></li>
-					<li class="nav-item"><a href="./MemberMypage.me" class="nav-link"><b>마이페이지</b></a></li>
+	 <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <b>마이페이지</b>
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="./MypagePurchaselist.me">판매목록</a>
+        <a class="dropdown-item" href="./MypageSalesList.me">구매목록</a>
+        <a class="dropdown-item" href="./LikeList.me">찜목록</a>
+      </div>
+   	  </li>
 				</c:if>
 	        </ul>
 	      </div>
