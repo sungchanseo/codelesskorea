@@ -11,5 +11,5 @@ public interface Action {
 	 * 		execute() 실행할 때 반드시 request, response가 필요하다.
 	 * 		execute()는 실행결과로 ActionForward(이동티켓) 생성
 	 */
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

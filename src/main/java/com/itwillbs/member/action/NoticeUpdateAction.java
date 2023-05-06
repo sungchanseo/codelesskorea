@@ -11,7 +11,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeUpdateAction implements Action{
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeUpdateAction_execute()메소드 호출!");
 			
 		request.setCharacterEncoding("UTF-8");

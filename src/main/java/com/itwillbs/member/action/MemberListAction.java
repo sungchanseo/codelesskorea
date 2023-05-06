@@ -14,7 +14,7 @@ import com.itwillbs.member.db.MemberDTO;
 public class MemberListAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		System.out.println(" M : MemberListAction_execute() ");
 		

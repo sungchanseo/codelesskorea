@@ -471,6 +471,34 @@ public class MemberDAO {
 			return dto;
 		}//공지리스트의 공지글을 불러오는 getNoticeContent()메소드 시작
 	
+		//조회수를 올리는 updateCount()메소드 시작
+		public void updateReadCount(String notice_id) {
+			//디비 연결
+			try {
+				con = getCon();
+				//sql(update) pstmt 객체 생성
+				sql = "update notice set count=count+1 where notice_id=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, notice_id);
+				
+				//sql문 실행
+				int cnt= pstmt.executeUpdate();
+				//executeUpdate()메소드의 리턴값은 update 쿼리로 인해 영향받은 행의 숫자를 반환
+				//
+				if(cnt==1) {
+					System.out.println("조회수가 1 증가했습니다");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+		}//조회수를 올리는 updateCount()메소드 끝
+		
+		
+		
 		//updateNotice() 공지글 수정하는 메소드 시작
 		public int updateNotice(NoticeDTO dto) {
 			int result = -1;
@@ -484,7 +512,7 @@ public class MemberDAO {
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){ 
-					if(dto.getNotice_id()==rs.getInt(notice_id)){
+					if(notice_id==rs.getInt("notice_id")){
 					
 						sql = "update notice set title=?, content=? where notice_id=?";
 						pstmt = con.prepareStatement(sql);
@@ -541,6 +569,7 @@ public class MemberDAO {
 		}
 		
 		//deleteNotice() 공지글을 삭제하는 메소드 끝
+		
 		
 		
 } // DAO

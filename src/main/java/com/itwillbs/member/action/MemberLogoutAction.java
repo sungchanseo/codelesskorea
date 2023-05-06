@@ -12,7 +12,7 @@ import com.itwillbs.commons.ActionForward;
 public class MemberLogoutAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : MemberLogoutAction_execute() ");
 		
 		// 세션정보 초기화

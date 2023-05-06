@@ -15,7 +15,7 @@ import com.itwillbs.member.db.MemberDTO;
 public class MemberUpdateProAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : MemberUpdateProAction_execute() 호출");
 		
 		// 세션정보 제어

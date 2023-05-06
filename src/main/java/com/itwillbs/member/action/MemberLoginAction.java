@@ -15,7 +15,7 @@ import com.itwillbs.member.db.MemberDTO;
 public class MemberLoginAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		System.out.println(" M : MemberLoginAction_execute() 호출 ");
 		

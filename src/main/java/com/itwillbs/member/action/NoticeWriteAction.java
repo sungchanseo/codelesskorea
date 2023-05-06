@@ -13,7 +13,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeWriteAction implements Action{
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeWriteAciton_execute() 호출!");
 		
 		//한글처리 

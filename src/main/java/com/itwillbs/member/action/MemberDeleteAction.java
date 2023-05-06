@@ -13,7 +13,7 @@ import com.itwillbs.member.db.MemberDTO;
 public class MemberDeleteAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : MemberDeleteAction_execute()");
 
 		

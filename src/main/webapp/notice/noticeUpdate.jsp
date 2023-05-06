@@ -10,7 +10,6 @@
 <h1>noticeUpdate</h1>
 <h1>공지사항 수정페이지</h1>
 <div class="container">
- ${requestScope.dto }
  
   <form action="./NoticeUpdateAction.me" method="post">
 

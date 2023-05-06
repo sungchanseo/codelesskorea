@@ -72,7 +72,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberLoginAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -82,7 +82,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberLogoutAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -112,7 +112,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberJoinAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -132,7 +132,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberInfoAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -142,7 +142,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberUpdateAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -153,7 +153,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberUpdateProAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -171,7 +171,7 @@ public class MemberFrontController extends HttpServlet{
 
 			action = new MemberDeleteAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -187,7 +187,7 @@ public class MemberFrontController extends HttpServlet{
 			
 			action = new MemberListAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -219,12 +219,25 @@ public class MemberFrontController extends HttpServlet{
 		}
 		
 		
+		//주문하기
 		else if (command.equals("/OrderContent.me")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./order/orderContent.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/OrderWrite.me")) {
+		}
+		
+		else if (command.equals("/OrderWrite.me")) {
+			System.out.println("C : ./OrderWrite.me 호출");
+			
+			// OrderWriteAction() 객체 생성
+			action = new OrderWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./order/orderWrite.jsp");
@@ -273,7 +286,7 @@ public class MemberFrontController extends HttpServlet{
 			action = new NoticeListAction();
 			
 			try {
-				forward=action.excute(request, response);
+				forward=action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -298,7 +311,7 @@ public class MemberFrontController extends HttpServlet{
 			 */
 			action = new NoticeWriteAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -312,7 +325,7 @@ public class MemberFrontController extends HttpServlet{
 			action = new NoticeContentAction();
 			
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -327,7 +340,7 @@ public class MemberFrontController extends HttpServlet{
 			action= new NoticeProUpdateAction();
 			
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -342,7 +355,7 @@ public class MemberFrontController extends HttpServlet{
 			action = new NoticeUpdateAction();
 			
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -357,7 +370,7 @@ public class MemberFrontController extends HttpServlet{
 			action = new NoticeDeleteAction();
 			
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

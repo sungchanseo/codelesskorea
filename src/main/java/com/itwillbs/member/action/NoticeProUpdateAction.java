@@ -20,7 +20,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeProUpdateAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeProUpdateAction_execute()메소드 호출!");
 		
 		ActionForward forward = new ActionForward();

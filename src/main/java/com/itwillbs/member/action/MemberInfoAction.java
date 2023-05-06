@@ -12,7 +12,7 @@ import com.itwillbs.member.db.MemberDTO;
 public class MemberInfoAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : MemberInfoAction_execute()");
 		
 		// 세션정보 가져오기

@@ -14,7 +14,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeDeleteAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeDeleteAction_execute()메소드 호출! ");
 		
 		//공지사항 계정이 admin인지 확인 

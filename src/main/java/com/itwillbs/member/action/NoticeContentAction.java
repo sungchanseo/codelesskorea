@@ -12,7 +12,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeContentAction implements Action{
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: NoticeContentAction_execute()메소드 호출!");
 		
 		NoticeDTO dto = new NoticeDTO();
@@ -22,13 +22,15 @@ public class NoticeContentAction implements Action{
 		
 		String notice_id = request.getParameter("notice_id");
 		String pageNum = request.getParameter("pageNum");
-//		System.out.println("여기여기보세요================"+notice_id);
 		
 		ActionForward forward = new ActionForward();
 		
 		MemberDAO dao = new MemberDAO();
-
+		//글정보 불러오기 메소드 호출
 		NoticeDTO dto1 = dao.getNoticeContent(notice_id);
+		
+		//글정보를 불러왔으니 조회수를 증가시켜야겠지 메소드 호출
+		dao.updateReadCount(notice_id);
 		
 		request.setAttribute("dto", dto1);
 		request.setAttribute("pageNum", pageNum);

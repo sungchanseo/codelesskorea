@@ -14,7 +14,7 @@ import com.itwillbs.member.db.NoticeDTO;
 public class NoticeListAction implements Action{
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeListAction.execute() 메소드 호출");
 		
 		
