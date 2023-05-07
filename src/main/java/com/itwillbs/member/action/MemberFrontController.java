@@ -220,10 +220,12 @@ public class MemberFrontController extends HttpServlet{
 		
 		/*
 		 * 
+		 * 창희노비치 코드
 		 * 
 		 * 
-		 * 
+		 * 상품기능구현 시작
 		 */
+		// 상품
 		// 상품
 		else if(command.equals("/ProductList.me")) {
 			System.out.println(" C : /ProductList.me 호출 ");
@@ -235,29 +237,32 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace(); 
 			}
-		}else if (command.equals("/ProductInsert.me")) {
-			System.out.println(" C : /ProductInsert.me 실행");
+		}else if (command.equals("/ProductWrite.me")) {
+			System.out.println(" C : /ProductWrite.me 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 
 			forward = new ActionForward();
-			forward.setPath("./product/productInsert.jsp");
+			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/ProductInsertAction.me")) {
-			System.out.println(" C : ProductInsertAction.me 호출");
+		}else if(command.equals("/ProductWriteAction.me")) {
+			System.out.println(" C : ProductWriteAction.me 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
 
-			action = new ProductInsertAction();
+			action = new ProductWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if (command.equals("/ProductContent.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productContent.jsp");
-			forward.setRedirect(false);
+		}else if (command.equals("/ProductContent.me")) {
+			System.out.println(" C : ProductContent.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
+			action = new ProductContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if (command.equals("/ProductUpdate.me")) {
 			//임시 이동 코드
 			forward = new ActionForward();
@@ -269,8 +274,9 @@ public class MemberFrontController extends HttpServlet{
 			forward.setPath("./product/productDelete.jsp");
 			forward.setRedirect(false);
 		}
+		
 		/*
-		 * 
+		 * 창희노비치 코드 끝
 		 * 
 		 * 
 		 * 
@@ -337,7 +343,6 @@ public class MemberFrontController extends HttpServlet{
 		
 		// 공지사항
 		else if (command.equals("/NoticeList.me")) {
-			//임시 이동 코드
 			/*
 			 * 공지리스트 보기로 이동
 			 * noticeListAcion으로 가서 먼저 처리한 다음에 페이지 이동처리를 해야 한다.
@@ -351,9 +356,6 @@ public class MemberFrontController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			삭제할 코드
-//			forward.setPath("./notice/noticeList.jsp");
-//			forward.setRedirect(false);
 		}else if (command.equals("/NoticeWrite.me")) {
 			//임시 이동 코드
 			/*
@@ -440,6 +442,63 @@ public class MemberFrontController extends HttpServlet{
 		/*
 		 * 
 		 * 
+		 * qna성찬스키 코드
+		 *
+		 */
+		
+		// FAQ
+		else if (command.equals("/FAQList.me")) {
+			/*
+			 * 공지리스트 보기로 이동
+			 * noticeListAcion으로 가서 먼저 처리한 다음에 페이지 이동처리를 해야 한다.
+			 * DB사용 O, view 페이지 출력 O(패턴3) 
+			 */
+			action = new FaqListAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if (command.equals("/FAQWrite.me")) {
+			/*
+			 * 자주묻는 질문 글쓰기 페이지 
+			 * DB사용 X, 페이지 이동O(패턴1)
+			 */
+			forward = new ActionForward();
+			forward.setPath("./qna/qnaWrite.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/FAQContent.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./faq/faqContent.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/FAQDelete.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./faq/faqDelete.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/FAQUpdate.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./faq/faqUpdate.jsp");
+			forward.setRedirect(false);
+		}
+		
+		
+		/*
+		 * 
+		 * 
+		 * qna성찬스키 코드
+		 *
+		 */
+		
+		
+		
+		/*
+		 * 
+		 * 
 		 * 소연스키 코드
 		 */
 		
@@ -485,34 +544,6 @@ public class MemberFrontController extends HttpServlet{
 		
 		
 		
-		// FAQ
-		else if (command.equals("/FAQList.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./faq/faqList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/FAQWrite.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./faq/faqWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/FAQContent.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./faq/faqContent.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/FAQDelete.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./faq/faqDelete.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/FAQUpdate.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./faq/faqUpdate.jsp");
-			forward.setRedirect(false);
-		}
-		
 		// QNA
 		else if (command.equals("/QNAList.me")) {
 			//임시 이동 코드
@@ -545,6 +576,77 @@ public class MemberFrontController extends HttpServlet{
 			forward.setPath("./qna/qnaUpdate.jsp");
 			forward.setRedirect(false);
 		}
+		
+		/*
+		 * 
+		 * 
+		 * 
+		 * 진우행님 채팅 코드~~~
+		 */
+		//채팅
+		else if (command.equals("/ChatToSeller.me")) {
+			System.out.println(" C : /ChatToSeller.me 실행");
+			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
+			
+			forward = new ActionForward();
+			forward.setPath("./chat/chat.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/ChatSubmitAction.me")) {
+			System.out.println(" C : ChatSubmitAction.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
+
+			action = new ChatSubmitAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ChatListAction.me")) {
+			System.out.println(" C : ChatListAction.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
+
+			action = new ChatListAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ChatUnreadAction.me")) {
+			System.out.println(" C : ChatUnreadAction.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
+
+			action = new ChatUnreadAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/ChatBox.me")) {
+			System.out.println(" C : /ChatBox.me 실행");
+			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
+			
+			forward = new ActionForward();
+			forward.setPath("./chat/box.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/ChatBoxAction.me")) {
+			System.out.println(" C : ChatBoxAction.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
+
+			action = new ChatBoxAction();
+			try {
+				forward = action.excute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		/*
+		 * 
+		 * 
+		 * 
+		 * 진우행님 채팅 코드~~~
+		 */
+		
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝");
 		/*********2. 가상주소 매핑*************/

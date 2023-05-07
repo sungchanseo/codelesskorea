@@ -1,76 +1,95 @@
 <%@page import="com.itwillbs.member.db.MypageDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.itwillbs.member.db.MemberDAO"%>
-<%@page import="com.itwillbs.member.db.MemberDTO"%>
 <%@page import="com.itwillbs.member.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	function check(){
+		if(confirm('정말로 글을 삭제 하시겠습니까?')) {
+		    return true;
+			} else {
+		    return false;
+			}//글삭제전 확인
+	};
+
+
+</script>
+
 <%@ include file="../head.jsp"%>
 </head>
+
 <body>
-<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+<%@ include file="../nav.jsp"%>
 
-		
-	
-	페이지번호 : ${pageNum }<br>
-	아이디 : ${id }<br>
-<%-- 	${requestScope.boardList } --%>
-	<hr>
-	
+<!-- nav 삽입 -->
+<!-- <a href="./QNAUpdate.me">수정하기</a> -->
+<!-- <a href="./QNADelete.me">삭제하기</a> -->
+<!-- <a href="./QNAReWrite.me">답글달기</a> -->
+<!-- <a href="./QNAList.me">목록으로</a> -->
+
+<%
+//전달받은 정보를 저장
+QnADTO qdto = (QnADTO) request.getAttribute("qdto"); //object -다운캐스팅-> BoardDTO
+String pageNum = (String) request.getAttribute("pageNum"); //object -다운캐스팅-> String
+int bno = Integer.parseInt(request.getParameter("bno"));
+String id = (String)session.getAttribute("id"); 
+int re_lev = qdto.getRe_Lev();
+MypageDAO mdao = new MypageDAO();
+QnADTO qna = mdao.getBoard(bno);
+%>
+<input type="hidden" name="bno" value="<%=bno%>">
+
+<fieldset>
+<legend>Q&A 상세보기</legend>
 <table border="1">
-   <tr>
-     <th>작성일</th>
-     <td>제목</td>
-     <td>작성자</td>
-     <td>처리상태</td>
-   </tr> 
-
-   <c:forEach var="qdto" items="${requestScope.boardList }">
-<!-- rs <- DTO <- List -->
-   <tr>
-     <td>${qdto.regdate}</td>
-     <td><a href="./AdminQNAContent.me?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
-     
-     <td>${qdto.nickname}</td>
-      <c:if test="${qdto.re_Lev < 1}">
+  <tr>
+    <th>글번호</th>
+    <td><%=qdto.getBno()%></td>
+    <% if(qdto.getRe_Lev()<1) {%><th>답변상태</th>
     <td>
-		  <c:choose>
-		    <c:when test="${qdto.is_answered}">
-		      <span style="color: green;">답변완료</span>
-		    </c:when>
-		    <c:otherwise>
-		      <span style="color: red;">답변대기</span>
-		    </c:otherwise>
-		  </c:choose>
-	</td>
-	</c:if>
-   </tr>
-	</c:forEach>
+      <% if (qna.isIs_answered()) { %>
+        <span style="color: green;">답변완료</span>
+      <% } else { %>
+        <span style="color: red;">답변대기</span>
+      <% } %>
+    </td>
+    <% } %>
+    <th>카테고리</th>
+    <td><%=qdto.getQnaCategory() %></td>
+  </tr>
+  <tr>
+    <th>작성자</th>
+    <td><%=qdto.getNickname()%></td>
+    <th>작성일</th>
+    <td><%=qdto.getRegdate()%></td>
+  </tr>
+  <tr>
+    <th>제목</th>
+    <td colspan="5"><%=qdto.getTitle()%></td>
+  </tr>
+  <tr>
+    <th>이미지</th>
+    <td colspan="5"><a href="D:\upfile\<%=qdto.getImage()%>"><%=qdto.getImage() %></a></td>
+  </tr>
+  <tr>
+    <th>내용</th>
+    <td colspan="5"><textarea rows="30" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
+  </tr>
+  <tr>
+    <td colspan="6" style="text-align:center">
+     <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.me?pageNum=<%=pageNum%>'">
+     <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
+	 <input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
+	 <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>&re_ref=<%=qdto.getRe_Ref() %>&re_lev=<%=qdto.getRe_Lev()%>&re_seq=<%=qdto.getRe_Seq()%>'">
+    </td>
+  </tr>
 </table>
-
-
-	
-
-
-
-  <c:if test="${startPage > pageBlock }"> 
-   <a href="./AdminQNAList.me?pageNum=${startPage-pageBlock} ">[이전]</a>
-   </c:if>
-   
-   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-   <a href="./AdminQNAList.me?pageNum=${i }">[${i }]</a>
-   </c:forEach>
-   
-   <c:if test="${endPage<pageCount }">
-   <a href="./AdminQNAList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
-   </c:if>
-
-
+</fieldset>
 
 
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->

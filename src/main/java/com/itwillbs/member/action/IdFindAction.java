@@ -1,5 +1,6 @@
 package com.itwillbs.member.action;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,12 +12,23 @@ import com.itwillbs.member.db.MemberDTO;
 
 public class IdFindAction implements Action {
 
+	private ServletRequest session;
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println(" M : IdFindAction_execute() 호출 ");
 		
 		request.setCharacterEncoding("UTF-8");
+		
+		String id = (String)session.getAttribute("id");
+		MemberDAO qdao = new MemberDAO();
+		MemberDTO qdto = qdao.getMember(id);
+		boolean blocked = qdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			
+		}
 		
 		//전달정보(name, phone_number) - dto에 저장
 		MemberDTO dto = new MemberDTO();

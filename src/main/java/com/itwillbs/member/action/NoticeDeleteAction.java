@@ -9,6 +9,7 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
+import com.itwillbs.member.db.NoticeDAO;
 import com.itwillbs.member.db.NoticeDTO;
 
 public class NoticeDeleteAction implements Action {
@@ -30,7 +31,7 @@ public class NoticeDeleteAction implements Action {
 			return forward;
 		}
 		*/
-		MemberDAO dao = new MemberDAO();
+		NoticeDAO dao = new NoticeDAO();
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_id(Integer.parseInt(request.getParameter("notice_id")));
 		int result = dao.deleteNotice(dto);

@@ -11,7 +11,7 @@ import com.itwillbs.member.db.ProductDAO;
 import com.itwillbs.member.db.ProductDTO;
 
 //상품등록 처리(인코딩, 정보저장, DB연결, 페이지 이동)
-public class ProductInsertAction implements Action {
+public class ProductWriteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,7 +40,7 @@ public class ProductInsertAction implements Action {
 		// ProductDAO 객체 생성
 		ProductDAO dao = new ProductDAO();
 		// 상품등록 메서드
-		dao.productInsert(dto);
+		dao.productWrite(dto);
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

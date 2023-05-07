@@ -86,8 +86,7 @@ QnADTO qna = mdao.getBoard(bno);
   </tr>
   <tr>
     <td colspan="6" style="text-align:center">
-      <input type="button" value="목록으로(일반유저)" class="btn" onclick="location.href='./UserQNAList.me?pageNum=<%=pageNum%>'">
-      <%if (id.equals(qdto.getId())) { %>	
+<input type="button" value="목록으로" class="btn" onclick="location.href='./UserQNAList.me?pageNum=<%=pageNum%>'">      <%if (id.equals(qdto.getId())) { %>	
         <input type="button" value="글삭제" class="btn" onclick="location.href='./UserQNADeleteAction.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
       <% } %>	
     </td>

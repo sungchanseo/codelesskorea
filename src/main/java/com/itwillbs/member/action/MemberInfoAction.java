@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 
@@ -24,11 +25,10 @@ public class MemberInfoAction implements Action {
 		if(id == null) {
 			System.out.println("ID 정보가 없습니다.");
 //			response.sendRedirect("");
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			
+			JSForward.alertAndMove(response, "ID 정보가 없습니다!", "./MemberLogin.me");
 			return forward;
 		}
+		
 		
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		MemberDAO dao = new MemberDAO();
@@ -46,6 +46,9 @@ public class MemberInfoAction implements Action {
 		System.out.println("M : 정보조회 저장, 처리 끝");
 		return forward;
 	}
+
+
+
 	
 
 }

@@ -117,6 +117,13 @@ public class ProductDTO {
 		this.parts = parts;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "ProductDTO [product_id=" + product_id + ", title=" + title + ", model=" + model + ", content=" + content
+				+ ", price=" + price + ", product_image=" + product_image + ", grade=" + grade + ", reg_date="
+				+ reg_date + ", read_count=" + read_count + ", like_count=" + like_count + ", chat_count=" + chat_count
+				+ ", city=" + city + ", method=" + method + ", fee=" + fee + ", charge=" + charge + ", parts=" + parts
+				+ "]";
+	}
 	
 }

@@ -1,7 +1,5 @@
 package com.itwillbs.member.action;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,23 +13,24 @@ public class ProductContentAction implements Action {
 @Override
 public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	System.out.println("P : ProductContentAction_execute() 호출");
-	
+
 	// 상세 페이지를 보기 위해 상품번호를 가져옴
 	int productId = Integer.parseInt(request.getParameter("product_id"));
-	
+	System.out.println("상품번호 : "+productId);
 	// DAO 객체 생성
 	ProductDAO dao = new ProductDAO();
 	// 상세 정보 가져오기
-	ProductDTO product = dao.productContetnt(productId);
-	
+	ProductDTO product = dao.productContent(productId);
+
 	// 상세 정보 request에 저장
 	request.setAttribute("product", product);
-	
+	System.out.println(product.toString());
+
 	// 페이지 이동
 	ActionForward forward = new ActionForward();
-	forward.setPath("./ProductContent.me");
+	forward.setPath("./product/productContent.jsp");
 	forward.setRedirect(false);
-	
+
 	return forward;
-}
+	}
 }

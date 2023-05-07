@@ -1,4 +1,4 @@
-package com.itwillbs.mypage.action;
+package com.itwillbs.member.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
-import com.itwillbs.mypage.db.MypageDAO;
-import com.itwillbs.mypage.db.QnADTO;
+import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.MemberDTO;
+import com.itwillbs.member.db.MypageDAO;
+import com.itwillbs.member.db.QnADTO;
 
 public class UserQNAListAction implements Action{
 
@@ -24,6 +26,15 @@ public class UserQNAListAction implements Action{
 		
 		if(id == null) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+			return forward;
+		}
+		
+		// 차단 사용자 세션제어
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.getMember(id);
+		boolean blocked = dto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
 		

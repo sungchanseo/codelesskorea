@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.NoticeDAO;
 import com.itwillbs.member.db.NoticeDTO;
 /**
  * 수정 전 처리 페이지 
@@ -37,7 +38,7 @@ public class NoticeProUpdateAction implements Action {
 		String notice_id = request.getParameter("notice_id");
 		System.out.println("공지글수정 페이지의 글번호 "+notice_id);
 		
-		MemberDAO dao = new MemberDAO();
+		NoticeDAO dao = new NoticeDAO();
 		NoticeDTO dto = dao.getNoticeContent(notice_id);
 		System.out.println("M : 공지사항 정보 불러오기 완료!");
 		

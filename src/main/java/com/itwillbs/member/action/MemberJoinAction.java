@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -18,14 +19,21 @@ public class MemberJoinAction implements Action{
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println(" M : MemberJoinAction_execute() 실행");
-		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		
+		ActionForward forward = new ActionForward();
 		// MemberDTO 객체 생성
 		MemberDTO dto = new MemberDTO();
 		// 전달된 정보 저장
-		
+		MemberDAO qdao = new MemberDAO();
+		MemberDTO qdto = qdao.getMember(id);
+		boolean blocked = qdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
 		
 		dto.setId(request.getParameter("id"));
 		dto.setAddress(request.getParameter("address"));

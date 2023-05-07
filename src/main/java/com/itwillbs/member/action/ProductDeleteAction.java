@@ -11,27 +11,18 @@ import com.itwillbs.member.db.ProductDAO;
 
 public class ProductDeleteAction implements Action {
 
-    @Override
+	@Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("P : ProductDeleteAction_execute()");
-        //세션정보 제어(로그인)
-        HttpSession session = request.getSession();
-        String id = (String)session.getAttribute("id");
-
+        
         ActionForward forward = new ActionForward();
 
-        if(id == null) {
-            forward.setPath("./MemberLogin.me");
-            forward.setRedirect(true);
-            return forward;
-        }
-
-        int productId = Integer.parseInt(request.getParameter("product_id"));
+        int productId = Integer.parseInt(request.getParameter("productId"));
 
         ProductDAO dao = new ProductDAO();
         int result = dao.productDelete(productId);
 
-        System.out.println("P : Product delete result - " + result);
+        System.out.println("P : Product delete result : " + result);
         
 		// 삭제 결과에 따른 페이지 이동(JS)
         if(result == -1) {
@@ -39,7 +30,7 @@ public class ProductDeleteAction implements Action {
             return null;
         }
 
-        JSForward.alertAndMove(response, "상품 정보 삭제 성공!", "./ProductList.me");
+        JSForward.alertAndMove(response, "상품 정보 삭제 성공!", "./ProductList.pr");
         return null;
     }
     

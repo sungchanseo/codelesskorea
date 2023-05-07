@@ -46,8 +46,8 @@ public class ProductDAO {
 		}
 	}
 	
-	// 상품 등록 - productInsert()
-	public void productInsert(ProductDTO dto) {
+	// 상품 등록 - productWrite()
+	public void productWrite(ProductDTO dto) {
 		try {
 			// 1.2 DB 연결
 			getCon();
@@ -73,7 +73,8 @@ public class ProductDAO {
 			closeDB();
 		}
 	}
-	// 상품 등록 - productInsert()
+	// 상품 등록 - productWrite()
+	
 	public List<ProductDTO> getProductList() {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		
@@ -91,6 +92,7 @@ public class ProductDAO {
 	            product.setParts(rs.getString("parts"));
 	            product.setContent(rs.getString("content"));
 	            product.setPrice(rs.getInt("price"));
+	            product.setProduct_image(rs.getString("product_image"));
 	            product.setGrade(rs.getInt("grade"));
 	            product.setCity(rs.getString("city"));
 	            product.setMethod(rs.getInt("method"));
@@ -109,9 +111,9 @@ public class ProductDAO {
 		return productList;
 	}
 	
-	
-	public ProductDTO productContetnt(int product_id) {
-	    ProductDTO product = null;
+	//productContent()
+	public ProductDTO productContent(int product_id) {
+	    ProductDTO product = new ProductDTO();
 	    try {
 	        con = getCon();
 	        sql = "select * from product where product_id=?";
@@ -126,6 +128,7 @@ public class ProductDAO {
 	            product.setParts(rs.getString("parts"));
 	            product.setContent(rs.getString("content"));
 	            product.setPrice(rs.getInt("price"));
+	            product.setProduct_image(rs.getString("product_image"));
 	            product.setGrade(rs.getInt("grade"));
 	            product.setCity(rs.getString("city"));
 	            product.setMethod(rs.getInt("method"));
@@ -133,13 +136,15 @@ public class ProductDAO {
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
 	        }
+	        
+	        System.out.println(" DAO : 상품정보 저장완료! ");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
 	        closeDB();
 	    }
 	    return product;
-	}
+	}//productContent()
 
 
 	public int productDelete(int product_id) {
@@ -176,6 +181,33 @@ public class ProductDAO {
 			}
 			// productDelete()
 
+	
+	
+		public String getSeller(int user_id) {
+			String sellerId = "";
+			try {
+				// 1.2 DB 연결
+				getCon();
+				// 3. SQL 작성 & pstmt 객체
+				String sql = "select id from user where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, user_id);
+				// 4. SQL 실행(select)
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if (rs.next()) {
+					sellerId = rs.getString("id");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return sellerId;
+		}
+	
+	
+	
 //	 상품 정보 수정 - updateProduct(dto);
 //		public int productUpdate(ProductDTO dto) {
 //		int result = -1; // -1 0 1

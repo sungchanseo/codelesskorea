@@ -13,8 +13,17 @@ public class MemberDTO {
 	private String user_image;
 	private Date regdate;
 	private String birth_date; 
+	private Boolean blocked;
 	
 
+	@Override
+	public String toString() {
+		return "MemberDTO [user_id=" + user_id + ", id=" + id + ", password=" + password + ", name=" + name
+				+ ", nickname=" + nickname + ", phone_number=" + phone_number + ", address=" + address + ", user_image="
+				+ user_image + ", regdate=" + regdate + ", birth_date=" + birth_date + ", blocked=" + blocked + "]";
+	}
+	
+	
 	public String getBirth_date() {
 		return birth_date;
 	}
@@ -75,6 +84,16 @@ public class MemberDTO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	public Boolean getBlocked() {
+		return blocked;
+	}
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
+
+
+
+
 
 	
     

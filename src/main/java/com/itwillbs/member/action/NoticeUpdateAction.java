@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.NoticeDAO;
 import com.itwillbs.member.db.NoticeDTO;
 
 public class NoticeUpdateAction implements Action{
@@ -23,7 +24,7 @@ public class NoticeUpdateAction implements Action{
 		dto.setContent(request.getParameter("content"));
 		
 		//공지사항 업데이트 메소드 호출 
-		MemberDAO dao = new MemberDAO();
+		NoticeDAO dao = new NoticeDAO();
 		dao.updateNotice(dto);
 		
 		//디비처리를 완료하고 페이지 이동 -> 티켓 가지고서

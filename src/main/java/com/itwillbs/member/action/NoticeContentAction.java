@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.NoticeDAO;
 import com.itwillbs.member.db.NoticeDTO;
 
 public class NoticeContentAction implements Action{
@@ -25,7 +26,7 @@ public class NoticeContentAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		
-		MemberDAO dao = new MemberDAO();
+		NoticeDAO dao = new NoticeDAO();
 		//글정보 불러오기 메소드 호출
 		NoticeDTO dto1 = dao.getNoticeContent(notice_id);
 		

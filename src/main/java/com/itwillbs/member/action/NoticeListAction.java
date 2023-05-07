@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.NoticeDAO;
 import com.itwillbs.member.db.NoticeDTO;
 
 public class NoticeListAction implements Action{
@@ -28,7 +29,7 @@ public class NoticeListAction implements Action{
 		
 		//////////////////////////////////////////////////////////
 		//페이징처리1/
-		MemberDAO dao = new MemberDAO();
+		NoticeDAO dao = new NoticeDAO();
 
 		int count = dao.getBoardCount();
 		System.out.println("noticeList의 getBoardCount()메소드 값 : "+count);

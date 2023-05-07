@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.itwillbs.mypage.db.MypageDAO"%>
+<%@page import="com.itwillbs.member.db.MypageDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.member.db.MemberDAO"%>
 <%@page import="com.itwillbs.member.db.MemberDTO"%>
-<%@page import="com.itwillbs.mypage.db.QnADTO"%>
+<%@page import="com.itwillbs.member.db.QnADTO"%>
 
 <!DOCTYPE html>
 <html>
