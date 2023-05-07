@@ -218,6 +218,66 @@ public class MemberFrontController extends HttpServlet{
 //			forward.setRedirect(false);
 		}
 		
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		// 상품
+		else if(command.equals("/ProductList.me")) {
+			System.out.println(" C : /ProductList.me 호출 ");
+			System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
+
+			action = new ProductListAction(); 
+			try { 
+				forward  = action.execute(request, response); 
+			} catch (Exception e) {
+				e.printStackTrace(); 
+			}
+		}else if (command.equals("/ProductInsert.me")) {
+			System.out.println(" C : /ProductInsert.me 실행");
+			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
+
+			forward = new ActionForward();
+			forward.setPath("./product/productInsert.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/ProductInsertAction.me")) {
+			System.out.println(" C : ProductInsertAction.me 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
+
+			action = new ProductInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (command.equals("/ProductContent.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./product/productContent.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/ProductUpdate.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./product/productUpdate.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/ProductDelete.me")) {
+			//임시 이동 코드
+			forward = new ActionForward();
+			forward.setPath("./product/productDelete.jsp");
+			forward.setRedirect(false);
+		}
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
+		
 		
 		//주문하기
 		else if (command.equals("/OrderContent.me")) {
@@ -376,6 +436,54 @@ public class MemberFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
+		/*
+		 * 
+		 * 
+		 * 소연스키 코드
+		 */
+		
+		// 구매목록
+		else if (command.equals("/Buylist.me")) {
+			System.out.println(" C : /BuyList.me 호출 ");
+
+			action = new BuyListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 판매목록
+		else if(command.equals("/SaleList.me")) {
+			System.out.println(" C : /SaleList.me 호출 ");
+
+			action = new SaleListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 찜목록
+		else if(command.equals(".LikeList.me")) {
+			System.out.println(" C : /Likelist.me 호출");
+
+			action = new LikeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		/*
+		 * 
+		 * 
+		 * 소연스키 코드
+		 */
+		
+		
+		
 		
 		// FAQ
 		else if (command.equals("/FAQList.me")) {
