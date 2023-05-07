@@ -10,8 +10,13 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-// DB에 연결해서 처리하는 모든 동작 수행
+/**
+ * 공지사항 과 관련된 액션을 수행하는 객체
+ * 공지사항 쓰기,읽기, 수정, 조회수 증가기능 탑재
+ * 이름은 memberdao이지만 언제 수정될지 모름. 
+ * @author 서성찬
+ *
+ */
 public class MemberDAO {
 	// 공통변수 선언
 	
@@ -45,247 +50,157 @@ public class MemberDAO {
 	}
 	
 	// 회원가입 - memberJoin()
-	public void memberJoin(MemberDTO dto) {
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. SQL 작성 & pstmt 객체
-			sql = "insert into itwill_member(id,pw,name,gender,age,email,regdate) "
-					+ " values (?,?,?,?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.getGender());
-			pstmt.setInt(5, dto.getAge());
-			pstmt.setString(6, dto.getEmail());
-			pstmt.setDate(7, dto.getRegdate());
-			// 4. SQL 실행
-			pstmt.execute();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-	}
-	// 회원가입 - memberJoin()
-	
-	// 회원 정보 수정 - memberUpdate(dto);
-	public int memberUpdate(MemberDTO dto) {
-		int result = -1; // -1 0 1
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. SQL 작성 & pstmt 객체
-			String sql = "select pw from itwill_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			// 4. sql 실행(select)
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			if(rs.next()) {
-				System.out.println(dto.getPw());
-				System.out.println(rs.getString("pw"));
-				// 회원
-				if(dto.getPw().equals(rs.getString("pw"))) {
-					// 본인(아이디, 비밀번호 동일)
-					// 3. sql작성 (update) & pstmt 객체
-					// 이름, 나이, 성별 수정
-					sql = "update itwill_member set name=?,gender=?,age=? where id=?";
+			public void memberJoin(MemberDTO dto) {
+				try {
+					// 1.2. 디비연결
+					con = getCon();
+					// 3. SQL작성 & pstmt 객체
+					sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date) "
+							+ "values(?,?,?,?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sql);
-					// ???
-					pstmt.setString(1, dto.getName());
-					pstmt.setString(2, dto.getGender());
-					pstmt.setInt(3, dto.getAge());
-					pstmt.setString(4, dto.getId());
-					// 4. SQL 실행(update)
-					result = pstmt.executeUpdate();						
-				}else {
-					// 본인x(아이디만 동일, 비밀번호 다름)
-					result = 0;
-				}
-			}else {
-				// 비회원
-				result = -1;
-			}
-			
-			System.out.println(" DAO : 회원 정보수정 완료 (" + result + ")");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return result;
-	}
-	// 회원 정보 수정 - memberUpdate(dto);
-	
-	// 로그인 - memberLogin()
-	public int memberLogin(MemberDTO dto) {
-		int result = -1; 	// 처리결과에 따른 상태 -1 0 1
-							// -1(아이디없음)
-							// 0(아이디는 있지만 비밀번호 오류)
-							// 1(로그인 성공)
-		
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. sql구문(select) & pstmt 객체
-			sql = "select pw from itwill_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			
-			// ???
-			pstmt.setString(1, dto.getId());
 					
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			if(rs.next()) {
-				// 회원
-				if(dto.getPw().equals(rs.getString("pw"))) {
-					// 본인
-					result = 1;
-				}else {
-					// 비밀번호 오류
-					result = 0;
+					pstmt.setString(1, dto.getId());
+					pstmt.setString(2, dto.getPassword());
+					pstmt.setString(3, dto.getName());
+					pstmt.setString(4, dto.getNickname());
+					pstmt.setString(5, dto.getPhone_number());
+					pstmt.setString(6, dto.getAddress());
+					pstmt.setString(7, dto.getUser_image());
+					pstmt.setDate(8, dto.getRegdate());
+					pstmt.setString(9, dto.getBirth_date());
+					
+					// 4. SQL 실행
+					pstmt.executeUpdate();
+					System.out.println(" DAO : 회원가입 성공! ");			
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					closeDB();
+				}		
+			}
+			// 회원가입 - memberJoin()
+			
+			public int memberLogin(MemberDTO dto) {
+				int result = -1; 
+				try {
+					con = getCon();
+					sql = "select password from user where id=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getId());
+					
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						if(dto.getPassword().equals(rs.getString("password"))) {
+							result = 1;
+						}else {
+							result = 0;
+						}
+					}else {
+						result = -1;
+					}
+					System.out.println(" DAO : 로그인 처리결과 "+result);
+				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					closeDB();
 				}
-			} else { //비회원
-				result = -1;
+				return result;
 			}
-			System.out.println(" DAO : 로그인 처리 결과 " + result);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		return result;
-
-	}
-	//getMember()
-	public MemberDTO getMember(String id) {
-		MemberDTO dto = new MemberDTO();
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. sql & pstmt
-			sql = "select * from itwill_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			if(rs.next()) {
-				dto.setAge(rs.getInt("age"));
-				dto.setEmail(rs.getString("email"));
-				dto.setGender(rs.getString("gender"));
-				dto.setId(rs.getString("id"));
-				dto.setName(rs.getString("name"));
-				dto.setPw(rs.getString("pw"));
-				dto.setRegdate(rs.getDate("regdate"));
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return dto;
-	}
-	//getMember()
-	
-	//memberDelete()
-	public int deleteMember(String id, String pw) {
-		int result = -1; // -1 0 1
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. SQL 작성 & pstmt 객체
-			String sql = "select pw from itwill_member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			// 4. sql 실행(select)
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			if(rs.next()) {
-				System.out.println(pw);
-				System.out.println(rs.getString("pw"));
-				// 회원
-				if(pw.equals(rs.getString("pw"))) {
-					// 본인(아이디, 비밀번호 동일)
-					// 3. sql작성 (update) & pstmt 객체
-					// 회원정보 삭제
-					sql = "delete from itwill_member where id=?";
+			// 로그인 - memberLogin()	
+			
+			public String idFind(MemberDTO dto) {
+				String result = "";
+				try {
+					con = getCon();
+					sql = "select name,id from user where phone_number=?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, dto.getPhone_number());
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						if(dto.getName().equals(rs.getString("name"))) {
+							result = rs.getString("id");
+						}else {
+							result = "none";
+						}
+					}else {
+						result = "none";
+					}
+					System.out.println(" DAO : 아디찾기 처리결과 "+result);
+							
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					closeDB();
+				}
+				return result;
+				
+			}//아이디찾기
+			
+			public int pwFind(MemberDTO dto,String randomPw) {
+				int result = -1;
+				try {
+					con = getCon();
+					sql = "select phone_number from user where id=?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, dto.getId());
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						if(dto.getPhone_number().equals(rs.getString("phone_number"))) {
+							sql="update user set password=? where id=?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setString(1, randomPw);
+							pstmt.setString(2, dto.getId());
+							pstmt.executeUpdate();
+							result = 1;
+						}else {
+							result = 0;
+						}
+					}else {
+						result = -1;
+					}
+					System.out.println(" DAO : 비번찾기 처리결과 "+result);
+							
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					closeDB();
+				}
+				return result;
+				
+			}//비번찾기
+			
+			public String idCheck(String id) {
+				String check = "";
+				try {
+					con = getCon();
+					sql = "select id from user where id=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, id);
-					// 4. SQL 실행(update)
-					result = pstmt.executeUpdate();						
-				}else {
-					// 본인x(아이디만 동일, 비밀번호 다름)
-					result = 0;
+					
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						check = "1";//중복됨
+					}else {
+						check = "0";
+					}
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					closeDB();
 				}
-			}else {
-				// 비회원
-				result = -1;
-			}
-			
-			System.out.println(" DAO : 회원 정보삭제 완료 (" + result + ")");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return result;
-	}
-	//memberDelete()
+				return check;
+			}//아이디 중복
 	
-	//getMemberList()
-	public List<MemberDTO> getMemberList() {
-	
-		List<MemberDTO> memberList = new ArrayList<MemberDTO>();
-		
-		try {
-			// 1.2. DB연결
-			con = getCon();
-			// 3. sql & pstmt
-			sql = "select * from itwill_member";
-//			sql = "select * from itwill_member where id!=admin";
-			pstmt = con.prepareStatement(sql);
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			// DB정보(rs) -> DTO -> list
-			while (rs.next()) {
-				MemberDTO dto = new MemberDTO();
-				
-				dto.setAge(rs.getInt("age"));
-				dto.setEmail(rs.getString("email"));
-				dto.setGender(rs.getString("gender"));
-				dto.setId(rs.getString("id"));
-				dto.setName(rs.getString("name"));
-				dto.setPw(rs.getString("pw"));
-				dto.setRegdate(rs.getDate("regdate"));
-				
-				memberList.add(dto);
-			}
-			
-			System.out.println(" DAO : 회원목록 조회성공! ");
-			System.out.println(" DAO : 목록 수 " + memberList.size());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return memberList;		
-}//getMemberList()
-
 	
 	//공지사항 글쓰기 noticeWrite()메소드 시작
 	public int noticeWrite(NoticeDTO dto) {

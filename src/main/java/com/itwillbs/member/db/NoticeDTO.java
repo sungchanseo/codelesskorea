@@ -1,7 +1,10 @@
 package com.itwillbs.member.db;
 
 import java.util.Date;
-
+/**
+ * 공지사항과 관련된 액션을 처리하는 객체
+ * 공지사항 쓰기, 업데이트, 삭제, 조회수증가 기능 탑재
+ */
 public class NoticeDTO {
 	private int notice_id;
 	private String title;

@@ -3,27 +3,41 @@ package com.itwillbs.member.db;
 import java.sql.Date;
 
 public class MemberDTO {
-	// jspdb : itwill_member 테이블 정보 저장객체
+	private int user_id;
 	private String id;
-	private String pw;
+	private String password;
 	private String name;
-	private String gender;
-	private int age;
-	private String email;
+	private String nickname;
+	private String phone_number;
+	private String address;
+	private String user_image;
 	private Date regdate;
+	private String birth_date; 
 	
-	// Alt + Shift + S -> R
+
+	public String getBirth_date() {
+		return birth_date;
+	}
+	public void setBirth_date(String birth_date) {
+		this.birth_date = birth_date;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
-		return pw;
+	public String getPassword() {
+		return password;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -31,23 +45,29 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getGender() {
-		return gender;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public int getAge() {
-		return age;
+	public String getPhone_number() {
+		return phone_number;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
-	public String getEmail() {
-		return email;
+	public String getAddress() {
+		return address;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getUser_image() {
+		return user_image;
+	}
+	public void setUser_image(String user_image) {
+		this.user_image = user_image;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -55,12 +75,7 @@ public class MemberDTO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", age=" + age
-				+ ", email=" + email + ", regdate=" + regdate + "]";
-	}
+
 	
-	
-	
+    
 }
