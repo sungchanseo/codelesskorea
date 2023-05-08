@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
     <input type="submit" value="작성완료">
 	
   </form>
- <a href="./NoticeList.me">목록으로</a>
+ <a href="./NoticeList.no">목록으로</a>
 </div>
 
 </body>

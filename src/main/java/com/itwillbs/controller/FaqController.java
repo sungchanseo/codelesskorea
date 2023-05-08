@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.action.faq.FaqListAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
-
-@WebServlet("*.me")
+@WebServlet("*.fa")
 public class FaqController extends HttpServlet{
 	
 	

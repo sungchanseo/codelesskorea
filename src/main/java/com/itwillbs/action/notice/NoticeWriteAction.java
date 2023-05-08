@@ -37,7 +37,7 @@ public class NoticeWriteAction implements Action{
 		
 		//디비처리를 완료하고 페이지 이동 -> 티켓 가지고서
 		ActionForward forward = new ActionForward();
-		forward.setPath("./NoticeList.me"); //공지사항 쓴 뒤에는 공지 보기 페이지로 이동한다. 
+		forward.setPath("./NoticeList.no"); //공지사항 쓴 뒤에는 공지 보기 페이지로 이동한다. 
 		forward.setRedirect(true);
 		System.out.println("M : 공지사항 쓰기 완료=> 공지사항 보기 페이지로 이동합니다.");
 		

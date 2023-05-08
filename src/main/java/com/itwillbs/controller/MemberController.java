@@ -20,12 +20,6 @@ import com.itwillbs.action.member.MemberUpdateProAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-/**
- * 
- * Member기능과 Mypage기능이 합쳐져 있습니다. 
- */
-		// http://localhost:8088/CodeLess/Main.me
-
 @WebServlet("*.me")
 public class MemberController extends HttpServlet{
 	

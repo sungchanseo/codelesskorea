@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
 <h1>공지사항 수정페이지</h1>
 <div class="container">
  
-  <form action="./NoticeUpdateAction.me" method="post">
+  <form action="./NoticeUpdateAction.no" method="post">
 
    	글번호 ${dto.notice_id }
    	<input type="hidden" name="notice_id" value="${dto.notice_id }">
@@ -29,7 +29,7 @@
     <input type="submit" value="작성완료">
 	
   </form>
- <a href="./NoticeList.me">목록으로</a>
+ <a href="./NoticeList.no">목록으로</a>
 </div>
 
 </body>

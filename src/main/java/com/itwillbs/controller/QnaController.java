@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.me")
+@WebServlet("*.qn")
 public class QnaController extends HttpServlet{
 	
 	

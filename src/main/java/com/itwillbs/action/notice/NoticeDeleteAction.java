@@ -37,7 +37,7 @@ public class NoticeDeleteAction implements Action {
 		int result = dao.deleteNotice(dto);
 		
 		if(result ==1) {
-			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./NoticeList.me");
+			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./NoticeList.no");
 		}
 		
 		

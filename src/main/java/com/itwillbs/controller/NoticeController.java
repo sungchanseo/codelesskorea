@@ -18,7 +18,7 @@ import com.itwillbs.action.notice.NoticeWriteAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.me")
+@WebServlet("*.no")
 public class NoticeController extends HttpServlet{
 	
 	
@@ -48,7 +48,7 @@ public class NoticeController extends HttpServlet{
 		
 		
 		// 공지사항
-		if (command.equals("/NoticeList.me")) {
+		if (command.equals("/NoticeList.no")) {
 			/*
 			 * 공지리스트 보기로 이동
 			 * noticeListAcion으로 가서 먼저 처리한 다음에 페이지 이동처리를 해야 한다.
@@ -62,7 +62,7 @@ public class NoticeController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeWrite.me")) {
+		}else if (command.equals("/NoticeWrite.no")) {
 			//임시 이동 코드
 			/*
 			 * 공지사항 글쓰기 메소드 
@@ -72,7 +72,7 @@ public class NoticeController extends HttpServlet{
 			forward.setPath("./notice/noticeWrite.jsp");
 			forward.setRedirect(false);
 			
-		}else if(command.equals("/NoticeWriteAction.me")) {
+		}else if(command.equals("/NoticeWriteAction.no")) {
 			/*
 			 * 공지사항 글쓰고 업데이트 하는 모델로 이동
 			 * DB사용 O, 페이지 이동(패턴2)
@@ -83,7 +83,7 @@ public class NoticeController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeContent.me")) {
+		}else if (command.equals("/NoticeContent.no")) {
 			//임시 이동 코드
 			/*
 			 * 게시판 글을 눌렀을 때 해당 글 페이지로 이동하는 동작
@@ -98,7 +98,7 @@ public class NoticeController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeProUpdateAction.me")) {
+		}else if (command.equals("/NoticeProUpdateAction.no")) {
 			//임시 이동 코드
 			/*
 			 * 공지글 불러오기 액션(model)으로 이동하기 전 액션
@@ -113,7 +113,7 @@ public class NoticeController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeUpdateAction.me")) {
+		}else if (command.equals("/NoticeUpdateAction.no")) {
 			//임시 이동 코드
 			/*
 			 * noticeUpdate.jsp페이지에서 공지사항 수정을 완료하면 정보를 전달받아 
@@ -128,7 +128,7 @@ public class NoticeController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (command.equals("/NoticeDelete.me")) {
+		}else if (command.equals("/NoticeDelete.no")) {
 			//임시 이동 코드
 			/*
 			 * 공지사항 게시글 삭제 주소로 이동

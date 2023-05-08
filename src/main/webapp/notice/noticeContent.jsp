@@ -62,8 +62,8 @@ $(function(){
 		</table>
 
 
-<a href="./NoticeProUpdateAction.me?notice_id=${dto.notice_id }">게시글 수정</a>
-<a href="./NoticeDelete.me?notice_id=${dto.notice_id }">게시글 삭제</a>
-<a href="./NoticeList.me?pageNum=${pageNum }">목록으로</a>
+<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }">게시글 수정</a>
+<a href="./NoticeDelete.no?notice_id=${dto.notice_id }">게시글 삭제</a>
+<a href="./NoticeList.no?pageNum=${pageNum }">목록으로</a>
 </body>
 </html>

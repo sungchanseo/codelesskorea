@@ -17,7 +17,7 @@ import com.itwillbs.action.product.ProductWriteAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.me")
+@WebServlet("*.pr")
 public class ProductController extends HttpServlet{
 	
 	

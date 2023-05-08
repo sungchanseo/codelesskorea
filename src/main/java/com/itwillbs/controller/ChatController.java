@@ -16,7 +16,7 @@ import com.itwillbs.action.chat.ChatUnreadAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.me")
+@WebServlet("*.ch")
 public class ChatController extends HttpServlet{
 	
 	
