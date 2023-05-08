@@ -16,7 +16,7 @@ import com.itwillbs.action.mypage.SaleListAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.me")
+@WebServlet("*.my")
 public class MypageController extends HttpServlet{
 	
 	

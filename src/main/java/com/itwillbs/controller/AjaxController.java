@@ -14,7 +14,7 @@ import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
-@WebServlet("*.ta")
+@WebServlet("*.aj")
 public class AjaxController extends HttpServlet {
 
 	//http://localhost:8088/JQuery7/Ajax.ta

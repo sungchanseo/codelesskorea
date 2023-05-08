@@ -27,7 +27,7 @@
 <!-- rs <- DTO <- List -->
    <tr>
      <td>${dto.notice_id }<input type="hidden" name="notice_id" value="${dto.notice_id }"></td>
-     <td><a href="./NoticeContent.me?notice_id=${dto.notice_id }&pageNum=${pageNum}">${dto.title }</a></td>
+     <td><a href="./NoticeContent.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">${dto.title }</a></td>
      <td>${dto.date}</td>
      <td>${dto.count }</td>
    </tr>
@@ -36,18 +36,18 @@
 <hr>
 	
 	<c:if test="${startPage > pageBlock }"> 
-	<a href="./NoticeList.me?pageNum=${startPage-pageBlock} ">[이전]</a>
+	<a href="./NoticeList.no?pageNum=${startPage-pageBlock} ">[이전]</a>
 	</c:if>
 	
 	<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-	<a href="./NoticeList.me?pageNum=${i }">[${i }]</a>
+	<a href="./NoticeList.no?pageNum=${i }">[${i }]</a>
 	</c:forEach>
 	
 	<c:if test="${endPage<pageCount }">
-	<a href="./NoticeList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
+	<a href="./NoticeList.no?pageNum=${startPage+pageBlock} ">[다음]</a>
 	</c:if>
 <br>
-<a href="./NoticeWrite.me">게시글 작성</a> 
+<a href="./NoticeWrite.no">게시글 작성</a> 
 <a href="./Main.me">메인으로</a>
 </body>
 </html>
