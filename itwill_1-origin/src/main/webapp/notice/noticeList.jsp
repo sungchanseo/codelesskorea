@@ -17,7 +17,7 @@
 
   <div class="container" id="left">
   <br>
-  <h3> 공지게시판</h3>
+  <h4> 공지게시판</h4>
   <hr style="border: 0;height: 1px; background-color: black;">
   <h5 onclick="location.href='./NoticeList.me'"> 공지사항</h5>
   <h5> 자주하는질문</h5>

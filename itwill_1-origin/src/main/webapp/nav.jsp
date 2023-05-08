@@ -24,6 +24,7 @@
         <b>마이페이지</b>
       </a>
       <div class="dropdown-menu">
+        <a class="dropdown-item" href="./MemberMypage.me">마이페이지</a>
         <a class="dropdown-item" href="./MypagePurchaselist.me">판매목록</a>
         <a class="dropdown-item" href="./MypageSalesList.me">구매목록</a>
         <a class="dropdown-item" href="./LikeList.me">찜목록</a>

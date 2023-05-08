@@ -234,8 +234,7 @@ $('document').ready(function() {
 				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
 				data-aos="fade-up">
 				<figure class="img-absolute">
-					<img src="images/chat.jpg" alt="Image" class="img-fluid"
-						style="width: 300px;">
+					<img src="" alt="Image" class="img-fluid">
 				</figure>
 				<!-- <img src="images/chat.jpg" alt="Image" class="img-fluid rounded" > -->
 			</div>

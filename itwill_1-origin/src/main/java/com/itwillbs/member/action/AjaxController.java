@@ -53,6 +53,25 @@ public class AjaxController extends HttpServlet {
 			}
 		}
 		
+		else if(command.equals("/AjaxNickAction.ta")) {
+			action = new AjaxNickAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// ./AjaxBlockedAction.ta
+		
+		else if(command.equals("/AjaxBlockedAction.ta")) {
+			action = new AjaxBlockedAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");
 		System.out.println("\n");
 		/**********************2. 가상주소 매핑****************************/
