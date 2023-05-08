@@ -1,9 +1,9 @@
-<%@page import="com.itwillbs.member.db.ListDTO"%>
+<%@page import="com.itwillbs.db.ListDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwillbs.member.db.ListDAO"%>
-<%@page import="com.itwillbs.member.action.BuyListAction"%>
-<%@page import="com.itwillbs.member.db.MemberDAO"%>
-<%@page import="com.itwillbs.member.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.ListDAO"%>
+<%@page import="com.itwillbs.action.mypage.BuyListAction"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
