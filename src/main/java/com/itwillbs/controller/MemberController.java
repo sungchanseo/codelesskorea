@@ -23,6 +23,7 @@ import com.itwillbs.commons.ActionForward;
 @WebServlet("*.me")
 public class MemberController extends HttpServlet{
 	
+	// http://localhost:8088/CodeLess/Main.me
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 페이지 정보 전달방식에 상관없이 한번에 처리하는 메서드

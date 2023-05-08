@@ -9,8 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>productList</title>
-
+<title>매칭된 리스트</title>
 <style>
 	body {
 		font-family: Arial, sans-serif;
@@ -59,7 +58,7 @@
 		<c:forEach var="product" items="${requestScope.productList }">
 			<tr>
 				<td>${product.product_id}</td>
-				<td><a href="./ProductContent.me?product_id=${product.product_id}">${product.title}</a></td>
+				<td><a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">${product.title}</a></td>
 				<td>${product.price}</td>
 			</tr>
 		</c:forEach>

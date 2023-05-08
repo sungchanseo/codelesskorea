@@ -75,7 +75,12 @@
 
 	<h1>상품 등록</h1>
 	<form action="./ProductWriteAction.me" method="post" >
+		<input type="hidden" name="user_id" value="${sessionScope.id} }"> <!-- user_id를 hidden으로 전송 -->
 		<table>
+			<tr>
+				<td>판매자:</td> 
+				<td>${sessionScope.id}</td> 
+			</tr>
 			<tr>
 				<td>상품 제목:</td>
 				<td><input type="text" placeholder="글 제목을 입력하세요" name="title" required></td>
@@ -99,11 +104,11 @@
 			</tr>
 			<tr>
 				<td>이미지 업로드 :</td>
-				<td><input type="file" name="product_image" required></td>
+				<td><input type="file" name="product_image" ></td>
 			</tr>
 			<tr>
 				<td>상품 가격:</td>
-				<td><input type="text" name="price" required></td>
+				<td><input type="number" name="price" placeholder="가격을 입력해주세요" required></td>
 			</tr>
 			<tr>
 				<td>상품 등급:</td>
@@ -139,8 +144,6 @@
 		</table>
 		<input type="submit" value="등록">
 	</form>
-
-
 
 </body>
 </html>

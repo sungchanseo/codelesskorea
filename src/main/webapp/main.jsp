@@ -154,7 +154,7 @@
 </div>
 
 	<br>
-<input type="button" value="물품검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="location.href='./ProductList.me';">
+<input type="button" value="물품검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="location.href='./ProductList.pr';">
 
           </div>
         </form>

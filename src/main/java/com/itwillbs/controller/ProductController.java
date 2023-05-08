@@ -45,8 +45,8 @@ public class ProductController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/ProductList.me")) {
-			System.out.println(" C : /ProductList.me 호출 ");
+		if(command.equals("/ProductList.pr")) {
+			System.out.println(" C : /ProductList.pr 호출 ");
 			System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
 
 			action = new ProductListAction(); 
@@ -55,15 +55,15 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace(); 
 			}
-		}else if (command.equals("/ProductWrite.me")) {
-			System.out.println(" C : /ProductWrite.me 실행");
+		}else if (command.equals("/ProductWrite.pr")) {
+			System.out.println(" C : /ProductWrite.pr 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/ProductWriteAction.me")) {
-			System.out.println(" C : ProductWriteAction.me 호출");
+		}else if(command.equals("/ProductWriteAction.pr")) {
+			System.out.println(" C : ProductWriteAction.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
 
 			action = new ProductWriteAction();
@@ -72,8 +72,8 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ProductContent.me")) {
-			System.out.println(" C : ProductContent.me 호출");
+		}else if (command.equals("/ProductContent.pr")) {
+			System.out.println(" C : ProductContent.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 			action = new ProductContentAction();
 			try {
@@ -81,37 +81,37 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ProductUpdate.me")) {
+		}else if (command.equals("/ProductUpdate.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productUpdate.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductDelete.me")) {
+		}else if (command.equals("/ProductDelete.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productDelete.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductList.me")) {
+		}else if (command.equals("/ProductList.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productList.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductContent.me")) {
+		}else if (command.equals("/ProductContent.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productContent.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductWrite.me")) {
+		}else if (command.equals("/ProductWrite.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductUpdate.me")) {
+		}else if (command.equals("/ProductUpdate.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productUpdate.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductDelete.me")) {
+		}else if (command.equals("/ProductDelete.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./product/productDelete.jsp");
@@ -120,15 +120,15 @@ public class ProductController extends HttpServlet{
 		
 		//주문하기
 		//주문하기
-		else if (command.equals("/OrderContent.me")) {
+		else if (command.equals("/OrderContent.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./order/orderContent.jsp");
 			forward.setRedirect(false);
 		}
 		
-		else if (command.equals("/OrderWrite.me")) {
-			System.out.println("C : ./OrderWrite.me 호출");
+		else if (command.equals("/OrderWrite.pr")) {
+			System.out.println("C : ./OrderWrite.pr 호출");
 			
 			// OrderWriteAction() 객체 생성
 			action = new OrderWriteAction();
@@ -142,8 +142,8 @@ public class ProductController extends HttpServlet{
 			forward.setRedirect(false);
 		}
 		
-		else if (command.equals("/AddrChangeAction.me")) {
-			System.out.println("C : ./AddrChangeAction.me 호출");
+		else if (command.equals("/AddrChangeAction.pr")) {
+			System.out.println("C : ./AddrChangeAction.pr 호출");
 			
 			// AddrChangeAction() 객체 생성
 			action = new AddrChangeAction();

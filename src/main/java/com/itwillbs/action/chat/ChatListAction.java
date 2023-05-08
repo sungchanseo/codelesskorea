@@ -1,12 +1,8 @@
 package com.itwillbs.action.chat;
 
-import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,8 +33,9 @@ public class ChatListAction implements Action {
 			return forward;
 		}
         // 전달된 정보 저장
-        String fromID = request.getParameter("fromID");
+        String fromID = id;
         String toID = request.getParameter("toID");
+        System.out.println("fromID : " + fromID +  "/ toID : " + toID);
         String listType = request.getParameter("listType");
         if(fromID == null || fromID.equals("") || toID == null || toID.equals("")
         		|| listType == null || listType.equals("")) 

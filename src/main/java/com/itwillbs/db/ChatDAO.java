@@ -331,9 +331,9 @@ public class ChatDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				if(rs.getString("user_image").equals("")) {
-					return "http://localhost:8080/UserChat/images/icon.png";
+					return "./images/icon.png";
 				}
-				return "http://localhost:8080/CodeLess/upload/" + rs.getString("user_image");
+				return "./upload/" + rs.getString("user_image");
 			} 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -344,7 +344,7 @@ public class ChatDAO {
 			    e.printStackTrace();
 			}
 		}
-		return "http://localhost:8080/CodeLess/images/icon.png";
+		return "./images/icon.png";
 	}
 	
 }

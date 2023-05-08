@@ -1,7 +1,6 @@
 package com.itwillbs.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +10,6 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import com.itwillbs.db.MemberDTO;
 
 public class ProductDAO {
 	
@@ -135,6 +132,7 @@ public class ProductDAO {
 	            product.setCharge(rs.getInt("charge"));
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
+	            product.setUser_id(rs.getString("user_id"));
 	        }
 	        
 	        System.out.println(" DAO : 상품정보 저장완료! ");
@@ -181,30 +179,6 @@ public class ProductDAO {
 			}
 			// productDelete()
 
-	
-	
-		public String getSeller(int user_id) {
-			String sellerId = "";
-			try {
-				// 1.2 DB 연결
-				getCon();
-				// 3. SQL 작성 & pstmt 객체
-				String sql = "select id from user where user_id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, user_id);
-				// 4. SQL 실행(select)
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				if (rs.next()) {
-					sellerId = rs.getString("id");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
-			}
-			return sellerId;
-		}
 	
 	
 	
