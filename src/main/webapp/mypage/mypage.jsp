@@ -40,7 +40,7 @@
 		<input type="button" value="구매목록" onclick=" location.href='./MypagePurchaselist.me';">
 		<input type="button" value="판매목록" onclick=" location.href='./MypageSalesList.me';">
 		<a href="./LikeList.me">찜목록</a><br>
-		<a href="./ChatBox.me">채팅목록</a><br>
+		<a href="./ChatBox.ch">채팅목록</a><br>
 
 	
 	

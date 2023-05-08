@@ -6,35 +6,36 @@
 <html>
 <head>
     <%
-       String userID = null;
-       if(session.getAttribute("id") != null) {
-    	  userID = (String) session.getAttribute("id");
-       }
-       String toID = null;
-       if(request.getParameter("toID") != null){
-    	  toID = (String) request.getParameter("toID");
-       }
-       if(userID == null) {
-    	  session.setAttribute("messageType", "오류 메시지");
-    	  session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-    	  response.sendRedirect("index.jsp");
-    	  return;
-       }
-       if(toID == null) {
-     	  session.setAttribute("messageType", "오류 메시지");
-     	  session.setAttribute("messageContent", "대화 상대가 지정되지 않습니다.");
-     	  response.sendRedirect("index.jsp");
-     	  return;
-        }
-        if(userID.equals(URLDecoder.decode(toID, "UTF-8"))) {
-        	session.setAttribute("messageType", "오류 메시지");
-	       	session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
-	       	response.sendRedirect("index.jsp");
-	       	return;
-        }
-        String fromProfile = new ChatDAO().getProfile(userID);
-        String toProfile = new ChatDAO().getProfile(toID);
-        System.out.println(fromProfile);
+//        String userID = null;
+//        if(session.getAttribute("id") != null) {
+//     	  userID = (String) session.getAttribute("id");
+//        }
+//        String toID = null;
+//        if(request.getParameter("toID") != null){
+//     	  toID = (String) request.getParameter("toID");
+//        }
+//        System.out.println(toID);
+//        if(userID == null) {
+//     	  session.setAttribute("messageType", "오류 메시지");
+//     	  session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
+//     	  response.sendRedirect("index.jsp");
+//     	  return;
+//        }
+//        if(toID == null) {
+//      	  session.setAttribute("messageType", "오류 메시지");
+//      	  session.setAttribute("messageContent", "대화 상대가 지정되지 않습니다.");
+//      	  response.sendRedirect("index.jsp");
+//      	  return;
+//         }
+//         if(userID.equals(URLDecoder.decode(toID, "UTF-8"))) {
+//         	session.setAttribute("messageType", "오류 메시지");
+// 	       	session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
+// 	       	response.sendRedirect("index.jsp");
+// 	       	return;
+//         }
+//         String fromProfile = new ChatDAO().getProfile(userID);
+//         String toProfile = new ChatDAO().getProfile(toID);
+//         System.out.println(fromProfile);
     %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,12 +53,12 @@
 	    	window.setTimeout(function() { alert.hide() }, delay);
 	    }
 	    function submitFunction() {
-	    	var fromID = '<%= userID %>'
-	    	var toID = '<%= toID %>'
+	    	var fromID = '${id}';
+	    	var toID = '${toID}';
 	    	var chatContent = $('#chatContent').val();
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatSubmitAction.me",
+	    		url: "./ChatSubmitAction.ch",
 	    		data: {
 	    			fromID: encodeURIComponent(fromID),
 	    			toID: encodeURIComponent(toID),
@@ -77,11 +78,11 @@
 	    }
 	    var lastID = 0;
 	    function chatListFunction(type) {
-	    	var fromID = '<%= userID %>';
-	    	var toID = '<%= toID %>';
+	    	var fromID = '${id}';
+	    	var toID = '${toID}';
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatListAction.me",
+	    		url: "./ChatListAction.ch",
 	    		data: {
 	    			fromID: encodeURIComponent(fromID),
 	    			toID: encodeURIComponent(toID),
@@ -108,7 +109,7 @@
  		    			'<div class="col-lg-12">' +
  		    			'<div class="media">' + 
 // 		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= fromProfile %>" alt="">' +
+		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="${fromProfile}" alt="">' +
 // 		    			'</a>' + 
 		    			'<div class="media-body">' + 
 		    			'<h4 class="media-heading">'+
@@ -130,7 +131,7 @@
 		    			'<div class="col-lg-12">' +
 		    			'<div class="media">' + 
 		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= toProfile %>" alt="">' +
+		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="${toProfile}; alt="">' +
 		    			'</a>' + 
 		    			'<div class="media-body">' + 
 		    			'<h4 class="media-heading">'+
@@ -158,9 +159,9 @@
 	    function getUnread() {
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatUnreadAction.me",
+	    		url: "./ChatUnreadAction.ch",
 	    		data: {
-	    			userID: encodeURIComponent('<%= userID %>'),
+	    			userID: encodeURIComponent('${id}'),
 	    		},
 	    		success: function(result) {
 	    			if(result >= 1) {

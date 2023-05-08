@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.action.chat.ChatAction;
 import com.itwillbs.action.chat.ChatBoxAction;
 import com.itwillbs.action.chat.ChatListAction;
 import com.itwillbs.action.chat.ChatSubmitAction;
@@ -45,15 +46,18 @@ public class ChatController extends HttpServlet{
 		ActionForward forward = null;
 		
 
-		if (command.equals("/ChatToSeller.me")) {
-			System.out.println(" C : /ChatToSeller.me 실행");
-			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
+		if (command.equals("/ChatToSeller.ch")) {
+			System.out.println(" C : /ChatToSeller.ch 실행");
+			System.out.println(" C : DB사용 O, view페이지로 이동O (패턴2)");
 			
-			forward = new ActionForward();
-			forward.setPath("./chat/chat.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/ChatSubmitAction.me")) {
-			System.out.println(" C : ChatSubmitAction.me 호출");
+			action = new ChatAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ChatSubmitAction.ch")) {
+			System.out.println(" C : ChatSubmitAction.ch 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 
 			action = new ChatSubmitAction();
@@ -62,8 +66,8 @@ public class ChatController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ChatListAction.me")) {
-			System.out.println(" C : ChatListAction.me 호출");
+		}else if(command.equals("/ChatListAction.ch")) {
+			System.out.println(" C : ChatListAction.ch 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 
 			action = new ChatListAction();
@@ -72,8 +76,8 @@ public class ChatController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ChatUnreadAction.me")) {
-			System.out.println(" C : ChatUnreadAction.me 호출");
+		}else if(command.equals("/ChatUnreadAction.ch")) {
+			System.out.println(" C : ChatUnreadAction.ch 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 
 			action = new ChatUnreadAction();
@@ -82,15 +86,15 @@ public class ChatController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ChatBox.me")) {
-			System.out.println(" C : /ChatBox.me 실행");
+		}else if (command.equals("/ChatBox.ch")) {
+			System.out.println(" C : /ChatBox.ch 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 			
 			forward = new ActionForward();
 			forward.setPath("./chat/box.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/ChatBoxAction.me")) {
-			System.out.println(" C : ChatBoxAction.me 호출");
+		}else if(command.equals("/ChatBoxAction.ch")) {
+			System.out.println(" C : ChatBoxAction.ch 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 
 			action = new ChatBoxAction();

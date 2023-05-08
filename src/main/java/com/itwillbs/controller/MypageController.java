@@ -46,14 +46,14 @@ public class MypageController extends HttpServlet{
 		
 		
 		// 마이페이지
-		if(command.equals("/MemberMypage.me")) {
+		if(command.equals("/MemberMypage.my")) {
 			System.out.println(" C : /MemberMypage.me 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 			
 			forward = new ActionForward();
 			forward.setPath("./mypage/mypage.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/MemberInfo.me")) {
+		}else if(command.equals("/MemberInfo.my")) {
 			System.out.println(" C : MemberInfo.me 호출");
 			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
 			
@@ -68,7 +68,7 @@ public class MypageController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./mypage/buyList.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/MypageSalesList.me")) {
+		}else if (command.equals("/MypageSalesList.my")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./mypage/saleList.jsp");
@@ -80,7 +80,7 @@ public class MypageController extends HttpServlet{
 			forward.setRedirect(false);
 		}		
 		// 구매목록
-		else if (command.equals("/Buylist.me")) {
+		else if (command.equals("/Buylist.my")) {
 			System.out.println(" C : /BuyList.me 호출 ");
 
 			action = new BuyListAction();
@@ -91,7 +91,7 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 판매목록
-		else if(command.equals("/SaleList.me")) {
+		else if(command.equals("/SaleList.my")) {
 			System.out.println(" C : /SaleList.me 호출 ");
 
 			action = new SaleListAction();
@@ -102,7 +102,7 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 찜목록
-		else if(command.equals(".LikeList.me")) {
+		else if(command.equals("/LikeList.my")) {
 			System.out.println(" C : /Likelist.me 호출");
 
 			action = new LikeListAction();

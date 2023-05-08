@@ -13,7 +13,7 @@
 	    function getUnread() {
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatUnreadAction.me",
+	    		url: "./ChatUnreadAction.ch",
 	    		data: {
 	    			userID: encodeURIComponent('${id}'),
 	    		},
@@ -38,7 +38,7 @@
 	    	var userID = '${id}';
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatBoxAction.me",
+	    		url: "./ChatBoxAction.ch",
 	    		data: {
 	    			userID: encodeURIComponent(userID),
 	    		},
@@ -59,9 +59,9 @@
 	    	});
 	    }
 	    function addBox(lastID, toID, chatContent, chatTime, unread, profile) {
-	    	$('#boxTable').append('<tr onclick="location.href=\'ChatToSeller.me?toID=' + encodeURIComponent(toID) + '\'">' +
+	    	$('#boxTable').append('<tr onclick="location.href=\'ChatToSeller.pr?toID=' + encodeURIComponent(toID) + '\'">' +
 	    			'<td style="width: 150px;">' + 
-// 	    			'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="' + profile + '">' +                       
+	    			'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="' + profile + '">' +                       
 	    			'<h5>' + lastID + '</h5></td>' + 
 	    			'<td>' +
 	    			'<h5>' + chatContent +

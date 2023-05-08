@@ -19,7 +19,9 @@ public class ProductDTO {
 	private int fee;
 	private int charge;
 	private String parts;
+	private String user_id;
 	
+
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -116,6 +118,12 @@ public class ProductDTO {
 	public void setParts(String parts) {
 		this.parts = parts;
 	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	
 	@Override
 	public String toString() {
@@ -123,7 +131,7 @@ public class ProductDTO {
 				+ ", price=" + price + ", product_image=" + product_image + ", grade=" + grade + ", reg_date="
 				+ reg_date + ", read_count=" + read_count + ", like_count=" + like_count + ", chat_count=" + chat_count
 				+ ", city=" + city + ", method=" + method + ", fee=" + fee + ", charge=" + charge + ", parts=" + parts
-				+ "]";
+				+ ", user_id=" + user_id + "]";
 	}
 	
 }

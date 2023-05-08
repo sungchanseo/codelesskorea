@@ -37,7 +37,7 @@
     <div class="form-group" id="log-form">
      <div style="text-align: center;"><a class="navbar-brand" href="./Main.me" style="font-size: 40px;"><span>CODELESS</span></a></div>
      
-      <input type="email" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;" id="id">
+      <input type="text" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;" id="id">
 	 
       <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." name="password" id="password">
 
