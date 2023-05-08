@@ -1,9 +1,9 @@
 
-<%@page import="com.itwillbs.member.db.MypageDAO"%>
+<%@page import="com.itwillbs.db.MypageDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwillbs.member.db.MemberDAO"%>
-<%@page import="com.itwillbs.member.db.MemberDTO"%>
-<%@page import="com.itwillbs.member.db.QnADTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

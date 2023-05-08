@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.member.db.ChatDAO"%>
+<%@page import="com.itwillbs.db.ChatDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder" %>
 <%-- <%@ page import="user.UserDAO" %> --%>

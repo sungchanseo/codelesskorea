@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.member.db.ProductDTO"%>
-<%@page import="com.itwillbs.member.db.ProductDAO"%>
+<%@page import="com.itwillbs.db.ProductDTO"%>
+<%@page import="com.itwillbs.db.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

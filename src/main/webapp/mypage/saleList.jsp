@@ -1,6 +1,6 @@
-<%@page import="com.itwillbs.member.db.ListDTO"%>
+<%@page import="com.itwillbs.db.ListDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwillbs.member.db.ListDAO"%>
+<%@page import="com.itwillbs.db.ListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
