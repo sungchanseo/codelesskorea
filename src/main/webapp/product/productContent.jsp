@@ -161,7 +161,7 @@
 			<input type="hidden" name="product_id" value="${product.product_id}">
 			<input type="submit" value="상품글 삭제">
 		</form>
-		<a href="./ProductList.pr">판매완료d</a>
+		<a href="./ProductList.pr">판매완료test</a>
 	</c:if>
 
 </body>
