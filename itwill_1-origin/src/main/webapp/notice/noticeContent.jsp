@@ -8,8 +8,8 @@
 </head>
 <body>
 <h1>noticeContent</h1>
-<a href="./NoticeUpdate.me">게시글 수정</a>
-<a href="./NoticeDelete.me">게시글 삭제</a>
-<a href="./NoticeList.me">목록으로</a>
+<a href="./NoticeUpdate.no">게시글 수정</a>
+<a href="./NoticeDelete.no">게시글 삭제</a>
+<a href="./NoticeList.no">목록으로</a>
 </body>
 </html>

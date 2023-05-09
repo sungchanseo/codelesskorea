@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
-<%@page import="com.itwillbs.member.db.NoticeDTO"%>
+<%@page import="com.itwillbs.db.NoticeDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwillbs.member.db.MemberDAO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,7 +22,7 @@
   <h5 onclick="location.href='./NoticeList.me'"> 공지사항</h5>
   <h5> 자주하는질문</h5>
   </div>
-  <div class="container" id="right">
+  <div class="container" id="right" style="margin-left: 350px;">
   <h1 align="center" style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 페이지번호 : ${pageNum }<br>
@@ -65,7 +65,7 @@
 <br>
 <div style= "float: right;">
 <!-- 관리자만 글작성할 수 있게 해주세요 -->
-<button type="button" class="btn btn-primary" onclick="location.href='./NoticeWrite.me'">글작성</button>
+<button type="button" class="btn btn-primary" onclick="location.href='./NoticeWrite.no'">글작성</button>
 <button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
 </div>
 

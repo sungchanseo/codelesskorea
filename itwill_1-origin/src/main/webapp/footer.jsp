@@ -25,7 +25,7 @@
           <div class="col-md-3 mb-5">
           
               <ul class="list-unstyled link">
-              <li><a href="./NoticeList.me">공지사항</a></li>
+              <li><a href="./NoticeList.no">공지사항</a></li>
               <li><a href="#">자주하는질문</a></li>
               <li><a href="#">1:1문의</a></li>
        		  

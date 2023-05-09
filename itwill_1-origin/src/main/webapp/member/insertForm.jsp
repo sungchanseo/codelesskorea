@@ -4,9 +4,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<%@ include file="../head.jsp"%>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
+	<%@ include file="../head.jsp"%>
 
 <script type="text/javascript">
 
@@ -31,7 +34,7 @@
 				  return;
 			  }//이메일형식으로 입력하지않을 시 제어
 			  $.ajax({
-				  url : "./AjaxAction.ta",
+				  url : "./AjaxAction.aj",
 				  data: {"id": $('#id').val()},
 				  success:function(data){
 					  const result = $.trim(data);
@@ -212,6 +215,8 @@
 				</table>
 				<br> 프로필사진 <input type="file" name="user_image">
 				 <br><br>
+				 
+				 
 				<label><input type="checkbox" data-toggle="modal"
 					data-target="#myModal" id="checkbox"><b>이용약관 개인정보 수집 및 정보이용에
 					동의합니다.</b></label>
@@ -219,7 +224,7 @@
 
 				<!-- The Modal -->
 				<div class="modal" id="myModal">
-					<div class="modal-dialog modal-dialog-scrollable">
+					<div class="modal-dialog">
 						<div class="modal-content">
 
 							<!-- Modal Header -->
