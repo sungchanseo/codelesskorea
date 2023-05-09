@@ -11,38 +11,63 @@
 <meta charset="UTF-8">
 <title>매칭된 리스트</title>
 <style>
-	body {
-		font-family: Arial, sans-serif;
-		background-color: #f2f2f2;
-	}
-	h1 {
-		text-align: center;
-	}
-	table {
-		margin: 0 auto;
-		border-collapse: collapse;
-		width: 80%;
-		background-color: #fff;
-		box-shadow: 0 0 20px rgba(0,0,0,0.1);
-	}
-	th, td {
-		text-align: center;
-		padding: 10px;
-	}
-	th {
-		background-color: #e6e6e6;
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+}
 
-	}
-	tr:nth-child(even) {
-		background-color: #f2f2f2;
-	}
-	tr:hover {
-		background-color: #e6e6e6;
-	}
-	a {
-		color: #000;
-		text-decoration: none;
-	}
+h1 {
+	text-align: center;
+}
+
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	width: 80%;
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+	text-align: center;
+	padding: 10px;
+}
+
+th {
+	background-color: #e6e6e6;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #e6e6e6;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+button:hover {
+	background-color: #fff;
+	color: #333;
+}
+
+button {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px 20px;
+	background-color: #333;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 4px;
+	border: 1px solid #333;
+	transition: all 0.3s ease;
+	display: block;
+	margin: 10px auto;
+}
 </style>
 </head>
 <body>
@@ -63,5 +88,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<button onclick="window.location.reload();">새로운 매칭 보기</button>
 </body>
 </html>
