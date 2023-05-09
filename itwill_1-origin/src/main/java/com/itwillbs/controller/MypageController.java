@@ -158,15 +158,7 @@ public class MypageController extends HttpServlet{
 	         } catch (Exception e) {
 	            e.printStackTrace();
 	            }
-	         }
-	      //마이페이지QNA -  ./MypageQNAInsert.me(1:1문의 글쓰기)
-	         else if(command.equals("/MypageQNAInsert.me")) { // 글정보 입력
-	         System.out.println(" C : /MypageQNAInsert.me ");
-	         System.out.println(" C : DB사용 x, view페이지 이동 (패턴1)");
-	         // 페이지 이동
-	         forward = new ActionForward();
-	         forward.setPath("./qna/qnaWrite.jsp");
-	         forward.setRedirect(false);
+	         
 	      
 	       //마이페이지 관리자 회원관리 판매목록
 		    }else if (command.equals("/AdminsaleListAction.my")) {
@@ -198,8 +190,8 @@ public class MypageController extends HttpServlet{
 			
 		//--------------------- 소연쓰 --------------------------------	
 		// 구매목록
-		else if (command.equals("/Buylist.my")) {
-			System.out.println(" C : /BuyList.me 호출 ");
+		else if (command.equals("/MypagePurchaseList.my")) {
+			System.out.println(" C : /MypagePurchaseList.my 호출 ");
 
 			action = new BuyListAction();
 			try {
@@ -209,21 +201,10 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 판매목록
-		else if(command.equals("/SaleList.my")) {
-			System.out.println(" C : /SaleList.me 호출 ");
+		else if(command.equals("/MypageSaleslist.my")) {
+			System.out.println(" C : /MypageSaleslist.my 호출 ");
 
 			action = new SaleListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		// 찜목록
-		else if(command.equals("/LikeList.my")) {
-			System.out.println(" C : /Likelist.me 호출");
-
-			action = new LikeListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

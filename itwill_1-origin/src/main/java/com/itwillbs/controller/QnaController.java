@@ -161,8 +161,15 @@ public class QnaController extends HttpServlet{
 	               }catch(Exception e){e.printStackTrace();
 	               }
 	          }
-		
-
+	      //마이페이지QNA -  ./MypageQNAInsert.me(1:1문의 글쓰기)
+		         else if(command.equals("/MypageQNAInsert.qn")) { // 글정보 입력
+		         System.out.println(" C : /MypageQNAInsert.qn ");
+		         System.out.println(" C : DB사용 x, view페이지 이동 (패턴1)");
+		         // 페이지 이동
+		         forward = new ActionForward();
+		         forward.setPath("./qna/qnaWrite.jsp");
+		         forward.setRedirect(false);
+		         }
 			
 			
 			

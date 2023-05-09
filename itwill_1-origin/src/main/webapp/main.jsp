@@ -232,9 +232,9 @@ $('document').ready(function() {
 			<div
 				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
 				data-aos="fade-up">
-				<figure class="img-absolute">
+			<!-- 	<figure class="img-absolute">
 					<img src="" alt="Image" class="img-fluid">
-				</figure>
+				</figure> -->
 				<!-- <img src="images/chat.jpg" alt="Image" class="img-fluid rounded" > -->
 			</div>
 			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
