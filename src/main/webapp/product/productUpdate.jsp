@@ -78,7 +78,7 @@
 	
 	<h1>상품 수정</h1>
 	
-	<form action="./ProductUpdateProAction.me" method="post">
+	<form action="./ProductUpdateProAction.pr" method="post">
 		<table>
 			<tr>
 				<td>상품 번호:</td>

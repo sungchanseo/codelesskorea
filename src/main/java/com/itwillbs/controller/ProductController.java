@@ -12,14 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.action.order.AddrChangeAction;
 import com.itwillbs.action.order.OrderWriteAction;
 import com.itwillbs.action.product.ProductContentAction;
+import com.itwillbs.action.product.ProductDeleteAction;
 import com.itwillbs.action.product.ProductListAction;
+import com.itwillbs.action.product.ProductUpdateAction;
+import com.itwillbs.action.product.ProductUpdateProAction;
 import com.itwillbs.action.product.ProductWriteAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
 @WebServlet("*.pr")
 public class ProductController extends HttpServlet{
-	
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 페이지 정보 전달방식에 상관없이 한번에 처리하는 메서드
@@ -45,7 +47,7 @@ public class ProductController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/ProductList.pr")) {
+		if (command.equals("/ProductList.pr")) {
 			System.out.println(" C : /ProductList.pr 호출 ");
 			System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
 
@@ -62,7 +64,7 @@ public class ProductController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/ProductWriteAction.pr")) {
+		}else if (command.equals("/ProductWriteAction.pr")) {
 			System.out.println(" C : ProductWriteAction.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
 
@@ -72,61 +74,53 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ProductContent.pr")) {
+		}else if(command.equals("/ProductContent.pr")) {
 			System.out.println(" C : ProductContent.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 			action = new ProductContentAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ProductUpdate.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productUpdate.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductDelete.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productDelete.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductList.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductContent.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productContent.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductWrite.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductUpdate.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productUpdate.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/ProductDelete.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./product/productDelete.jsp");
-			forward.setRedirect(false);
+		}else if(command.equals("/ProductUpdate.pr")) {
+			System.out.println(" C : ProductUpdate.pr 호출");
+			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
+
+			action = new ProductUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ProductUpdateProAction.pr")) {
+			System.out.println(" C : ProductUpdateProAction.pr 호출");
+			System.out.println(" C : DB사용 O, 페이지 이동 (패턴2)");
+
+			action = new ProductUpdateProAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ProductDeleteAction.pr")) {
+			System.out.println(" C : /ProductDeleteAction.pr 호출");
+			System.out.println(" C : DB사용O, 페이지 이동 (패턴2)");
+			action = new ProductDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		//주문하기
 		//주문하기
-		else if (command.equals("/OrderContent.pr")) {
+		else if(command.equals("/OrderContent.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./order/orderContent.jsp");
 			forward.setRedirect(false);
 		}
-		
 		else if (command.equals("/OrderWrite.pr")) {
 			System.out.println("C : ./OrderWrite.pr 호출");
 			
@@ -154,9 +148,6 @@ public class ProductController extends HttpServlet{
 			}
 		}
 
-		
-		
-		
 		System.out.println(" 2. 가상주소 매핑 - 끝");
 		/*********2. 가상주소 매핑*************/
 		

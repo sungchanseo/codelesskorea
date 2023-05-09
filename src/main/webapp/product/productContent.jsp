@@ -155,7 +155,7 @@
 	<br>
 	<br>
 	<c:if test="${ sessionScope.id eq 'admin' or product.user_id eq sessionScope.id }">
-    <a href="./ProductUpdate.pr?product_id='${product.product_id}'" >상품글 수정</a>
+    <a href="./ProductUpdate.pr?product_id=${product.product_id}" >상품글 수정</a>
 		<form method="post" action="./ProductDeleteAction.pr"
 			onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
 			<input type="hidden" name="product_id" value="${product.product_id}">

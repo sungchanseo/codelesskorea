@@ -26,7 +26,7 @@ public class ProductListAction implements Action {
 		// request 객체에 저장
 		request.setAttribute("productList", productList);
 		System.out.println(productList.size());
-		
+		System.out.println("");
 		// 연결된 view에 출력(./product/productList.jsp)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/productList.jsp");

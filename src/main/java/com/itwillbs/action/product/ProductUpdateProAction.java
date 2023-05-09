@@ -7,22 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ProductDAO;
 import com.itwillbs.db.ProductDTO;
 
-public class ProductUpdateAction implements Action {
-	
+public class ProductUpdateProAction  implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" P : ProductUpdateAction_execute() 실행");
-		
-		// 한글처리
+		System.out.println(" M : MemberUpdateProAction_execute() 호출");
+		// 한글처리(인코딩)
 		request.setCharacterEncoding("UTF-8");
-		
-		// ProductDTO 객체
+		// 전달정보(파라메터) 저장(DTO)
 		ProductDTO dto = new ProductDTO();
-		// 전달된 정보 저장
 		
+		dto.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
 		dto.setTitle(request.getParameter("title"));
 		dto.setModel(request.getParameter("model"));
 		dto.setParts(request.getParameter("parts"));
@@ -33,22 +31,24 @@ public class ProductUpdateAction implements Action {
 		dto.setMethod(Integer.parseInt(request.getParameter("method")));
 		dto.setCharge(Integer.parseInt(request.getParameter("charge")));
 		dto.setFee(Integer.parseInt(request.getParameter("fee")));
+		dto.setUser_id(request.getParameter("user_id"));
 		dto.setReg_date(new Date(System.currentTimeMillis()));
-
+		
 		System.out.println(" P : " + dto);
-		System.out.println("");
-		// ProductDAO 객체 생성
+		
+		// DAO - 정보수정 메서드 호출 memberUpdate()
 		ProductDAO dao = new ProductDAO();
-		// 상품수정 메서드
-//		dao.productUpdate(dto);
+		int result = dao.productUpdate(dto);
 		
-		// 페이지 이동
-		ActionForward forward = new ActionForward();
-		forward.setPath("./ProductList.me");
-		forward.setRedirect(true);
-		
-		System.out.println(" P : 데이터 처리완료! 리스트 페이지 이동 ");
-		
-		return forward;
+		System.out.println(" P : 정보 수정결과 " + result);
+		// 수정 처리 결과에 따른 페이지 이동 (JS)
+		// 삭제 결과에 따른 페이지 이동(JS)
+		if(result == 1) {
+			JSForward.alertAndMove(response, "상품 수정 성공!", "./ProductList.me");
+			return null;
+		} else {
+			JSForward.alertAndBack(response, "상품 수정 실패");
+			return null;
+		}
 	}
 }

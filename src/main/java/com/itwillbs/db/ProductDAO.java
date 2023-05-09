@@ -49,8 +49,8 @@ public class ProductDAO {
 			// 1.2 DB 연결
 			getCon();
 			// 3. SQL 작성 & pstmt 객체
-			sql = "insert into product(title,model,parts,content,price,grade,city,method,charge,fee,reg_date) "
-					+ " values (?,?,?,?,?,?,?,?,?,?,now())";
+			sql = "insert into product(title,model,content,price,grade,city,parts,method,charge,fee,user_id,reg_date) "
+					+ " values (?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getModel());
@@ -62,6 +62,7 @@ public class ProductDAO {
 			pstmt.setInt(8, dto.getMethod());
 			pstmt.setInt(9, dto.getCharge());
 			pstmt.setInt(10, dto.getFee());
+			pstmt.setString(11, dto.getUser_id());
 			// 4. SQL 실행
 			pstmt.execute();
 		} catch (Exception e) {
@@ -96,7 +97,6 @@ public class ProductDAO {
 	            product.setCharge(rs.getInt("charge"));
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
-				
 				productList.add(product);
 			}
 		} catch (Exception e) {
@@ -131,8 +131,8 @@ public class ProductDAO {
 	            product.setMethod(rs.getInt("method"));
 	            product.setCharge(rs.getInt("charge"));
 	            product.setFee(rs.getInt("fee"));
-	            product.setReg_date(rs.getDate("reg_date"));
 	            product.setUser_id(rs.getString("user_id"));
+	            product.setReg_date(rs.getDate("reg_date"));
 	        }
 	        
 	        System.out.println(" DAO : 상품정보 저장완료! ");
@@ -146,90 +146,87 @@ public class ProductDAO {
 
 
 	public int productDelete(int product_id) {
-		int result = -1; // -1: 상품 정보 없음, 0: 상품 삭제 실패, 1: 상품 삭제 성공
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. SQL 작성 & pstmt 객체
-			String sql = "select * from product where product_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, product_id);
-			// 4. SQL 실행(select)
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			if (rs.next()) {
-			// 해당 상품 존재
-			// 3. SQL 작성 (delete) & pstmt 객체
-			sql = "delete from product where product_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, product_id);
-			// 4. SQL 실행(delete)
-			result = pstmt.executeUpdate();
-			} else {
-			// 해당 상품이 존재하지 않음
-			result = -1;
-			}
-			System.out.println(" DAO : 상품 정보 삭제 완료 (" + result + ")");
-			} catch (Exception e) {
-			e.printStackTrace();
-			} finally {
-			closeDB();
-			}
-			return result;
-			}
+	    int result = -1; // 0: 상품 정보 없음, 1: 상품 삭제 성공
+	    
+	    try {
+	        // 1.2 DB 연결
+	        getCon();
+	        
+	        // 3. SQL 작성 (delete) & pstmt 객체
+	        sql = "delete from product where product_id=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, product_id);
+	        
+	        // 4. SQL 실행(delete)
+	        result = pstmt.executeUpdate();
+	        
+	        if (result == 0) {
+	            System.out.println("DAO : 해당 상품 정보가 존재하지 않습니다.");
+	        } else {
+	            System.out.println("DAO : 상품 정보 삭제 완료 (" + result + ")");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 5. DB 연결 해제
+	        closeDB();
+	    }
+	    
+	    return result;
+	}
 			// productDelete()
 
-	
-	
-	
-//	 상품 정보 수정 - updateProduct(dto);
-//		public int productUpdate(ProductDTO dto) {
-//		int result = -1; // -1 0 1
-//		try {
-		// 1.2 DB 연결
-//		getCon();
-		// 3. SQL 작성 & pstmt 객체
-//		String sql = "select product_id from product where product_id=?";
-//		pstmt = con.prepareStatement(sql);
-//		pstmt.setInt(1, dto.getProduct_id());
-		// 4. sql 실행(select)
-//		rs = pstmt.executeQuery();
-		// 5. 데이터 처리
-//		if(rs.next()) {
-//		System.out.println(dto.getProduct_id());
-//		System.out.println(rs.getInt("product_id"));
-		// 상품
-//		if(dto.getProduct_id().equals(rs.getInt("product_id"))) {
-		// 상품번호 동일 //수정중
-		// 3. sql작성 (update) & pstmt 객체
-		// 상품명, 가격, 수량 수정
-//		sql = "update product set product_id=?,title=?,model=?,content=?,price=? where id=?";
-//		pstmt = con.prepareStatement(sql);
-		// ???
-//		pstmt.setInt(1, dto.getProduct_id());
-//		pstmt.setString(2, dto.getTitle());
-//		pstmt.setString(3, dto.getModel());
-//		pstmt.setString(4, dto.getContent());
-//		pstmt.setInt(5, dto.getPrice());
-		// 4. SQL 실행(update)
-//		result = pstmt.executeUpdate();
-//		}else {
-//		result = 0;
-//		}
-//		}else {
-		// 비상품
-//		result = -1;
-//		}
-//		System.out.println(" DAO : 상품 정보수정 완료 (" + result + ")");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			closeDB();
-//		}
-//		return result;
-//	}
-		
+	public int productUpdate(ProductDTO dto) {
+	    int result = -1; // -1 0 1
+	    try {
+	    	 System.out.println(dto.getProduct_id());
+	        //1.2 DB 연결
+	        getCon();
+	        String sql = "select * from product where product_id=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, dto.getProduct_id());
+	        // 4. SQL 실행(select)
+	        rs = pstmt.executeQuery();
+	        System.out.println(dto.getProduct_id());
+	           
+	        // 5. 데이터 처리
+	        if (rs.next()) {
+	            // 상품번호 동일 //수정중
+	            // 3. sql작성 (update) & pstmt 객체
+	            // 상품명, 가격, 수량 수정
+	        	
+	            sql = "update product set title=?, model=?, parts=?, content=?, "
+	                    + " price=?,grade=?,city=?, method=?, charge=?, fee=?, "
+	                    + " user_id=?, reg_date=now() where product_id=?";
+
+	            pstmt = con.prepareStatement(sql);
+
+	            pstmt.setString(1, dto.getTitle());
+	            pstmt.setString(2, dto.getModel());
+	            pstmt.setString(3, dto.getParts());
+	            pstmt.setString(4, dto.getContent());
+	            pstmt.setInt(5, dto.getPrice());
+	            pstmt.setInt(6, dto.getGrade());
+	            pstmt.setString(7, dto.getCity());
+	            pstmt.setInt(8, dto.getMethod());
+	            pstmt.setInt(9, dto.getCharge());
+	            pstmt.setInt(10, dto.getFee());
+	            pstmt.setString(11, dto.getUser_id());
+	            pstmt.setInt(12, dto.getProduct_id());
+	            System.out.println(" P : " + dto);
+	            // 4. SQL 실행(update)
+	            result = pstmt.executeUpdate();
+	            System.out.println("DAO : 상품 정보 수정 완료 (" + result + ")");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 5. DB 연결 해제
+	        closeDB();
+	    }
+
+	    return result;
+	}
 	
 }
 

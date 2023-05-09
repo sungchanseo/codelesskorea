@@ -74,8 +74,8 @@
 <body>
 
 	<h1>상품 등록</h1>
-	<form action="./ProductWriteAction.me" method="post" >
-		<input type="hidden" name="user_id" value="${sessionScope.id} }"> <!-- user_id를 hidden으로 전송 -->
+	<form action="./ProductWriteAction.pr" method="post" >
+		<input type="hidden" name="user_id" value="${sessionScope.id}"> <!-- user_id를 hidden으로 전송 -->
 		<table>
 			<tr>
 				<td>판매자:</td> 
