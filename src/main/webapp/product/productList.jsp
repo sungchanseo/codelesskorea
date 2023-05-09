@@ -75,16 +75,24 @@ button {
 	<!-- Action에서 받아온 정보(memberList) -->
 	<table>
 		<tr>
+			<th></th>
 			<th>상품번호</th>
 			<th>상품명</th>
 			<th>가격</th>
+			<th>조회수</th>
+			<th>찜수</th>
+			<th>채팅수</th>
 		</tr>
 		<!-- rs(데이터) <- DTO <- List -->
 		<c:forEach var="product" items="${requestScope.productList }">
 			<tr>
+				<td><img src="${product.product_image}" alt="이미지 없음" width="50px"></td>
 				<td>${product.product_id}</td>
 				<td><a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">${product.title}</a></td>
 				<td>${product.price}</td>
+				<td>${product.read_count}</td>
+				<td>${product.like_count}</td>
+				<td>${product.chat_count}</td>
 			</tr>
 		</c:forEach>
 	</table>
