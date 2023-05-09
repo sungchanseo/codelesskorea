@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.member.db.QnADTO"%>
-<%@page import="com.itwillbs.member.db.MypageDAO"%>
+<%@page import="com.itwillbs.db.QnADTO"%>
+<%@page import="com.itwillbs.db.MypageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -82,12 +82,11 @@ QnADTO qna = mdao.getBoard(bno);
   </tr>
   <tr>
     <th>내용</th>
-    <td colspan="5"><textarea rows="15" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
+    <td colspan="5"><textarea rows="30" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
   </tr>
   <tr>
     <td colspan="6" style="text-align:center">
-      <input type="button" value="목록으로" class="btn" onclick="location.href='./UserQNAList.me?pageNum=<%=pageNum%>'">
-      <%if (id.equals(qdto.getId())) { %>	
+<input type="button" value="목록으로" class="btn" onclick="location.href='./UserQNAList.me?pageNum=<%=pageNum%>'">      <%if (id.equals(qdto.getId())) { %>	
         <input type="button" value="글삭제" class="btn" onclick="location.href='./UserQNADeleteAction.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
       <% } %>	
     </td>

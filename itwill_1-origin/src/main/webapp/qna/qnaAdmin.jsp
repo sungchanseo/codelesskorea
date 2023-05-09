@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.member.db.MypageDAO"%>
-<%@page import="com.itwillbs.member.db.QnADTO"%>
+<%@page import="com.itwillbs.db.MypageDAO"%>
+<%@page import="com.itwillbs.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

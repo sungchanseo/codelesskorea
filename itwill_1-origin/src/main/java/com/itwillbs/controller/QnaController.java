@@ -9,6 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.action.qna.AdminQNAListAction;
+import com.itwillbs.action.qna.AdminQNAcontentAction;
+import com.itwillbs.action.qna.MypageQNABoardInsertAction;
+import com.itwillbs.action.qna.MypageQNABoardReInsertAction;
+import com.itwillbs.action.qna.QNADeleteAction;
+import com.itwillbs.action.qna.QNAUpdateAction;
+import com.itwillbs.action.qna.QNAUpdateActionPro;
+import com.itwillbs.action.qna.UserQNADeleteAction;
+import com.itwillbs.action.qna.UserQNAListAction;
+import com.itwillbs.action.qna.UserQNAcontentAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -40,39 +50,122 @@ public class QnaController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		// QNA
-		if (command.equals("/QNAList.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAWrite.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAReWrite.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaReWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAContent.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaContent.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNADelete.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaDelete.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAUpdate.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaUpdate.jsp");
-			forward.setRedirect(false);
-		}
+	      // 마이페이지 QNA - ./MypageQNAInsertAction.me(1:1문의 글쓰기 실행)
+	      if(command.equals("/MypageQNAInsertAction.qn")) {
+	         System.out.println(" C : /MypageQNAInsertAction.qn 호출 ");
+	         System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
+	         // MypageQNABoardInsertAction 객체 생성
+	         action = new MypageQNABoardInsertAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         }
+	      //마이페이지 QNA - 리스트(관리자용) /AdminQNAList.me
+	      else if(command.equals("/AdminQNAList.qn")) {
+	         System.out.println(" C : /AdminQNAList.qn 호출 ");
+	         System.out.println(" C : DB사용O,view페이지 출력(패턴3)");
+	         // 페이지 이동
+	         action = new AdminQNAListAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         }
+	      // 마이페이지 QNA - 리스트(유저용) /UserQNAList.me
+	      else if(command.equals("/UserQNAList.qn")) {
+	         System.out.println(" C : /AdminQNAList.qn 호출 ");
+	         System.out.println(" C : DB사용O,view페이지 출력(패턴3)");
+	         // 페이지 이동
+	         action = new UserQNAListAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         }
+	         // QNAContent.me 글내용보기 - 유저용
+	      else if(command.equals("/QNAContent.qn")) {
+	         System.out.println(" C : /QNAContent.qn 호출 ");
+	         System.out.println(" C : DB사용x,view페이지 이동(패턴1)");
+	         // 페이지 이동
+	         action = new UserQNAcontentAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         }
+	         // AdminQNAContent.me 글내용보기 - 관리자용
+	      else if(command.equals("/AdminQNAContent.qn")) {
+	         System.out.println(" C : /QNAContent.me 호출 ");
+	         System.out.println(" C : DB사용x,view페이지 이동(패턴1)");
+	         // 페이지 이동
+	         action = new AdminQNAcontentAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         }
+	      //마이페이지QNA -  /QNAReWrite.me (1:1문의 답글쓰기)
+	      else if(command.equals("/QNAReWrite.qn")) { // 글정보 입력
+	         System.out.println(" C : /QNAReWrite.me ");
+	         System.out.println(" C : DB사용 x, view페이지 이동 (패턴1)");
+	         // 페이지 이동
+	         forward = new ActionForward();
+	         forward.setPath("./qna/qnaReWrite.jsp");
+	         forward.setRedirect(false);
+	      }
+	      // 마이페이지 QNA ./QNAReWriteAction.me (1:1문의 답글쓰기 실행)
+	      else if(command.equals("/QNAReWriteAction.qn")){
+	         System.out.println("C : /QNAReWriteAction.me 호출");
+	         action =  new MypageQNABoardReInsertAction();
+	         try{ forward = action.execute(request, response);
+	            }catch(Exception e){e.printStackTrace();
+	         }
+	      }
+	      // 마이페이지 QNA  ./QNAUpdate.me 수정하기
+	      else if(command.equals("/QNAUpdate.qn")){
+	            System.out.println("컨트롤러 : BoardUpdate객체 생성 execute() 호출");
+	            action = new QNAUpdateAction();
+	            try{
+	               forward = action.execute(request, response);
+	            }catch(Exception e){
+	               e.printStackTrace();
+	            }
+	      }else if(command.equals("/QNAUpdateAction.qn")){
+	            System.out.println("C : /QNAUpdateAction.qn 호출");
+	            //
+	            action = new QNAUpdateActionPro();
+	            try {
+	               forward = action.execute(request, response);
+	            } catch (Exception e) {
+	               e.printStackTrace();
+	            }
+	         //글삭제 - 관리자용
+	         }else if(command.equals("/QNADeleteAction.qn")){
+	            System.out.println("C : /QNADeleteAction.qn 호출");
+	            action = new QNADeleteAction();
+	            try{ forward = action.execute(request, response);
+	            }catch(Exception e){e.printStackTrace();
+	            }
+	         }
+	         //글삭제 - 유저용 ./UserQNADeleteAction.me
+	            else if(command.equals("/UserQNADeleteAction.qn")){
+	               System.out.println("C : /UserQNADeleteAction.qn 호출");
+	               action = new UserQNADeleteAction();
+	               try{ forward = action.execute(request, response);
+	               }catch(Exception e){e.printStackTrace();
+	               }
+	          }
+		
 
+			
+			
+			
 		
 		
 		

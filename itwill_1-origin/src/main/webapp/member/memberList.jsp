@@ -36,17 +36,22 @@
 <body>
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <!-- 	<h1>memberList.jsp</h1> -->
+	<!-- 사이드바 -->
+	<%@ include file="../mySide.jsp"%>
+	<!-- 사이드바 -->
 	<h2>회원정보 목록페이지 (관리자용)</h2>
 	<%
 	// 세션제어 (로그인+관리자일때만 사용가능)
-	%>
-	
+	%>	
 	<c:if test="${ empty sessionScope.id || !id.equals('admin@gmail.com') }">
 		<c:redirect url="./MemberLogin.me"/>
 	</c:if>
 	
+	<div class="container" id="mright" style="margin-left: 250px;  height: 1000px;">
+  <h1 align="center" style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
 	<!-- Action에서 받아온 정보(memberList) -->	
-	<table border="1">
+	<table class="table table-striped" style="height: 10px;">
 	   <tr>
 	      <td>아이디</td>
 	      <td>비밀번호</td>
@@ -62,12 +67,12 @@
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.memberList }">
 		   <tr>
-		      <td>${dto.id }</td>
-		      <td>${dto.password }</td>
-		      <td>${dto.name }</td>
-		      <td>${dto.nickname }</td>
+		      <td width="10px;">${dto.id }</td>
+		      <td  width="10px;">${dto.password }</td>
+		      <td  width="10px;">${dto.name }</td>
+		      <td  width="10px;">${dto.nickname }</td>
 		      <td>${dto.phone_number }</td>
-		      <td>${dto.address }</td>
+		      <td  width="200px;">${dto.address }</td>
 		      <td>${dto.user_image }</td>
 		      <td>${dto.regdate }</td>
 		      <td>${dto.birth_date }</td>
@@ -99,7 +104,7 @@
 		   <a href="./MemberList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
 		   </c:if>
 
-
+</div>
 
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 

@@ -6,7 +6,8 @@
 <head>
 <%@ include file="../head.jsp"%>
 <meta charset="UTF-8">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
 
 <script type="text/javascript">
@@ -26,7 +27,7 @@
 		$('#nickname').keyup(function(){
 
 			  $.ajax({
-				  url : "./AjaxNickAction.ta",
+				  url : "./AjaxNickAction.aj",
 				  data: {"nickname": $('#nickname').val()},
 				  success:function(data){
 					  const result = $.trim(data);
@@ -45,13 +46,7 @@
 					  }
 				  }//success 
 			  });// ajax
-			  if($('#id').val() == ""){
-				  $('#idmsg').css('color','red');
-				  $('#idmsg').text("아이디를 입력해주세요.");  
-				  $('#submit').attr('disabled','disabled'); 
-				  return;
-			  }
-		  }); // 아이디중복확인 
+		  }); // 닉네임중복확인 
 				
 		
 		$('#alert-success').hide();
@@ -112,11 +107,16 @@
 <body>
 
 
-
 <!-- 		<h1>updateForm.jsp(ITWILL)</h1> -->
 <!-- 		이름, 연락처,  닉네임(중복불가), 사진(선택사항), 주소 수정가능-->
 
 			<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+			
+			
+		  <!-- 사이드바 -->
+			<%@ include file="../mySide.jsp"%><!-- nav 삽입 -->
+		  <!-- 사이드바 -->
+				
 
 
 	<div class="container" id="login-con"
@@ -175,7 +175,7 @@
 
 					
         
-							</div>
+							
     
       	<button type="submit" class="btn btn-primary btn-block"
 										style="margin-top: 40px;" id="submit">내정보 수정 완료</button>
@@ -183,9 +183,10 @@
 		<a href="./PasswordUpdate.me" class="btn btn-primary btn-block"
 										style="margin-top: 40px;" >비밀번호 변경</a>
 										
-		<a href="./MemberDelete.me" class="btn btn-primary btn-block"
+		<a href="./MemberDelete.me" class="btn btn-secondary btn-block"
 										style="margin-top: 40px;" >코드리스와 이별하기</a> <br>
   </form>
+  </div>
 </div>
 	<!-- 업데이트 컨테이너박스 끝 -->
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->

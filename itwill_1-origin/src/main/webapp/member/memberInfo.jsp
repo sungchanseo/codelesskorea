@@ -6,10 +6,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 	<%@ include file="../head.jsp" %>
 	
 		<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>CODELESS - 내정보보기</title>
 	</head>
 	<body>
 <!-- 		<h1>memberInfo.jsp(MVC)</h1> -->
@@ -25,9 +26,34 @@
 		<c:if test="${ empty sessionScope.id }">
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
-				 <div class="container" id="login-con">
 		
-			<div class="container" id="log-form" style="width: 400px;">
+		
+		  <!-- 사이드바 -->
+		  <div class="container" id="left">
+		  <br>
+		  <h4> 마이페이지</h4>
+		  
+		  <c:if test="${id!='admin' && id!='admin@gmail.com' }">
+		  <hr style="border: 0;height: 1px; background-color: black;">
+		  <h5 onclick="location.href='./MemberUpdate.me'"> 내정보수정</h5>
+		  <h5 onclick="location.href='./MypageSalesList.my'"> 판매목록</h5>
+		  <h5 onclick="location.href='./MypagePurchaselist.my'"> 구매목록</h5>
+		  <h5 onclick="location.href='./LikeList.my'"> 찜목록</h5>
+		  </c:if>
+		  
+		  <c:if test="${id=='admin' || id=='admin@gmail.com' }">
+		  <hr style="border: 0;height: 1px; background-color: black;">
+		  <h5 onclick="location.href='./MemberUpdate.me'"> 내정보수정</h5>
+		  <h5 onclick="location.href='./MemberList.me'"> 회원관리</h5>
+		  <h5 onclick="location.href='./AdminsaleListAction.my''"> 판매목록</h5>
+		  <h5 onclick="location.href='./AdminQNAList.qn'"> 1:1문의관리</h5>
+		  </c:if>
+		  </div>
+		  <!-- 사이드바 -->
+				
+				 <div class="container" id="login-con" style="width: 800px;">
+		
+			<div class="container" id="log-form" >
 				<h2>
 					<b>내정보 보기</b>
 				</h2>
@@ -65,7 +91,6 @@
 				
 				<br> 프로필사진 <input type="image" name="user_image" readonly="readonly" value="${dto.user_image} "> 
 
-		</div>
 		
 		
       	<a href="./MemberUpdate.me" class="btn btn-primary btn-block"
@@ -75,10 +100,11 @@
 		<a href="./PasswordUpdate.me" class="btn btn-primary btn-block"
 										style="margin-top: 40px;" >비밀번호 변경</a> 
 										
-		<a href="./MemberDelete.me" class="btn btn-primary btn-block"
+		<a href="./MemberDelete.me" class="btn btn-secondary btn-block"
 										style="margin-top: 40px;" >코드리스와 이별하기</a>  <br>
 			</div>
-
+</div>
+		
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 	</body>
 </html>

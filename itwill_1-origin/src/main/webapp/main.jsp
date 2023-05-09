@@ -3,8 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<%@ include file="../head.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<%@ include file="head.jsp"%>
 <script type="text/javascript">
 
 $('document').ready(function() {
@@ -14,7 +14,7 @@ $('document').ready(function() {
 	  var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
 	   var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
 	   var area3 = ["대덕구","동구","서구","유성구","중구"];
-	   var area4 = ["광산구","남구","동구",     "북구","서구"];
+	   var area4 = ["광산구","남구","동구","북구","서구"];
 	   var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
 	   var area6 = ["남구","동구","북구","중구","울주군"];
 	   var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
@@ -125,10 +125,9 @@ $('document').ready(function() {
 
 </script>
 </head>
-
-<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-
+<body>
 <!-- END head -->
+<%@ include file="nav.jsp"%><!-- nav 삽입 -->
 
 <section class="site-hero overlay"
 	style="background-image: url(images/background-g70cf72a56_1920.png)"
@@ -629,7 +628,7 @@ $('document').ready(function() {
         </div>
       </section> -->
 
-	<%@include file="../footer.jsp"%>
+	<%@include file="footer.jsp"%>
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -638,15 +637,9 @@ $('document').ready(function() {
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.stellar.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
-
-
 <script src="js/aos.js"></script>
-
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/jquery.timepicker.min.js"></script>
-
-
-
 <script src="js/main.js"></script>
 </body>
 </html>

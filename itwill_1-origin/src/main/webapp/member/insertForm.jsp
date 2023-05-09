@@ -4,12 +4,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
 	<%@ include file="../head.jsp"%>
+
 
 <script type="text/javascript">
 
@@ -81,6 +81,38 @@
 		  }}
 		   
 		});//비밀번호 일치불일치 체크
+		
+		$('#nickname').keyup(function(){
+
+			  $.ajax({
+				  url : "./AjaxNickAction.aj",
+				  data: {"nickname": $('#nickname').val()},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes" && !$('#nickname').val() == ""){
+					
+					  $('#nickmsg').css('color','green');
+					  $('#nickmsg').text("사용가능한 닉네임입니다.");
+					  $('#submit').removeAttr('disabled');
+					  return;
+					  }else if ( result=="no" && !$('#nickname').val() == ""){
+					 
+					  $('#nickmsg').css('color','red');
+					  $('#nickmsg').text("이미 존재하는 닉네임입니다.");  
+					  $('#submit').attr('disabled','disabled');
+					  return;
+					  }
+				  }//success 
+			  });// ajax
+			  
+			  
+			  if($('#nickname').val() == ""){
+				  $('#nickmsg').css('color','red');
+				  $('#nickmsg').text("닉네임을 입력해주세요.");  
+				  $('#submit').attr('disabled','disabled'); 
+				  return;
+			  }
+		  }); // 닉네임중복확인 
 		
 		
 		$('#fr').submit(function() {
@@ -159,7 +191,7 @@
 
 
 	<div class="container" id="login-con"
-		style="width: 800px; color: black;">
+		style="width: 800px; color: black; ">
 
 
 		<form action="./MemberJoinAction.me" id="fr" method="post">
@@ -174,8 +206,8 @@
 	
 				   아이디 <input type="email" class="form-control" id="id"
 					placeholder="아이디를 입력해주세요." name="id" >  
-		
-				<span id="idmsg"></span>
+					<span id="idmsg"></span>
+					
 				<br>	 				
 				비밀번호 <input type="password" class="form-control" id="password"
 					placeholder="비밀번호를 입력해주세요." name="password">
@@ -191,6 +223,7 @@
 					 <br>
 				
 				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요.">
+						<span id="nickmsg"></span>
 					 <br> 
 				
 				연락처 <input type="text" class="form-control"
@@ -203,7 +236,7 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15" onclick="addr();">
+						<td><input type="text" name="post_number" id="zipcode" size="15" onclick="addr();">
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>

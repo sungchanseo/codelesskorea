@@ -24,7 +24,7 @@
 <!-- 	<h1>myPage.jsp</h1> -->
 		<br>
 		<h2>마이페이지</h2>
-		<input type="button" value="내정보 조회하기" onclick=" location.href='./MemberInfo.me';"><br><br>
+		<input type="button" value="내정보 조회하기" onclick=" location.href='./MemberInfo.my';"><br><br>
 
 		<%if ( !id.equals("admin@gmail.com") ){  %><br>
 		<input type="button" value="1:1 게시판(QNA)" onclick=" location.href='./UserQNAList.me';">

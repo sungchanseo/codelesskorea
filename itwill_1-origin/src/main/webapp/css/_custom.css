@@ -59,11 +59,11 @@
   option {
   	color:  black;
   }
-  .table a{
+  #nttable a{
   	color: black;
     text-decoration: none;
   }
-  .table tr{
+  #nttable tr{
   	height: 50px;
   	
   }
@@ -82,8 +82,8 @@
   #left{
 	background:#33383e; 
 	position:absolute; 
-	width:150px; 
-	height:400px;
+	width:230px; 
+	height:600px;
 	border-radius: 25px 0px;
 	margin-top: 150px;
 	}
@@ -99,4 +99,8 @@
 }	 
   #left h5{
 		cursor: pointer;
+}
+.modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
 }

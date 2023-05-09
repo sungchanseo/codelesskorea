@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="../js/jquery-3.6.4.js"></script>
 <%@ include file="../head.jsp" %>
 <meta charset="UTF-8">
@@ -102,8 +103,8 @@ $(document).ready(function () {
 					 <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 					 <br>
       <button type="submit" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" id="submit" >회원탈퇴</button><hr>
-      <hr>
+										style="margin-top: 40px;" id="submit" >회원탈퇴</button>
+		   <hr>
          </div>      
  	 </form>
   

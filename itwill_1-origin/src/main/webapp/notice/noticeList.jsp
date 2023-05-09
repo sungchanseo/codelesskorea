@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>CODE LESS - 공지사항</title>
 <%@ include file="../head.jsp"%>
@@ -15,6 +16,7 @@
 <body>
 <%@ include file="../nav.jsp"%>
 
+  <!-- 사이드바 -->
   <div class="container" id="left">
   <br>
   <h4> 공지게시판</h4>
@@ -22,12 +24,14 @@
   <h5 onclick="location.href='./NoticeList.me'"> 공지사항</h5>
   <h5> 자주하는질문</h5>
   </div>
+  <!-- 사이드바 -->
+ 
   <div class="container" id="right" style="margin-left: 350px;">
   <h1 align="center" style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 페이지번호 : ${pageNum }<br>
 
-  <table class="table">
+  <table class="table" id="nttable">
    <thead style="background-color: #F6F6F6;">
    <tr>
      <th>NO.</th>
@@ -52,13 +56,13 @@
 	<div class="container" style="margin: auto;">
 	  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">
   	<c:if test="${startPage > pageBlock }"> 
-	<li class="page-item"><a class="page-link" href="./NoticeList.me?pageNum=${startPage-pageBlock} "><sapn>다음</sapn></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage-pageBlock} "><sapn>다음</sapn></a></li>
 	</c:if>
    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-	<li class="page-item"><a class="page-link" href="./NoticeList.me?pageNum=${i }"><span>${i }</span></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${i }"><span>${i }</span></a></li>
 	</c:forEach>
     <c:if test="${endPage<pageCount }">
-	<li class="page-item"><a class="page-link" href="./NoticeList.me?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
 	</c:if>
   </ul>
   </div>

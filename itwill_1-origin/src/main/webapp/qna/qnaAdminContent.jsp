@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.member.db.MypageDAO"%>
-<%@page import="com.itwillbs.member.db.QnADTO"%>
+<%@page import="com.itwillbs.db.MypageDAO"%>
+<%@page import="com.itwillbs.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,7 +39,6 @@
 
 <%
 //전달받은 정보를 저장
-
 QnADTO qdto = (QnADTO) request.getAttribute("qdto"); //object -다운캐스팅-> BoardDTO
 String pageNum = (String) request.getAttribute("pageNum"); //object -다운캐스팅-> String
 int bno = Integer.parseInt(request.getParameter("bno"));
@@ -84,7 +83,7 @@ QnADTO qna = mdao.getBoard(bno);
   </tr>
   <tr>
     <th>내용</th>
-    <td colspan="5"><textarea rows="15" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
+    <td colspan="5"><textarea rows="30" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
   </tr>
   <tr>
     <td colspan="6" style="text-align:center">
