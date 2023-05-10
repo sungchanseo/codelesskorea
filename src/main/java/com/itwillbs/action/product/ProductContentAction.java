@@ -18,8 +18,8 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	int productId = Integer.parseInt(request.getParameter("product_id"));
 	System.out.println("상품번호 : "+productId);
 	// DAO 객체 생성
-	ProductDAO dao = new ProductDAO();
 	// 상세 정보 가져오기
+	ProductDAO dao = new ProductDAO();
 	ProductDTO product = dao.productContent(productId);
 
 	// 상세 정보 request에 저장
@@ -31,6 +31,7 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	forward.setPath("./product/productContent.jsp");
 	forward.setRedirect(false);
 
+	System.out.println("P : 정보 조회 저장, 처리 끝");
 	return forward;
 	}
 }

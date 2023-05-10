@@ -147,13 +147,15 @@
 		</tr>
 	</table>
 	<a href="./ProductList.pr">상품 리스트로 이동</a>
-	<a href="./OrderWrite.pr">구매하기</a>
+	<a href="./OrderWrite.pr?product_id=${product.product_id}">구매하기</a>
 	<a href="./QNAWrite.qn">신고하기</a>
-	<a href="./ChatToSeller.ch?toID=${product.user_id }">채팅하기</a>
+	<c:if test="${ sessionScope.id != product.user_id }">
+		<a href="./ChatToSeller.ch?toID=${product.user_id }">채팅하기</a>
+	</c:if>
 	<br>
 	<br>
 	<c:if test="${ sessionScope.id eq 'admin' or product.user_id eq sessionScope.id }">
-    <a href="./ProductUpdate.pr?product_id='${product.product_id}'" >상품글 수정</a>
+    <a href="./ProductUpdate.pr?product_id=${product.product_id}" >상품글 수정</a>	
 		<form method="post" action="./ProductDeleteAction.pr"
 			onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
 			<input type="hidden" name="product_id" value="${product.product_id}">

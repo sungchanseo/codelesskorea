@@ -11,38 +11,63 @@
 <meta charset="UTF-8">
 <title>매칭된 리스트</title>
 <style>
-	body {
-		font-family: Arial, sans-serif;
-		background-color: #f2f2f2;
-	}
-	h1 {
-		text-align: center;
-	}
-	table {
-		margin: 0 auto;
-		border-collapse: collapse;
-		width: 80%;
-		background-color: #fff;
-		box-shadow: 0 0 20px rgba(0,0,0,0.1);
-	}
-	th, td {
-		text-align: center;
-		padding: 10px;
-	}
-	th {
-		background-color: #e6e6e6;
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+}
 
-	}
-	tr:nth-child(even) {
-		background-color: #f2f2f2;
-	}
-	tr:hover {
-		background-color: #e6e6e6;
-	}
-	a {
-		color: #000;
-		text-decoration: none;
-	}
+h1 {
+	text-align: center;
+}
+
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	width: 80%;
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+	text-align: center;
+	padding: 10px;
+}
+
+th {
+	background-color: #e6e6e6;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #e6e6e6;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+button:hover {
+	background-color: #fff;
+	color: #333;
+}
+
+button {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px 20px;
+	background-color: #333;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 4px;
+	border: 1px solid #333;
+	transition: all 0.3s ease;
+	display: block;
+	margin: 10px auto;
+}
 </style>
 </head>
 <body>
@@ -50,18 +75,27 @@
 	<!-- Action에서 받아온 정보(memberList) -->
 	<table>
 		<tr>
+			<th></th>
 			<th>상품번호</th>
 			<th>상품명</th>
 			<th>가격</th>
+			<th>조회수</th>
+			<th>찜수</th>
+			<th>채팅수</th>
 		</tr>
 		<!-- rs(데이터) <- DTO <- List -->
 		<c:forEach var="product" items="${requestScope.productList }">
 			<tr>
+				<td><img src="${product.product_image}" alt="이미지 없음" width="50px"></td>
 				<td>${product.product_id}</td>
 				<td><a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">${product.title}</a></td>
 				<td>${product.price}</td>
+				<td>${product.read_count}</td>
+				<td>${product.like_count}</td>
+				<td>${product.chat_count}</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<button onclick="window.location.reload();">새로운 매칭 보기</button>
 </body>
 </html>

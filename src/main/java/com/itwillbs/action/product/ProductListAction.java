@@ -1,6 +1,8 @@
 package com.itwillbs.action.product;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +24,21 @@ public class ProductListAction implements Action {
 		
 		// 상품 정보 가져오기
 		List<ProductDTO> productList = pdao.getProductList();
-		
+		        
+		// productList에서 랜덤으로 3개의 상품을 선택하여 새 리스트에 저장
+		List<ProductDTO> randomProductList = new ArrayList<>();
+		Random random = new Random();
+		int listSize = productList.size();
+		for (int i = 0; i < 3; i++) {
+		    int randomIndex = random.nextInt(listSize);
+		    randomProductList.add(productList.get(randomIndex));
+		}
+
 		// request 객체에 저장
-		request.setAttribute("productList", productList);
-		System.out.println(productList.size());
+		request.setAttribute("productList", randomProductList);
 		
+		System.out.println(productList.size());
+		System.out.println("");
 		// 연결된 view에 출력(./product/productList.jsp)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/productList.jsp");
