@@ -25,7 +25,7 @@
   <br>
   <h4> 공지게시판</h4>
   <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./NoticeList.me'"> 공지사항</h5>
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
   <h5> 자주하는질문</h5>
   </div>
 	</div>	

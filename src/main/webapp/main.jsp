@@ -155,7 +155,7 @@ $('document').ready(function() {
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="font-family: 'TheJamsil5';">
 
 				<form action="#">
 					
