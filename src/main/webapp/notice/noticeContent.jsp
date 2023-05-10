@@ -36,8 +36,8 @@ $(function(){
 <h1>noticeContent</h1>
 
 <%-- ${requestScope.dto } --%>
-
-
+${dto.notice_image }
+${realpath }
 	<table border="1">
 		   <tr>
 		     <th>글번호</th>
@@ -59,6 +59,9 @@ $(function(){
 		     <td>내용</td>
 		     <td>${dto.content }</td>
 		   </tr> 
+			 <td>이미지</td>   
+   			<td><img src="./upload/${dto.notice_image }"/></td>
+   			
 		</table>
 
 

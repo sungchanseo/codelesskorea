@@ -1,15 +1,19 @@
 package com.itwillbs.action.notice;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.NoticeDAO;
 import com.itwillbs.db.NoticeDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class NoticeWriteAction implements Action{
 
@@ -20,17 +24,33 @@ public class NoticeWriteAction implements Action{
 		//한글처리 
 		request.setCharacterEncoding("UTF-8");
 		
+		//notice_image 업로드
+		String realpath = request.getRealPath("/upload"); //deprecated -> 실무에선 context에 있는 realpath를 사용함
+		System.out.println("realpath: "+realpath);
+		int maxSize = 10 * 1024 * 1024; //10MB
+		MultipartRequest multupartRequest 
+		= new MultipartRequest(
+				request,
+				realpath,
+				maxSize,
+				"UTF-8",
+				new DefaultFileRenamePolicy()
+				);
+		System.out.println("파일업로드성공");
+		
+		//한글인코딩
+
+		
 		//noticeDTO객체에 전달받은 공지사항 내용을 전달받아 초기화
 		NoticeDTO dto = new NoticeDTO();
 		
-//		dto.setNotice_id(Integer.parseInt(request.getParameter("notice_id")));
-		dto.setTitle(request.getParameter("title"));
+		dto.setTitle(multupartRequest.getParameter("title"));
 		//글쓰기 날짜는 현재 날짜와 시간으로 지정
 		dto.setDate(new Date(System.currentTimeMillis()));
 		dto.setCount(0);
-		dto.setNotice_image(request.getParameter("notice_image"));
-		dto.setContent(request.getParameter("content"));
-		
+		dto.setNotice_image(multupartRequest.getFilesystemName("notice_image"));
+		dto.setContent(multupartRequest.getParameter("content"));
+		System.out.println(dto);
 		//MemberDAO의 공지사항 쓰기 메소드 호출
 		NoticeDAO dao = new NoticeDAO();
 		dao.noticeWrite(dto);

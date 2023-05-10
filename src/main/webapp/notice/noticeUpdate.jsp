@@ -24,6 +24,10 @@
     <textarea name="content" style="height:200px">${dto.content }</textarea>
 	</label>
 	<br>
+	<label>첨부 이미지
+    <input type="file" name="notice_image">
+	</label>
+	<br>
 
 
     <input type="submit" value="작성완료">
