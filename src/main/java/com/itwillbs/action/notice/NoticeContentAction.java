@@ -16,7 +16,7 @@ public class NoticeContentAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: NoticeContentAction_execute()메소드 호출!");
 		request.setCharacterEncoding("UTF-8");
-		//깃허브 수정!! 터미널로 올리
+
 		String notice_id = request.getParameter("notice_id");
 		String pageNum = request.getParameter("pageNum");
 		String realpath = request.getRealPath("/upload");
