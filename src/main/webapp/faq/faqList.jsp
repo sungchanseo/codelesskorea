@@ -4,21 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h1>자주하는 질문</h1>
 <h2>검색창 들어가는 자리</h2>
 <h2>카테고리 들어가는 자리</h2>
-페이지번호 : ${pageNum }<br>
-${requestScope.FaqList }<br>
 <table border="1">
    <tr>
      <th>Faq번호</th>
      <td>카테고리</td>
      <td>제목</td>
-     <td>토글버튼자리</td>
    </tr> 
 
    <c:forEach var="dto" items="${requestScope.faqList }">

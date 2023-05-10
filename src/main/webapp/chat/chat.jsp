@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@page import="com.itwillbs.db.ChatDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder" %>
@@ -7,36 +6,35 @@
 <html>
 <head>
     <%
-//        String userID = null;
-//        if(session.getAttribute("id") != null) {
-//     	  userID = (String) session.getAttribute("id");
-//        }
-//        String toID = null;
-//        if(request.getParameter("toID") != null){
-//     	  toID = (String) request.getParameter("toID");
-//        }
-//        System.out.println(toID);
-//        if(userID == null) {
-//     	  session.setAttribute("messageType", "오류 메시지");
-//     	  session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-//     	  response.sendRedirect("index.jsp");
-//     	  return;
-//        }
-//        if(toID == null) {
-//      	  session.setAttribute("messageType", "오류 메시지");
-//      	  session.setAttribute("messageContent", "대화 상대가 지정되지 않습니다.");
-//      	  response.sendRedirect("index.jsp");
-//      	  return;
-//         }
-//         if(userID.equals(URLDecoder.decode(toID, "UTF-8"))) {
-//         	session.setAttribute("messageType", "오류 메시지");
-// 	       	session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
-// 	       	response.sendRedirect("index.jsp");
-// 	       	return;
-//         }
-//         String fromProfile = new ChatDAO().getProfile(userID);
-//         String toProfile = new ChatDAO().getProfile(toID);
-//         System.out.println(fromProfile);
+       String userID = null;
+       if(session.getAttribute("id") != null) {
+    	  userID = (String) session.getAttribute("id");
+       }
+       String toID = null;
+       if(request.getParameter("toID") != null){
+    	  toID = (String) request.getParameter("toID");
+       }
+       if(userID == null) {
+    	  session.setAttribute("messageType", "오류 메시지");
+    	  session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
+    	  response.sendRedirect("index.jsp");
+    	  return;
+       }
+       if(toID == null) {
+     	  session.setAttribute("messageType", "오류 메시지");
+     	  session.setAttribute("messageContent", "대화 상대가 지정되지 않습니다.");
+     	  response.sendRedirect("index.jsp");
+     	  return;
+        }
+        if(userID.equals(URLDecoder.decode(toID, "UTF-8"))) {
+        	session.setAttribute("messageType", "오류 메시지");
+	       	session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
+	       	response.sendRedirect("index.jsp");
+	       	return;
+        }
+        String fromProfile = new ChatDAO().getProfile(userID);
+        String toProfile = new ChatDAO().getProfile(toID);
+        System.out.println(fromProfile);
     %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,12 +52,12 @@
 	    	window.setTimeout(function() { alert.hide() }, delay);
 	    }
 	    function submitFunction() {
-	    	var fromID = '${id}';
-	    	var toID = '${toID}';
+	    	var fromID = '<%= userID %>'
+	    	var toID = '<%= toID %>'
 	    	var chatContent = $('#chatContent').val();
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatSubmitAction.ch",
+	    		url: "./ChatSubmitAction.me",
 	    		data: {
 	    			fromID: encodeURIComponent(fromID),
 	    			toID: encodeURIComponent(toID),
@@ -79,11 +77,11 @@
 	    }
 	    var lastID = 0;
 	    function chatListFunction(type) {
-	    	var fromID = '${id}';
-	    	var toID = '${toID}';
+	    	var fromID = '<%= userID %>';
+	    	var toID = '<%= toID %>';
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatListAction.ch",
+	    		url: "./ChatListAction.me",
 	    		data: {
 	    			fromID: encodeURIComponent(fromID),
 	    			toID: encodeURIComponent(toID),
@@ -110,7 +108,7 @@
  		    			'<div class="col-lg-12">' +
  		    			'<div class="media">' + 
 // 		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="${fromProfile}" alt="">' +
+		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= fromProfile %>" alt="">' +
 // 		    			'</a>' + 
 		    			'<div class="media-body">' + 
 		    			'<h4 class="media-heading">'+
@@ -132,7 +130,7 @@
 		    			'<div class="col-lg-12">' +
 		    			'<div class="media">' + 
 		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="${toProfile}; alt="">' +
+		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= toProfile %>" alt="">' +
 		    			'</a>' + 
 		    			'<div class="media-body">' + 
 		    			'<h4 class="media-heading">'+
@@ -160,9 +158,9 @@
 	    function getUnread() {
 	    	$.ajax({
 	    		type: "POST",
-	    		url: "./ChatUnreadAction.ch",
+	    		url: "./ChatUnreadAction.me",
 	    		data: {
-	    			userID: encodeURIComponent('${id}'),
+	    			userID: encodeURIComponent('<%= userID %>'),
 	    		},
 	    		success: function(result) {
 	    			if(result >= 1) {
@@ -276,118 +274,4 @@
     </script>
     <jsp:include page="../footer.jsp"/>
 </body>
-=======
-<%@page import="com.itwillbs.db.ChatDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.net.URLDecoder" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>CodeLess</title>
-	<jsp:include page="../head.jsp"/>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-	<script src="./js/chat.js"></script>
-
-</head>
-	<jsp:include page="../nav.jsp"/>
-<body>
-	<div class="container bootstrap snippet">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="portlet portlet-default">
-					<div class="portlet-heading">
-						<div class="portlet-title">
-<!--                             <h4><i class="fa fa-circle text-green"></i>실시간 채팅창</h4> -->
-						</div>
-						<div class="clearfix"></div>
-					</div>
-<!--                     <div id="chat" class="panel-collapse collapse in"> -->
-					<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: 800px; height: 600px;">
-					</div>
-					<div class="portlet-footer">
-						<div class="row" style="height: 90px;">
-							<div class="form-group col-xs-10">
-								<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요." maxlength="100"></textarea>
-							</div>
-							<div class="form-group col-xs-2">
-								<button type="button" class="btn btn-default pull-right" onclick="submitFunction('${id }', '${param.toID }');">전송</button>
-							<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-<!--                     </div> -->
-				</div>
-			</div>
-		</div>
-	</div>
-    <div class="alert alert-success" id="successMessage" style="display: none;">
-        <strong>메시지 전송에 성공했습니다.</strong>
-    </div>
-        <div class="alert alert-danger" id="dangerMessage" style="display: none;">
-        <strong>이름과 내용을 모두 입력해주세요.</strong>
-    </div>
-        <div class="alert alert-warning" id="warningMessage" style="display: none;">
-        <strong>데이터베이스 오류가 발생했습니다.</strong>
-    </div>
-    <%
-        String messageContent = null;
-        if (session.getAttribute("messageContent") != null) {
-        	messageContent = (String) session.getAttribute("messageContent");
-        }
-        String messageType = null;
-        if (session.getAttribute("messageType") != null) {
-        	messageType = (String) session.getAttribute("messageType");
-        }
-        if (messageContent != null) {
-        
-    %>
-    <c:if test="${!empty messageContent }">
-    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <div class="modal-content <% if(messageType.equals("오류 메시지")) out.println("panel-warning"); else out.println("panel-success"); %>">
-                    <div class="modal-header panel-heading">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title">
-							${messageType }
-<%--                             <%= messageType %> --%>
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                   		 ${messageContent }
-<%--                         <%= messageContent %> --%>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        $('#messageModal').modal("show");
-    </script>
-    <%     	
-        session.removeAttribute("messageContent");
-        session.removeAttribute("messageType");
-        }
-    %>
-    <c:remove var="${messageContent}" scope="session"/>
-    <c:remove var="${messageType }" scope="session"/>
-    </c:if>
-    <script type="text/javascript">
-	    $(document).ready(function() {
-	    	getUnread('${id}');
-	        chatListFunction('0');
-	        getInfiniteChat('${id}', '${param.toID}', '${fromProfile}', '${toProfile}');
-	        getInfiniteUnread();
-	    });
-    </script>
-    <jsp:include page="../footer.jsp"/>
-</body>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </html>

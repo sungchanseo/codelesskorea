@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,23 +13,23 @@
  
   <form action="./FaqUpdateAction.fa" method="post">
 
-   	글번호 ${dto.faq_id }
+   	湲�踰��� ${dto.faq_id }
    	<input type="hidden" name="faq_id" value="${dto.faq_id }">
 	<br>
-    <label>글제목<br>
+    <label>湲���紐�<br>
     <input type="text" name="title" value="${dto.title }">
 	</label>
 	<br>
-    <label>글 내용<br>
+    <label>湲� �댁��<br>
     <textarea name="content" style="height:200px">${dto.content }</textarea>
 	</label>
 	<br>
 
 
-    <input type="submit" value="작성완료">
+    <input type="submit" value="���깆��猷�">
 	
   </form>
- <a href="./FaqList.fa?pageNum="${pageNum }>목록으로</a>
+ <a href="./FaqList.fa?pageNum="${pageNum }>紐⑸��쇰�</a>
 </div>
 </body>
 </html>
