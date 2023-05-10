@@ -3,8 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<%@ include file="../head.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<%@ include file="head.jsp"%>
 <script type="text/javascript">
 
 $('document').ready(function() {
@@ -14,7 +14,7 @@ $('document').ready(function() {
 	  var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
 	   var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
 	   var area3 = ["대덕구","동구","서구","유성구","중구"];
-	   var area4 = ["광산구","남구","동구","북구","서구"];
+	   var area4 = ["광산구","남구","동구",     "북구","서구"];
 	   var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
 	   var area6 = ["남구","동구","북구","중구","울주군"];
 	   var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
@@ -123,11 +123,63 @@ $('document').ready(function() {
 
 	});//script끝
 
+	//모달 창 열기 함수
+	function openModal() {
+	  document.getElementById("myModal").style.display = "block";
+	}
+
+	// 모달 창 닫기 함수
+	function closeModal() {
+	  document.getElementById("myModal").style.display = "none";
+	}
+	
 </script>
+
+<!-- 모달창 스타일 -->
+<style>
+/* 모달 창 스타일 */
+.modal {
+  display: none; /* 초기에는 숨김 상태 */
+  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
+  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
+}
+
+.modal-content {
+    width: 600px; 
+  height: 400px;
+  position: absolute; /* 모달 창 내에서 상대적인 위치 */
+  top: 50%; /* 상위 요소에서 50% 위치 */
+  left: 50%; /* 상위 요소에서 50% 위치 */
+  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  width: 80%;
+  max-height: 90%;
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* iframe 스타일 */
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+</style>
+
 </head>
-<body>
+
+<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+
 <!-- END head -->
-<%@ include file="nav.jsp"%><!-- nav 삽입 -->
 
 <section class="site-hero overlay"
 	style="background-image: url(images/background-g70cf72a56_1920.png)"
@@ -213,9 +265,7 @@ $('document').ready(function() {
 							</div>
 						</div>
 						<br>
-						<button class="btn btn-primary text-white"
-							style="width: 500px; margin: auto; margin-top: 50px;">검색하기
-						</button>
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
 
 					</div>
 				</form>
@@ -232,9 +282,9 @@ $('document').ready(function() {
 			<div
 				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
 				data-aos="fade-up">
-			<!-- 	<figure class="img-absolute">
+				<figure class="img-absolute">
 					<img src="" alt="Image" class="img-fluid">
-				</figure> -->
+				</figure>
 				<!-- <img src="images/chat.jpg" alt="Image" class="img-fluid rounded" > -->
 			</div>
 			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
@@ -628,7 +678,14 @@ $('document').ready(function() {
         </div>
       </section> -->
 
-	<%@include file="footer.jsp"%>
+	<%@include file="../footer.jsp"%>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe src="./ProductList.pr"></iframe>
+  </div>
+</div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -637,9 +694,13 @@ $('document').ready(function() {
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.stellar.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
+
+
 <script src="js/aos.js"></script>
+
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/jquery.timepicker.min.js"></script>
+
 <script src="js/main.js"></script>
 </body>
 </html>
