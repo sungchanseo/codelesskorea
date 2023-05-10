@@ -14,7 +14,34 @@ public class MemberDTO {
 	private Date regdate;
 	private String birth_date; 
 	private Boolean blocked;
+<<<<<<< HEAD
+	private int post_number;
+	private String address2;
 	
+	
+
+	public int getPost_number() {
+		return post_number;
+	}
+
+
+	public void setPost_number(int post_number) {
+		this.post_number = post_number;
+	}
+
+
+	public String getAddress2() {
+		return address2;
+	}
+
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+=======
+	
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 	@Override
 	public String toString() {

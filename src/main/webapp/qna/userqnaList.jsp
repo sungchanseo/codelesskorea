@@ -22,11 +22,19 @@
 
 <!--    <h1>qnaBoardList.jsp</h1> -->
    <h2>
+<<<<<<< HEAD
+      <a href="./UserQNAList.qn"> 문의내역 </a>
+   </h2>
+   
+   <h2>
+      <a href="./MypageQNAInsert.qn">1:1 문의 글쓰기</a>
+=======
       <a href="./UserQNAList.me"> 문의내역 </a>
    </h2>
    
    <h2>
       <a href="./MypageQNAInsert.me">1:1 문의 글쓰기</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
    </h2>
    <hr>
 
@@ -50,7 +58,11 @@
 <!-- rs <- DTO <- List -->
    <tr>
      <td>${qdto.regdate}</td>
+<<<<<<< HEAD
+     <td><a href="./QNAContent.qn?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
+=======
      <td><a href="./QNAContent.me?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
      
      <td>${qdto.nickname}</td>
       <c:if test="${qdto.re_Lev < 1}">
@@ -75,6 +87,17 @@
 
 
   <c:if test="${startPage > pageBlock }"> 
+<<<<<<< HEAD
+   <a href="./UserQNAList.qn?pageNum=${startPage-pageBlock} ">[이전]</a>
+   </c:if>
+   
+   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+   <a href="./UserQNAList.qn?pageNum=${i }">[${i }]</a>
+   </c:forEach>
+   
+   <c:if test="${endPage<pageCount }">
+   <a href="./UserQNAList.qn?pageNum=${startPage+pageBlock} ">[다음]</a>
+=======
    <a href="./UserQNAList.me?pageNum=${startPage-pageBlock} ">[이전]</a>
    </c:if>
    
@@ -84,6 +107,7 @@
    
    <c:if test="${endPage<pageCount }">
    <a href="./UserQNAList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
    </c:if>
 
 

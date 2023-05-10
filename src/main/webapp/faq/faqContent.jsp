@@ -1,13 +1,26 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 <title>Insert title here</title>
 </head>
 <body>
 <h1>faqContent</h1>
+<<<<<<< HEAD
+<a href="./FAQUpdate.me">¼öÁ¤ÇÏ±â</a>
+<a href="./FAQDelete.me">»èÁ¦ÇÏ±â</a>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -51,5 +64,6 @@
 
 <a href="./FAQUpdate.me">ìˆ˜ì •í•˜ê¸°</a>
 <a href="./FAQDelete.me">ì‚­ì œí•˜ê¸°</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </body>
 </html>

@@ -19,12 +19,21 @@
 		<c:if test="${ empty sessionScope.id }">
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
+<<<<<<< HEAD
+		아이디 : ${id }
+	
+<!-- 	<h1>myPage.jsp</h1> -->
+		<br>
+		<h2>마이페이지</h2>
+		<input type="button" value="내정보 조회하기" onclick=" location.href='./MemberInfo.my';"><br><br>
+=======
 	
 
 <!-- 	<h1>myPage.jsp</h1> -->
 		<br>
 		<h2>마이페이지</h2>
 		<input type="button" value="내정보 조회하기" onclick=" location.href='./MemberInfo.me';"><br><br>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 		<%if ( !id.equals("admin@gmail.com") ){  %><br>
 		<input type="button" value="1:1 게시판(QNA)" onclick=" location.href='./UserQNAList.me';">
@@ -40,9 +49,15 @@
 		<input type="button" value="구매목록" onclick=" location.href='./MypagePurchaselist.me';">
 		<input type="button" value="판매목록" onclick=" location.href='./MypageSalesList.me';">
 		<a href="./LikeList.me">찜목록</a><br>
+<<<<<<< HEAD
+		<a href="./ChatBox.me">채팅목록</a><br>
+
+		
+=======
 		<a href="./ChatBox.ch">채팅목록</a><br>
 
 	
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 	
 	
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->

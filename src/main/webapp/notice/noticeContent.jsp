@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>noticeContent</h1>
+<a href="./NoticeUpdate.no">°Ô½Ã±Û ¼öÁ¤</a>
+<a href="./NoticeDelete.no">°Ô½Ã±Û »èÁ¦</a>
+<a href="./NoticeList.no">¸ñ·ÏÀ¸·Î</a>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -65,5 +80,6 @@ $(function(){
 <a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }">ê²Œì‹œê¸€ ìˆ˜ì •</a>
 <a href="./NoticeDelete.no?notice_id=${dto.notice_id }">ê²Œì‹œê¸€ ì‚­ì œ</a>
 <a href="./NoticeList.no?pageNum=${pageNum }">ëª©ë¡ìœ¼ë¡œ</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </body>
 </html>

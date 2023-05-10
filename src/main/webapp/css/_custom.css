@@ -4,6 +4,16 @@
     font-weight: normal;
     font-style: normal;
 }
+<<<<<<< HEAD
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+}
+
+=======
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
       background: #000000 !important;
@@ -26,7 +36,11 @@
   
   #login-con {
 	margin: auto; margin-top: 100px; margin-bottom: 100px; border: 1px solid #C0C0C0; width:500px;
+<<<<<<< HEAD
+	border-radius: 5px; font-family: 'RIDIBatang';
+=======
 	border-radius: 5px;font-family: 'RIDIBatang'
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
    }
    
   #log-form {
@@ -44,4 +58,61 @@
   padding: 10px 10px;
   color: gray;
   }
+<<<<<<< HEAD
   
+  .form-group h2{
+  font-family:'TheJamsil5Bold';
+  font-weight: 200;
+  }
+  option {
+  	color:  black;
+  }
+  #nttable a{
+  	color: black;
+    text-decoration: none;
+  }
+  #nttable tr{
+  	height: 50px;
+  	
+  }
+  
+  #pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  column-gap: 2px;
+}
+
+  #pagination span {
+  color: black;;
+}
+  #left{
+	background:#33383e; 
+	position:absolute; 
+	width:230px; 
+	height:600px;
+	border-radius: 25px 0px;
+	margin-top: 150px;
+	}
+  #right { 
+	/* margin-left:200px; */
+
+	
+	height:700px;
+	margin-top: 150px; 
+	 }
+  #left h4, #left h5{
+	font-family:'TheJamsil5Bold';
+	color: white;
+}	 
+  #left h5{
+		cursor: pointer;
+}
+.modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+=======
+  
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166

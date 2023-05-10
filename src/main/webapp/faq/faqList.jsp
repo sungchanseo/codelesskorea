@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>faqList</h1>
+<a href="./FAQContent.me">±Ûº¸±â</a>
+<a href="./FAQWrite.me">±Û¾²±â</a>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,5 +60,6 @@ ${requestScope.faqList }<br>
 
 <a href="./FAQWrite.me">ê¸€ì“°ê¸°</a>
 <a href="./Main.me">ë©”ì¸ìœ¼ë¡œ</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </body>
 </html>

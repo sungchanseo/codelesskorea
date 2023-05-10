@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+import com.itwillbs.action.member.AjaxAction;
+=======
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 import com.itwillbs.action.member.AjaxBlockedAction;
 import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.commons.Action;
@@ -46,7 +50,11 @@ public class AjaxController extends HttpServlet {
 		ActionForward forward = null;
 		
 		
+<<<<<<< HEAD
+		if(command.equals("/AjaxNickAction.aj")) {
+=======
 		if(command.equals("/AjaxNickAction.ta")) {
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 			action = new AjaxNickAction();
 			try {
 				forward = action.execute(request, response);
@@ -57,7 +65,11 @@ public class AjaxController extends HttpServlet {
 		
 		// ./AjaxBlockedAction.ta
 		
+<<<<<<< HEAD
+		else if(command.equals("/AjaxBlockedAction.aj")) {
+=======
 		else if(command.equals("/AjaxBlockedAction.ta")) {
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 			action = new AjaxBlockedAction();
 			try {
 				forward = action.execute(request, response);
@@ -65,6 +77,21 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+<<<<<<< HEAD
+		
+		// ./AjaxAction.ta (아이디중복체크)
+		else if(command.equals("/AjaxAction.aj")) {
+			action = new AjaxAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+=======
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");
 		System.out.println("\n");
 		/**********************2. 가상주소 매핑****************************/

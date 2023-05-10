@@ -47,16 +47,28 @@
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
 		
+<<<<<<< HEAD
+			<h2><a href="./UserQNAList.qn"> 문의내역 </a></h2>
+		<c:if test="${ empty sessionScope.id  && !id.equals('admin@gmail.com') }">  
+				<!-- 관리자 계정은 확인 불가능한 버튼 -->
+			<h2>
+			<a href="./MypageQNAInsert.qn">1:1 문의</a>
+=======
 			<h2><a href="./UserQNAList.me"> 문의내역 </a></h2>
 		<c:if test="${ empty sessionScope.id  && !id.equals('admin@gmail.com') }">  
 				<!-- 관리자 계정은 확인 불가능한 버튼 -->
 			<h2>
 			<a href="./MypageQNAInsert.me">1:1 문의</a>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 			</h2>
 		</c:if>  
 		
 		<fieldset>
+<<<<<<< HEAD
+		   <form action="./MypageQNAInsertAction.qn" method="post" >
+=======
 		   <form action="./MypageQNAInsertAction.me" method="post" >
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		   <input type="hidden" name="id" value="<%=id%>"><br>
 		   <input type="hidden" name="isAnswered" value="<%=isAnswered%>">
 <!-- 		회원정보, 상품, 신고, 결제, 기타 -->

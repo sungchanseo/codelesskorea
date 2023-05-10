@@ -38,6 +38,10 @@
      <div style="text-align: center;"><a class="navbar-brand" href="./Main.me" style="font-size: 40px;"><span>CODELESS</span></a></div>
      
       <input type="text" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;" id="id">
+<<<<<<< HEAD
+      <!-- 실행 편의를 위해 email타입을 text로 바꿈 -->
+=======
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 	 
       <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." name="password" id="password">
 
