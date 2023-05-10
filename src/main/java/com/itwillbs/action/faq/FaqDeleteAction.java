@@ -1,4 +1,4 @@
-package com.itwillbs.action.notice;
+package com.itwillbs.action.faq;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,14 +9,14 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
-import com.itwillbs.db.NoticeDAO;
-import com.itwillbs.db.NoticeDTO;
+import com.itwillbs.db.FaqDAO;
+import com.itwillbs.db.FaqDTO;
 
-public class NoticeDeleteAction implements Action {
+public class FaqDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : NoticeDeleteAction_execute()메소드 호출! ");
+		System.out.println("M : FaqDeleteAction_execute()메소드 호출! ");
 		
 		//공지사항 계정이 admin인지 확인 
 		/*
@@ -26,19 +26,18 @@ public class NoticeDeleteAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		if(id.equals("admin")) {
-			forward.setPath("./NoticeList.me");
+			forward.setPath("./FaqList.me");
 			forward.setRedirect(false);
 			return forward;
 		}
 		*/
-		
-		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = new NoticeDTO();
-		dto.setNotice_id(Integer.parseInt(request.getParameter("notice_id")));
-		int result = dao.deleteNotice(dto);
+		FaqDAO dao = new FaqDAO();
+		FaqDTO dto = new FaqDTO();
+		dto.setFaq_id(Integer.parseInt(request.getParameter("faq_id")));
+		int result = dao.deleteFaq(dto);
 		
 		if(result ==1) {
-			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./NoticeList.no");
+			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./FaqList.fa");
 		}
 		
 		

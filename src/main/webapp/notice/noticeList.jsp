@@ -30,6 +30,7 @@
      <td><a href="./NoticeContent.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">${dto.title }</a></td>
      <td>${dto.date}</td>
      <td>${dto.count }</td>
+     
    </tr>
 	</c:forEach>
 </table>

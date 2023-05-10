@@ -10,7 +10,7 @@
 <h1>noticeWrite</h1>
 
 <div class="container">
-  <form action="./NoticeWriteAction.me" method="post">
+  <form action="./NoticeWriteAction.no" enctype="multipart/form-data" method="post">
 
    
     <label>글제목
@@ -21,8 +21,10 @@
     <textarea name="content" placeholder="글 내용을 작성하세요" style="height:200px"></textarea>
 	</label>
 	<br>
-
-
+	<label>첨부 이미지
+    <input type="file" name="notice_image">
+	</label>
+	<br>
     <input type="submit" value="작성완료">
 	
   </form>

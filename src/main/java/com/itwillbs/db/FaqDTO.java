@@ -4,7 +4,7 @@ public class FaqDTO {
 	private int faq_id;
 	private String title;
 	private String category;
-	private String Content;
+	private String content;
 	
 	public int getFaq_id() {
 		return faq_id;
@@ -25,15 +25,15 @@ public class FaqDTO {
 		this.category = category;
 	}
 	public String getContent() {
-		return Content;
+		return content;
 	}
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 	
 	@Override
 	public String toString() {
-		return "FaqDTO [faq_id=" + faq_id + ", title=" + title + ", category=" + category + ", Content=" + Content
+		return "FaqDTO [faq_id=" + faq_id + ", title=" + title + ", category=" + category + ", Content=" + content
 				+ "]";
 	}
 	
