@@ -47,7 +47,7 @@ public class ProductController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if (command.equals("/ProductList.pr")) {
+		if(command.equals("/ProductList.pr")) {
 			System.out.println(" C : /ProductList.pr 호출 ");
 			System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
 
@@ -64,7 +64,7 @@ public class ProductController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
-		}else if (command.equals("/ProductWriteAction.pr")) {
+		}else if(command.equals("/ProductWriteAction.pr")) {
 			System.out.println(" C : ProductWriteAction.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
 
@@ -74,7 +74,7 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/ProductContent.pr")) {
+		}else if (command.equals("/ProductContent.pr")) {
 			System.out.println(" C : ProductContent.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 			action = new ProductContentAction();
@@ -112,10 +112,11 @@ public class ProductController extends HttpServlet{
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}
 		//주문하기
 		//주문하기
-		else if(command.equals("/OrderContent.pr")) {
+		else if (command.equals("/OrderContent.pr")) {
 			//임시 이동 코드
 			forward = new ActionForward();
 			forward.setPath("./order/orderContent.jsp");

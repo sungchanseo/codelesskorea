@@ -137,9 +137,6 @@ public class ProductDAO {
 	            product.setCharge(rs.getInt("charge"));
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
-	            product.setRead_count(rs.getInt("read_count"));
-	            product.setLike_count(rs.getInt("like_count"));
-	            product.setChat_count(rs.getInt("chat_count"));
 	            product.setUser_id(rs.getString("user_id"));
 	        }
 	        
@@ -183,7 +180,6 @@ public class ProductDAO {
 	    return result;
 	}
 			// productDelete()
-
 
 	public int productUpdate(ProductDTO dto) {
 	    int result = -1; // -1 0 1
@@ -239,8 +235,3 @@ public class ProductDAO {
 	}
 	
 }
-
-
-
-
-

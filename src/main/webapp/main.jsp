@@ -8,49 +8,49 @@
 <script type="text/javascript">
 
 $('document').ready(function() {
-	//지역 변수생성
+	//吏 蹂
 	
-	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
-	  var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
-	   var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
-	   var area3 = ["대덕구","동구","서구","유성구","중구"];
-	   var area4 = ["광산구","남구","동구",     "북구","서구"];
-	   var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
-	   var area6 = ["남구","동구","북구","중구","울주군"];
-	   var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
-	   var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
-	   var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
-	   var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
-	   var area11 = ["계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
-	   var area12 = ["군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
-	   var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
-	   var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
-	   var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
-	   var area16 = ["서귀포시","제주시","남제주군","북제주군"];
+	 var area0 = ["/ ","명밸","몄愿�","�愿�","愿二쇨�","援ш�","몄곌�","遺곌�","寃쎄린","媛","異⑹껌遺","異⑹껌⑤","�쇰","�쇰⑤","寃쎌遺","寃쎌⑤","�二쇰"];
+	  var area1 = ["媛④뎄","媛援","媛遺援","媛援","愿援","愿吏援","援щ援","湲泥援","몄援","遊援","臾멸뎄","援","留ш뎄","臾멸뎄","珥援","깅援","깅援","≫援","泥援","깊ш뎄","⑹곌뎄","援","醫濡援","以援","以援"];
+	   var area2 = ["怨援","④뎄","⑤援","援","遺援","援","곗援","以援","媛援","뱀援"];
+	   var area3 = ["援","援","援","깃뎄","以援"];
+	   var area4 = ["愿곌뎄","④뎄","援",     "遺援","援"];
+	   var area5 = ["④뎄","ъ援","援","遺援","援","깃뎄","以援","ъ깃뎔"];
+	   var area6 = ["④뎄","援","遺援","以援","몄＜援"];
+	   var area7 = ["媛援","湲�援","④뎄","援","援","遺곗援","遺援","ъ援","ы援","援","援","곗援","援","以援","댁대援","湲곗κ뎔"];
+	   var area8 = ["怨","怨쇱","愿紐","愿二쇱","援щ━","援고ъ","源ъ","⑥二쇱","泥","遺泥","깅⑥","","μ","곗","깆","","二쇱","ㅼ곗","⑹몄","","�遺","댁","二쇱","","ъ","⑥","깆","媛援","援","ъ＜援","곗援"];
+	   var area9 = ["媛由","댁","쇱","珥","二쇱","異泥","諛깆","怨깃뎔","援ш뎔","援","援","몄援","�援","泥援","李쎄뎔","泥援","泥援","≪깃뎔"];
+	   var area10 = ["�泥","泥�＜","異⑹＜","愿댁곌뎔","⑥援","蹂댁援","援","μ援","깃뎔","利援","吏泥援","泥�援"];
+	   var area11 = ["怨猷≪","怨듭＜","쇱곗","蹂대뱀","곗","곗","泥","湲곌뎔","뱀援","遺ш뎔","泥援","곌린援","곌뎔","泥�援","援","깃뎔"];
+	   var area12 = ["援곗곗","源�","⑥","듭곗","�二쇱","�","怨李쎄뎔","臾댁＜援","遺援","李쎄뎔","二쇨뎔","ㅺ뎔","μ援","吏援"];
+	   var area13 = ["愿","二쇱","紐⑺ъ","泥","ъ","媛吏援","怨κ뎔","怨≪깃뎔","援щ援","댁援","臾댁援","蹂댁깃뎔","援","愿援","援","援","μ깃뎔","νκ뎔","吏援","⑦援","대④뎔","援"];
+	   var area14 = ["寃쎌곗","寃쎌＜","援щ�","源泥","臾멸꼍","二쇱","","二쇱","泥","ы�","怨�밴뎔","援곗援","遊援","깆＜援","援","援","泥援","몃援","몄援","깃뎔","泥�援","泥�↔뎔","移怨↔뎔"];
+	   var area15 = ["嫄곗","源댁","留곗","諛","ъ","곗","吏二쇱","吏댁","李쎌","듭","嫄곗갹援","怨깃뎔","⑦닿뎔","곗껌援","�밴뎔","李쎈援","援","⑥援","⑥援","⑹援"];
+	   var area16 = ["洹ъ","�二쇱","⑥二쇨뎔","遺�二쇨뎔"];
 
 	 
 
-	 // 시/도 선택 박스 초기화
+	 // /  諛 珥湲고
 
 	 $("select[name^=sido]").each(function() {
 	  $selsido = $(this);
 	  $.each(eval(area0), function() {
 	   $selsido.append("<option value='"+this+"'>"+this+"</option>");
 	  });
-	  $selsido.next().append("<option value=''>구/군 선택</option>");
+	  $selsido.next().append("<option value=''>援/援 </option>");
 	 });
 
 	 
 
-	 // 시/도 선택시 구/군 설정
+	 // /  援/援 ㅼ
 
 	 $("select[name^=sido]").change(function() {
-	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
-	  var $gugun = $(this).next(); // 선택영역 군구 객체
-	  $("option",$gugun).remove(); // 구군 초기화
+	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 吏� 援ш뎔 Array
+	  var $gugun = $(this).next(); //  援곌뎄 媛泥
+	  $("option",$gugun).remove(); // 援ш뎔 珥湲고
 
 	  if(area == "area0")
-	   $gugun.append("<option value=''>구/군 선택</option>");
+	   $gugun.append("<option value=''>援/援 </option>");
 	  else {
 	   $.each(eval(area), function() {
 	    $gugun.append("<option value='"+this+"'>"+this+"</option>");
@@ -58,54 +58,54 @@ $('document').ready(function() {
 	  }
 	 });
 	 
-	 //특정 브랜드 선택시 모델옵션 변경
-	 var apple = ["에어팟 1세대","에어팟 2세대","에어팟 3세대","에어팟프로","에어팟프로 2세대"];
-	 var samsung = ["버즈","버즈 플러스","버즈 라이브","버즈 프로","버즈2","버즈2 프로"];
+	 //뱀 釉  紐⑤몄듭 蹂寃
+	 var apple = ["댄 1몃","댄 2몃","댄 3몃","댄濡","댄濡 2몃"];
+	 var samsung = ["踰利","踰利 ъ","踰利 쇱대","踰利 濡","踰利2","踰利2 濡"];
 	 
-	 //삼성 브랜드 색상
-	 var color1=  ["블랙","옐로우","화이트"];
-	 var color2 = ["블루","블랙","화이트","레드","핑크"];
-	 var color3 = ["미스틱 블랙","미스틱 화이트","미스틱 브론즈","레드","오닉스"];
-	 var color4 = ["팬텀 바이올렛","팬텀 블랙","팬텀 실버","팬텀 화이트"];
-	 var color5 = ["라벤더","올리브","화이트","그라파이트"];
-	 var color6 = ["퍼플","그라파이트","화이트"];
+	 //쇱 釉 
+	 var color1=  ["釉","濡","댄"];
+	 var color2 = ["釉猷","釉","댄","�",""];
+	 var color3 = ["誘몄ㅽ 釉","誘몄ㅽ 댄","誘몄ㅽ 釉濡利","�","ㅻ"];
+	 var color4 = ["ы 諛댁щ","ы 釉","ы ㅻ","ы 댄"];
+	 var color5 = ["쇰깽","щ━釉","댄","洹몃쇳댄"];
+	 var color6 = ["쇳","洹몃쇳댄","댄"];
 	 
 	 $('#brand').change(function () {
 		if($('#brand').val() == "1"){
 			$('#model option').remove();
 			$('#color option').remove();
-			$('#model').append("<option value=''>모델명을 선택하세요</option>");
-			$('#color').append("<option value=''>색상을 선택하세요</option>");
-			$('#color').append("<option value='1'>화이트</option>");			
+			$('#model').append("<option value=''>紐⑤몃 몄</option>");
+			$('#color').append("<option value=''> 몄</option>");
+			$('#color').append("<option value='1'>댄</option>");			
 			$.each(apple,function(idx,model){
 			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//애플 모델 
+			});// 紐⑤ 
 		}else if($('#brand').val() == "2"){
 			$('#model option').remove();
 			$('#color option').remove();
-			$('#model').append("<option value=''>모델명을 선택하세요</option>");
-			$('#color').append("<option value=''>색상을 선택하세요</option>");
+			$('#model').append("<option value=''>紐⑤몃 몄</option>");
+			$('#color').append("<option value=''> 몄</option>");
 			$.each(samsung,function(idx,model){
 			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//삼성 모델
+			});//쇱 紐⑤
 				 
 		}else{
 			$('#model option').remove();
-			$('#model').append("<option value=''>모델명을 선택하세요</option>");
-		}//미선택시
-	});//특정 브랜드 선택시 모델옵션 변경
+			$('#model').append("<option value=''>紐⑤몃 몄</option>");
+		}//誘몄
+	});//뱀 釉  紐⑤몄듭 蹂寃
 	 
 	
 	 $('#model').change(function() {
 			if($('#brand').val() == "2")  {
 			var color = "color"+$("option",$(this)).index($("option:selected",$(this)));
 		    $('#color option').remove();
-		    $('#color').append("<option value=''>색상을 선택하세요</option>");
+		    $('#color').append("<option value=''> 몄</option>");
 		    $.each(eval(color), function() {
 			$('#color').append("<option value='"+this+"'>"+this+"</option>");
 		    });
 		    }
-	});//삼성 모델 색상 옵션
+	});//쇱 紐⑤  듭
 	
 	
 	$('#trade').change(function() {
@@ -115,48 +115,48 @@ $('document').ready(function() {
 			$('#gugun1').show();
 		}else{
 			$('#trmsg').show();
-			$('#trmsg').text(" (직거래만 가능합니다.)");
+			$('#trmsg').text(" (吏嫄곕留 媛ν⑸.)");
 			$('#sido1').hide();
 			$('#gugun1').hide();
-		}//택배거래 선택시 지역선택 못하게함
+		}//諛곌굅  吏� 紐삵寃
 	});
 
-	});//script끝
+	});//script
 
-	//모달 창 열기 함수
+	//紐⑤ 李 닿린 ⑥
 	function openModal() {
 	  document.getElementById("myModal").style.display = "block";
 	}
 
-	// 모달 창 닫기 함수
+	// 紐⑤ 李 リ린 ⑥
 	function closeModal() {
 	  document.getElementById("myModal").style.display = "none";
 	}
 	
 </script>
 
-<!-- 모달창 스타일 -->
+<!-- 紐⑤ъ갹 ㅽ -->
 <style>
-/* 모달 창 스타일 */
+/* 紐⑤ 李 ㅽ */
 .modal {
-  display: none; /* 초기에는 숨김 상태 */
-  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
-  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
+  display: none; /* 珥湲곗 ④  */
+  position: fixed; /* 댁  ㅽщ· μ 諛吏 濡 怨� 移 */
+  z-index: 9999; /* 댁 �댁 留  移濡  媛쇰 吏� */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
+  background-color: rgba(0,0,0,0.4); /* 諛곌꼍 吏� */
 }
 
 .modal-content {
     width: 600px; 
   height: 400px;
-  position: absolute; /* 모달 창 내에서 상대적인 위치 */
-  top: 50%; /* 상위 요소에서 50% 위치 */
-  left: 50%; /* 상위 요소에서 50% 위치 */
-  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  position: absolute; /* 紐⑤ 李 댁 � 移 */
+  top: 50%; /*   50% 移 */
+  left: 50%; /*   50% 移 */
+  transform: translate(-50%, -50%); /* 媛대 �� */
   width: 80%;
   max-height: 90%;
   overflow-y: auto;
@@ -166,7 +166,7 @@ $('document').ready(function() {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-/* iframe 스타일 */
+/* iframe ㅽ */
 iframe {
   width: 100%;
   height: 100%;
@@ -177,7 +177,7 @@ iframe {
 
 </head>
 
-<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+<%@ include file="../nav.jsp"%><!-- nav 쎌 -->
 
 <!-- END head -->
 
@@ -189,7 +189,7 @@ iframe {
 			class="row site-hero-inner justify-content-center align-items-center">
 			<div class="col-md-10 text-center" data-aos="fade-up">
 				<h2>CODE LESS</h2>
-				<h1 class="heading">코드리스</h1>
+				<h1 class="heading">肄由ъ</h1>
 			</div>
 		</div>
 	</div>
@@ -212,32 +212,32 @@ iframe {
 					
 					<div class="row">
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-							<label for="checkin_date" class="font-weight-bold text-black">제조사</label>
+							<label for="checkin_date" class="font-weight-bold text-black">�議곗</label>
 								<select name="" id="brand" class="form-control">
 									
-									<option value="">제조사를 선택하세요</option>
-									<option value="1">애플</option>
-									<option value="2">삼성</option>
+									<option value="">�議곗щ� 몄</option>
+									<option value="1"></option>
+									<option value="2">쇱</option>
 								</select>
 						</div>
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-							<label for="checkin_date" class="font-weight-bold text-black">모델명</label>
+							<label for="checkin_date" class="font-weight-bold text-black">紐⑤몃</label>
 								<select name="" id="model" class="form-control" style="">	
-								<option value="">모델명을 선택하세요</option>
+								<option value="">紐⑤몃 몄</option>
 								</select>
 						</div>
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-							<label for="checkout_date" class="font-weight-bold text-black">색상</label>
+							<label for="checkout_date" class="font-weight-bold text-black"></label>
 								<select name="" id="color" class="form-control">
-									<option value="">색상을 선택하세요</option>
+									<option value=""> 몄</option>
 								</select>
 						</div>
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-							<label for="checkout_date" class="font-weight-bold text-black">좌우선택</label>
+							<label for="checkout_date" class="font-weight-bold text-black">醫곗</label>
 								<select name="" id="direc" class="form-control">
-									<option value="">좌우를 선택하세요</option>
-									<option value="">좌</option>
-									<option value="">우</option>
+									<option value="">醫곕� 몄</option>
+									<option value="">醫</option>
+									<option value=""></option>
 								</select>
 							
 						</div>
@@ -246,18 +246,18 @@ iframe {
 							style="margin-top: 40px;">
 							<div class="row">
 								<div class="col-md-6 mb-3 mb-md-0">
-									<label for="adults" class="font-weight-bold text-black">거래방법</label>
+									<label for="adults" class="font-weight-bold text-black">嫄곕諛⑸</label>
 
 										<select name="" id="trade" class="form-control">
-											<option value="">거래방법을 선택하세요</option>
-											<option value="1">직거래</option>
-											<option value="2">택배</option>
+											<option value="">嫄곕諛⑸ 몄</option>
+											<option value="1">吏嫄곕</option>
+											<option value="2">諛</option>
 								
 										</select>
 									
 								</div>
 								<div class="col-md-6 mb-3 mb-md-0">
-									<label for="" class="font-weight-bold text-black">지역선택</label></label><span id="trmsg" style="color: red;"> </span>
+									<label for="" class="font-weight-bold text-black">吏�</label></label><span id="trmsg" style="color: red;"> </span>
 									 
 										<select name="sido1" id="sido1" class="form-control"></select>	 
 										<select name="gugun1" id="gugun1" class="form-control" style="margin-top: 10px;"></select>			
@@ -265,7 +265,8 @@ iframe {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+						<input type="button" value="寃湲" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+
 
 					</div>
 				</form>
@@ -288,10 +289,10 @@ iframe {
 				<!-- <img src="images/chat.jpg" alt="Image" class="img-fluid rounded" > -->
 			</div>
 			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-				<h2 class="heading">코드리스코드리스</h2>
-				<p style="font-size: 18px;">코드리스코드리스코드리스코드리스코드리스코드리스</p>
+				<h2 class="heading">肄由ъㅼ由ъ</h2>
+				<p style="font-size: 18px;">肄由ъㅼ由ъㅼ由ъㅼ由ъㅼ由ъㅼ由ъ</p>
 				<p>
-					<a href="#" class="btn btn-primary text-white py-2 mr-3">링크거세요</a>
+					<a href="#" class="btn btn-primary text-white py-2 mr-3">留ш굅몄</a>
 				</p>
 			</div>
 
