@@ -17,6 +17,7 @@ import com.itwillbs.action.member.MemberLoginAction;
 import com.itwillbs.action.member.MemberLogoutAction;
 import com.itwillbs.action.member.MemberUpdateAction;
 import com.itwillbs.action.member.MemberUpdateProAction;
+import com.itwillbs.action.member.PasswordUpdateAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -162,6 +163,15 @@ public class MemberController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/passwordUpdate.jsp");
 			forward.setRedirect(false);
+			
+		}else if (command.equals("/PasswordUpdateAction.me")) {
+			//임시 이동 코드
+			action = new PasswordUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		}else if (command.equals("/MemberList.me")) {
 			System.out.println(" C : /MemberList.me 호출");

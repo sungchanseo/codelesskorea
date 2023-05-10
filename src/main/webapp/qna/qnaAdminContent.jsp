@@ -39,6 +39,7 @@
 
 <%
 //전달받은 정보를 저장
+
 QnADTO qdto = (QnADTO) request.getAttribute("qdto"); //object -다운캐스팅-> BoardDTO
 String pageNum = (String) request.getAttribute("pageNum"); //object -다운캐스팅-> String
 int bno = Integer.parseInt(request.getParameter("bno"));
@@ -83,14 +84,14 @@ QnADTO qna = mdao.getBoard(bno);
   </tr>
   <tr>
     <th>내용</th>
-    <td colspan="5"><textarea rows="30" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
+    <td colspan="5"><textarea rows="15" cols="50" name="content" maxlength="700" readonly="readonly"><%=qdto.getContent()%></textarea></td>
   </tr>
   <tr>
     <td colspan="6" style="text-align:center">
-     <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.me?pageNum=<%=pageNum%>'">
-     <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
-	 <input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
-	 <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>&re_ref=<%=qdto.getRe_Ref() %>&re_lev=<%=qdto.getRe_Lev()%>&re_seq=<%=qdto.getRe_Seq()%>'">
+     <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.qn?pageNum=<%=pageNum%>'">
+     <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
+	 <input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
+	 <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>&re_ref=<%=qdto.getRe_Ref() %>&re_lev=<%=qdto.getRe_Lev()%>&re_seq=<%=qdto.getRe_Seq()%>'">
     </td>
   </tr>
 </table>

@@ -9,7 +9,7 @@
  <%@ include file="../nav.jsp" %><!-- nav 삽입 -->
 	
  <div class="container" id="login-con">
-  <form action="./IdFindAction.me"> 
+  <form action="./IdFindAction.me" name="fr"> 
     <div class="form-group" id="log-form">
      <div style="text-align: center;"><a class="navbar-brand" style="font-size: 40px;"><span>아이디 찾기</span></a></div>
      

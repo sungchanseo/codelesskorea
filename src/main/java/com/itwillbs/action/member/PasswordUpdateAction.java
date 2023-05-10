@@ -66,7 +66,7 @@ public class PasswordUpdateAction implements Action {
 			return null;
 		}
 
-		JSForward.alertAndMove(response, "비밀번호 수정완료!!", "./MemberInfo.me");
+		JSForward.alertAndMove(response, "비밀번호 수정완료!!", "./MemberInfo.my");
 
 		
 

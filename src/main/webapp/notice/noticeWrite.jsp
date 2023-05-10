@@ -11,8 +11,7 @@
 
 <div class="container">
   <form action="./NoticeWriteAction.no" enctype="multipart/form-data" method="post">
-
-   
+  
     <label>글제목
     <input type="text" name="title" placeholder="글제목을 입력하세요">
 	</label>

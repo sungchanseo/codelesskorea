@@ -47,16 +47,16 @@
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
 		
-			<h2><a href="./UserQNAList.me"> 문의내역 </a></h2>
+			<h2><a href="./UserQNAList.qn"> 문의내역 </a></h2>
 		<c:if test="${ empty sessionScope.id  && !id.equals('admin@gmail.com') }">  
 				<!-- 관리자 계정은 확인 불가능한 버튼 -->
 			<h2>
-			<a href="./MypageQNAInsert.me">1:1 문의</a>
+			<a href="./MypageQNAInsert.qn">1:1 문의</a>
 			</h2>
 		</c:if>  
 		
 		<fieldset>
-		   <form action="./MypageQNAInsertAction.me" method="post" >
+		   <form action="./MypageQNAInsertAction.qn" method="post" >
 		   <input type="hidden" name="id" value="<%=id%>"><br>
 		   <input type="hidden" name="isAnswered" value="<%=isAnswered%>">
 <!-- 		회원정보, 상품, 신고, 결제, 기타 -->

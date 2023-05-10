@@ -1,11 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../head.jsp"%>
+<<<<<<< HEAD
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8"> 
+		<script type="text/javascript">
+		
+		
+		$(document).ready(function() {
+		    $('.block-btn').change(function() {
+		        var id = $(this).data('user-id');
+		        var blocked = $(this).prop('checked');
+		        $.ajax({
+		            url: './AjaxBlockedAction.aj',
+		            data: {id: id, blocked: blocked},
+		            success: function(data) {
+		                console.log(data);
+		                alert('회원정보 변경 완료!');
+		                location.reload();
+		            }
+		        });
+		    });
+
+		    $('button[name="adminsaleList"]').click(function() {
+		    	  var id = $(this).val();
+		    	  window.open('./AdminsaleListAction.my?id=' + id, '_blank', 'width=800,height=600');
+		    });
+
+		    	$('button[name="adminbuyList"]').click(function() {
+		    	  var id = $(this).val();
+		    	  window.open('./AdminbuyListAction.my?id=' + id, '_blank', 'width=800,height=600');
+		    });
+		    
+		});
+
+		</script>
+
+=======
 <meta charset="UTF-8">
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 <title>Insert title here</title>
 </head>
 <body>
@@ -33,6 +77,10 @@
 	      <td>가입일</td>
 	      <td>생년월일</td>
 	      <td>회원상태</td>
+<<<<<<< HEAD
+	     <td>판매목록</td>
+=======
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 	   </tr>
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.memberList }">
@@ -46,7 +94,21 @@
 		      <td>${dto.user_image }</td>
 		      <td>${dto.regdate }</td>
 		      <td>${dto.birth_date }</td>
+<<<<<<< HEAD
+		      <td><input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" data-user-id="${dto.id}"
+		      <c:if test="${dto.blocked}">checked</c:if>>
+				  <c:if test="${dto.blocked}">
+				    <span style="color:red">차단</span>
+				  </c:if>
+				  <c:if test="${!dto.blocked}">
+				    <span style="color:green">정상</span>
+				  </c:if>
+		      </td>
+		    <td><button type="button" name="adminbuyList" value="${dto.id}">구매목록</button></td>
+			<td><button type="button" name="adminsaleList" value="${dto.id}">판매목록</button></td>
+=======
 		      <td><input type="checkbox" name="blocked"></td>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		   </tr>
 	   	</c:forEach>
 	</table>

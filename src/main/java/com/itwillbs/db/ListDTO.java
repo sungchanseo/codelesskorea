@@ -100,4 +100,16 @@ public class ListDTO {
 	public void setOrderLink(String orderLink) {
 		this.orderLink = orderLink;
 	}
+	
+	@Override
+	public String toString() {
+		return "ListDTO [product_id=" + product_id + ", user_id=" + user_id + ", like_id=" + like_id + ", order_status="
+				+ order_status + ", order_id=" + order_id + ", id=" + id + ", title=" + title + ", price=" + price
+				+ ", seller_id=" + seller_id + ", buyer_id=" + buyer_id + ", order_date=" + order_date
+				+ ", productLink=" + productLink + ", orderLink=" + orderLink + "]";
+	}
+	
+	
+	
+	
 }
