@@ -4,18 +4,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<<<<<<< HEAD
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
 	<%@ include file="../head.jsp"%>
-
-=======
-<%@ include file="../head.jsp"%>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 <script type="text/javascript">
 
@@ -40,11 +32,7 @@
 				  return;
 			  }//이메일형식으로 입력하지않을 시 제어
 			  $.ajax({
-<<<<<<< HEAD
 				  url : "./AjaxAction.aj",
-=======
-				  url : "./AjaxAction.ta",
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				  data: {"id": $('#id').val()},
 				  success:function(data){
 					  const result = $.trim(data);
@@ -92,41 +80,6 @@
 		   
 		});//비밀번호 일치불일치 체크
 		
-<<<<<<< HEAD
-		$('#nickname').keyup(function(){
-
-			  $.ajax({
-				  url : "./AjaxNickAction.aj",
-				  data: {"nickname": $('#nickname').val()},
-				  success:function(data){
-					  const result = $.trim(data);
-					  if(result=="yes" && !$('#nickname').val() == ""){
-					
-					  $('#nickmsg').css('color','green');
-					  $('#nickmsg').text("사용가능한 닉네임입니다.");
-					  $('#submit').removeAttr('disabled');
-					  return;
-					  }else if ( result=="no" && !$('#nickname').val() == ""){
-					 
-					  $('#nickmsg').css('color','red');
-					  $('#nickmsg').text("이미 존재하는 닉네임입니다.");  
-					  $('#submit').attr('disabled','disabled');
-					  return;
-					  }
-				  }//success 
-			  });// ajax
-			  
-			  
-			  if($('#nickname').val() == ""){
-				  $('#nickmsg').css('color','red');
-				  $('#nickmsg').text("닉네임을 입력해주세요.");  
-				  $('#submit').attr('disabled','disabled'); 
-				  return;
-			  }
-		  }); // 닉네임중복확인 
-		
-=======
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		
 		$('#fr').submit(function() {
 			if($('#id').val() == ""){
@@ -204,11 +157,7 @@
 
 
 	<div class="container" id="login-con"
-<<<<<<< HEAD
-		style="width: 800px; color: black; ">
-=======
 		style="width: 800px; color: black;">
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 
 		<form action="./MemberJoinAction.me" id="fr" method="post">
@@ -223,13 +172,8 @@
 	
 				   아이디 <input type="email" class="form-control" id="id"
 					placeholder="아이디를 입력해주세요." name="id" >  
-<<<<<<< HEAD
-					<span id="idmsg"></span>
-					
-=======
 		
 				<span id="idmsg"></span>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				<br>	 				
 				비밀번호 <input type="password" class="form-control" id="password"
 					placeholder="비밀번호를 입력해주세요." name="password">
@@ -245,10 +189,6 @@
 					 <br>
 				
 				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요.">
-<<<<<<< HEAD
-						<span id="nickmsg"></span>
-=======
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 					 <br> 
 				
 				연락처 <input type="text" class="form-control"
@@ -261,11 +201,7 @@
 			 	주소
 				<table>
 					<tr>
-<<<<<<< HEAD
 						<td><input type="text" name="post_number" id="zipcode" size="15" onclick="addr();">
-=======
-						<td><input type="text" name="zipcode" id="zipcode" size="15" onclick="addr();">
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>
@@ -277,11 +213,8 @@
 				</table>
 				<br> 프로필사진 <input type="file" name="user_image">
 				 <br><br>
-<<<<<<< HEAD
 				 
 				 
-=======
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				<label><input type="checkbox" data-toggle="modal"
 					data-target="#myModal" id="checkbox"><b>이용약관 개인정보 수집 및 정보이용에
 					동의합니다.</b></label>
@@ -289,11 +222,7 @@
 
 				<!-- The Modal -->
 				<div class="modal" id="myModal">
-<<<<<<< HEAD
 					<div class="modal-dialog">
-=======
-					<div class="modal-dialog modal-dialog-scrollable">
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 						<div class="modal-content">
 
 							<!-- Modal Header -->

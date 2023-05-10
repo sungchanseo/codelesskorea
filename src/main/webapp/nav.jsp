@@ -19,7 +19,6 @@
 				</c:if>
 				<c:if test="${!empty id }">
 					<li class="nav-item"><a href="./MemberLogout.me" class="nav-link"><b>로그아웃</b></a></li>
-<<<<<<< HEAD
 	 <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
        <c:if test="${id!='admin' && id!='admin@gmail.com' }">
@@ -46,17 +45,8 @@
 		  </c:if>
       </div>
    	  </li>
-=======
-					<li class="nav-item"><a href="./MemberMypage.my" class="nav-link"><b>마이페이지</b></a></li>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				</c:if>
 	        </ul>
 	      </div>
 	    </div>
-<<<<<<< HEAD
 	  </nav>
-=======
-	  </nav>
-
-</html>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
