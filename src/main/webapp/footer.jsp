@@ -26,8 +26,13 @@
           
               <ul class="list-unstyled link">
               <li><a href="./NoticeList.no">공지사항</a></li>
+<<<<<<< HEAD
+              <li><a href="#">자주하는질문</a></li>
+              <li><a href="#">1:1문의</a></li>
+=======
               <li><a href="./FAQList.fa">자주하는질문</a></li>
               <li><a href="./QNAList.qn">1:1문의</a></li>
+>>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
        		  
             </ul>
            
