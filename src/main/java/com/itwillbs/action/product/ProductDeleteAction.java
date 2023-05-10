@@ -12,28 +12,33 @@ import com.itwillbs.db.ProductDAO;
 public class ProductDeleteAction implements Action {
 
 	@Override
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("P : ProductDeleteAction_execute()");
-        
-        ActionForward forward = new ActionForward();
-
-        int productId = Integer.parseInt(request.getParameter("productId"));
-
-        ProductDAO dao = new ProductDAO();
-        int result = dao.productDelete(productId);
-
-        System.out.println("P : Product delete result : " + result);
-        
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(" P : ProductDeleteAction_execute()");
+		
+		// 1. JSP 페이지에서 삭제할 상품의 id를 전달
+		int productId =Integer.parseInt(request.getParameter("product_id"));
+		HttpSession session =  request.getSession();
+		
+		// 세션정보 제어(로그인)
+		String id = (String)session.getAttribute("id");
+		ActionForward forward = new ActionForward();
+		if(id == null ) {
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
+		// 2. DAO를 이용하여 product 테이블에서 해당 상품을 삭제
+		ProductDAO dao = new ProductDAO();
+		int result = dao.productDelete(productId);
+		
 		// 삭제 결과에 따른 페이지 이동(JS)
-        if(result == -1) {
-            JSForward.alertAndBack(response, "상품 정보 없음(삭제불가)");
-            return null;
-        }
-
-        JSForward.alertAndMove(response, "상품 정보 삭제 성공!", "./ProductList.pr");
-        return null;
-    }
-    
-    
-    
+		if(result == 1) {
+			JSForward.alertAndMove(response, "상품 삭제 성공!", "./ProductList.pr");
+			return null;
+		}else {
+			JSForward.alertAndBack(response, "상품 정보 없음");
+		return null;
+		}
+	}
 }

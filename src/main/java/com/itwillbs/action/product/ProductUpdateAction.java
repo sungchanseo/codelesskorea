@@ -14,41 +14,30 @@ public class ProductUpdateAction implements Action {
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" P : ProductUpdateAction_execute() 실행");
-		
-		// 한글처리
+		System.out.println(" P : ProductUpdateAction_execute() 호출");
+		// 한글처리(인코딩)
 		request.setCharacterEncoding("UTF-8");
+		// 1. JSP 페이지에서 수정할 상품의 id를 전달
+		int productId = Integer.parseInt(request.getParameter("product_id"));
+		System.out.println("상품번호 : "+productId);
 		
-		// ProductDTO 객체
-		ProductDTO dto = new ProductDTO();
-		// 전달된 정보 저장
-		
-		dto.setTitle(request.getParameter("title"));
-		dto.setModel(request.getParameter("model"));
-		dto.setParts(request.getParameter("parts"));
-		dto.setContent(request.getParameter("content"));
-		dto.setPrice(Integer.parseInt(request.getParameter("price")));
-		dto.setGrade(Integer.parseInt(request.getParameter("grade")));
-		dto.setCity(request.getParameter("city"));
-		dto.setMethod(Integer.parseInt(request.getParameter("method")));
-		dto.setCharge(Integer.parseInt(request.getParameter("charge")));
-		dto.setFee(Integer.parseInt(request.getParameter("fee")));
-		dto.setReg_date(new Date(System.currentTimeMillis()));
-
-		System.out.println(" P : " + dto);
-		
-		// ProductDAO 객체 생성
+		// 기존의 회원정보를 가져오기 (DB)
 		ProductDAO dao = new ProductDAO();
-		// 상품수정 메서드
-//		dao.productUpdate(dto);
+		ProductDTO product = dao.productContent(productId);
+
+		//	System.out.println(dto);
+		
+		// 상세 정보 request에 저장
+		request.setAttribute("product", product);
+		System.out.println(product.toString());
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
-		forward.setPath("./ProductList.me");
-		forward.setRedirect(true);
+		// ./member/updateForm.jsp 출력
+		forward.setPath("./product/productUpdate.jsp");
+		forward.setRedirect(false);
 		
-		System.out.println(" P : 데이터 처리완료! 리스트 페이지 이동 ");
-		
+		System.out.println("P : 정보 조회 저장, 처리 끝");
 		return forward;
 	}
 }
