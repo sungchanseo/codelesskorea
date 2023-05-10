@@ -92,7 +92,7 @@ public class MemberUpdateProAction implements Action {
 			return null;
 		}
 
-		JSForward.alertAndMove(response, "수정완료!!", "./MemberInfo.me");
+		JSForward.alertAndMove(response, "수정완료!!", "./MemberInfo.my");
 		return null;
 	}
 

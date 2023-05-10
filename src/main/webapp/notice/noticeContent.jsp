@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,8 @@
 </head>
 <body>
 <h1>noticeContent</h1>
-<a href="./NoticeUpdate.no">╟т╫ц╠ш ╪Жа╓</a>
-<a href="./NoticeDelete.no">╟т╫ц╠ш ╩Ха╕</a>
-<a href="./NoticeList.no">╦Я╥ою╦╥н</a>
+<a href="./NoticeUpdate.no">Й╡▄Л▀°Й╦─ Л┬≤Л═∙</a>
+<a href="./NoticeDelete.no">Й╡▄Л▀°Й╦─ Л┌╜Л═°</a>
+<a href="./NoticeList.no">К╙╘К║²Л°╪К║°</a>
 </body>
 </html>

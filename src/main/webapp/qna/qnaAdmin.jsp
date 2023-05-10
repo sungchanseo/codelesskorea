@@ -82,17 +82,10 @@ QnADTO qna = mdao.getBoard(bno);
   </tr>
   <tr>
     <td colspan="6" style="text-align:center">
-<<<<<<< HEAD
      <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.qn?pageNum=<%=pageNum%>'">
      <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
 	 <input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
 	 <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.qn?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>&re_ref=<%=qdto.getRe_Ref() %>&re_lev=<%=qdto.getRe_Lev()%>&re_seq=<%=qdto.getRe_Seq()%>'">
-=======
-     <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.me?pageNum=<%=pageNum%>'">
-     <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
-	 <input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>'">
-	 <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.me?bno=<%=qdto.getBno()%>&pageNum=<%=pageNum%>&re_ref=<%=qdto.getRe_Ref() %>&re_lev=<%=qdto.getRe_Lev()%>&re_seq=<%=qdto.getRe_Seq()%>'">
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
     </td>
   </tr>
 </table>

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import com.itwillbs.action.qna.AdminQNAListAction;
 import com.itwillbs.action.qna.AdminQNAcontentAction;
 import com.itwillbs.action.qna.MypageQNABoardInsertAction;
@@ -20,8 +19,6 @@ import com.itwillbs.action.qna.QNAUpdateActionPro;
 import com.itwillbs.action.qna.UserQNADeleteAction;
 import com.itwillbs.action.qna.UserQNAListAction;
 import com.itwillbs.action.qna.UserQNAcontentAction;
-=======
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -53,7 +50,6 @@ public class QnaController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-<<<<<<< HEAD
 	      // 마이페이지 QNA - ./MypageQNAInsertAction.me(1:1문의 글쓰기 실행)
 	      if(command.equals("/MypageQNAInsertAction.qn")) {
 	         System.out.println(" C : /MypageQNAInsertAction.qn 호출 ");
@@ -177,41 +173,6 @@ public class QnaController extends HttpServlet{
 			
 			
 			
-=======
-		// QNA
-		if (command.equals("/QNAList.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAWrite.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAReWrite.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaReWrite.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAContent.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaContent.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNADelete.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaDelete.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/QNAUpdate.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./qna/qnaUpdate.jsp");
-			forward.setRedirect(false);
-		}
-
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		
 		
 		

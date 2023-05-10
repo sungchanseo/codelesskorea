@@ -37,11 +37,7 @@
 <!-- rs <- DTO <- List -->
    <tr>
      <td>${qdto.regdate}</td>
-<<<<<<< HEAD
      <td><a href="./AdminQNAContent.qn?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
-=======
-     <td><a href="./AdminQNAContent.me?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
      
      <td>${qdto.nickname}</td>
       <c:if test="${qdto.re_Lev < 1}">
@@ -66,7 +62,6 @@
 
 
   <c:if test="${startPage > pageBlock }"> 
-<<<<<<< HEAD
    <a href="./AdminQNAList.qn?pageNum=${startPage-pageBlock} ">[이전]</a>
    </c:if>
    
@@ -76,17 +71,6 @@
    
    <c:if test="${endPage<pageCount }">
    <a href="./AdminQNAList.qn?pageNum=${startPage+pageBlock} ">[다음]</a>
-=======
-   <a href="./AdminQNAList.me?pageNum=${startPage-pageBlock} ">[이전]</a>
-   </c:if>
-   
-   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-   <a href="./AdminQNAList.me?pageNum=${i }">[${i }]</a>
-   </c:forEach>
-   
-   <c:if test="${endPage<pageCount }">
-   <a href="./AdminQNAList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
    </c:if>
 
 

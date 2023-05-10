@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -30,17 +29,5 @@
   </form>
 </div><!-- 로그인 컨테이너박스 끝 -->
  <%@ include file="../footer.jsp" %> <!-- footer 삽입 -->
-=======
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>pwFindForm</h1> 
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </body>
 </html>

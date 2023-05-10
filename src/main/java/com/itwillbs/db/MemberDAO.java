@@ -307,13 +307,8 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. SQL작성 & pstmt 객체
-<<<<<<< HEAD
 				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date,post_number,address2) "
 						+ "values(?,?,?,?,?,?,?,?,?,?,?)";
-=======
-				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date) "
-						+ "values(?,?,?,?,?,?,?,?,?)";
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getId());
@@ -325,11 +320,8 @@ public class MemberDAO {
 				pstmt.setString(7, dto.getUser_image());
 				pstmt.setDate(8, dto.getRegdate());
 				pstmt.setString(9, dto.getBirth_date());
-<<<<<<< HEAD
 				pstmt.setInt(10, dto.getPost_number());
 				pstmt.setString(11, dto.getAddress2());
-=======
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 				
 				// 4. SQL 실행
 				pstmt.executeUpdate();

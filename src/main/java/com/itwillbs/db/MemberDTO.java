@@ -14,7 +14,6 @@ public class MemberDTO {
 	private Date regdate;
 	private String birth_date; 
 	private Boolean blocked;
-<<<<<<< HEAD
 	private int post_number;
 	private String address2;
 	
@@ -39,9 +38,6 @@ public class MemberDTO {
 		this.address2 = address2;
 	}
 
-=======
-	
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 	@Override
 	public String toString() {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@page import="com.itwillbs.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,18 +5,10 @@
 <html>
 <head>
 <%@ include file="../head.jsp"%>
-=======
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <!-- <h1>qnaUpdate</h1> -->
 <%			String pageNum = (String) request.getParameter("pageNum");
@@ -39,8 +30,5 @@
 
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
-=======
-<h1>qnaUpdate</h1>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </body>
 </html>

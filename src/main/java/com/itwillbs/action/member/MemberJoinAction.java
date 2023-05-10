@@ -27,21 +27,11 @@ public class MemberJoinAction implements Action{
 		// MemberDTO 객체 생성
 		MemberDTO dto = new MemberDTO();
 		// 전달된 정보 저장
-<<<<<<< HEAD
 		/*
 		 * MemberDAO qdao = new MemberDAO(); MemberDTO qdto = qdao.getMember(id);
 		 * boolean blocked = qdto.getBlocked(); if(blocked == true) {
 		 * JSForward.alertAndBack(response, "잘못된 접근입니다!"); return forward; }
 		 */
-=======
-		MemberDAO qdao = new MemberDAO();
-		MemberDTO qdto = qdao.getMember(id);
-		boolean blocked = qdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		
 		dto.setId(request.getParameter("id"));
 		dto.setAddress(request.getParameter("address"));
@@ -52,12 +42,8 @@ public class MemberJoinAction implements Action{
 		dto.setRegdate(new Date(System.currentTimeMillis()));
 		dto.setUser_image(request.getParameter("user_image"));
 		dto.setBirth_date(request.getParameter("birth_date"));
-<<<<<<< HEAD
 		dto.setAddress2(request.getParameter("address2"));
 		dto.setPost_number(Integer.parseInt(request.getParameter("post_number")));
-=======
-		
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		
 		System.out.println(" M : "+dto);
 		

@@ -68,7 +68,7 @@ public class QNAUpdateActionPro implements Action{
 			PrintWriter out = response.getWriter();
 			
 	        if(result == 1){ // 글하나 작성완료
-	        	JSForward.alertAndMove(response, "글수정 성공", "./AdminQNAContent.me?bno="+bno+"&pageNum="+pageNum);
+	        	JSForward.alertAndMove(response, "글수정 성공", "./AdminQNAContent.qn?bno="+bno+"&pageNum="+pageNum);
 
 	        }else{
 	        	//에러 상황( 자바스크립트 / 페이지 이동 )

@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script src="../js/jquery-3.6.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <%@ include file="../head.jsp" %>
 <meta charset="UTF-8">
 <script type="text/javascript">
@@ -104,8 +106,8 @@ $(document).ready(function () {
 					 <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 					 <br>
       <button type="submit" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" id="submit" >회원탈퇴</button>
-		   <hr>
+										style="margin-top: 40px;" id="submit" >회원탈퇴</button><hr>
+      <hr>
          </div>      
  	 </form>
   
@@ -119,32 +121,4 @@ $(document).ready(function () {
 		
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
-	<body>
-		<h1>memberDelete.jsp(MVC)</h1>
-		<h2> 회원정보 삭제(탈퇴)</h2>
-		
-				<c:if test="${empty id }">
-					<c:redirect url="/MemberLogin.me"/>
-				</c:if>
-				
-				
-			<fieldset>
-				<legend>회원탈퇴시 비밀번호를 입력하세요!</legend>
-				<form action="./MemberDeleteAction.me" method="post">
-					<input type="hidden" name="id" value=${id }>
-					비밀번호 : <input type="password" name="pw" placeholder="비밀번호를 입력하세요."> <br>					
-					<input type="submit" value="탈퇴하기">
-				</form>
-			</fieldset>
-		
-	</body>
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 </html>

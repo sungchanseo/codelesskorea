@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import com.itwillbs.action.member.MemberDeleteAction;
 import com.itwillbs.action.member.MemberInfoAction;
 import com.itwillbs.action.member.MemberListAction;
@@ -31,12 +30,6 @@ import com.itwillbs.action.qna.QNAUpdateActionPro;
 import com.itwillbs.action.qna.UserQNADeleteAction;
 import com.itwillbs.action.qna.UserQNAListAction;
 import com.itwillbs.action.qna.UserQNAcontentAction;
-=======
-import com.itwillbs.action.member.MemberInfoAction;
-import com.itwillbs.action.mypage.BuyListAction;
-import com.itwillbs.action.mypage.LikeListAction;
-import com.itwillbs.action.mypage.SaleListAction;
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -86,7 +79,6 @@ public class MypageController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-<<<<<<< HEAD
 				} 
 			}
 		
@@ -200,28 +192,6 @@ public class MypageController extends HttpServlet{
 		// 구매목록
 		else if (command.equals("/MypagePurchaseList.my")) {
 			System.out.println(" C : /MypagePurchaseList.my 호출 ");
-=======
-			}
-		}else if (command.equals("/MypagePurchaselist.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/buyList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/MypageSalesList.my")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/saleList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/LikeList.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/likeList.jsp");
-			forward.setRedirect(false);
-		}		
-		// 구매목록
-		else if (command.equals("/Buylist.my")) {
-			System.out.println(" C : /BuyList.me 호출 ");
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 			action = new BuyListAction();
 			try {
@@ -231,13 +201,8 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 판매목록
-<<<<<<< HEAD
 		else if(command.equals("/MypageSaleslist.my")) {
 			System.out.println(" C : /MypageSaleslist.my 호출 ");
-=======
-		else if(command.equals("/SaleList.my")) {
-			System.out.println(" C : /SaleList.me 호출 ");
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 
 			action = new SaleListAction();
 			try {
@@ -246,22 +211,7 @@ public class MypageController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-<<<<<<< HEAD
 		
-=======
-		// 찜목록
-		else if(command.equals("/LikeList.my")) {
-			System.out.println(" C : /Likelist.me 호출");
-
-			action = new LikeListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		
 		
 		

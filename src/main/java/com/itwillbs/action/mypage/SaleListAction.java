@@ -38,11 +38,7 @@ public class SaleListAction implements Action{
 		System.out.println(saleList);
 		
 		// 연결된 view에 출력
-<<<<<<< HEAD
 		forward.setPath("./mypage/saleList.jsp");
-=======
-		forward.setPath("./mypage/SaleList.jsp");
->>>>>>> ed8d0e633a9d3a9b4d5f403ff8a9da74a6fb6166
 		forward.setRedirect(false);
 		System.out.println(forward);
 		

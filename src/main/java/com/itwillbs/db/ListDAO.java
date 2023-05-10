@@ -48,7 +48,7 @@ public class ListDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. sql & pstmt
-			sql = "select * from MYPAGE WHERE id=?";
+			sql = "select * from MYPAGE WHERE buyer_id=?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -67,18 +67,19 @@ public class ListDAO {
 				dto.setId(rs.getString("id"));
 				dto.setTitle(rs.getString("title"));
 				dto.setPrice(rs.getInt("price"));
+				dto.setBuyer_id(rs.getString("buyer_id"));
 				dto.setSeller_id(rs.getString("seller_id"));
 				dto.setOrder_date(rs.getDate("order_date"));
 				
 				// 상품별 링크 정보 설정
 				// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
 			    String productId = rs.getString("product_id");
-			    String productLink = "https://www.naver.com/" + productId;
+			    String productLink = "./productContent.pr?product_id=" + productId;
 			    dto.setProductLink(productLink);
 			    
 			    // 주문서별 링크 정보 설정
 			    String orderId = rs.getString("order_id");
-			    String orderLink = "https://www.naver.com/" + orderId;
+			    String orderLink = "/orderContent.pr/?order_id=" + orderId;
 			    dto.setOrderLink(orderLink);
 			    
 								
@@ -106,7 +107,7 @@ public class ListDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql & pstmt
-				sql = "select * from MYPAGE WHERE id=?";
+				sql = "select * from MYPAGE WHERE seller_id=?";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -126,19 +127,20 @@ public class ListDAO {
 					dto.setTitle(rs.getString("title"));
 					dto.setPrice(rs.getInt("price"));
 					dto.setBuyer_id(rs.getString("buyer_id"));
+					dto.setSeller_id(rs.getString("seller_id"));
 					dto.setOrder_date(rs.getDate("order_date"));
 					
 					// 상품별 링크 정보 설정
 					// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
 				    String productId = rs.getString("product_id");
-				    String productLink = "https://www.naver.com/" + productId;
+				    String productLink = "/productContent.pr/" + productId;
 				    dto.setProductLink(productLink);
 				    
-//				    // 주문서번호별 링크 정보 설정
+				    // 주문서번호별 링크 정보 설정
 //				    현재는 하나의 페이지로 통일했으나 주문서번호별 링크로 수정해야 합니다
-//				    String orderId = rs.getString("order_id");
-//				    String orderLink = "https://www.naver.com/" + orderId;
-//				    dto.setOrderLink(orderLink);
+				    String orderId = rs.getString("order_id");
+				    String orderLink = "/orderContent.pr/" + orderId;
+				    dto.setOrderLink(orderLink);
 				    
 									
 				    SaleList.add(dto);
@@ -156,84 +158,6 @@ public class ListDAO {
 			return SaleList;
 		}
 		// 판매목록 조회 - dao.SaleList()
-
-		// 찜목록 조회 - dao.LikeList()
-		public List<ListDTO> getLikeList(String id){
-			List<ListDTO> LikeList = new ArrayList<ListDTO>();
-			
-			try {
-				// 1.2. 디비연결
-				con = getCon();
-				// 3. sql & pstmt
-				sql = "select * from MYPAGE WHERE product_id=?";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "product_id");
-				// 4. sql 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				// DB정보(rs) -> DTO -> list
-				while (rs.next()) {
-					ListDTO dto = new ListDTO();
-					
-					dto.setProduct_id(rs.getInt("product_id"));
-					dto.setUser_id(rs.getInt("user_id"));
-					dto.setLike_id(rs.getInt("like_id"));
-					dto.setId(rs.getString("id"));
-					dto.setTitle(rs.getString("title"));
-					dto.setPrice(rs.getInt("price"));
-					
-					// 상품별 링크 정보 설정
-					// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
-				    String productId = rs.getString("product_id");
-				    String productLink = "https://www.naver.com/" + productId;
-				    dto.setProductLink(productLink);
-				    
-//				    // 주문서번호별 링크 정보 설정
-//				    현재는 하나의 페이지로 통일했으나 주문서번호별 링크로 수정해야 합니다
-//				    String orderId = rs.getString("order_id");
-//				    String orderLink = "https://www.naver.com/" + orderId;
-//				    dto.setOrderLink(orderLink);
-				    
-									
-				    LikeList.add(dto);
-					System.out.println(" LikeDAO : 판매목록 조회성공! "+ dto);
-					
-				    
-				} // while
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
-			}
-			
-			return LikeList;
-		}
-		// 찜목록 조회 - dao.LikeList()
-		
-		// 찜한 상품 개수 - dao.getLikeCount()
-		public int getLikeCount(){
-			int cnt = 0;
-			try{
-				getCon();
-				sql="select count(like_id) from mypage";
-				pstmt = con.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				if(rs.next()){
-					cnt = rs.getInt(1);
-				}
-				System.out.println("DAO: DB에 저장된 찜의 수 "+cnt);
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally{
-				closeDB();
-			}
-			return cnt;
-		}
-		// 찜한 상품 개수 - dao.getLikeCount()
-
 	
 
 }
