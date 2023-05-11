@@ -4,8 +4,34 @@
 <html>
   <head>
   <%@ include file="../head.jsp" %>
-  <script src="../js/jquery-3.6.4.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('d024657e59f07ee69d6d1407441dfe53'); //js토큰키 사용
+console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (res) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+        	  sessionStorage.setItem("kakao_id",res.id); //session에 카카오로그인 아이디 담음
+        	  var kakao_id = sessionStorage.getItem("kakao_id");
+        	  location.href="./Main.me?kakao_id="+kakao_id;
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
 
+</script>
   <script type="text/javascript">
 
 		
@@ -24,7 +50,9 @@
 					return false;
 				}//비밀번호 입력 제어
 			});
+			
 		});
+		
 
   
   </script>
@@ -46,13 +74,26 @@
      
       <button type="button" class="btn btn-dark btn-block" style="margin-top: 15px;" onclick="location.href='./MemberJoin.me'" >
       회원가입</button>
-      <hr>
-               
+   	  
+   	  <a href="javascript:void(0)">
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="100%;" height ="50px" style="margin-top: 15px;" />
+      </a><!-- 카카오 로그인 버튼!-->
+  
+  
+       <hr>        
       <span onclick="location.href='./IdFind.me'" style="margin-left:85px; cursor:pointer;" >아이디 찾기</span>  |
       
       <span onclick="location.href='./PwFind.me'" style="cursor:pointer;" >비밀번호 찾기</span>  
       
-
+<ul>
+	
+	
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+</ul>
     
    </div>
   </form>
