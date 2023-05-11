@@ -1,6 +1,5 @@
 package com.itwillbs.db;
 
-import java.sql.Date;
 /**
  * 주문정보를 저장하는 객체
  * @author 현솔
@@ -11,7 +10,7 @@ public class OrderDTO {
 	// order 테이블 (select)
 	private int order_id; // 주문번호
 //	private int product_id; // 상품번호
-	private Date order_date; //날짜
+	private String order_date; //날짜
 	private int payment; // 결제수단 
 	private int user_id; // 회원번호
 //	private int post_number; //우편번호
@@ -19,7 +18,7 @@ public class OrderDTO {
 	private String receiver_phone; // 받는사람 전화번호
 	private String receiver_addr1; //받는사람 주소
 	private String receiver_addr2; //받는사람 주소
-	private String receiver_post; // 받는사람 우편번호
+	private int receiver_post; // 받는사람 우편번호
 	private String receiver_id; // 받는사람 
 	private String seller_id; // 판매자 아이
 	private int is_accept; // 구매여부
@@ -83,10 +82,10 @@ public class OrderDTO {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public Date getOrder_date() {
+	public String getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(Date order_date) {
+	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
 	public int getPayment() {
@@ -131,10 +130,10 @@ public class OrderDTO {
 	public void setReceiver_addr2(String receiver_addr2) {
 		this.receiver_addr2 = receiver_addr2;
 	}
-	public String getReceiver_post() {
+	public int getReceiver_post() {
 		return receiver_post;
 	}
-	public void setReceiver_post(String receiver_post) {
+	public void setReceiver_post(int receiver_post) {
 		this.receiver_post = receiver_post;
 	}
 	public String getReceiver_id() {

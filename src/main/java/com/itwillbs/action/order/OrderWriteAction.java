@@ -20,18 +20,9 @@ public class OrderWriteAction implements Action {
 		String id = (String)session.getAttribute("id");
 		System.out.println("id: "+id);
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
-		
-//		String pi = request.getParameter("product_id");
-//		try {
-//			product_id = Integer.parseInt(pi);
-//		} catch (NumberFormatException e) {
-//			product_id = 100;
-//		}
-		
-		System.out.println("product_id: " +product_id);
+		System.out.println("id: "+id +" / product_id: " +product_id);
 		
 		ActionForward forward = new ActionForward();
-		
 		if(id == null) {
 			System.out.println("ID 정보가 없습니다.");
 			forward.setPath("./MemberLogin.me");

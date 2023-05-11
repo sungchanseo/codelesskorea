@@ -1,6 +1,6 @@
 package com.itwillbs.action.order;
 
-import java.io.PrintWriter;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +21,7 @@ public class AddrChangeAction implements Action {
 		// 세션정보 제어
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		ActionForward forward = new ActionForward();
 		if(id == null ) {
 			forward.setPath(".MemberLogin.me");
@@ -45,6 +46,7 @@ public class AddrChangeAction implements Action {
 		System.out.println(" M : "+dto);
 		// DAO - 배송지 변경 메서드 호출 
 		 dto = dao.AddrChange(dto);
+		 dto = dao.addOrder(id, product_id);
 		
 		forward.setPath("./order/orderWrite.jsp");
 		forward.setRedirect(false);
