@@ -330,7 +330,7 @@ public class ChatDAO {
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				if(rs.getString("user_image").equals("")) {
+				if(rs.getString("user_image") == null) {
 					return "./images/icon.png";
 				}
 				return "./upload/" + rs.getString("user_image");

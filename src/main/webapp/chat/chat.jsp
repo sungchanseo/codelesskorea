@@ -1,185 +1,16 @@
 <%@page import="com.itwillbs.db.ChatDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder" %>
-<%-- <%@ page import="user.UserDAO" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <%
-       String userID = null;
-       if(session.getAttribute("id") != null) {
-    	  userID = (String) session.getAttribute("id");
-       }
-       String toID = null;
-       if(request.getParameter("toID") != null){
-    	  toID = (String) request.getParameter("toID");
-       }
-       if(userID == null) {
-    	  session.setAttribute("messageType", "오류 메시지");
-    	  session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-    	  response.sendRedirect("index.jsp");
-    	  return;
-       }
-       if(toID == null) {
-     	  session.setAttribute("messageType", "오류 메시지");
-     	  session.setAttribute("messageContent", "대화 상대가 지정되지 않습니다.");
-     	  response.sendRedirect("index.jsp");
-     	  return;
-        }
-        if(userID.equals(URLDecoder.decode(toID, "UTF-8"))) {
-        	session.setAttribute("messageType", "오류 메시지");
-	       	session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
-	       	response.sendRedirect("index.jsp");
-	       	return;
-        }
-        String fromProfile = new ChatDAO().getProfile(userID);
-        String toProfile = new ChatDAO().getProfile(toID);
-        System.out.println(fromProfile);
-    %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 	<link rel="stylesheet" href="css/bootstrap.css"> -->
-<!-- 	<link rel="stylesheet" href="css/custom.css"> -->
 	<title></title>
 	<jsp:include page="../head.jsp"/>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- 	<script src="js/bootstrap.js"></script> -->
-	<script type="text/javascript">
-	    function autoClosingAlert(selector, delay) {
-	    	var alert = $(selector);
-// 	    	.alert();
-	    	alert.show();
-	    	window.setTimeout(function() { alert.hide() }, delay);
-	    }
-	    function submitFunction() {
-	    	var fromID = '<%= userID %>'
-	    	var toID = '<%= toID %>'
-	    	var chatContent = $('#chatContent').val();
-	    	$.ajax({
-	    		type: "POST",
-	    		url: "./ChatSubmitAction.me",
-	    		data: {
-	    			fromID: encodeURIComponent(fromID),
-	    			toID: encodeURIComponent(toID),
-	    			chatContent: encodeURIComponent(chatContent),
-	    		},
-	    		success: function(result) {
-	    			if(result == 1) {
-	    				autoClosingAlert('#successMessage', 2000);
-	    			} else if(result == 0) {
-	    				autoClosingAlert('#dangerMessage', 2000);
-	    			} else {
-	    				autoClosingAlert('#warningMessage', 2000);
-	    			}
-	    		}
-	    	});
-	    	$('#chatContent').val('');
-	    }
-	    var lastID = 0;
-	    function chatListFunction(type) {
-	    	var fromID = '<%= userID %>';
-	    	var toID = '<%= toID %>';
-	    	$.ajax({
-	    		type: "POST",
-	    		url: "./ChatListAction.me",
-	    		data: {
-	    			fromID: encodeURIComponent(fromID),
-	    			toID: encodeURIComponent(toID),
-	    			listType: type
-	    		},
-	    		success: function(data) {
-	    			if(data == "") return;
-	    			var parsed = JSON.parse(data);
-	    			var result = parsed.result;
-	    			for(var i=0; i<result.length; i++) {
-	    				if(result[i][0].value == fromID) {
-	    					result[i][0].value = '나';
-	    				}
-	    				addChat(result[i][0].value, result[i][2].value, result[i][3].value);
-	    			}	
-	    			lastID = Number(parsed.last);
-	    		}
-	    	});
-	    }
-	    function addChat(chatName, chatContent, chatTime) {
-	    	if(chatName == '나') {
-		    	$('#chatList').append(
- 		    			'<div class="row">' +
- 		    			'<div class="col-lg-12">' +
- 		    			'<div class="media">' + 
-// 		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= fromProfile %>" alt="">' +
-// 		    			'</a>' + 
-		    			'<div class="media-body">' + 
-		    			'<h4 class="media-heading">'+
-		    			chatName +
-		    			'<span class="small pull-right">' + 
-		    			chatTime + 
-		    			'</span>' + 
-		    			'</h4>' + 
-		    			'<p>' + 
-		    			chatContent + 
-		    			'</p>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'<hr>');	  
-	    	} else {
-		    	$('#chatList').append('<div class="row">' +
-		    			'<div class="col-lg-12">' +
-		    			'<div class="media">' + 
-		    			'<a class="pull-left" href="#">' + 
-		    			'<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%= toProfile %>" alt="">' +
-		    			'</a>' + 
-		    			'<div class="media-body">' + 
-		    			'<h4 class="media-heading">'+
-		    			chatName +
-		    			'<span class="small pull-right">' + 
-		    			chatTime + 
-		    			'</span>' + 
-		    			'</h4>' + 
-		    			'<p>' + 
-		    			chatContent + 
-		    			'</p>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'</div>' + 
-		    			'<hr>');	
-	    	}
-	    	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
-	    }
-	    function getInfiniteChat() {
-	    	setInterval(function() {
-	    		chatListFunction(lastID);
-	    	}, 3000);
-	    }
-	    function getUnread() {
-	    	$.ajax({
-	    		type: "POST",
-	    		url: "./ChatUnreadAction.me",
-	    		data: {
-	    			userID: encodeURIComponent('<%= userID %>'),
-	    		},
-	    		success: function(result) {
-	    			if(result >= 1) {
-	    				showUnread(result);
-	    			} else {
-	    				showUnread('');
-	    			}
-	    		}
-	    	});
-	    }
-	    function getInfiniteUnread() {
-	    	setInterval(function() {
-	    		getUnread();
-	    	}, 4000);
-	    }
-	    function showUnread(result) {
-	    	$('#unread').html(result);
-	    }
-	</script>
+	<script src="./js/chat.js"></script>
 
 </head>
 	<jsp:include page="../nav.jsp"/>
@@ -223,16 +54,17 @@
         <strong>데이터베이스 오류가 발생했습니다.</strong>
     </div>
     <%
-        String messageContent = null;
-        if (session.getAttribute("messageContent") != null) {
-        	messageContent = (String) session.getAttribute("messageContent");
-        }
+//         String messageContent = null;
+//         if (session.getAttribute("messageContent") != null) {
+//         	messageContent = (String) session.getAttribute("messageContent");
+//         }
         String messageType = null;
         if (session.getAttribute("messageType") != null) {
         	messageType = (String) session.getAttribute("messageType");
         }
-        if (messageContent != null) {
+//         if (messageContent != null) {
     %>
+    <c:if test="${!empty messageContent }">
     <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
@@ -243,11 +75,11 @@
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title">
-                            <%= messageType %>
+                            ${messageType }
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <%= messageContent %>
+                        ${messageContent}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
@@ -259,16 +91,14 @@
     <script>
         $('#messageModal').modal("show");
     </script>
-    <%     	
-        session.removeAttribute("messageContent");
-        session.removeAttribute("messageType");
-        }
-    %>    
+	    <c:remove var="messageContent" scope="session"/>
+	    <c:remove var="messageType" scope="session"/>
+    </c:if>
     <script type="text/javascript">
 	    $(document).ready(function() {
-	    	getUnread();
-	        chatListFunction('0');
-	        getInfiniteChat();
+	    	getUnread('${id}');
+	        chatListFunction('0', '${id}', '${param.toID}', '${fromProfile}', '${toProfile}');
+	        getInfiniteChat('${id}', '${param.toID}', '${fromProfile}', '${toProfile}');
 	        getInfiniteUnread();
 	    });
     </script>
