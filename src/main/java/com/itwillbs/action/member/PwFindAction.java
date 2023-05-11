@@ -19,7 +19,7 @@ public class PwFindAction implements Action {
 		System.out.println(" M : IdFindAction_execute() 호출 ");
 		
 		request.setCharacterEncoding("UTF-8");
-		
+		ActionForward forward = new ActionForward();
 		
 		
 		//전달정보(name, phone_number) - dto에 저장
@@ -29,15 +29,6 @@ public class PwFindAction implements Action {
 		
 		// 전달된 정보 저장
 		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		MemberDAO qdao = new MemberDAO();
-		MemberDTO qdto = qdao.getMember(id);
-		boolean blocked = qdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//			return forward;
-		}
 		
 		//임시비밀번호 생성
 		String randomPw = "";
@@ -45,19 +36,31 @@ public class PwFindAction implements Action {
 			randomPw += (char) ((Math.random() * 26) + 97);
 		}
 		
-		//MemberDAO 객체 생성해서 dto전달
+		request.setAttribute("randomPw",randomPw);
+		
+		
+		
+		//MemberDAO 객체 생성해서 dto전달하여 비밀번호 업데이트
 		MemberDAO dao = new MemberDAO();
 		int result = dao.pwFind(dto,randomPw);
 		
 
-
+		
 		
 		if(result==0 || result==-1) {
 			JSForward.alertAndBack(response, "정보를 잘못 입력하셨습니다.");
 			return null;
 		}
-		 JSForward.alertAndMove(response, "임시비밀번호 : "+randomPw , "./MemberLogin.me");
-		return null;
+		else
+			
+			 request.setAttribute("randomPw", randomPw);
+			
+			 forward.setPath("./member/pwFindAction.jsp");
+			 forward.setRedirect(false);
+			 
+			 return forward;
+			
+	
 	}
 
 }

@@ -112,10 +112,19 @@
 <!-- 		이름, 연락처,  닉네임(중복불가), 사진(선택사항), 주소 수정가능-->
 
 			<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+			
+<!--  사이드바 -->
+<div>
+<div class="col-sm-4">
+<%@ include file="../mySide.jsp"%>
+</div>
+</div>
+<!--  사이드바 -->
+			
 
-
+	 <div class="col-sm-8" style="margin:auto;">
 	<div class="container" id="login-con"
-		style="width: 800px; color: black;">
+		style="width: 900px; color: black;">
 
 
 		<form action="./MemberUpdateProAction.me" id="fr" method="post">
@@ -168,21 +177,21 @@
 				 <br><br>
 
 
-					
-        
-							</div>
-    
       	<button type="submit" class="btn btn-primary btn-block"
 										style="margin-top: 40px;" id="submit">내정보 수정 완료</button>
 
 		<a href="./PasswordUpdate.me" class="btn btn-primary btn-block"
 										style="margin-top: 40px;" >비밀번호 변경</a>
 										
-		<a href="./MemberDelete.me" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" >코드리스와 이별하기</a> <br>
+		<a href="./MemberDelete.me" class="btn btn-secondary btn-block"style="margin-top: 40px;" >코드리스와 이별하기</a> 
+  	</div>
   </form>
+  
+</div>
 </div>
 	<!-- 업데이트 컨테이너박스 끝 -->
+	
+	
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 	
 		

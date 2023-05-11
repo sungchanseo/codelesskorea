@@ -368,17 +368,14 @@ public class MemberDAO {
 			String result = "";
 			try {
 				con = getCon();
-				sql = "select name,id from user where phone_number=?";
+				sql = "select id from user where phone_number=? and name=?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getPhone_number());
+				pstmt.setString(2, dto.getName());
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					if(dto.getName().equals(rs.getString("name"))) {
-						result = rs.getString("id");
-					}else {
-						result = "none";
-					}
+					result = rs.getString("id");
 				}else {
 					result = "none";
 				}
