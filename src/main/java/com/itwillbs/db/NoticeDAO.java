@@ -77,6 +77,7 @@ public class NoticeDAO {
 				pstmt.setString(5, dto.getNotice_image());
 				
 				result= pstmt.executeUpdate();
+				System.out.println(dto.getTitle());
 				System.out.println("공지쓰기 완료");
 				
 			} catch (Exception e) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -10,18 +11,14 @@
 	
  <div class="container" id="login-con">
   <form action="./IdFindAction.me" name="fr"> 
-    <div class="form-group" id="log-form" >
+    <div class="form-group" id="log-form">
      <div style="text-align: center;"><a class="navbar-brand" style="font-size: 40px;"><span>아이디 찾기</span></a></div>
-     
-      <input type="text" class="form-control"  placeholder="이름을 입력해주세요." name="name" style="margin-bottom: 10px;">
-	 
-      <input type="text" class="form-control" placeholder="등록하신 연락처 정보를 '-'를 포함하여 입력해주세요." name="phone_number">
-
-      <button type="submit" class="btn btn-primary btn-block" style="margin-top: 30px;" >아이디 찾기</button>
-      <hr>
-               
+     	<br>
+		<h3 style="font-family: 'TheJamsil5';">${requestScope.name }님의 아이디는</h3>
+		<h3 style="font-family: 'TheJamsil5';">${requestScope.result }입니다.</h3>
+        <br>      
       
-      <span onclick="location.href='./PwFind.me'" style="cursor:pointer;" >비밀번호 찾기</span>  
+      <span onclick="location.href='./MemberLogin.me'" style="cursor:pointer;" >로그인 페이지로 이동</span>  
       
 
     
