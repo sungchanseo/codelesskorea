@@ -222,7 +222,7 @@
 
 				<!-- The Modal -->
 				<div class="modal" id="myModal">
-					<div class="modal-dialog modal-dialog-scrollable">
+					<div class="modal-dialog">
 						<div class="modal-content">
 
 							<!-- Modal Header -->
@@ -232,7 +232,7 @@
 							</div>
 
 							<!-- Modal body -->
-							<div class="modal-body">
+							<div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
 
 								<%@include file="joinAccept.jsp" %> <!-- 모달창 내용 삽입 -->
         
