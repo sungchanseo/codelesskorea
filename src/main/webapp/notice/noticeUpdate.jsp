@@ -47,7 +47,7 @@
 	</label>
 	<br>
 	<label>첨부 이미지
-    <input type="file" name="notice_image">
+    <input type="file" name="notice_image" class="form-control">
 	</label>
 	<br>
 

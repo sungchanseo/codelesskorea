@@ -160,7 +160,7 @@
 		style="width: 800px; color: black;">
 
 
-		<form action="./MemberJoinAction.me" id="fr" method="post">
+		<form action="./MemberJoinAction.me" id="fr" method="post" enctype="multipart/form-data">
 
 			<div class="form-group" id="log-form" style="width: 400px;">
 				<h2>

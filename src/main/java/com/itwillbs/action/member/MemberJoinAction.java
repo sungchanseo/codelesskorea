@@ -11,6 +11,8 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 // 회원가입 처리(인코딩,정보저장,디비연결,페이지이동)
 public class MemberJoinAction implements Action{
@@ -23,6 +25,22 @@ public class MemberJoinAction implements Action{
 		String id = (String)session.getAttribute("id");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		//notice_image 업로드
+				String realpath = request.getRealPath("/upload"); //deprecated -> 실무에선 context에 있는 realpath를 사용함
+				System.out.println("realpath: "+realpath);
+				int maxSize = 10 * 1024 * 1024; //10MB
+				MultipartRequest multupartRequest 
+				= new MultipartRequest(
+						request,
+						realpath,
+						maxSize,
+						"UTF-8",
+						new DefaultFileRenamePolicy()
+						);
+				System.out.println("파일업로드성공");
+		
+		
 		ActionForward forward = new ActionForward();
 		// MemberDTO 객체 생성
 		MemberDTO dto = new MemberDTO();
@@ -33,17 +51,17 @@ public class MemberJoinAction implements Action{
 		 * JSForward.alertAndBack(response, "잘못된 접근입니다!"); return forward; }
 		 */
 		
-		dto.setId(request.getParameter("id"));
-		dto.setAddress(request.getParameter("address"));
-		dto.setName(request.getParameter("name"));
-		dto.setNickname(request.getParameter("nickname"));
-		dto.setPhone_number(request.getParameter("phone_number"));
-		dto.setPassword(request.getParameter("password"));
+		dto.setId(multupartRequest.getParameter("id"));
+		dto.setAddress(multupartRequest.getParameter("address"));
+		dto.setName(multupartRequest.getParameter("name"));
+		dto.setNickname(multupartRequest.getParameter("nickname"));
+		dto.setPhone_number(multupartRequest.getParameter("phone_number"));
+		dto.setPassword(multupartRequest.getParameter("password"));
 		dto.setRegdate(new Date(System.currentTimeMillis()));
-		dto.setUser_image(request.getParameter("user_image"));
-		dto.setBirth_date(request.getParameter("birth_date"));
-		dto.setAddress2(request.getParameter("address2"));
-		dto.setPost_number(Integer.parseInt(request.getParameter("post_number")));
+		dto.setUser_image(multupartRequest.getFilesystemName("user_image"));
+		dto.setBirth_date(multupartRequest.getParameter("birth_date"));
+		dto.setAddress2(multupartRequest.getParameter("address2"));
+		dto.setPost_number(Integer.parseInt(multupartRequest.getParameter("post_number")));
 		
 		System.out.println(" M : "+dto);
 		
