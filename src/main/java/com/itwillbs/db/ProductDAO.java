@@ -136,6 +136,7 @@ public class ProductDAO {
 	            product.setCity(rs.getString("city"));
 	            product.setMethod(rs.getInt("method"));
 	            product.setCharge(rs.getInt("charge"));
+	            product.setLike_count(rs.getInt("like_count"));
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
 	            product.setUser_id(rs.getString("user_id"));

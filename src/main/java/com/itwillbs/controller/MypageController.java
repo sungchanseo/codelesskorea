@@ -222,6 +222,17 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		
+		//찜목록
+		else if(command.equals("/LikeList.my")) {
+			System.out.println(" C : /LikeList.my 호출 ");
+
+			action = new LikeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.action.member.AjaxAction;
 import com.itwillbs.action.member.AjaxBlockedAction;
 import com.itwillbs.action.member.AjaxNickAction;
+import com.itwillbs.action.mypage.AjaxLikedAction;
+import com.itwillbs.action.mypage.AjaxUnLikedAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -56,7 +58,7 @@ public class AjaxController extends HttpServlet {
 			}
 		}
 		
-		// ./AjaxBlockedAction.ta
+		// ./AjaxBlockedAction.ta(회원차단)
 		
 		else if(command.equals("/AjaxBlockedAction.aj")) {
 			action = new AjaxBlockedAction();
@@ -77,6 +79,30 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		// ./AjaxLikedAction.aj (찜추가)
+		else if(command.equals("/AjaxLikedAction.aj")) {
+			action = new AjaxLikedAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// ./AjaxUnLikedAction.aj (찜삭제)
+		else if(command.equals("/AjaxUnLikedAction.aj")) {
+			action = new AjaxUnLikedAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");
 		System.out.println("\n");

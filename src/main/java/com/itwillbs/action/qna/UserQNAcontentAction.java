@@ -20,14 +20,8 @@ public class UserQNAcontentAction implements Action{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		if(id == null) {
+		if(id == null ) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
-			return forward;
-		}
-		
-		//!id.equals("admin@gmail.com") 관리자 세션제어
-		if(id.equals("admin@gmail.com")) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
 		

@@ -70,7 +70,7 @@
 		    <input type="hidden" name="id" value="<%=id%>">
 		    <input type="hidden" name="qna_category" value="<%=qna_category%>">
 			  작성자(닉네임) : <b><%=nickname %></b> <input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
-		      제목 : <input type="text" name="title" value="답글" readonly> <br>
+		      제목 : <input type="text" name="title" value="답변 입니다." readonly> <br>
 		      내용 : <br>
 		     <textarea rows="15" cols="55" name="content" placeholder="답변글을 작성해주세요."></textarea><br>
 		      이미지첨부 : <input type="file" name="image"> 

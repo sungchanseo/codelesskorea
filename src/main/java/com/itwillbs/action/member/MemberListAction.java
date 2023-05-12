@@ -40,7 +40,7 @@ public class MemberListAction implements Action {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
-		
+
 		// 회원정보 목록 - MemberDAO : getMemberList()
 		MemberDAO dao = new MemberDAO();
 //		List<MemberDTO> memberList =  dao.getMemberList();
@@ -64,9 +64,12 @@ public class MemberListAction implements Action {
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null)	pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;
+		int startRow = (currentPage-1)*pageSize;
 		int endRow = currentPage*pageSize+1;
 
+		
+		
+		
 		List<MemberDTO> memberList = dao.getMemberList(startRow, pageSize);
 		request.setAttribute("memberList", memberList);
 		System.out.println(" M : 회원 수 " + memberList.size() + "명");
@@ -99,8 +102,7 @@ public class MemberListAction implements Action {
 		//회원정보를 request 영역에 저장
 		request.setAttribute("pageNum", pageNum);
 		
-		
-		
+
 		
 		// 연결된 view에 출력(./member/memberList.jsp)
 		forward.setPath("./member/memberList.jsp");

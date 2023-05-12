@@ -22,11 +22,14 @@
 		            data: {id: id, blocked: blocked},
 		            success: function(data) {
 		                console.log(data);
-		                alert('회원정보 변경 완료!');
 		                location.reload();
+		                alert('회원정보 변경 완료!');
+		                
 		            }
 		        });
 		    });
+		    
+		    
 
 		    $('button[name="adminsaleList"]').click(function() {
 		    	  var id = $(this).val();

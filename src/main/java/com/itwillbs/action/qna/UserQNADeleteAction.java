@@ -29,11 +29,6 @@ public class UserQNADeleteAction implements Action{
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./Main.me");
 			return forward;
 		}
-		//!id.equals("admin@gmail.com") 관리자 세션제어
-		if(id.equals("admin@gmail.com")) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
 		
 		// 차단 사용자 세션제어
 		MemberDAO dao = new MemberDAO();

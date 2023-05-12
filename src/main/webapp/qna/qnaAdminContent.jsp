@@ -65,7 +65,7 @@
 
 
 <fieldset style="margin: auto; ">
-<table border="1"  style="margin: auto;" >
+<table border="1"  style="margin: auto;" class="table" id="nttable">
   <tr>
 <c:if test="${qdto.re_Lev < 1}">
   <th>답변상태</th>
@@ -101,35 +101,34 @@
   </tr>
   <tr>
     <th>내용</th>
-    <td colspan="5"><textarea rows="15" cols="50" name="content" maxlength="700" readonly="readonly" style="margin: auto;">${qdto.content}</textarea></td>
+    <td colspan="5"><textarea rows="15" cols="60" name="content" maxlength="700" readonly="readonly" style="margin: auto;">${qdto.content}</textarea></td>
   </tr>
+  </table>
+ 
   
-  <tr>
-  
-    <td colspan="6" style="text-align:center" >
-     <input type="button" value="목록으로" class="btn" onclick="location.href='./AdminQNAList.qn'">
-     <input type="button" value="글삭제" class="btn" onclick="location.href='./QNADeleteAction.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
+	<div style= "float: right; margin-top: 50px;">
+     <input type="button" value="목록으로" class="btn btn-secondary" onclick="location.href='./AdminQNAList.qn'">
+     <input type="button" value="글삭제" class="btn btn-primary" onclick="location.href='./QNADeleteAction.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
      <c:if test="${id eq qdto.id}">
-	<input type="button" value="글수정" class="btn" onclick="location.href='./QNAUpdate.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
+	<input type="button" value="글수정" class="btn btn-primary" onclick="location.href='./QNAUpdate.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
 	</c:if>
 	 
 	<c:if test="${qdto.re_Lev < 1 }">
   <c:choose>
     <c:when test="${qdto.is_answered eq true}">
-      <input type="button" value="답변하기" class="btn" onclick="alert('이미 처리된 답변입니다!');">
+      <input type="button" value="답변하기" class="btn btn-primary" onclick="alert('이미 처리된 답변입니다!');">
     </c:when>
     <c:otherwise>
-      <input type="button" value="답변하기" class="btn" onclick="location.href='./QNAReWrite.qn?bno=${qdto.bno }&pageNum=${pageNum}&re_ref=${qdto.re_Ref }&re_lev=${qdto.re_Lev }&re_seq=${qdto.re_Seq }'">
+      <input type="button" value="답변하기" class="btn btn-primary" onclick="location.href='./QNAReWrite.qn?bno=${qdto.bno }&pageNum=${pageNum}&re_ref=${qdto.re_Ref }&re_lev=${qdto.re_Lev }&re_seq=${qdto.re_Seq }'">
     </c:otherwise>
   </c:choose>
 </c:if>
-    </td>
-  </tr>
-</table>
+
 </fieldset>
 </div>	
 </div>
 </div>
+
 
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

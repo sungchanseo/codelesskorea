@@ -6,7 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<meta charset="UTF-8"> 
 	<title>상품 보기</title>
 	<style>
 		body {
@@ -88,7 +93,99 @@
 			background-color: #fff;
 			color: #333;
 		}
+		
+		.like-btn {
+		  border: none;
+		  background: none;
+		  cursor: pointer;
+		  font-size: 1.2em;
+		  transition: transform 0.3s ease-in-out;
+		}
+		
+		.like-btn i {
+		  font-size: 1.5em;
+		  color: #999;
+		  transition: color 0.3s ease-in-out;
+		}
+		
+		.like-btn.liked i {
+		 color: #ff6969;
+		}
+		
+		.like-btn:hover {
+		  transform: scale(1.1);
+		}
+		
+		.like-btn:hover i {
+		  color: #ff6969;
+		}
+						
 	</style>
+	
+
+		<script type="text/javascript">
+		$(document).ready(function() {
+			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
+			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
+
+			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
+			  $('.like-btn').each(function() {
+			    var $btn = $(this);
+			    var productId = $btn.data('product-id');
+			    var userId = $btn.data('user-id');
+			    var key = productId + '_' + userId;
+			    if (likedProducts[key]) {
+			      $btn.addClass('liked');
+			    }
+			  });
+
+			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
+			  $('.like-btn').on('click', function() {
+			    var $btn = $(this);
+			    var productId = $btn.data('product-id');
+			    var userId = $btn.data('user-id');
+			    var key = productId + '_' + userId;
+			    var isLiked = $btn.hasClass('liked');
+
+			    if (!isLiked) {
+			      $.ajax({
+			        url: './AjaxLikedAction.aj',
+			        data: { product_id: productId, id: userId },
+			        success: function(response) {
+			          if (response.success) {
+			            $btn.addClass('liked');
+			            // 찜한 상품 정보를 로컬 스토리지에 저장합니다.
+			            likedProducts[key] = true;
+			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+			            location.reload();
+			            alert('찜 추가완료!');
+			          } else {
+			            alert('추가 실패!');
+			          }
+			        }
+			      });
+			    } else {
+			      $.ajax({
+			        url: './AjaxUnLikedAction.aj',
+			        data: { product_id: productId, id: userId },
+			        success: function(response) {
+			          if (response.success) {
+			            $btn.removeClass('liked');
+			            // 로컬 스토리지에서 해당 상품 정보를 삭제합니다.
+			            delete likedProducts[key];
+			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+			            location.reload();
+			            alert('찜 해제완료!');
+			          } else {
+			            alert('삭제 실패!');
+			          }
+			        }
+			      });
+			    }
+			  });
+			});
+		</script>
+
 </head>
 <body>
 <h1>상품 보기</h1>
@@ -152,6 +249,12 @@
 	<c:if test="${ sessionScope.id != product.user_id }">
 		<a href="./ChatToSeller.ch?toID=${product.user_id }">채팅하기</a>
 	</c:if>
+					<!-- 찜 버튼 -->
+	<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
+		  <i class="fa fa-heart"></i>
+	</button>
+					<!-- 찜수 -->
+					<span style="font-size: 0.8em; color: gray;">찜수: ${product.like_count }</span>
 	<br>
 	<br>
 	<c:if test="${ sessionScope.id eq 'admin' or product.user_id eq sessionScope.id }">
@@ -160,9 +263,13 @@
 			onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
 			<input type="hidden" name="product_id" value="${product.product_id}">
 			<input type="submit" value="상품글 삭제">
+			
 		</form>
 		<a href="./ProductList.pr">판매완료test</a>
 	</c:if>
+
+
+			
 
 </body>
 </html>
