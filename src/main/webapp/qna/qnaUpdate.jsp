@@ -5,30 +5,51 @@
 <html>
 <head>
 <%@ include file="../head.jsp"%>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <!-- <h1>qnaUpdate</h1> -->
-<%			String pageNum = (String) request.getParameter("pageNum");
-			QnADTO qdto = (QnADTO) request.getAttribute("qdto");
-			%>
+
+			
+			
+	 <!--   사이드바 -->
+	  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> QnA 게시판</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./AdminQNAList.qn'"> 질문 목록  </h5>
+  </div>
+	</div>	
+	
+	 <!--   사이드바 -->
+	 
+	 <div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 50px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">QnA 질문내용</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+			
 			<fieldset>
 			<legend> 게시판 수정하기 </legend>
-				<form action="./QNAUpdateAction.qn?pageNum=<%=pageNum %>" method="post" name="fr">
-				<input type="hidden" name="bno" value="<%=qdto.getBno() %>">
-				<input type="hidden" name="pageNum" value="<%=pageNum %>">
-				   작성자 : <input type="text" name="nickname" required value="<%=qdto.getNickname()%>" readonly="readonly"><br>
-				   제목 : <input type="text" name="title" required value="<%=qdto.getTitle() %>" readonly="readonly"><br>
+				<form action="./QNAUpdateAction.qn?pageNum=${pageNum }" method="post" name="fr">
+				<input type="hidden" name="bno" value="${qdto.bno }">
+				<input type="hidden" name="pageNum" value="${pageNum }">
+				   작성자 : ${qdto.nickname} <input type="hidden" name="nickname" required value="${qdto.nickname}" readonly="readonly"><br>
+				   제목 : <input type="text" name="title" required value="${qdto.title}" readonly="readonly"><br>
 				   내용 : <br> 
-				  <textarea rows="20" cols="45" name="content" required><%=qdto.getContent() %></textarea><br>
+				  <textarea rows="15" cols="55" name="content" required>${qdto.content}</textarea><br>
 				  <input type="submit" value="글 수정하기" class="btn">
 				  <input type="button" value="수정취소" class="btn" onclick="location.href='./AdminQNAList.me'"> 
 				</form>
 			</fieldset>
 
-
+	</div></div>
+	
+<br><br><br><br>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

@@ -8,12 +8,14 @@
 <html>
 <head>
 <%@ include file="../head.jsp"%>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!-- <h1>qnaReWrite</h1> -->
-<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+<%@ include file="../nav.jsp"%><!-- 4444nav 삽입 -->
 
 	<%   
 	
@@ -28,38 +30,56 @@
 	String nickname = member.getNickname();
 	MypageDAO mdao = new MypageDAO();
 	QnADTO qna = mdao.getBoard(bno);
-// 	String qna_category = request.getParameter("qna_category");
  	String qna_category = qna.getQnaCategory();
 	%>
-	아이디 : <%=id %>
+	
+
 
 <!-- 		로그인 세션제어 -->
 		<c:if test="${ empty sessionScope.id && !id.equals('admin@gmail.com')}">
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
+
+		 <!--   사이드바 -->
+<div class="col-sm-4" >
+ <div class="container" id="left">
+  <br>
+  <h4> QnA 게시판</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./AdminQNAList.qn'"> 질문 목록  </h5>
+  </div>
+	</div>	
+	
+	 <!--   사이드바 -->
+	 
+	 <div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 50px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">QnA 답변하기</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+	
+	
+	
+	
 		
-		<h2><a href="./AdminQNAList.me"> 문의내역 </a></h2>
-		
-		<fieldset>
-		   <form action="./QNAReWriteAction.qn" method="post" >
-		   	<input type="hidden" name="bno" value="<%=bno %>">
+		<fieldset style="margin:auto;">
+		   <form action="./QNAReWriteAction.qn" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="bno" value="<%=bno %>">
 			<input type="hidden" name="re_ref" value="<%=re_ref %>">
 			<input type="hidden" name="re_lev" value="<%=re_lev %>">
 			<input type="hidden" name="re_seq" value="<%=re_seq %>">
-		    <input type="hidden" name="id" value="<%=id%>"><br>
-		    <input type="hidden" name="qna_category" value="<%=qna_category%>"><br>
-		   	  작성자(닉네임) : <input type="text" name="nickname" value="<%=nickname %>" readonly><br>
-		      제목 : <input type="text" name="title" value="ㄴ[답글]" readonly> <br>
-		      내용 : <textarea rows="15" cols="40" name="content"></textarea><br>
-		      이미지첨부 : <input type="file" name="image"> <br>
-		  		
-		      <hr>
+		    <input type="hidden" name="id" value="<%=id%>">
+		    <input type="hidden" name="qna_category" value="<%=qna_category%>">
+			  작성자(닉네임) : <b><%=nickname %></b> <input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
+		      제목 : <input type="text" name="title" value="답글" readonly> <br>
+		      내용 : <br>
+		     <textarea rows="15" cols="55" name="content" placeholder="답변글을 작성해주세요."></textarea><br>
+		      이미지첨부 : <input type="file" name="image"> 
 				<input type="submit" value="글쓰기">
 				      
 		   </form>		
 		</fieldset>
 		
-
+	</div>	</div>
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

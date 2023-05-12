@@ -4,8 +4,72 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="wirteFAQ.css" rel="stylesheet">
+<title>상품 등록</title>
+
+<style>
+	body {
+		background-color: #f2f2f2;
+		font-family: Arial, sans-serif;
+	}
+
+	h1 {
+		color: #000000;
+	}
+
+	form {
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	}
+
+	input[type="text"], select, textarea {
+		display: block;
+		width: 100%;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+
+	input[type="file"] {
+		padding: 5px;
+		border: none;
+		border-bottom: 1px solid #ccc;
+	}
+
+	input[type="submit"] {
+		display: inline-block;
+		margin: 10px;
+		padding: 10px 20px;
+		background-color: #333;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 4px;
+		border: 1px solid #333;
+		transition: all 0.3s ease;
+	}
+
+	input[type="submit"]:hover {
+			background-color: #fff;
+			color: #333;
+	}
+
+	input[type="radio"], input[type="checkbox"] {
+		margin-right: 10px;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.error-message {
+		color: red;
+		margin-top: 10px;
+	}
+</style>
+
 </head>
 <body>
 
@@ -77,6 +141,9 @@
 				<td><input type="radio" name="fee" value="3000" />배송비 미포함</td>
 			</tr>
 
+		</table>
+		<input type="submit" value="등록">
+	</form>
 
 </body>
 </html>

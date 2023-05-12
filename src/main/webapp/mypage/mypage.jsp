@@ -6,44 +6,44 @@
 <head>
 <%@ include file="../head.jsp"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-	<% 
-	
-	String id = (String)session.getAttribute("id");
-	
-	%>
 
-		<c:if test="${ empty sessionScope.id }">
-		   <c:redirect url="./MemberLogin.me"/>
-		</c:if>
-		아이디 : ${id }
+	 <!--   사이드바 -->
+<div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4 onclick="location.href='./MemberMypage.my'"> 마이페이지 </h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+   <h5 onclick="location.href='./MemberInfo.my'"> 내정보 조회  </h5>
+  <c:if test="${id eq 'admin@gmail.com'}">
+	<h5 onclick="location.href='./MemberList.me'"> 회원관리  </h5>
+ 	<h5 onclick="location.href='./ProductList.me'"> 상품관리  </h5>
+  	<h5 onclick="location.href='./AdminQNAList.qn'"> QnA 게시판  </h5>
+  	</c:if>
+	<c:if test="${!id.equals('admin@gmail.com')}">
+		  <h5 onclick="location.href='./UserQNAList.qn'"> QnA 게시판  </h5>
+		  <h5 onclick="location.href='./MypagePurchaseList.my'"> 구매목록  </h5>
+		  <h5 onclick="location.href='./MypageSalesList.my'"> 판매목록  </h5> 
+		  <h5 onclick="location.href='./LikeList.me'"> 찜목록  </h5>
+		  <h5 onclick="location.href='./ChatBox.me'"> 채팅목록  </h5>
+	</c:if>
+  </div>
+	</div>	
 	
-<!-- 	<h1>myPage.jsp</h1> -->
-		<br>
-		<h2>마이페이지</h2>
-		<input type="button" value="내정보 조회하기" onclick=" location.href='./MemberInfo.my';"><br><br>
+	 <!--   사이드바 -->
+<div class="container" style="margin: auto; margin-bottom: 300px;">	 
+<div class="col-sm-8" style="margin:auto;">
+<div id="right" style="margin-left: 50px; width: 100%;">
+ <h1 onclick="location.href='./MemberMypage.my'" style="font-family: 'TheJamsil5Bold';">마이페이지</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+ </div>
+	</div>	</div>
 
-		<%if ( !id.equals("admin@gmail.com") ){  %><br>
-		<input type="button" value="1:1 게시판(QNA)" onclick=" location.href='./UserQNAList.qn';">
-		<%} %>
-	
-	
-		<%if ( id.equals("admin@gmail.com") ){  %>
-		<a href="./MemberList.me">회원관리</a>
-		<a href="./ProductList.me">상품관리</a>
-		<input type="button" value="1:1 게시판" onclick=" location.href='./AdminQNAList.qn';">
-		<%} %>
-		
-		<input type="button" value="구매목록" onclick=" location.href='./MypagePurchaseList.my';">
-		<input type="button" value="판매목록" onclick=" location.href='./MypageSaleslist.my';">
-		<a href="./LikeList.me">찜목록</a><br>
-		<a href="./ChatBox.me">채팅목록</a><br>
-
-
-	
 	
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

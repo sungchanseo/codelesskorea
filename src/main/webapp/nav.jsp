@@ -34,13 +34,15 @@
 		   <a class="dropdown-item" href="./MemberUpdate.me"> 내정보수정</a>
 		   <a class="dropdown-item" href="./MypageSalesList.my"> 판매목록</a>
 		   <a class="dropdown-item" href="./MypagePurchaseList.my">구매목록</a>
-		   <a class="dropdown-item" href="./LikeList.my"> 찜목록</a>
+		   <a class="dropdown-item" href="./UserQNAList.qn"> 1:1 문의 </a>
+		   <a class="dropdown-item" href="./LikeList.my"> 찜목록 </a>
+		   <a class="dropdown-item" href="./ChatBox.ch"> 채팅목록 </a>
 		  </c:if>
 		  
 		  <c:if test="${id=='admin' || id=='admin@gmail.com' }">
 		   <a class="dropdown-item" href="./MemberUpdate.me"> 내정보수정</a>
 		   <a class="dropdown-item" href="./MemberList.me"> 회원관리</a>
-		   <a class="dropdown-item" href="./AdminsaleListAction.my">판매목록</a>
+		   <a class="dropdown-item" href="./AdminProductList.my"> 상품관리 </a>
 		   <a class="dropdown-item" href="./AdminQNAList.qn"> 1:1문의관리</a>	
 		  </c:if>
       </div>
@@ -50,3 +52,4 @@
 	      </div>
 	    </div>
 	  </nav>
+	  
