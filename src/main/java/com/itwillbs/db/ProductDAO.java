@@ -14,11 +14,10 @@ import javax.sql.DataSource;
 public class ProductDAO {
 	
 	// 공통변수 선언
-
-		private Connection con = null;			// DB 연결정보 저장(관리)
-		private PreparedStatement pstmt = null;	// SQL 작성, 실행
-		private ResultSet rs = null;			// select결과 데이터 저장
-		private String sql = "";				// SQL구문 저장
+	private Connection con = null;			// DB 연결정보 저장(관리)
+	private PreparedStatement pstmt = null;	// SQL 작성, 실행
+	private ResultSet rs = null;			// select결과 데이터 저장
+	private String sql = "";				// SQL구문 저장
 	
 	// 디비연결에 대한 모든 처리 
 	private Connection getCon() throws Exception {
@@ -43,7 +42,7 @@ public class ProductDAO {
 		}
 	}
 	
-	// 상품 등록 - productWrite()
+	//productWrite()
 	public void productWrite(ProductDTO dto) {
 		try {
 			// 1.2 DB 연결
@@ -72,8 +71,9 @@ public class ProductDAO {
 			closeDB();
 		}
 	}
-	// 상품 등록 - productWrite()
+	//productWrite()
 	
+	//getProductList()
 	public List<ProductDTO> getProductList() {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		
@@ -112,6 +112,7 @@ public class ProductDAO {
 		
 		return productList;
 	}
+	//getProductList()
 	
 	//productContent()
 	public ProductDTO productContent(int product_id) {
@@ -149,38 +150,7 @@ public class ProductDAO {
 	    return product;
 	}//productContent()
 
-
-	public int productDelete(int product_id) {
-	    int result = -1; // 0: 상품 정보 없음, 1: 상품 삭제 성공
-	    
-	    try {
-	        // 1.2 DB 연결
-	        getCon();
-	        
-	        // 3. SQL 작성 (delete) & pstmt 객체
-	        sql = "delete from product where product_id=?";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setInt(1, product_id);
-	        
-	        // 4. SQL 실행(delete)
-	        result = pstmt.executeUpdate();
-	        
-	        if (result == 0) {
-	            System.out.println("DAO : 해당 상품 정보가 존재하지 않습니다.");
-	        } else {
-	            System.out.println("DAO : 상품 정보 삭제 완료 (" + result + ")");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        // 5. DB 연결 해제
-	        closeDB();
-	    }
-	    
-	    return result;
-	}
-			// productDelete()
-
+	//productUpdate()
 	public int productUpdate(ProductDTO dto) {
 	    int result = -1; // -1 0 1
 	    try {
@@ -233,5 +203,64 @@ public class ProductDAO {
 
 	    return result;
 	}
+	//productUpdate()
+	
+	// productDelete()
+	public int productDelete(int product_id) {
+	    int result = -1; // 0: 상품 정보 없음, 1: 상품 삭제 성공
+	    
+	    try {
+	        // 1.2 DB 연결
+	        getCon();
+	        
+	        // 3. SQL 작성 (delete) & pstmt 객체
+	        sql = "delete from product where product_id=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, product_id);
+	        
+	        // 4. SQL 실행(delete)
+	        result = pstmt.executeUpdate();
+	        
+	        if (result == 0) {
+	            System.out.println("DAO : 해당 상품 정보가 존재하지 않습니다.");
+	        } else {
+	            System.out.println("DAO : 상품 정보 삭제 완료 (" + result + ")");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 5. DB 연결 해제
+	        closeDB();
+	    }
+	    
+	    return result;
+	}
+	// productDelete()
+	
+	// updateReadcount()	
+	public void updateReadcount(int product_id) {
+		try {
+			// 1.2.  디비연결
+			con = getCon();
+			// 3. sql(update) & pstmt 객체
+			// 특정 글의 조회수 기존값 보다 1증가
+			sql = "update product set read_count=read_count+1 "
+					+ " where product_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+
+			// 4. sql 실행
+			int cnt = pstmt.executeUpdate();
+
+			if(cnt == 1) {
+				System.out.println(" DAO : 글 조회수 1증가 완료!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}	
+	// updateReadcount()	
 	
 }
