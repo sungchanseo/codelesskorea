@@ -12,6 +12,8 @@ import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.MypageDAO;
 import com.itwillbs.db.QnADTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class MypageQNABoardReInsertAction implements Action{
 
@@ -37,25 +39,46 @@ public class MypageQNABoardReInsertAction implements Action{
 					return forward;
 				}
 				
+				String uploadPath = request.getRealPath("/upload");
+				System.out.println(uploadPath);
+				 // => 톰켓에 저장되는 경로
+				
+				//  업로드 할 파일의 크기 10mb
+				int maxSize = 10 * 1024 * 1024;
+
+				// 파일업로드 
+				MultipartRequest multi 
+				           = new MultipartRequest(
+				        		   request,
+				        		   uploadPath,
+				        		   maxSize,
+				        		   "UTF-8",
+				        		   new DefaultFileRenamePolicy()		        		   
+				        		   );
+				
+				
+				
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
-				qdto.setTitle(request.getParameter("title"));
-				qdto.setContent(request.getParameter("content"));
-				qdto.setImage(request.getParameter("image"));
-				qdto.setId(request.getParameter("id"));
-				qdto.setNickname(request.getParameter("nickname"));
+				qdto.setTitle(multi.getParameter("title"));
+				qdto.setContent(multi.getParameter("content"));
+				qdto.setImage(multi.getFilesystemName("image"));
+				qdto.setId(multi.getParameter("id"));
+				qdto.setNickname(multi.getParameter("nickname"));
 //				mdto.setUserID(Integer.parseInt(request.getParameter("userID")));
 				//hidden 에서 가져온것 저장
-				qdto.setBno(Integer.parseInt(request.getParameter("bno")));
-				qdto.setRe_Ref(Integer.parseInt(request.getParameter("re_ref")));
-				qdto.setRe_Lev(Integer.parseInt(request.getParameter("re_lev")));
-				qdto.setRe_Seq(Integer.parseInt(request.getParameter("re_seq")));
+				qdto.setBno(Integer.parseInt(multi.getParameter("bno")));
+				qdto.setRe_Ref(Integer.parseInt(multi.getParameter("re_ref")));
+				qdto.setRe_Lev(Integer.parseInt(multi.getParameter("re_lev")));
+				qdto.setRe_Seq(Integer.parseInt(multi.getParameter("re_seq")));
 				qdto.setQnaCategory(request.getParameter("qna_category"));
-				qdto.setIs_answered(Boolean.parseBoolean(request.getParameter("isanswered")));
+				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
 				System.out.println(qdto);
 				//3.BoardDAO객체생성
+				request.setAttribute("qdto", qdto);
 				MypageDAO mdao = new MypageDAO();
 				int result = mdao.reInsertBoard(qdto);
+				
 				
 				//4페이지 이동
 				forward = new ActionForward();

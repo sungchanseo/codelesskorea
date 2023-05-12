@@ -13,19 +13,23 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-	<h1>SaleList</h1>
-<hr>
-	<input type="button" value="판매 목록 보기" onclick="location.href='./MypageSaleslist.my'">
-	<input type="button" value="판매글 등록하기" onclick="location.href='./productWrite.pr'">
-<hr>
+
+	<input type="button" value="판매 목록 보기" onclick="location.href='./MypageSalesList.my'">
+	<input type="button" value="판매글 등록하기" onclick="location.href='./ProductWrite.pr'">
 
 	<%
 	ListDAO li = new ListDAO();
 	String id = (String)session.getAttribute("id"); 
 	ArrayList saleList = (ArrayList) li.getSaleList(id);
 	%>
+	
+	 <!--   사이드바 -->
 
 
+<div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">판 매 목 록</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
 <table border="1">
 	<tr>
       <th>상품명</th>
@@ -43,12 +47,12 @@
 	%>
 	
 		<tr>
-			<td><a href="<%=dto.getProductLink() %>"><%=dto.getTitle() %></a></td>
+			<td><a href="./ProductContent.pr?product_id=<%=dto.getProduct_id() %>">s<%=dto.getTitle() %></a></td>
 			<td><%=dto.getPrice() %></td>
 			<td><%=dto.getBuyer_id() %></td>
 			
 			<!-- 주문서번호 링크 수정 필요합니다 -->
-			<td><a href="./OrderContent.me"><%=dto.getOrder_id() %></a></td>
+			<td><a href="./ProductContent.pr?product_id=<%=dto.getProduct_id() %>"><%=dto.getOrder_id() %></a></td>
 			
 			<td><%=dto.getOrder_date() %></td>
 			<td>
@@ -70,7 +74,8 @@
 		</tr>
 	<% } %>
 </table>
-
+</div>
+</div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

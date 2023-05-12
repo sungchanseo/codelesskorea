@@ -10,23 +10,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../head.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-	<h1>buyList</h1>
 
 	<%
 	ListDAO li = new ListDAO();
 	String id = (String)session.getAttribute("id"); 
 	ArrayList buyList = (ArrayList) li.getBuyList(id);
 	%>
+	
+	
 
-<hr>
-<h1> 구매 목록</h1>
-<hr>
+
+<div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">구 매 목 록</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
 <table border="1">
 	<tr>
       <th>상품명</th>
@@ -36,6 +42,7 @@
       <th>결제일자</th>
       <th>주문진행상태</th>
    </tr>
+
       
 	<%
       for(int i=0;i<buyList.size();i++){
@@ -44,10 +51,10 @@
     %>
     
 		  <tr>
-			<td><a href="<%=dto.getProductLink() %>"><%=dto.getTitle() %></a></td>
+			<td><a href="./ProductContent.pr?product_id=<%=dto.getProduct_id() %>"><%=dto.getTitle() %></a></td>
 			<td><%=dto.getPrice() %></td>
 			<td><%=dto.getSeller_id() %></td>
-			<td><a href="<%=dto.getOrderLink() %>"><%=dto.getOrder_id() %></a></td>
+			<td><a href="./ProductContent.pr?product_id=<%=dto.getProduct_id() %>"><%=dto.getOrder_id() %></a></td>
 			<td><%=dto.getOrder_date() %></td>
 			<td>
 				<!-- int값인 order_satus를 변환하기 위한 코드 -->
@@ -68,6 +75,9 @@
 		  </tr>
 	<% } %>
 </table>
+</div>
+</div>
+
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

@@ -15,6 +15,7 @@ import com.itwillbs.action.member.MemberListAction;
 import com.itwillbs.action.member.MemberUpdateAction;
 import com.itwillbs.action.member.MemberUpdateProAction;
 import com.itwillbs.action.member.PasswordUpdateAction;
+import com.itwillbs.action.mypage.AdminProductListAction;
 import com.itwillbs.action.mypage.AdminbuyListAction;
 import com.itwillbs.action.mypage.AdminsaleListAction;
 import com.itwillbs.action.mypage.BuyListAction;
@@ -180,9 +181,18 @@ public class MypageController extends HttpServlet{
 		        } catch (Exception e) {
 		           e.printStackTrace();
 		         }
-		     }
+		     
 		
-	    
+		     } else if (command.equals("/AdminProductList.my")) {
+			        System.out.println(" C : /AdminProductList.my");
+			        System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+			        action = new AdminProductListAction();
+			        try {
+			           forward = action.execute(request, response);
+			        } catch (Exception e) {
+			           e.printStackTrace();
+			         }
+			     }
 			
 			
 			
@@ -201,7 +211,7 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 판매목록
-		else if(command.equals("/MypageSaleslist.my")) {
+		else if(command.equals("/MypageSalesList.my")) {
 			System.out.println(" C : /MypageSaleslist.my 호출 ");
 
 			action = new SaleListAction();

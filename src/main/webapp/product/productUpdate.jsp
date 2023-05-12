@@ -1,80 +1,78 @@
 <%@page import="com.itwillbs.db.ProductDTO"%>
 <%@page import="com.itwillbs.db.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 수정</title>
+<title>상품 등록</title>
 
 <style>
-body {
-	background-color: #f2f2f2;
-	font-family: Arial, sans-serif;
-}
+	body {
+		background-color: #f2f2f2;
+		font-family: Arial, sans-serif;
+	}
 
-h1 {
-	color: #000000;
-}
+	h1 {
+		color: #000000;
+	}
 
-form {
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
+	form {
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	}
 
-input[type="text"], select, textarea {
-	display: block;
-	width: 100%;
-	padding: 12px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
+	input[type="text"], select, textarea {
+		display: block;
+		width: 100%;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
 
-input[type="file"] {
-	padding: 5px;
-	border: none;
-	border-bottom: 1px solid #ccc;
-}
+	input[type="file"] {
+		padding: 5px;
+		border: none;
+		border-bottom: 1px solid #ccc;
+	}
 
-input[type="submit"] {
-	display: inline-block;
-	margin: 10px;
-	padding: 10px 20px;
-	background-color: #333;
-	color: #fff;
-	text-decoration: none;
-	border-radius: 4px;
-	border: 1px solid #333;
-	transition: all 0.3s ease;
-}
+	input[type="submit"] {
+		display: inline-block;
+		margin: 10px;
+		padding: 10px 20px;
+		background-color: #333;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 4px;
+		border: 1px solid #333;
+		transition: all 0.3s ease;
+	}
 
-input[type="submit"]:hover {
-	background-color: #fff;
-	color: #333;
-}
+	input[type="submit"]:hover {
+			background-color: #fff;
+			color: #333;
+	}
 
-input[type="radio"], input[type="checkbox"] {
-	margin-right: 10px;
-}
+	input[type="radio"], input[type="checkbox"] {
+		margin-right: 10px;
+	}
 
-label {
-	display: block;
-	margin-bottom: 10px;
-}
+	label {
+		display: block;
+		margin-bottom: 10px;
+	}
 
-.error-message {
-	color: red;
-	margin-top: 10px;
-}
+	.error-message {
+		color: red;
+		margin-top: 10px;
+	}
 </style>
 
-</head>
-<body>
 </head>
 <body>
 	

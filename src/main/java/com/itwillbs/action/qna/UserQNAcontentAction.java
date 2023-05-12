@@ -20,15 +20,21 @@ public class UserQNAcontentAction implements Action{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		if(id == null ) {
+		if(id == null) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+			return forward;
+		}
+		
+		//!id.equals("admin@gmail.com") 관리자 세션제어
+		if(id.equals("admin@gmail.com")) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
 		
 		// 차단 사용자 세션제어
 		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id);
-		boolean blocked = dto.getBlocked();
+		MemberDTO mdto = dao.getMember(id);
+		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
@@ -48,6 +54,7 @@ public class UserQNAcontentAction implements Action{
 		
 		//5.리퀘스트영역에 정보저장
 		request.setAttribute("qdto", qdto);
+		request.setAttribute("mdto", mdto);
 		//pageNum도 함께 전달해야한다
 		request.setAttribute("pageNum", pageNum);
 		

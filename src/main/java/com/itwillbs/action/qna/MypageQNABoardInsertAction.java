@@ -11,6 +11,8 @@ import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.MypageDAO;
 import com.itwillbs.db.QnADTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class MypageQNABoardInsertAction implements Action{
@@ -22,12 +24,30 @@ public class MypageQNABoardInsertAction implements Action{
 				ActionForward forward = new ActionForward();
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("id");
+				String uploadPath = request.getRealPath("/upload");
+				System.out.println(uploadPath);
+				 // => 톰켓에 저장되는 경로
 				
+				//  업로드 할 파일의 크기 10mb
+				int maxSize = 10 * 1024 * 1024;
+
+				// 파일업로드 
+				MultipartRequest multi 
+				           = new MultipartRequest(
+				        		   request,
+				        		   uploadPath,
+				        		   maxSize,
+				        		   "UTF-8",
+				        		   new DefaultFileRenamePolicy()		        		   
+				        		   );
+				
+				 System.out.println("MultipartRequest 객체 생성-파일 업로드 성공!");
+
 				
 				// 차단 사용자 세션제어
 				MemberDAO dao = new MemberDAO();
-				MemberDTO dto = dao.getMember(id);
-				boolean blocked = dto.getBlocked();
+				MemberDTO mdto = dao.getMember(id);
+				boolean blocked = mdto.getBlocked();
 				if(blocked == true) {
 					JSForward.alertAndBack(response, "잘못된 접근입니다!");
 					return forward;
@@ -40,13 +60,13 @@ public class MypageQNABoardInsertAction implements Action{
 				
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
-				qdto.setTitle(request.getParameter("title"));
-				qdto.setContent(request.getParameter("content"));
-				qdto.setImage(request.getParameter("image"));
-				qdto.setId(request.getParameter("id"));
-				qdto.setNickname(request.getParameter("nickname"));
-				qdto.setQnaCategory(request.getParameter("qna_category"));
-				qdto.setIs_answered(Boolean.parseBoolean(request.getParameter("isanswered")));
+				qdto.setTitle(multi.getParameter("title"));
+				qdto.setContent(multi.getParameter("content"));
+				qdto.setImage(multi.getFilesystemName("image"));
+				qdto.setId(multi.getParameter("id"));
+				qdto.setNickname(multi.getParameter("nickname"));
+				qdto.setQnaCategory(multi.getParameter("qna_category"));
+				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
 //				mdto.setUserID(Integer.parseInt(request.getParameter("userID")));
 //				mdto.setRe_Ref(Integer.parseInt(request.getParameter("re_ref")));
 //				mdto.setRe_Lev(Integer.parseInt(request.getParameter("re_lev")));
@@ -55,6 +75,8 @@ public class MypageQNABoardInsertAction implements Action{
 				//3.BoardDAO객체생성
 				MypageDAO mdao = new MypageDAO();
 				int result = mdao.insertQNABoard(qdto);
+				request.setAttribute("mdto", mdto);
+				request.setAttribute("qdto", qdto);
 				
 				//4페이지 이동
 				 forward = new ActionForward();
@@ -72,6 +94,10 @@ public class MypageQNABoardInsertAction implements Action{
 		        }
 				return forward;
 			}
+	
+	
+	
+	
 	
 
 }

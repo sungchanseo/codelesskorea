@@ -29,7 +29,7 @@
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.saleList }">
 		   <tr>
-		      <td>${dto.title }</td>
+		      <td><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		      <td>${dto.price }</td>
 		      <td>${dto.seller_id }</td>
 		      <td>${dto.buyer_id }</td>
