@@ -1,69 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@include file="../head.jsp" %>
 </head>
 <body>
+<%@include file="../nav.jsp" %>
 
-<!-- <script>
-$(function(){
-	var formDate = {
-			notice_id = $("#notice_id").val();
-		};
-	
-	$.ajax({
-		url:"./MemberFrontController.me",
-		type:"POST",
-		data:JSON.stringify(formData),
-		dataType: 'json',
-		success: function (result) {
-		      // 성공한 경우 처리할 내용을 작성합니다.
-		      alert("데이터가 성공적으로 전송되었습니다.");
-		    },
-		    error: function (e) {
-		      // 실패한 경우 처리할 내용을 작성합니다.
-		      alert("데이터 전송이 실패하였습니다.");
-		    }
-	}); 
-</script>
- -->
+ <!-- 사이드바 -->
 
-
-<h1>noticeContent</h1>
-
+  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> 공지게시판</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
+  <h5> 자주하는질문</h5>
+  </div>
+	</div>	
+  
+ <!--   사이드바 -->
+ 
 <%-- ${requestScope.dto } --%>
 
-
-	<table border="1">
+<div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+${dto.notice_image }
+${realpath }
+	<table class="table" id="nttable">
 		   <tr>
-		     <th>글번호</th>
-		     <td>${dto.notice_id }</td>
-		   </tr> 
-		   <tr>
-		     <td>제목</td>
-		     <td>${dto.title }</td>
-		   </tr> 
-		   <tr>
+		     <td>NO. ${dto.notice_id }</td>
 		     <td>작성일</td>
 		     <td>${dto.date }</td>
-		   </tr> 
-		   <tr>
 		     <td>조회수</td>
 		     <td>${dto.count }</td>
 		   </tr> 
 		   <tr>
 		     <td>내용</td>
-		     <td>${dto.content }</td>
+		     <td colspan="4">${dto.content }</td>
 		   </tr> 
+			 <td>이미지</td>   
+   			<td colspan="4"><img src="./upload/${dto.notice_image }"/></td>
+   			
 		</table>
 
-
-<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }">게시글 수정</a>
-<a href="./NoticeDelete.no?notice_id=${dto.notice_id }">게시글 삭제</a>
-<a href="./NoticeList.no?pageNum=${pageNum }">목록으로</a>
+<div style= "float: right; margin-top: 80px;">
+<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }" class="btn btn-primary">게시글 수정</a>
+<a href="./NoticeDelete.no?notice_id=${dto.notice_id }" class="btn btn-primary">게시글 삭제</a>
+<a href="./NoticeList.no?pageNum=${pageNum }" class="btn btn-secondary">목록으로</a>
+</div>
+</div>
+</div>
+<%@include file="../footer.jsp" %>
 </body>
 </html>

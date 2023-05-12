@@ -7,14 +7,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../head.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 	<h1>SaleList</h1>
 <hr>
-	<input type="button" value="판매 목록 보기" onclick="location.href='./MypageSalesList.me'">
-	<input type="button" value="판매글 등록하기" onclick="location.href='./ProductWrite.me'">
+	<input type="button" value="판매 목록 보기" onclick="location.href='./MypageSaleslist.my'">
+	<input type="button" value="판매글 등록하기" onclick="location.href='./productWrite.pr'">
 <hr>
 
 	<%
@@ -69,6 +71,6 @@
 	<% } %>
 </table>
 
-
+<%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

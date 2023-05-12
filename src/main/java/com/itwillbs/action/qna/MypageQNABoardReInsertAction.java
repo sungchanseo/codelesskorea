@@ -61,7 +61,7 @@ public class MypageQNABoardReInsertAction implements Action{
 				forward = new ActionForward();
 				
 		        if(result == 1){ // 글하나 작성완료
-		        	JSForward.alertAndMove(response, "글작성 성공", "./AdminQNAList.me");
+		        	JSForward.alertAndMove(response, "글작성 성공", "./AdminQNAList.qn");
 //		        	forward.setPath("./MypageQNAList.me");
 //		        	forward.setRedirect(true);
 		        }else{

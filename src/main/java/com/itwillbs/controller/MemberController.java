@@ -2,23 +2,27 @@ package com.itwillbs.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
+import com.itwillbs.action.member.IdFindAction;
 import com.itwillbs.action.member.MemberDeleteAction;
-import com.itwillbs.action.member.MemberInfoAction;
 import com.itwillbs.action.member.MemberJoinAction;
 import com.itwillbs.action.member.MemberListAction;
 import com.itwillbs.action.member.MemberLoginAction;
 import com.itwillbs.action.member.MemberLogoutAction;
 import com.itwillbs.action.member.MemberUpdateAction;
 import com.itwillbs.action.member.MemberUpdateProAction;
+import com.itwillbs.action.member.PasswordUpdateAction;
+import com.itwillbs.action.member.PwFindAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+
+
 
 @WebServlet("*.me")
 public class MemberController extends HttpServlet{
@@ -99,6 +103,38 @@ public class MemberController extends HttpServlet{
 			forward.setPath("./member/pwFindForm.jsp");
 			forward.setRedirect(false);
 		}
+		//아이디찾기 처리
+		  else if(command.equals("/IdFindAction.me")) {
+		  System.out.println(" C : /IdFindAction.me 호출 ");
+		  System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
+		  
+		    action = new IdFindAction(); 
+		    try { 
+		    	forward  = action.execute(request, response); 
+		    } catch (Exception e) {
+		    	 e.printStackTrace(); 
+		    }
+		    }
+		//비밀번호찾기 처리
+		  else if(command.equals("/PwFindAction.me")) {
+		  System.out.println(" C : /PwFindAction.me 호출 ");
+		  System.out.println(" C : DB사용o, 페이지 이동(패턴2)");
+		  
+		    action = new PwFindAction(); 
+		    try { 
+		    	forward  = action.execute(request, response); 
+		    } catch (Exception e) {
+		    	 e.printStackTrace(); 
+		    }
+		    }
+		  else if(command.equals("/PwFindProAction.me")) {
+			  System.out.println(" C : /PwFindProAction.me 호출 ");
+			  System.out.println(" C : DB사용x, 페이지 이동");
+				forward = new ActionForward();
+				forward.setPath("./member/pwFindAction.jsp");
+				forward.setRedirect(false);
+		  }
+		
 		// 회원가입
 		else if(command.equals("/MemberJoin.me")) {
 				System.out.println(" C : /MemberJoin.me 실행");
@@ -108,6 +144,7 @@ public class MemberController extends HttpServlet{
 				forward = new ActionForward();
 				forward.setPath("./member/insertForm.jsp");
 				forward.setRedirect(false);
+				
 		}else if(command.equals("/MemberJoinAction.me")) {
 			System.out.println(" C : MemberJoinAction.me 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
@@ -118,6 +155,7 @@ public class MemberController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		}else if(command.equals("/MemberUpdate.me")) {
 			System.out.println(" C : MemberUpdate.me 호출");
 			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
@@ -162,6 +200,15 @@ public class MemberController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/passwordUpdate.jsp");
 			forward.setRedirect(false);
+			
+		}else if (command.equals("/PasswordUpdateAction.me")) {
+			//임시 이동 코드
+			action = new PasswordUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		}else if (command.equals("/MemberList.me")) {
 			System.out.println(" C : /MemberList.me 호출");

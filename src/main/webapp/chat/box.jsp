@@ -3,78 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../head.jsp"></jsp:include>
-<!-- 	<link rel="stylesheet" href="css/bootstrap.css"> -->
-<!-- 	<link rel="stylesheet" href="css/custom.css"> -->
-	<title></title>
-<!-- 	<script src="js/bootstrap.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<title>CodeLess</title>
+	<jsp:include page="../head.jsp"></jsp:include>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<script src="./js/chat.js"></script>
 	<script type="text/javascript">
-	    function getUnread() {
-	    	$.ajax({
-	    		type: "POST",
-	    		url: "./ChatUnreadAction.ch",
-	    		data: {
-	    			userID: encodeURIComponent('${id}'),
-	    		},
-	    		success: function(result) {
-	    			if(result >= 1) {
-	    				showUnread(result);
-	    			} else {
-	    				showUnread('');
-	    			}
-	    		}
-	    	});
-	    }
-	    function getInfiniteUnread() {
-	    	setInterval(function() {
-	    		getUnread();
-	    	}, 4000);
-	    }
-	    function showUnread(result) {
-	    	$('#unread').html(result);
-	    }
-	    function chatBoxFunction() {
-	    	var userID = '${id}';
-	    	$.ajax({
-	    		type: "POST",
-	    		url: "./ChatBoxAction.ch",
-	    		data: {
-	    			userID: encodeURIComponent(userID),
-	    		},
-	    		success: function(data) {
-	    			if(data == "") return;
-	    			$('#boxTable').html('');
-	    			var parsed = JSON.parse(data);
-	    			var result = parsed.result;
-	    			for(var i=0; i<result.length; i++) {
-	    				if(result[i][0].value == userID) {
-	    					result[i][0].value = result[i][1].value;
-	    				} else {
-	    					result[i][1].value = result[i][0].value;
-	    				}
-	    				addBox(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value, result[i][4].value, result[i][5].value);
-	    			}
-	    		}
-	    	});
-	    }
-	    function addBox(lastID, toID, chatContent, chatTime, unread, profile) {
-	    	$('#boxTable').append('<tr onclick="location.href=\'ChatToSeller.pr?toID=' + encodeURIComponent(toID) + '\'">' +
-	    			'<td style="width: 150px;">' + 
-	    			'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="' + profile + '">' +                       
-	    			'<h5>' + lastID + '</h5></td>' + 
-	    			'<td>' +
-	    			'<h5>' + chatContent +
-	    			'<span class="label label-info">' + unread + '</span></h5>' + 
-	    			'<div class="pull-right">' + chatTime + '</div>' + 
-	    			'</td>' + 
-	    			'</tr>');
-	    }
-	    function getInfiniteBox() {
-	    	setInterval(function() {
-	    		chatBoxFunction();
-	    	}, 3000);
-	    }
+
 	</script>
 
 </head>
@@ -131,8 +65,8 @@
 	            </div>
 	        </div>
 	    </div>
-	    <c:remove var="messageContent"/>
-	    <c:remove var="messageType"/>
+	    <c:remove var="messageContent" scope="session"/>
+	    <c:remove var="messageType" scope="session"/>
     </c:if>
     <script>
         $('#messageModal').modal("show");
@@ -140,10 +74,10 @@
 	<c:if test="${!empty id }">
         <script type="text/javascript">
             $(document).ready(function() {
-            	getUnread();
+            	getUnread('${id}');
             	getInfiniteUnread();
-            	chatBoxFunction();
-            	getInfiniteBox();
+            	chatBoxFunction('${id}');
+            	getInfiniteBox('${id}');
             });
         </script>
 

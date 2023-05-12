@@ -4,9 +4,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<%@ include file="../head.jsp"%>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
+	<%@ include file="../head.jsp"%>
 
 <script type="text/javascript">
 
@@ -31,7 +32,7 @@
 				  return;
 			  }//이메일형식으로 입력하지않을 시 제어
 			  $.ajax({
-				  url : "./AjaxAction.ta",
+				  url : "./AjaxAction.aj",
 				  data: {"id": $('#id').val()},
 				  success:function(data){
 					  const result = $.trim(data);
@@ -159,7 +160,7 @@
 		style="width: 800px; color: black;">
 
 
-		<form action="./MemberJoinAction.me" id="fr" method="post">
+		<form action="./MemberJoinAction.me" id="fr" method="post" enctype="multipart/form-data">
 
 			<div class="form-group" id="log-form" style="width: 400px;">
 				<h2>
@@ -200,7 +201,7 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15" onclick="addr();">
+						<td><input type="text" name="post_number" id="zipcode" size="15" onclick="addr();">
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>
@@ -212,6 +213,8 @@
 				</table>
 				<br> 프로필사진 <input type="file" name="user_image">
 				 <br><br>
+				 
+				 
 				<label><input type="checkbox" data-toggle="modal"
 					data-target="#myModal" id="checkbox"><b>이용약관 개인정보 수집 및 정보이용에
 					동의합니다.</b></label>
@@ -219,7 +222,7 @@
 
 				<!-- The Modal -->
 				<div class="modal" id="myModal">
-					<div class="modal-dialog modal-dialog-scrollable">
+					<div class="modal-dialog">
 						<div class="modal-content">
 
 							<!-- Modal Header -->
@@ -229,7 +232,7 @@
 							</div>
 
 							<!-- Modal body -->
-							<div class="modal-body">
+							<div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
 
 								<%@include file="joinAccept.jsp" %> <!-- 모달창 내용 삽입 -->
         

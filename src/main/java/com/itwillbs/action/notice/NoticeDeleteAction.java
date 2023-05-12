@@ -31,6 +31,7 @@ public class NoticeDeleteAction implements Action {
 			return forward;
 		}
 		*/
+		
 		NoticeDAO dao = new NoticeDAO();
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_id(Integer.parseInt(request.getParameter("notice_id")));

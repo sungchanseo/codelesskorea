@@ -10,10 +10,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../head.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 	<h1>buyList</h1>
 
 	<%
@@ -66,6 +68,6 @@
 		  </tr>
 	<% } %>
 </table>
-
+<%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>faqContent</h1>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -20,20 +10,18 @@
 <body>
 <h1>자주하는 질문</h1>
 
-<%-- ${requestScope.dto } --%>
-
 	<table border="1">
 		   <tr>
-		     <th>글번호</th>
+		     <th>FAQ번호</th>
+		     <td>${dto.faq_id }</td>
+		   </tr> 
+		   <tr>
+		     <td>카테고리</td>
+		     <td>${dto.category }</td>
 		   </tr> 
 		   <tr>
 		     <td>제목</td>
-		   </tr> 
-		   <tr>
-		     <td>작성일</td>
-		   </tr> 
-		   <tr>
-		     <td>조회수</td>
+		     <td>${dto.title }</td>
 		   </tr> 
 		   <tr>
 		     <td>내용</td>
@@ -42,14 +30,10 @@
 		</table>
 
 
-<a href="./NoticeProUpdateAction.me?notice_id=${dto.notice_id }">게시글 수정</a>
-<a href="./NoticeDelete.me?notice_id=${dto.notice_id }">게시글 삭제</a>
-<a href="./NoticeList.me?pageNum=${pageNum }">목록으로</a>
+<a href="./FaqProUpdateAction.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">게시글 수정</a>
+<a href="./FaqDelete.fa?faq_id=${dto.faq_id }">게시글 삭제</a>
+<a href="./FaqList.fa?pageNum=${pageNum }">목록으로</a>
 </body>
 </html>
-
-
-<a href="./FAQUpdate.me">수정하기</a>
-<a href="./FAQDelete.me">삭제하기</a>
 </body>
 </html>

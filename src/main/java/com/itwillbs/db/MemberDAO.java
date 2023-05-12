@@ -307,8 +307,8 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. SQL작성 & pstmt 객체
-				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date) "
-						+ "values(?,?,?,?,?,?,?,?,?)";
+				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date,post_number,address2) "
+						+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getId());
@@ -320,6 +320,8 @@ public class MemberDAO {
 				pstmt.setString(7, dto.getUser_image());
 				pstmt.setDate(8, dto.getRegdate());
 				pstmt.setString(9, dto.getBirth_date());
+				pstmt.setInt(10, dto.getPost_number());
+				pstmt.setString(11, dto.getAddress2());
 				
 				// 4. SQL 실행
 				pstmt.executeUpdate();
@@ -366,17 +368,14 @@ public class MemberDAO {
 			String result = "";
 			try {
 				con = getCon();
-				sql = "select name,id from user where phone_number=?";
+				sql = "select id from user where phone_number=? and name=?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getPhone_number());
+				pstmt.setString(2, dto.getName());
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					if(dto.getName().equals(rs.getString("name"))) {
-						result = rs.getString("id");
-					}else {
-						result = "none";
-					}
+					result = rs.getString("id");
 				}else {
 					result = "none";
 				}

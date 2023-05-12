@@ -1,101 +1,309 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- ì£¼ì†Œapi -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+    
+    function addr() {
+		new daum.Postcode({
+			    oncomplete : function(data) {
+				document.getElementById("zipcode").value = data.zonecode; // ìš°í¸ ë²ˆí˜¸ ë„£ê¸°
+				document.getElementById("address").value = data.address; // ì£¼ì†Œ ë„£ê¸°
+			}
+		}).open();
+	};
+	
+    // body ì˜ ê°’ -> head ê°€ì ¸ì˜¤ê¸°
+    var obj_name ="";
+    var obj_email ="";
+    var obj_ph ="";
+    var obj_addr ="";
+    var obj_amount ="";
+    var obj_order_id ="";
+    var obj_payment ="";
+    var obj_product_id ="";
+    var obj_title ="";
+    var obj_post ="";
+    $(document).ready(function(){
+    	obj_order_id = $('#o1').attr('value');
+    	obj_name = $('#n1').attr('value');
+    	obj_email = $('#e1').attr('value');
+    	obj_ph = $('#p1').attr('value');
+    	obj_addr = $('#address').attr('value');
+    	obj_amount = $('#t1').attr('value');
+    	obj_product_id = $('#pr1').attr('value');
+    	obj_title = $('#ti1').attr('value');
+    	obj_post = $('#po1').attr('value');
+    	obj_payment = $('.pm1:checked').val();
+    	console.log(obj_name);
+    	console.log(obj_email);
+    	console.log(obj_payment);
+    	
+    	 
+    	
+    }); //(document).ready
+    
         var IMP = window.IMP; 
         IMP.init("imp88454102"); 
       
         var today = new Date();   
-        var hours = today.getHours(); // ½Ã
-        var minutes = today.getMinutes();  // ºĞ
-        var seconds = today.getSeconds();  // ÃÊ
+        var hours = today.getHours(); // ì‹œ
+        var minutes = today.getMinutes();  // ë¶„
+        var seconds = today.getSeconds();  // ì´ˆ
         var milliseconds = today.getMilliseconds();
-        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
-        
-
-        function requestPay(data) {
-            IMP.request_pay({
-                pg : 'kcp',
-                pay_method : 'card',
-                merchant_uid: "IMP"+makeMerchantUid, 
-                name : '¹öÁî2 ¿À¸¥ÂÊ : Å×½ºÆ®°áÁ¦', //»óÇ°¸í
-                amount : 100, //±İ¾×
-                buyer_email : 'hysoo5223@gmail.com',
-                buyer_name : 'È«±æµ¿', // ±¸¸ÅÀÚ
-                buyer_tel : '010-1234-5678', // ÀüÈ­¹øÈ£
-                buyer_addr : 'ºÎ»ê±¤¿ª½Ã ºÎ»êÁø±¸ ºÎÀüµ¿', //ÁÖ¼Ò
-                buyer_postcode : '123-456' // ¿ìÆíº¯È£
-            }, function (rsp) { // callback ¹æ½Ä
+        var makeMerchantUid = hours +  minutes + seconds + milliseconds; //ì£¼ë¬¸ì¼ì‹œ
+       	var year = today.getFullYear(); // ë…„ë„
+       	var month = today.getMonth() + 1;  // ì›”
+       	var date = today.getDate();  // ë‚ ì§œ
+       	var day = today.getDay();  // ìš”ì¼
+     
+       	var order_date = year+"-"+month+"-"+date+" "+hours+":"+minutes+":"+seconds; //ì£¼ë¬¸ì¼ì‹œ
+		
+       	
+       	
+       	
+        function requestPay() {
+        	// ì•½ê´€ë™ì˜ ê²°ì œì œí•œ
+        	if($('#checkbox').is(':checked') == false){
+    			alert('ì•½ê´€ì— ë™ì˜í•´ì£¼ì„¸ìš”.');
+    			$('#checkbox').focus();
+    			return false;
+    	 	}
+        	if($('.pm1:checked').val() == "html5_inicis"){
+        	var pay_form = {
+                    pg : 'html5_inicis',
+                    pay_method : 'card',
+                    merchant_uid: "IMP"+makeMerchantUid, 
+                    name : obj_title, //ìƒí’ˆëª…
+                    amount : obj_amount, //ê¸ˆì•¡
+                    buyer_email : obj_email,
+                    buyer_name : obj_name, // êµ¬ë§¤ì
+                    buyer_tel : obj_ph, // ì „í™”ë²ˆí˜¸
+                    buyer_addr : obj_addr, //ì£¼ì†Œ
+                    buyer_postcode : obj_post // ìš°í¸ë³€í˜¸
+                };
+        	
+        	console.log(pay_form);
+        	
+            IMP.request_pay(pay_form, function (rsp) { 
             	console.log(rsp);
                 if (rsp.success) {
-                	// °áÁ¦ ¼º°ø½Ã ·ÎÁ÷
-            	var msg = '°áÁ¦ ¿Ï·á';
-                	// ÁÖ¹®¼­ ÆäÀÌÁö·Î ÀÌµ¿
-              		
+                	// ê²°ì œ ì„±ê³µì‹œ ë¡œì§
+                	var msg = 'ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.';
+                			msg += '\nì£¼ë¬¸ì¼ì‹œ : ' + order_date;
+                			msg += '\nê³ ìœ ID : ' + rsp.imp_uid;
+                			msg += '\nìƒì  ê±°ë˜ID : ' + rsp.merchant_uid;
+                			msg += '\ê²°ì œ ê¸ˆì•¡ : ' + rsp.paid_amount;
+                			msg += 'ì¹´ë“œ ìŠ¹ì¸ë²ˆí˜¸ : ' + rsp.apply_num;
+                	alert(msg);
+                	
+                	
+                	// form íƒœê·¸ JSì—ì„œ ìƒì„±í•´ì„œ íŒŒë¼ë¯¸í„° ì „ë‹¬
+                	// (ê²°ì œ 1ê°œëŠ” ì „ì†¡ë°©ì‹ ajaxë¡œ ìˆ˜ì •í•´ë³¼ì˜ˆì •)
+					const form = document.createElement('form');       		// form íƒœê·¸ ìƒì„± 
+					var order_id_objs = document.createElement('input');    // ê°’ì„ ë„£ì„ input ìƒì„± 
+					order_id_objs.setAttribute('type', 'hidden');           // ê°’ì˜ type
+					order_id_objs.setAttribute('name', 'order_id');         // ê°’ì„ ë‹´ì„ ë³€ìˆ˜ ì´ë¦„
+					order_id_objs.setAttribute('value', obj_order_id);      // ê°’ 
+                    form.appendChild(order_id_objs);
+					
+					var uid_objs = document.createElement('input');              
+                    uid_objs.setAttribute('type', 'hidden');                                 
+                    uid_objs.setAttribute('name', 'imp_uid');                
+                    uid_objs.setAttribute('value', rsp.imp_uid);          
+                    form.appendChild(uid_objs);
+                    var merchant_uid_objs = document.createElement('input');           
+                    merchant_uid_objs.setAttribute('type', 'hidden');                 
+                    merchant_uid_objs.setAttribute('name', 'merchant_uid');          
+                    merchant_uid_objs.setAttribute('value', rsp.merchant_uid);        
+                    form.appendChild(merchant_uid_objs);
+                    var paid_amount_objs = document.createElement('input');       
+                    paid_amount_objs.setAttribute('type', 'hidden');               
+                    paid_amount_objs.setAttribute('name', 'paid_amount');          
+                    paid_amount_objs.setAttribute('value', rsp.paid_amount);        
+                    form.appendChild(paid_amount_objs);
+                    var apply_num_objs = document.createElement('input');       
+                    apply_num_objs.setAttribute('type', 'hidden');             
+                    apply_num_objs.setAttribute('name', 'apply_num');          
+                    apply_num_objs.setAttribute('value', rsp.apply_num);      
+                    form.appendChild(apply_num_objs);
+                    form.setAttribute('method', 'post');                     
+                    form.setAttribute('action', './OrderContent.or');   
+                    form.setAttribute('accept-charset', 'utf-8');   
+                    document.body.appendChild(form);
+                    form.submit();
+                   
     		} else {
-                	// °áÁ¦ ½ÇÆĞ½Ã ·ÎÁ÷
-                	var msg = '°áÁ¦ ½ÇÆĞ';
-                	msg += '¿¡·¯³»¿ë : ' + rsp.error_msg;
+                	// ê²°ì œ ì‹¤íŒ¨ì‹œ ë¡œì§
+                	var msg = 'ê²°ì œ ì‹¤íŒ¨';
+                	msg += 'ì—ëŸ¬ë‚´ìš© : ' + rsp.error_msg;
                 	alert(msg);
                     console.log(rsp);
-                }
-            });
-        }
+                } //else
+            } //function(rsp)
+            ); // IMP.request_pay()
+       	 } // if
+//     } // function requestPay()
+        
+		else if($('.pm1:checked').val() == "kakaopay"){
+        	var pay_form = {
+                    pg : 'kakaopay',
+                    pay_method : 'EASY_PAY',
+                    merchant_uid: "IMP"+makeMerchantUid, 
+                    name : obj_title, //ìƒí’ˆëª…
+                    amount : obj_amount, //ê¸ˆì•¡
+                    buyer_email : obj_email,
+                    buyer_name : obj_name, // êµ¬ë§¤ì
+                    buyer_tel : obj_ph, // ì „í™”ë²ˆí˜¸
+                    buyer_addr : obj_addr, //ì£¼ì†Œ
+                    buyer_postcode : obj_post // ìš°í¸ë³€í˜¸
+                };
+        	console.log(pay_form);
+            IMP.request_pay(pay_form, function (rsp) { 
+            	console.log(rsp);
+                if (rsp.success) {
+                	// ê²°ì œ ì„±ê³µì‹œ ë¡œì§
+                	var msg = 'ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.';
+                	alert(msg);
+                	
+                	// form íƒœê·¸ JSì—ì„œ ìƒì„±í•´ì„œ íŒŒë¼ë¯¸í„° ì „ë‹¬
+					const form = document.createElement('form');       		// form íƒœê·¸ ìƒì„± 
+					
+					var order_id_objs = document.createElement('input');    // ê°’ì„ ë„£ì„ input ìƒì„± 
+					order_id_objs.setAttribute('type', 'hidden');           // ê°’ì˜ type
+					order_id_objs.setAttribute('name', 'order_id');         // ê°’ì„ ë‹´ì„ ë³€ìˆ˜ ì´ë¦„
+					order_id_objs.setAttribute('value', obj_order_id);      // ê°’ 
+                    form.appendChild(order_id_objs);
+					
+                    var product_id_objs = document.createElement('input');    // ê°’ì„ ë„£ì„ input ìƒì„± 
+                    product_id_objs.setAttribute('type', 'hidden');           // ê°’ì˜ type
+                    product_id_objs.setAttribute('name', 'product_id');         // ê°’ì„ ë‹´ì„ ë³€ìˆ˜ ì´ë¦„
+                    product_id_objs.setAttribute('value', obj_product_id);      // ê°’ 
+                    form.appendChild(product_id_objs);
+					
+                    var order_date_objs = document.createElement('input');    // ê°’ì„ ë„£ì„ input ìƒì„± 
+                    order_date_objs.setAttribute('type', 'hidden');           // ê°’ì˜ type
+                    order_date_objs.setAttribute('name', 'order_date');         // ê°’ì„ ë‹´ì„ ë³€ìˆ˜ ì´ë¦„
+                    order_date_objs.setAttribute('value', order_date);      // ê°’ 
+                    form.appendChild(order_date_objs);
+                    
+					var uid_objs = document.createElement('input');              
+                    uid_objs.setAttribute('type', 'hidden');                                 
+                    uid_objs.setAttribute('name', 'imp_uid');                
+                    uid_objs.setAttribute('value', rsp.imp_uid);          
+                    form.appendChild(uid_objs);
+                    
+                    var merchant_uid_objs = document.createElement('input');           
+                    merchant_uid_objs.setAttribute('type', 'hidden');                 
+                    merchant_uid_objs.setAttribute('name', 'merchant_uid');          
+                    merchant_uid_objs.setAttribute('value', rsp.merchant_uid);        
+                    form.appendChild(merchant_uid_objs);
+                    
+                    var paid_amount_objs = document.createElement('input');       
+                    paid_amount_objs.setAttribute('type', 'hidden');               
+                    paid_amount_objs.setAttribute('name', 'paid_amount');          
+                    paid_amount_objs.setAttribute('value', rsp.paid_amount);        
+                    form.appendChild(paid_amount_objs);
+                    
+                    var apply_num_objs = document.createElement('input');       
+                    apply_num_objs.setAttribute('type', 'hidden');             
+                    apply_num_objs.setAttribute('name', 'apply_num');          
+                    apply_num_objs.setAttribute('value', rsp.apply_num);      
+                    form.appendChild(apply_num_objs);
+                    
+                    form.setAttribute('method', 'post');                     
+                    form.setAttribute('action', './OrderContent.or');      
+                    form.setAttribute('accept-charset', 'utf-8');      
+                    document.body.appendChild(form);
+                    form.submit();
+                   
+    		} else {
+                	// ê²°ì œ ì‹¤íŒ¨ì‹œ ë¡œì§
+                	var msg = 'ê²°ì œ ì‹¤íŒ¨';
+                	msg += 'ì—ëŸ¬ë‚´ìš© : ' + rsp.error_msg;
+                	alert(msg);
+                    console.log(rsp);
+                } //else
+            } //function(rsp)
+            ); // IMP.request_pay()
+        } //else if
+        } // function requestPay()
+        
     </script>
     <meta charset="UTF-8">
     <title>Sample Payment</title>
 </head>
 <body>
-	<h1>ÁÖ¹®¼­</h1>
+	<h1>ì£¼ë¬¸ì„œ</h1>
+	
 	
 	<fieldset>
-	<legend>»óÇ° Á¤º¸</legend>
-		»óÇ°¹øÈ£ : <input type="text" name = "id" value="goods_id" readonly ><br>
-		»óÇ°»çÁø : <img src="../img/img.jpg " width="100px"><br>
-		»óÇ°ÀÌ¸§ : <input type="text" name = "title" value="title" readonly ><br>
-		»óÇ°°¡°İ : <input type="text" name = "price" value="price" readonly ><br>
-		¹è¼Ûºñ ¿©ºÎ : 
+	<legend>ìƒí’ˆ ì •ë³´</legend>
+		ìƒí’ˆë²ˆí˜¸ : <input type="text"  name = "id" value="${dto.product_id }" readonly ><br>
+		ìƒí’ˆì‚¬ì§„ : <img src="../img/img.jpg " width="100px"><br>
+		ìƒí’ˆì´ë¦„ : <input type="text" name = "title" value="${dto.title }" readonly ><br>
+		<input type="hidden" id = "ti1" name="title" value="${dto.title }">
+		ìƒí’ˆê°€ê²© : <input type="text" name = "price" value="${dto.price }" readonly ><br>
+		ë°°ì†¡ë¹„ : <input type="text" name = "price" value="${dto.fee }" readonly ><br>
 			
 	</fieldset>
 		<hr>
 	<fieldset>
-	<legend>¹è¼ÛÁö Á¤º¸</legend>
-	<!--  actionÁÖ¼Ò°¡ ¾øÀ¸¸é ÀÚ½ÅÀÇ ÆäÀÌÁö È£Ãâ -->
-		<form action="addressChange.jsp" method="post" name="fr" >
-		ÀÌ¸§ : <input type="text" name = "name" value="name"><br>
-		ÀüÈ­¹øÈ£ : <input type="text" name = "phNumber" value="010-0000-0000"><br>
-		ÁÖ¼Ò : <input type="text" name = "address" placeholder="ÁÖ¼Ò"><br>
-		<input type="submit" value="º¯°æÇÏ±â">
+	<legend>ë°°ì†¡ ì •ë³´</legend>
+		<form action="./AddrChangeAction.or" method="post" accept-charset="utf-8">
+		<input type="hidden" id = "o1" name="order_id" value="${dto.order_id }">
+		<input type="hidden" id = "e1" name="id" value="${dto.id }">
+		<input type="hidden" id = "pr1" name="product_id" value="${dto.product_id }">
+		ì´ë¦„ : <input type="text" id = "n1" name = "receiver_name" value="${dto.receiver_name }" placeholder="ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”" ><br>
+		ì „í™”ë²ˆí˜¸ : <input type="text" id = "p1" name = "receiver_phone" value="${dto.receiver_phone }" placeholder="ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”" ><br>
+		ì£¼ì†Œ : <table>
+					<tr>
+						<td><input type="text" name="zipcode" id="zipcode" size="15" value="${dto.receiver_post }" readonly>
+							<input type="hidden" id = "po1" name="receiver_post" value="${dto.receiver_post }">
+							<input type="button" value="ìš°í¸ë²ˆí˜¸ì°¾ê¸°"  onclick="addr();"></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="receiver_addr1" id="address" size="45" value="${dto.receiver_addr1 }" onclick="addr();"></td>
+					<tr>
+					<tr>
+						<td><input type="text" name="receiver_addr2" id="address2" size="45" value="${dto.receiver_addr2 }" placeholder="ìƒì„¸ì£¼ì†Œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”."></td>
+					<tr>
+				</table>
+		
+<%-- 		<input type="text" id = "a1" name = "receiver_addr1" value="${dto.receiver_addr1 }" placeholder="ì£¼ì†Œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”" ><br> --%>
+		<input type="submit" value="ë³€ê²½í•˜ê¸°">
 		</form>
 	</fieldset>
 	
 	<fieldset>
-	<legend>°áÁ¦Á¤º¸</legend>
-		ÃÑ ±İ¾× : price + ¹è¼Ûºñ <br>
-		°áÁ¦¼ö´Ü : <input type="radio" vlaue="Ä«µå°áÁ¦"> Ä«µå°áÁ¦
+	<legend>ê²°ì œì •ë³´</legend>
+		ì´ ê¸ˆì•¡ : ${dto.price + dto.fee+100 } ì› <br>
+		<input type="hidden" id="t1" name="amount" value="${dto.price+dto.fee+100 }">
+		<!-- ì¹´ë“œê²°ì œ ì„ íƒì‹œ ì¼ë°˜ ì¹´ë“œê²°ì œ / ì¹´ì¹´ì˜¤í˜ì´ ì„ íƒì‹œ ì¹´ì¹´ì˜¤í˜ì´ ê°„í¸ê²°ì œ -->
+		ê²°ì œìˆ˜ë‹¨ : <input type="radio" class="pm1" name = "payment" value="html5_inicis" checked="checked"> ì¹´ë“œê²°ì œ  
+					<input type="radio" class="pm1" name = "payment"  value="kakaopay"> ì¹´ì¹´ì˜¤í˜ì´<br>
 	</fieldset>
 	
 	<hr>
 	
 	<fieldset>				
-	ÀÌ¿ë¾à°ü ³»¿ë
+	ì´ìš©ì•½ê´€ ë‚´ìš©
 	</fieldset>
 	
-	  <div class="checkbox_group">
-	  <input type="checkbox" id="check_all" >
-	  <label for="check_all">ÀÌ¿ë ¾à°ü µ¿ÀÇ</label>
+	  <div class="check">
+	  <label><input type="checkbox" id="checkbox" >
+	  ì´ìš© ì•½ê´€ ë™ì˜</label>
 	  </div>
-  
+
  	<br>
-    <button onclick="requestPay()">°áÁ¦ÇÏ±â</button> 
-    
-    
-    
+ 	<button type="submit" id="pay_btn" onclick="requestPay()">ê²°ì œí•˜ê¸°</button>
+
 </body>
 </html>

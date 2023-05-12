@@ -1,5 +1,6 @@
 package com.itwillbs.action.member;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,12 +9,13 @@ import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
-import com.itwillbs.db.MemberDTO;
+
 
 public class MemberDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 		System.out.println(" M : MemberDeleteAction_execute()");
 
 		
@@ -29,15 +31,14 @@ public class MemberDeleteAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
-		// 정보 저장(id, pw)
-		String pw = (String)request.getParameter("pw");
-		
+		// 정보 저장(id, password)
+		String password = (String)request.getParameter("password");
 		
 		// DAO - 정보수정 메서드 호출 memberUpdate(dto)
 		MemberDAO dao = new MemberDAO();
 		
 		// 회원탈퇴 - DAO 객체 - deleteMember()
-		int result = dao.deleteMember(id, pw);
+		int result = dao.deleteMember(id, password);
 		
 		System.out.println(" M : 정보 삭제결과 " + result);
 

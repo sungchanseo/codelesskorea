@@ -52,12 +52,12 @@ public class QNADeleteAction implements Action{
 		PrintWriter out = response.getWriter();
 		System.out.println("result : "+result);
         if(result == 1){ // 글하나 작성완료
-        	JSForward.alertAndMove(response, "글삭제 성공!", "./AdminQNAList.me");
+        	JSForward.alertAndMove(response, "글삭제 성공!", "./AdminQNAList.qn");
 //        	forward.setPath("./MypageQNAList.me");
 //        	forward.setRedirect(true);
         }else if(result == 2){
         	//에러 상황( 자바스크립트 / 페이지 이동 )
-        	JSForward.alertAndMove(response, "글삭제 성공!(관리자의 답변과 함께삭제 되었습니다)", "./AdminQNAList.me");
+        	JSForward.alertAndMove(response, "글삭제 성공!(관리자의 답변과 함께삭제 되었습니다)", "./AdminQNAList.qn");
 //        	forward.setPath("./Main.me");
 //        	forward.setRedirect(true);
         }else {

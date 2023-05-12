@@ -74,9 +74,10 @@ public class NoticeDAO {
 				pstmt.setString(2, dto.getTitle());
 				pstmt.setInt(3, dto.getCount());
 				pstmt.setString(4, dto.getContent());
-				pstmt.setString(5, dto.getNotice_image());
+				pstmt.setString(5,  dto.getNotice_image());
 				
 				result= pstmt.executeUpdate();
+				System.out.println(dto.getTitle());
 				System.out.println("공지쓰기 완료");
 				
 			} catch (Exception e) {
@@ -229,21 +230,20 @@ public class NoticeDAO {
 					con = getCon();
 					sql = "select * from notice where notice_id=?";
 					pstmt = con.prepareStatement(sql);
-					int notice_id = dto.getNotice_id();
 					
 					pstmt.setInt(1, dto.getNotice_id());
 					rs = pstmt.executeQuery();
 					
 					if(rs.next()){ 
-						if(notice_id==rs.getInt("notice_id")){
+						if(dto.getNotice_id()==rs.getInt("notice_id")){
 						
-							sql = "update notice set title=?, content=? where notice_id=?";
+							sql = "update notice set title=?, content=?, notice_image=? where notice_id=?";
 							pstmt = con.prepareStatement(sql);
 							
 							pstmt.setString(1, dto.getTitle());
 							pstmt.setString(2, dto.getContent());
-							pstmt.setInt(3, dto.getNotice_id());
-							
+							pstmt.setString(3, dto.getNotice_image());
+							pstmt.setInt(4, dto.getNotice_id());
 							
 							result = pstmt.executeUpdate();
 							System.out.println("게시글 업데이트 성공!");

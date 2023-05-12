@@ -9,10 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.action.member.MemberDeleteAction;
 import com.itwillbs.action.member.MemberInfoAction;
+import com.itwillbs.action.member.MemberListAction;
+import com.itwillbs.action.member.MemberUpdateAction;
+import com.itwillbs.action.member.MemberUpdateProAction;
+import com.itwillbs.action.member.PasswordUpdateAction;
+import com.itwillbs.action.mypage.AdminbuyListAction;
+import com.itwillbs.action.mypage.AdminsaleListAction;
 import com.itwillbs.action.mypage.BuyListAction;
 import com.itwillbs.action.mypage.LikeListAction;
 import com.itwillbs.action.mypage.SaleListAction;
+import com.itwillbs.action.qna.AdminQNAListAction;
+import com.itwillbs.action.qna.AdminQNAcontentAction;
+import com.itwillbs.action.qna.MypageQNABoardInsertAction;
+import com.itwillbs.action.qna.MypageQNABoardReInsertAction;
+import com.itwillbs.action.qna.QNADeleteAction;
+import com.itwillbs.action.qna.QNAUpdateAction;
+import com.itwillbs.action.qna.QNAUpdateActionPro;
+import com.itwillbs.action.qna.UserQNADeleteAction;
+import com.itwillbs.action.qna.UserQNAListAction;
+import com.itwillbs.action.qna.UserQNAcontentAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -62,26 +79,119 @@ public class MypageController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+				} 
 			}
-		}else if (command.equals("/MypagePurchaselist.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/buyList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/MypageSalesList.my")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/saleList.jsp");
-			forward.setRedirect(false);
-		}else if (command.equals("/LikeList.me")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./mypage/likeList.jsp");
-			forward.setRedirect(false);
-		}		
+		
+		/*
+	       *
+	       * 예원쓰 코드
+	       *
+	       *
+	       * 마이페이지 구현 시작
+	       */
+	      // 마이페이지
+	      else if(command.equals("/MemberMypage.me")) {
+	         System.out.println(" C : /MemberMypage.me 실행");
+	         System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
+	         forward = new ActionForward();
+	         forward.setPath("./mypage/mypage.jsp");
+	         forward.setRedirect(false);
+	      }else if(command.equals("/MemberInfo.me")) {
+	         System.out.println(" C : MemberInfo.me 호출");
+	         System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
+	         action = new MemberInfoAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }else if(command.equals("/MemberUpdate.me")) {
+	         System.out.println(" C : MemberUpdate.me 호출");
+	         System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
+	         action = new MemberUpdateAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }else if(command.equals("/MemberUpdateProAction.me")) {
+	         System.out.println(" C : MemberUpdateProAction.me 호출");
+	         System.out.println(" C : DB사용 O, 페이지 이동 (패턴2)");
+	         action = new MemberUpdateProAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }else if(command.equals("/MemberDelete.me")) {
+	         System.out.println(" C : /MemberDelete.me 호출");
+	         System.out.println(" C : DB사용X, view페이지 이동 (패턴1)");
+	         forward = new ActionForward();
+	         forward.setPath("./member/memberDelete.jsp");
+	         forward.setRedirect(false);
+	      }else if(command.equals("/MemberDeleteAction.me")) {
+	         System.out.println(" C : /MemberDeleteAction.me 호출");
+	         System.out.println(" C : DB사용O, 페이지 이동 (패턴2)");
+	         action = new MemberDeleteAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }else if (command.equals("/PasswordUpdate.me")) {
+	         forward = new ActionForward();
+	         forward.setPath("./member/passwordUpdate.jsp");
+	         forward.setRedirect(false);
+	      }else if (command.equals("/PasswordUpdateAction.me")) {
+	         action = new PasswordUpdateAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      }else if (command.equals("/MemberList.me")) {
+	         System.out.println(" C : /MemberList.me 호출");
+	         System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+	         action = new MemberListAction();
+	         try {
+	            forward = action.execute(request, response);
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	            }
+	         
+	      
+	       //마이페이지 관리자 회원관리 판매목록
+		    }else if (command.equals("/AdminsaleListAction.my")) {
+		        System.out.println(" C : /AdminsaleListAction.my");
+		        System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+		        action = new AdminsaleListAction();
+		        try {
+		           forward = action.execute(request, response);
+		        } catch (Exception e) {
+		           e.printStackTrace();
+		         }
+		        
+		     }else if (command.equals("/AdminbuyListAction.my")) {
+		        System.out.println(" C : /AdminbuyListAction.my");
+		        System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+		        action = new AdminbuyListAction();
+		        try {
+		           forward = action.execute(request, response);
+		        } catch (Exception e) {
+		           e.printStackTrace();
+		         }
+		     }
+		
+	    
+			
+			
+			
+			
+			
+		//--------------------- 소연쓰 --------------------------------	
 		// 구매목록
-		else if (command.equals("/Buylist.my")) {
-			System.out.println(" C : /BuyList.me 호출 ");
+		else if (command.equals("/MypagePurchaseList.my")) {
+			System.out.println(" C : /MypagePurchaseList.my 호출 ");
 
 			action = new BuyListAction();
 			try {
@@ -91,8 +201,8 @@ public class MypageController extends HttpServlet{
 			}
 		}
 		// 판매목록
-		else if(command.equals("/SaleList.my")) {
-			System.out.println(" C : /SaleList.me 호출 ");
+		else if(command.equals("/MypageSaleslist.my")) {
+			System.out.println(" C : /MypageSaleslist.my 호출 ");
 
 			action = new SaleListAction();
 			try {
@@ -101,18 +211,7 @@ public class MypageController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		// 찜목록
-		else if(command.equals("/LikeList.my")) {
-			System.out.println(" C : /Likelist.me 호출");
-
-			action = new LikeListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
+		
 		
 		
 		

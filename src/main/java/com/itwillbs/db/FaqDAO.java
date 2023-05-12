@@ -54,7 +54,7 @@ public class FaqDAO {
 				con = getCon();
 				int bno=0;
 				
-				sql = "select max(faq_id) from Faq";
+				sql = "select max(faq_id) from faq";
 				pstmt = con.prepareStatement(sql);
 
 				rs= pstmt.executeQuery();
@@ -119,7 +119,7 @@ public class FaqDAO {
 				
 				try {
 					con = getCon();
-					sql = "select * from faq by faq_id desc limit ?,?";
+					sql = "select * from faq order by faq_id desc limit ?,?";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setInt(1, startRow-1);
@@ -163,6 +163,10 @@ public class FaqDAO {
 					// DB정보(rs) -> DTO -> list
 					while (rs.next()) {
 						dto.setFaq_id(rs.getInt("faq_id"));
+						dto.setCategory(rs.getString("category"));
+						dto.setContent(rs.getString("content"));
+						dto.setTitle(rs.getString("title"));
+						
 					}
 					System.out.println(" DAO : 자주묻는 질문 조회 조회성공! ");
 				} catch (Exception e) {
@@ -173,28 +177,6 @@ public class FaqDAO {
 				return dto;
 			}//자주묻는질문 리스트의 자주묻는질문 글을 불러오는 getFaqContent()메소드 시작
 		
-			//조회수를 올리는 updateCount()메소드 시작
-			public void updateReadCount(String faq_id) {
-				//디비 연결
-				try {
-					con = getCon();
-					sql = "update faq set count=count+1 where faq_id=?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setString(1, faq_id);
-					
-					int cnt= pstmt.executeUpdate();
-					if(cnt==1) {
-						System.out.println("조회수가 1 증가했습니다");
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					closeDB();
-				}
-			}//조회수를 올리는 updateCount()메소드 끝
-			
-			
 			
 			//updateFaq() 자주묻는질문 글 수정하는 메소드 시작
 			public int updateFaq(FaqDTO dto) {

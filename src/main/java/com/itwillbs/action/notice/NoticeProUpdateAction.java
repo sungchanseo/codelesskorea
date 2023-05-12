@@ -34,9 +34,9 @@ public class NoticeProUpdateAction implements Action {
 //		}
 		
 		
-		    
 		String notice_id = request.getParameter("notice_id");
 		System.out.println("공지글수정 페이지의 글번호 "+notice_id);
+		String pageNum = request.getParameter("pageNum");
 		
 		NoticeDAO dao = new NoticeDAO();
 		NoticeDTO dto = dao.getNoticeContent(notice_id);
@@ -45,6 +45,7 @@ public class NoticeProUpdateAction implements Action {
 		System.out.println("공지업데이트프로 액션의 "+dto);
 		//정보 저장
 		request.setAttribute("dto", dto);
+		request.setAttribute("pageNum", pageNum);
 				
 		//저장한 정보를 ./member/updateForm.jps에서  출력
 		forward.setPath("./notice/noticeUpdate.jsp");
