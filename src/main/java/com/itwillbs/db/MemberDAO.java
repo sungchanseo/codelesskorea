@@ -66,6 +66,7 @@ public class MemberDAO {
 					dto.setName(rs.getString("name"));
 					dto.setNickname(rs.getString("nickname"));
 					dto.setAddress(rs.getString("address"));
+					dto.setAddress2(rs.getString("address2"));
 					dto.setRegdate(rs.getDate("regdate"));
 					dto.setPhone_number(rs.getString("phone_number"));
 					dto.setUser_image(rs.getString("user_image"));
@@ -94,7 +95,7 @@ public class MemberDAO {
 			try {
 				// 1.2. 디비연결
 				con = getCon();
-				sql = "update USER set name=?, nickname=?, phone_number=?, address=?,user_image=? where id=?";
+				sql = "update USER set name=?, nickname=?, phone_number=?, address=?,user_image=?,address2=? where id=?";
 
 				// 3. sql 작성&pstmt 객체
 				pstmt = con.prepareStatement(sql);
@@ -104,7 +105,8 @@ public class MemberDAO {
 				pstmt.setString(3, dto.getPhone_number());
 				pstmt.setString(4, dto.getAddress());
 				pstmt.setString(5, dto.getUser_image());
-				pstmt.setString(6, dto.getId());
+				pstmt.setString(6, dto.getAddress2());
+				pstmt.setString(7, dto.getId());
 						// 4. sql 실행(update)
 				result = pstmt.executeUpdate();
 						

@@ -464,6 +464,38 @@ public class MypageDAO {
 		    return count;
 		}
 
+
+		public int mypageDelete(int product_id) {
+		    int result = -1; // 0: 상품 정보 없음, 1: 상품 삭제 성공
+		    
+		    try {
+		        // 1.2 DB 연결
+		        getCon();
+		        
+		        // 3. SQL 작성 (delete) & pstmt 객체
+		        sql = "delete from mypage where product_id=?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setInt(1, product_id);
+		        
+		        // 4. SQL 실행(delete)
+		        result = pstmt.executeUpdate();
+		        
+		        if (result == 0) {
+		            System.out.println("DAO : 해당 상품 정보가 존재하지 않습니다.");
+		        } else {
+		            System.out.println("DAO : 상품 정보 삭제 완료 (" + result + ")");
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        // 5. DB 연결 해제
+		        closeDB();
+		    }
+		    
+		    return result;
+		}
+		// productDelete()
+
 		
 	
 }

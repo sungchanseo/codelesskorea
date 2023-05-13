@@ -18,6 +18,9 @@
 		  cursor: pointer;
 		  font-size: 1.2em;
 		  transition: transform 0.3s ease-in-out;
+		  border: none; /* 버튼 주변의 테두리 제거 */
+  		  outline: none; /* 포커스 상자 제거 */
+  		  
 		}
 		
 		.like-btn i {
@@ -110,11 +113,11 @@
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- LikeList -->
-
+<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 <div class="col-sm-8" style="margin:auto;">
  <div id="right" style="margin-left: 150px; width: 100%;">
  <h1 style="font-family: 'TheJamsil5Bold';">찜 목 록</h1>
-<hr style="border: 0;height: 3px; background-color: black;">
+<hr style="border: 0;height: 3px; background-color: black;" >
 
 
 	<!-- Action에서 받아온 정보(LikeList) -->	
@@ -159,7 +162,6 @@
 				<li class="page-item"><a class="page-link" href="./LikeList.my?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
 				</c:if>
 			  </ul>
-			 
 	  		</div>
 
 

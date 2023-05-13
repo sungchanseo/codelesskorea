@@ -10,13 +10,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <%@ include file="../head.jsp" %>
+<style type="text/css">
+
+span {
+  color: #FFB609;
+  font-weight: bold;
+}
+
+#nttable * {
+  font-size: 95%;
+  text-align: left;
+  font-family: 'TheJamsil5Bold';
+}
+
+
+</style>
+
+
 </head>
 
 <body>
 
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-	회원 : ${requestScope.id} 의 구매목록
-	<table border="1">
+	<br>
+
+<h4 style="font-family: 'TheJamsil5Bold';" align="center">회원 :<span> ${requestScope.id}</span> 의 구매목록</h4>
+<hr style="border: 0;height: 3px; background-color: gray;" width="95%";>
+
+
+	<table class="table" style= "width: 95%"; align="center"; id="nttable" >
+	<thead style="background-color: #F6F6F6;">
 			<tr>
 		      <th>상품명</th>
 		      <th>가격</th>
@@ -26,6 +49,9 @@
 		      <th>결제일자</th>
 		      <th>주문진행상태</th>
 		   </tr>
+		</thead>
+	<tbody> 	     
+		   
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.buyList }">
 		   <tr>
@@ -39,7 +65,8 @@
 
 		   </tr>
 	   	</c:forEach>
-	</table>
+		</tbody>
+</table>
 	
 	
 <%-- <%@ include file="../footer.jsp"%> <!-- footer 삽입 --> --%>

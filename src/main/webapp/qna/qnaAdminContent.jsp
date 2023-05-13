@@ -27,6 +27,58 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <%@ include file="../head.jsp"%>
+
+<style type="text/css">
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #F2F2F2;
+}
+
+th:first-child, td:first-child {
+  min-width: 100px;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  min-width: 100px;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  min-width: 120px;
+}
+
+th:nth-child(4), td:nth-child(4) {
+  min-width: 120px;
+}
+
+td:last-child {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  resize: none;
+  overflow: auto;
+}
+
+th:nth-of-type(3), td:nth-of-type(4) {
+  width: 80px; !important;
+}
+
+</style>
+
+
 </head>
 
 <body>
@@ -50,7 +102,7 @@
 	
 	
 	 <!--   사이드바 -->
-<div class="container" style="margin: auto; margin-bottom: 300px;">	 
+<div  style="margin: auto; margin-bottom: 300px;">	 
 <div class="col-sm-8" style="margin:auto;">
 <div id="right" style="margin-left: 50px; width: 100%;">
  <h1 style="font-family: 'TheJamsil5Bold';">QnA 상세보기</h1>
@@ -59,13 +111,14 @@
 
 
 <input type="hidden" name="bno" value="${qdto.bno }">
+<input type="hidden" name="content" value="${qdto.content}">
 <input type="hidden" name="pageNum" value="${pageNum }">
 
 
 
 
 <fieldset style="margin: auto; ">
-<table border="1"  style="margin: auto;" class="table" id="nttable">
+<table border="1"  style="margin: auto;" >
   <tr>
 <c:if test="${qdto.re_Lev < 1}">
   <th>답변상태</th>
@@ -101,12 +154,12 @@
   </tr>
   <tr>
     <th>내용</th>
-    <td colspan="5"><textarea rows="15" cols="60" name="content" maxlength="700" readonly="readonly" style="margin: auto;">${qdto.content}</textarea></td>
+    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea></td>
   </tr>
   </table>
  
   
-	<div style= "float: right; margin-top: 50px;">
+	<div style= "float: right; margin-top: 30px;">
      <input type="button" value="목록으로" class="btn btn-secondary" onclick="location.href='./AdminQNAList.qn'">
      <input type="button" value="글삭제" class="btn btn-primary" onclick="location.href='./QNADeleteAction.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
      <c:if test="${id eq qdto.id}">

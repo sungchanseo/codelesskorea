@@ -39,11 +39,21 @@
 				<input type="hidden" name="bno" value="${qdto.bno }">
 				<input type="hidden" name="pageNum" value="${pageNum }">
 				   작성자 : ${qdto.nickname} <input type="hidden" name="nickname" required value="${qdto.nickname}" readonly="readonly"><br>
-				   제목 : <input type="text" name="title" required value="${qdto.title}" readonly="readonly"><br>
-				   내용 : <br> 
-				  <textarea rows="15" cols="55" name="content" required>${qdto.content}</textarea><br>
-				  <input type="submit" value="글 수정하기" class="btn">
-				  <input type="button" value="수정취소" class="btn" onclick="location.href='./AdminQNAList.me'"> 
+		          <label>글제목
+				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110">
+					</label>
+					<br>
+				    <label>글 내용<br>
+				    <textarea name="content" placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control"></textarea>
+					</label>
+					<br>
+					<label>첨부 이미지
+				    <input type="file" name="image" class="form-control">
+					</label>
+					 <div style= "float: right; margin-top: 30px;">	
+				  <input type="submit" value="글 수정하기" class="btn btn-primary">
+				  <input type="button" value="수정취소" class="btn btn-secondary" onclick="location.href='./AdminQNAList.qn'">
+				  </div> 
 				</form>
 			</fieldset>
 

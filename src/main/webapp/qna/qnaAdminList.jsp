@@ -15,6 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
@@ -26,15 +27,9 @@
 <%-- 	페이지번호 : ${pageNum }<br> --%>
 <%-- 	아이디 : ${id }<br> --%>
 	
-	 <!--   사이드바 -->
-	  <div class="col-sm-4">
- <div class="container" id="left">
-  <br>
-  <h4> QnA 게시판</h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./AdminQNAList.qn'">질문 목록 </h5>
-  </div>
-	</div>	
+<div class="col-sm-4">
+<%@ include file="../mySide.jsp"%>
+</div>
 	
 	 <!--   사이드바 -->
 	 
@@ -64,7 +59,7 @@
      <td width="200px;">${qdto.regdate}<input type="hidden" name="regdate" value="${qdto.regdate}"></td>
      <td width="500px;" style="text-align: center;">
     <c:if test="${qdto.re_Lev > 0}">
-    <img src="./qna/re.png" width="30" height="30">
+    <img src="./qna/re.png" width="30" height="30"> 
 	</c:if>
      <a href="./AdminQNAContent.qn?bno=${qdto.bno }&pageNum=${pageNum}">${qdto.title }</a></td>
      <td width="100px;">${qdto.nickname}</td> 
@@ -89,7 +84,7 @@
 	 </div>
 	 </div>
 		<div class="container" style="margin: auto;">
-			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">
+			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
 		  	<c:if test="${startPage > pageBlock }"> 
 			<li class="page-item"><a class="page-link" href="./AdminQNAList.qn?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
 			</c:if>

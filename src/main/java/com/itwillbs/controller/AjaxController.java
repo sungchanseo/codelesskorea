@@ -13,6 +13,7 @@ import com.itwillbs.action.member.AjaxAction;
 import com.itwillbs.action.member.AjaxBlockedAction;
 import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.action.mypage.AjaxLikedAction;
+import com.itwillbs.action.mypage.AjaxProductDelAction;
 import com.itwillbs.action.mypage.AjaxUnLikedAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -102,7 +103,19 @@ public class AjaxController extends HttpServlet {
 			}
 		}
 		
-
+		// ./AjaxDeleteProduct.aj (상품삭제)
+		else if(command.equals("/AjaxDeleteProduct.aj")) {
+			System.out.println("/AjaxDeleteProduct.aj");
+			action = new AjaxProductDelAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");
 		System.out.println("\n");
@@ -129,6 +142,6 @@ public class AjaxController extends HttpServlet {
 		System.out.println(" doProcess - 끝(컨트롤러 종료) ");
 	}
 	
-	
+
 
 }
