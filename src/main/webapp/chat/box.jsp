@@ -10,20 +10,28 @@
 	<script type="text/javascript">
 
 	</script>
+	
+	  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 16px;
+    }
+  </style>
 
 </head>
 <body>
 	<jsp:include page="../nav.jsp"/>
-    <div class="container">
-        <table class="table" style="margin: 0 auto;">
+    <div class="container" >
+        <table class="table" style="margin: 0 auto;" >
             <thead>
                 <tr>
-                    <th><h4>주고받은 메시지 목록</h4></th>
+                    <th> <h3 style="font-family: 'TheJamsil5Bold';" align="center">주고받은 메세지 목록</h3>
+<hr style="border: 0;height: 3px; background-color: gray;" width="95%";>	</th>
                 </tr>
             </thead>
             <div style="overflow-y: auto; width: 100%; max-height: 450px;">
-                <table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd; margin: 0 auto;">
-                    <tbody id="boxTable">
+                <table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd; margin: 0 auto; font-family: Arial, sans-serif;" >
+                    <tbody id="boxTable"> 
                     </tbody>
                 </table>
             </div>
@@ -82,6 +90,7 @@
         </script>
 
 	</c:if>
-    <jsp:include page="../footer.jsp"></jsp:include>
+	<br>
+    <jsp:include page="../footer.jsp" />
 </body>
 </html>

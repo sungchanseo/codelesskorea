@@ -11,6 +11,8 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class MemberUpdateProAction implements Action {
 
@@ -38,31 +40,39 @@ public class MemberUpdateProAction implements Action {
 			return forward;
 		}
 
-		// 한글처리(인코딩)
+		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		//notice_image 업로드
+				String realpath = request.getRealPath("/upload"); //deprecated -> 실무에선 context에 있는 realpath를 사용함
+				System.out.println("realpath: "+realpath);
+				int maxSize = 10 * 1024 * 1024; //10MB
+				MultipartRequest multupartRequest 
+				= new MultipartRequest(
+						request,
+						realpath,
+						maxSize,
+						"UTF-8",
+						new DefaultFileRenamePolicy()
+						);
+				System.out.println("파일업로드성공");
+		
 		
 		// 전달정보(파라메터) 저장(DTO)
 		MemberDTO dto = new MemberDTO();
+
 		
-//		dto.setId(rs.getString("id"));
-//		dto.setPw(rs.getString("pw"));
-//		dto.setName(rs.getString("name"));
-//		dto.setNickname(rs.getString("nickname"));
-//		dto.setTel(rs.getString("tel"));
-//		dto.setAddress(rs.getString("address"));
-//		dto.setPhoto(rs.getString("photo"));
-//		dto.setRegdate(rs.getDate("regdate"));
-		
-		
-		dto.setId(request.getParameter("id"));
-		dto.setPassword(request.getParameter("password"));
-		dto.setName(request.getParameter("name"));
-		dto.setNickname(request.getParameter("nickname"));
-		dto.setPhone_number(request.getParameter("phone_number"));
-		dto.setAddress(request.getParameter("address"));
-		dto.setUser_image(request.getParameter("user_image"));
+		dto.setId(multupartRequest.getParameter("id"));
+		dto.setAddress(multupartRequest.getParameter("address"));
+		dto.setName(multupartRequest.getParameter("name"));
+		dto.setNickname(multupartRequest.getParameter("nickname"));
+		dto.setPhone_number(multupartRequest.getParameter("phone_number"));
+		dto.setPassword(multupartRequest.getParameter("password"));
 		dto.setRegdate(new Date(System.currentTimeMillis()));
-		dto.setBirth_date(request.getParameter("birth_date"));
+		dto.setUser_image(multupartRequest.getFilesystemName("user_image"));
+		dto.setBirth_date(multupartRequest.getParameter("birth_date"));
+		dto.setAddress2(multupartRequest.getParameter("address2"));
+		dto.setPost_number(Integer.parseInt(multupartRequest.getParameter("post_number")));
 		
 		System.out.println(dto);
 		// DAO - 정보수정 메서드 호출 - memberUpdate(dto)

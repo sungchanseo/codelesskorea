@@ -82,9 +82,12 @@ String nickname = mdto.getNickname();
 					  <option value='기타'>기타</option>
 					</select>
 		   	  작성자(닉네임) : <%=nickname %><input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
-		      제목 : <input type="text" name="title" required> <br> <br>
-		      내용 : <br>
-		      <textarea rows="15" cols="50" name="content" maxlength="700">
+	          <label>글제목
+				    <input type="text" name="title" placeholder="제목을 입력해 주세요."class="form-control" size="110">
+					</label>
+					<br>
+				    <label>글 내용<br>
+				    <textarea name="content"  cols="110px;" rows="10px;" class="form-control">
 ■ 주문관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 		      
 *주문자 성함 : 
@@ -93,17 +96,23 @@ String nickname = mdto.getNickname();
 		      
 * 사이트 이용관련(주문,취소,배송 등) 각종궁금하신 사항은 
 [고객센터] - [자주하는질문] 으로 들어가시면 자세하게 답변이 남겨져있으니 참고 바랍니다.
-		      </textarea><br>
-		      <input type="file" value="이미지첨부" name="image">
-		  
-				<input type="submit" value="글쓰기">
-		
+				    </textarea>
+					</label>
+					<br>
+					<label>첨부 이미지
+				    <input type="file" name="image" class="form-control">
+					</label>
+		   <div style= "float: right; margin-top: 30px;">	
+				<input type="submit" value="글쓰기" class="btn btn-primary">
+			</div>	
 		   </form>		
 		</fieldset>
 	</div>	
 
 </div>	
 		<br><br>
+
+
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

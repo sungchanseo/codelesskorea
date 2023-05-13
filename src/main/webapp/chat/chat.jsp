@@ -11,6 +11,13 @@
 	<jsp:include page="../head.jsp"/>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="./js/chat.js"></script>
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 16px;
+    }
+  </style>
+
 
 </head>
 	<jsp:include page="../nav.jsp"/>

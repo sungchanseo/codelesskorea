@@ -52,9 +52,9 @@
 	
 	 <!--   사이드바 -->
 	 
-	 <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 50px; width: 100%;">
- <h1 style="font-family: 'TheJamsil5Bold';">QnA 답변하기</h1>
+	<div class="col-sm-8" style="margin:auto;">
+ <div class="container" id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">답 변 하 기</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 	
 	
@@ -70,16 +70,32 @@
 		    <input type="hidden" name="id" value="<%=id%>">
 		    <input type="hidden" name="qna_category" value="<%=qna_category%>">
 			  작성자(닉네임) : <b><%=nickname %></b> <input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
-		      제목 : <input type="text" name="title" value="답변 입니다." readonly> <br>
-		      내용 : <br>
-		     <textarea rows="15" cols="55" name="content" placeholder="답변글을 작성해주세요."></textarea><br>
-		      이미지첨부 : <input type="file" name="image"> 
-				<input type="submit" value="글쓰기">
-				      
+		          <label>글제목
+				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110">
+					</label>
+					<br>
+				    <label>글 내용<br>
+				    <textarea name="content" placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control"></textarea>
+					</label>
+					<br>
+					<label>첨부 이미지
+				    <input type="file" name="image" class="form-control">
+					</label>
+				 <div style= "float: right; margin-top: 30px;">	
+				<input type="submit" value="글쓰기" class="btn btn-primary">
+				 </div>
 		   </form>		
 		</fieldset>
 		
 	</div>	</div>
+	
+	
+	
+
+
+	
+	
+	
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

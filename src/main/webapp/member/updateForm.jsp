@@ -90,7 +90,17 @@
 				return false;
 			}//주소 입력 제어
 			
-
+			if($('#address2').val() == ""){
+				alert('상세주소를 입력하세요.');
+				$('#address2').focus();
+				return false;
+			}//주소 입력 제어
+			
+			if($('#zipcode').val() == ""){
+				alert('우편번호를 입력하세요.');
+				$('#zipcode').focus();
+				return false;
+			}//주소 입력 제어
 
 		});//정보 입력안하면 submit기능 제어 끝
 		
@@ -122,12 +132,12 @@
 <!--  사이드바 -->
 			
 
-	 <div class="col-sm-8" style="margin:auto;">
+	<div class="col-sm-8" style=" margin-left: 350px;">
 	<div class="container" id="login-con"
 		style="width: 900px; color: black;">
 
 
-		<form action="./MemberUpdateProAction.me" id="fr" method="post">
+		<form action="./MemberUpdateProAction.me" id="fr" method="post" enctype="multipart/form-data">
 
 			<div class="form-group" id="log-form" style="width: 400px;">
 				<h2>
@@ -136,6 +146,19 @@
 				<h2 style="margin-bottom: 50px;">
 					<b>수정정보를 입력해주세요:)</b>
 				</h2>
+		
+		<div style="text-align: center; background-color: white;">
+		  <c:choose>
+		    <c:when test="${empty dto.user_image}">
+		      <img src="./member/userimg.png" alt="프로필사진 " style="max-width: 200px; max-height: 200px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
+		    </c:when>
+		    <c:otherwise>
+		      <img src="./upload/${dto.user_image}" alt="프로필사진" style="max-width: 200px; max-height: 200px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
+		    </c:otherwise>
+		  </c:choose>
+		</div>
+				<br>
+				
 
 				아이디 <input type="email" class="form-control" id="id"
 					value=${requestScope.dto.id } name="id" readonly> <br> 
@@ -161,20 +184,29 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15">
-							<input type="button" value="우편번호찾기" onclick="addr();"></td>
+						<td><input type="text" name="post_number" id="zipcode" size="15" onclick="addr();">
+						<input type="button" value="우편번호찾기" onclick="addr();">
+						</td>
 					</tr>
 					<tr>
 						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}"></td>
 					<tr>
 					<tr>
-						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."></td>
+						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."
+						value="${dto.address2}"> </td>
 					<tr>
 				</table>
 				
-				
-				<br> 프로필사진 <input type="file" name="user_image">
-				 <br><br>
+<!-- 		<!-- 현재 이미지 미리보기 --> 
+<%-- 		<img src="./upload/${dto.user_image}" alt="프로필 사진"> --%>
+		
+		<!-- 파일 선택 input -->
+<!-- 		<input type="file" name="user_image"> -->
+		
+		<!-- 기존 이미지 파일명 전달 -->
+		<input type="hidden" name="user_image" value="${dto.user_image}">
+		
+				<br><br>
 
 
       	<button type="submit" class="btn btn-primary btn-block"

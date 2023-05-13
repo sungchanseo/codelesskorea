@@ -9,7 +9,61 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 <meta charset="UTF-8"> 
+
+	<style type="text/css">
+
+.round-btn {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  padding: 0px;
+  transition: transform 0.2s ease-in-out;
+  font-size: 1.5rem !important; 
+  cursor: pointer;
+  
+  display: flex; /* 버튼을 flex container로 설정 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+.round-btn.yellow {
+  color: #ff6347;
+}
+
+.round-btn.green {
+  color: #00cc44;
+}
+
+.round-btn:hover {
+  transform: scale(1.2);
+}
+
+.round-btn:focus {
+  outline: none;
+}
+
+#nttable * {
+  font-size: 95%;
+  text-align: left;
+font-weight: bold !important;
+  style="font-family: 'Font Awesome 5 Free';"
+}
+#nttable th {
+  width: 30%;
+  font-weight: bold !important;
+  
+}
+
+
+
+#nttable table td {
+  width: 400px;
+  height: 100px;
+}
+
+	</style>
 		<script type="text/javascript">
 		
 		
@@ -50,17 +104,21 @@
 <body>
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <!-- 	<h1>memberList.jsp</h1> -->
-	<h2>회원정보 목록페이지 (관리자용)</h2>
-	<%
-	// 세션제어 (로그인+관리자일때만 사용가능)
-	%>
+	
+<%-- 	<%@ include file="../mySide.jsp"%> --%>
+	
+		 <!--   사이드바 -->
+	 
+	<br>
+ <h1 style="font-family: 'TheJamsil5Bold';" align="center">회원목록</h1>
+<hr style="border: 0;height: 3px; background-color: gray;" width="95%";>
 	
 	<c:if test="${ empty sessionScope.id || !id.equals('admin@gmail.com') }">
 		<c:redirect url="./MemberLogin.me"/>
 	</c:if>
-	
-	<!-- Action에서 받아온 정보(memberList) -->	
-	<table border="1">
+	<br>
+	  <table class="table" id="nttable" style= "width: 95%"; align="center"; >
+   <thead style="background-color: #F6F6F6;">
 	   <tr>
 	      <td>아이디</td>
 	      <td>비밀번호</td>
@@ -75,6 +133,9 @@
 	      <td>구매목록</td>
 	      <td>판매목록</td>
 	   </tr>
+	</thead>
+	<tbody> 
+	   
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.memberList }">
 		   <tr>
@@ -87,37 +148,42 @@
 		      <td>${dto.user_image }</td>
 		      <td>${dto.regdate }</td>
 		      <td>${dto.birth_date }</td>
-		      <td><input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" data-user-id="${dto.id}"
-		      <c:if test="${dto.blocked}">checked</c:if>>
-				  <c:if test="${dto.blocked}">
-				    <span style="color:red">차단</span>
-				  </c:if>
-				  <c:if test="${!dto.blocked}">
-				    <span style="color:green">정상</span>
-				  </c:if>
-		      </td>
-		    <td><button type="button" name="adminbuyList" value="${dto.id}">구매목록</button></td>
-			<td><button type="button" name="adminsaleList" value="${dto.id}">판매목록</button></td>
+<td>
+  <label class="checkbox-container">
+    <input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" style="transform: scale(1.5); margin-right: 5px" data-user-id="${dto.id}"
+    <c:if test="${dto.blocked}">checked</c:if>>
+    <span class="checkmark"></span>
+  </label>
+  <c:if test="${dto.blocked}">
+    <span style="color:red"> 차단 <i class="fas fa-ban"></i> </span>
+  </c:if>
+  <c:if test="${!dto.blocked}">
+    <span style="color:green">정상 <i class="far fa-check-circle"></i></span>
+  </c:if>
+</td>
+<td><button type="button" name="adminbuyList" value="${dto.id}" class="round-btn yellow"><i class="fas fa-shopping-cart"></i></button></td>
+<td><button type="button" name="adminsaleList" value="${dto.id}" class="round-btn green"><i class="fas fa-shopping-bag"></i></button></td>
 		   </tr>
 	   	</c:forEach>
-	</table>
+	</tbody>
+</table>
 	
-	
-	
-	
-		  <c:if test="${startPage > pageBlock }"> 
-		   <a href="./MemberList.me?pageNum=${startPage-pageBlock} ">[이전]</a>
-		   </c:if>
-		   
-		   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-		   <a href="./MemberList.me?pageNum=${i }">[${i }]</a>
-		   </c:forEach>
-		   
-		   <c:if test="${endPage<pageCount }">
-		   <a href="./MemberList.me?pageNum=${startPage+pageBlock} ">[다음]</a>
-		   </c:if>
 
-
+		<div class="container" style="margin: auto;">
+				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
+			  	<c:if test="${startPage > pageBlock }"> 
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
+				</c:if>
+			   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${i }"><span>${i }</span></a></li>
+				</c:forEach>
+			    <c:if test="${endPage<pageCount }">
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+				</c:if>
+			  </ul>
+			 
+	  		</div>
+	<br>
 
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
