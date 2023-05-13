@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
-import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.NoticeDAO;
 import com.itwillbs.db.NoticeDTO;
 
@@ -18,6 +16,8 @@ public class NoticeListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeListAction.execute() 메소드 호출");
 		
+		//한글처리
+		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
 		
@@ -27,12 +27,32 @@ public class NoticeListAction implements Action{
 //			return forward;
 //		}
 		
+
+		//////////////////////////////////////////////////////////
+		//검색로직 
+		String category= request.getParameter("category");
+		String search = request.getParameter("search");
+		System.out.println("검색어 : "+search+" 카테고리 : "+category);
+		int count; 
+		
+		// DAO 객체 생성
+		NoticeDAO dao = new NoticeDAO();
+		
+		if(search != null) {
+			//검색어와 일치하는 글의 갯수
+			search = search.trim();
+			count= dao.getBoardCount(search, category);
+		}else {
+			//검색어가 없을 때
+			//전체 글 갯수 
+			count = dao.getBoardCount();
+		}
+		//////////////////////////////////////////////////////////
+		
 		//////////////////////////////////////////////////////////
 		//페이징처리1/
-		NoticeDAO dao = new NoticeDAO();
-
-		int count = dao.getBoardCount();
 		System.out.println("noticeList의 getBoardCount()메소드 값 : "+count);
+
 		int pageSize =5;
 		int pageBlcok;
 		
@@ -41,15 +61,25 @@ public class NoticeListAction implements Action{
 
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1)*pageSize+1;
-		int endRow = currentPage*pageSize+1;
+		int endRow = currentPage*pageSize;
 
-		List<NoticeDTO> noticeList = dao.getNoticeList(startRow, pageSize);
 		
 		//////////////////////////////////////////////////////////
 
 		
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
+
+		List<NoticeDTO> noticeList =null;
+		if(search != null) {
+			//검색어가 있는 경우
+			noticeList = dao.getNoticeList(startRow, pageSize, search, category); 
+		}else {
+			//검색어가 없는 경우
+			noticeList = dao.getNoticeList(startRow, pageSize);
+		}
+		
+		//페이지 번호 계산하기 
 		int pageCount;
 		int pageBlock;
 		int startPage;
@@ -84,6 +114,8 @@ public class NoticeListAction implements Action{
 		//회원정보를 request 영역에 저장
 		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("category", category);
+		request.setAttribute("search", search);
 		
 		
 		

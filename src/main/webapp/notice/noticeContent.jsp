@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +51,8 @@ ${realpath }
 		</table>
 
 <div style= "float: right; margin-top: 80px;">
-<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }" class="btn btn-primary">게시글 수정</a>
-<a href="./NoticeDelete.no?notice_id=${dto.notice_id }" class="btn btn-primary">게시글 삭제</a>
+<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 수정</a>
+<a href="./NoticeDelete.no?notice_id=${dto.notice_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 삭제</a>
 <a href="./NoticeList.no?pageNum=${pageNum }" class="btn btn-secondary">목록으로</a>
 </div>
 </div>

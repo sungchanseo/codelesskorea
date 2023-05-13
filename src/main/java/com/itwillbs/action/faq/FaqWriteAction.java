@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -20,6 +21,20 @@ public class FaqWriteAction implements Action{
 		//한글처리 
 		request.setCharacterEncoding("UTF-8");
 		
+		//관리자 계정인지 확인 
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
+		
+		ActionForward forward = new ActionForward();
+		
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./FaqList.fa");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
+		
 		//FaqDTO객체에 전달받은 FAQ 내용을 전달받아 초기화
 		FaqDTO dto = new FaqDTO();
 		
@@ -34,7 +49,7 @@ public class FaqWriteAction implements Action{
 		dao.faqWrite(dto);
 		
 		//디비처리를 완료하고 페이지 이동 -> 티켓 가지고서
-		ActionForward forward = new ActionForward();
+		forward = new ActionForward();
 		forward.setPath("./FaqList.fa"); //FAQ 쓴 뒤에는 공지 보기 페이지로 이동한다. 
 		forward.setRedirect(true);
 		System.out.println("M : FAQ 쓰기 완료=> FAQ 보기 페이지로 이동합니다.");

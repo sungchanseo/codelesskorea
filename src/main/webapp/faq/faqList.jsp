@@ -4,44 +4,111 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CODE LESS - 자주묻는 질문</title>
+<%@ include file="../head.jsp"%>
 </head>
 <body>
-<h1>자주하는 질문</h1>
-<h2>검색창 들어가는 자리</h2>
-<h2>카테고리 들어가는 자리</h2>
-<table border="1">
-   <tr>
-     <th>Faq번호</th>
-     <td>카테고리</td>
-     <td>제목</td>
-   </tr> 
+<%@ include file="../nav.jsp"%>
 
+ <!-- 사이드바 -->
+
+  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> 자주묻는 질문</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
+  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
+  </div>
+	</div>	
+  
+ <!--   사이드바 -->
+  
+ <div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">자 주 묻 는 질 문</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
+페이지번호 : ${pageNum }<br>
+<!-- 검색창기능 -->
+<div id="table_search">
+	<form action="./FaqList.fa" method="post">
+		<select name="selecter">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+		</select>
+		<input type="text" name="search" class="input_box">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+	</form>
+</div>
+<!-- 검색창기능 -->
+
+<!-- 카테고리 기능 -->
+<form action="./FaqList.fa" method="post">
+<button onclick="./FaqList.fa">전체</button>
+<button name="category" value="이용정책">이용정책</button>
+<button name="category" value="구매">구매</button>
+<br>
+<button name="category" value="판매">판매</button>
+<button name="category" value="신고">신고</button>
+<button name="category" value="기타">기타</button>
+</form>
+
+
+
+<!-- 카테고리 기능 -->
+
+  <table class="table" id="nttable">
+   <thead style="background-color: #F6F6F6;">
+    <tr>
+     <th style="text-align: center;">NO.</th>
+     <th style="text-align: center;">카테고리</th>
+     <th style="text-align: center;">제목</th>
+   </tr> 
+	</thead>
+	<tbody>
    <c:forEach var="dto" items="${requestScope.faqList }">
    <tr>
-     <td>${dto.faq_id }<input type="hidden" name="Faq_id" value="${dto.faq_id }"></td>
-     <td>${dto.category}</td>
-     <td><a href="./FaqContent.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">${dto.title }</a></td>
+     <td width="30px;"  style="text-align: center;">${dto.faq_id }<input type="hidden" name="faq_id" value="${dto.faq_id }"></td>
+     <td width="100px;"  style="text-align: center;">${dto.category}</td>
+      <td width="500px;" style="text-align: center;"><a href="./FaqContent.fa?pageNum=${pageNum}&faq_id=${dto.faq_id }">${dto.title }</a></td>
    </tr>
 	</c:forEach>
 </table>
 <hr>
-	
+	<div class="container">
+	  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
 	<c:if test="${startPage > pageBlock }"> 
-	<a href="./FaqList.fa?pageNum=${startPage-pageBlock} ">[이전]</a>
+	<li class="page-item"><a class="page-link" a href="./FaqList.fa?pageNum=${startPage-pageBlock}&category=${category }&selecter=${selecter}&search=${search}"><sapn>이전</sapn></a></li>
 	</c:if>
-	
+
 	<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-	<a href="./FaqList.fa?pageNum=${i }">[${i }]</a>
+	<li class="page-item"><a class="page-link" href="./FaqList.fa?pageNum=${i }&category=${category }&selecter=${selecter}&search=${search}"><span>${i }</span></a></li>
 	</c:forEach>
 	
 	<c:if test="${endPage<pageCount }">
-	<a href="./FaqList.fa?pageNum=${startPage+pageBlock} ">[다음]</a>
+	<li class="page-item"><a class="page-link" href="./FaqList.fa?pageNum=${startPage+pageBlock}&category=${category }&selecter=${selecter}&search=${search}"><span>다음</span></a></li>
 	</c:if>
+  </ul>
+  </div>	
 <br>
+<c:set var="category" value="${category }"/>
+<c:set var="selecter" value="${selecter }"/>
+<c:set var="search" value="${search }"/>
+<c:set var="pageNum" value="${pageNum }"/>
+<div style= "float: right;">
 
-<a href="./FaqWrite.fa">글쓰기</a>
-<a href="./Main.me">메인으로</a>
+<!-- Faq 글쓰기는 관리자만 가능  -->
+<c:if test="${id.equals('admin@gmail.com') }">
+<button type="button" class="btn btn-primary" onclick="location.href='./FaqWrite.fa'">글쓰기</button>
+</c:if>
+<button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
+</div>
+</div>
+</div>
+
+<%@ include file="../footer.jsp"%>
 </body>
 </html>

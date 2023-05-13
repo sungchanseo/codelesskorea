@@ -31,8 +31,9 @@
 
   <form action="./NoticeUpdateAction.no" method="post">
 
-   	글번호 ${dto.notice_id }
-   	<input type="hidden" name="notice_id" value="${dto.notice_id }" >
+   	글번호 ${dto.notice_id } 페이지번호 ${pageNum }
+   	<input type="hidden" name="notice_id" value="${dto.notice_id }">
+	<input type="hidden" name="pageNum" value="${pageNum }">
 	<br>
     <label>글제목<br>
     <input type="text" name="title" value="${dto.title }" class="form-control" size="110">
@@ -53,7 +54,7 @@
 
 	<div style= "float: right;">
  <input type="submit" value="작성완료" class="btn btn-primary">
- <a href="./NoticeList.no" class="btn btn-secondary">목록으로</a>
+ <a href="./NoticeList.no?pageNum=${pageNum }" class="btn btn-secondary">목록으로</a>
 	 </div>
   </form>
  
