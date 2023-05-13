@@ -18,19 +18,20 @@ public class NoticeDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeDeleteAction_execute()메소드 호출! ");
 		
-		//공지사항 계정이 admin인지 확인 
-		/*
+		//관리자 계정인지 확인 
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
 		
 		ActionForward forward = new ActionForward();
-
-		if(id.equals("admin")) {
-			forward.setPath("./NoticeList.me");
-			forward.setRedirect(false);
+		
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./NoticeList.no");
+			forward.setRedirect(true);
 			return forward;
 		}
-		*/
+		
+		String pageNum = request.getParameter("pageNum");
 		
 		NoticeDAO dao = new NoticeDAO();
 		NoticeDTO dto = new NoticeDTO();
@@ -38,7 +39,7 @@ public class NoticeDeleteAction implements Action {
 		int result = dao.deleteNotice(dto);
 		
 		if(result ==1) {
-			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./NoticeList.no");
+			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./NoticeList.no?pageNum="+pageNum);
 		}
 		
 		

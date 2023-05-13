@@ -2,6 +2,7 @@ package com.itwillbs.action.notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -17,6 +18,21 @@ public class NoticeUpdateAction implements Action{
 			
 		request.setCharacterEncoding("UTF-8");
 		
+		//관리자 계정인지 확인 
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
+		
+		ActionForward forward = new ActionForward();
+		
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./NoticeList.no");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
+		String pageNum = request.getParameter("pageNum");
+		
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_id(Integer.parseInt(request.getParameter("notice_id")));
 		
@@ -28,8 +44,8 @@ public class NoticeUpdateAction implements Action{
 		dao.updateNotice(dto);
 		
 		//디비처리를 완료하고 페이지 이동 -> 티켓 가지고서
-		ActionForward forward = new ActionForward();
-		forward.setPath("./NoticeContent.no?notice_id="+request.getParameter("notice_id")); //공지사항 쓴 뒤에는 공지 보기 페이지로 이동한다. 
+		forward = new ActionForward();
+		forward.setPath("./NoticeContent.no?pageNum="+pageNum+"&notice_id="+request.getParameter("notice_id")); 
 		forward.setRedirect(true);
 		System.out.println("M : 공지사항 수정 완료=> 공지사항 보기 페이지로 이동합니다.");
 		

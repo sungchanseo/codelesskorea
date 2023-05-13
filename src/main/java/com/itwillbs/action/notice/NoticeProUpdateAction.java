@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -24,14 +25,18 @@ public class NoticeProUpdateAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : NoticeProUpdateAction_execute()메소드 호출!");
 		
+		//관리자 계정인지 확인 
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
+		
 		ActionForward forward = new ActionForward();
 		
-//		계정정보가 없을 떄 
-//		if(id == null) {
-//			forward.setPath("./MemberLogin.me");
-//			forward.setRedirect(false);
-//			return forward;
-//		}
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./NoticeList.no");
+			forward.setRedirect(true);
+			return forward;
+		}
 		
 		
 		String notice_id = request.getParameter("notice_id");

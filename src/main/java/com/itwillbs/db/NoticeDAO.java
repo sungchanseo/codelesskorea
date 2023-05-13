@@ -92,6 +92,9 @@ public class NoticeDAO {
 			return result;
 		}	//공지사항 글쓰기 noticeWrite()메소드 끝
 
+		/*
+		 * 검색처리 메소드 시작!
+		 */
 		
 		//페이징 처리 - getBoradCount()메소드 시작
 			public int getBoardCount() {
@@ -119,45 +122,131 @@ public class NoticeDAO {
 			}
 			//getBoradCount()메소드 끝
 			
-			//페이징처리 - 공지리스트를 불러오는 getNoticeList()메소드 시작
-			public List<NoticeDTO> getNoticeList(int startRow, int pageSize) {
-				
-				List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-				
+			//검색처리 오버로딩- getBoradCount(String search)메소드 시작
+			public int getBoardCount(String search, String category) {
+				int result=0;
 				try {
 					con = getCon();
-					sql = "select * from notice order by notice_id desc limit ?,?";
+					System.out.println("디비연결, 드라이버 로드 성공");
+					
+					if(category.equals("title")) {
+						//제목으로 검색할 때 
+						sql = "select count(*) from notice where title like ?";
+					}else {
+						//내용으로 검색할 때
+						sql = "select count(*) from notice where content like ?";
+					}
 					pstmt = con.prepareStatement(sql);
 					
-					pstmt.setInt(1, startRow-1);
-					pstmt.setInt(2, pageSize);
-					rs = pstmt.executeQuery();
-					// DB정보(rs) -> DTO -> list
-					while (rs.next()) {
-						NoticeDTO dto = new NoticeDTO();
-						
-						dto.setNotice_id(rs.getInt("notice_id"));
-						dto.setContent(rs.getString("content"));
-						dto.setCount(rs.getInt("count"));
-						dto.setDate(rs.getDate("date"));
-						dto.setNotice_image(rs.getString("notice_image"));
-						dto.setTitle(rs.getString("title"));
-						
-						
-						noticeList.add(dto);
-					}
+					pstmt.setString(1, "%"+search+"%");
 					
-					System.out.println(" DAO : 공지목록 조회성공! ");
-					System.out.println(" DAO : 목록 수 " + noticeList.size());
+					//sql문 실행
+					rs=pstmt.executeQuery();
+					
+					//데이타처리
+					if(rs.next()) {
+						result = rs.getInt(1);
+					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} finally {
+				}finally {
 					closeDB();
 				}
+				return result;
+			}
+			//getBoradCount()메소드 끝
+			
+			//페이징처리 - 공지리스트를 불러오는 getNoticeList()메소드 시작
+				public List<NoticeDTO> getNoticeList(int startRow, int pageSize) {
+					
+					List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+					
+					try {
+						con = getCon();
+						sql = "select * from notice order by notice_id desc limit ?,?";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setInt(1, startRow-1);
+						pstmt.setInt(2, pageSize);
+						
+						rs = pstmt.executeQuery();
+						// DB정보(rs) -> DTO -> list
+						while (rs.next()) {
+							NoticeDTO dto = new NoticeDTO();
+							
+							dto.setNotice_id(rs.getInt("notice_id"));
+							dto.setContent(rs.getString("content"));
+							dto.setCount(rs.getInt("count"));
+							dto.setDate(rs.getDate("date"));
+							dto.setNotice_image(rs.getString("notice_image"));
+							dto.setTitle(rs.getString("title"));
+							
+							noticeList.add(dto);
+						}
+						
+						System.out.println(" DAO : 공지목록 조회성공! ");
+						System.out.println(" DAO : 목록 수 " + noticeList.size());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} finally {
+						closeDB();
+					}
+					
+					return noticeList;		
+				}//공지리스트를 불러오는 getNoticeList()메소드 시작
+			
+				//검색기능을 추가한 getNoticeList()메소드 시작
+				public List<NoticeDTO> getNoticeList(int startRow, int pageSize, String search, String category) {
 				
-				return noticeList;		
-		}//공지리스트를 불러오는 getNoticeList()메소드 시작
+					List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+					try {
+						con = getCon();
+						
+						if(category.equals("title")) {
+							//제목으로 검색할 때
+							sql = "select * from notice where title like ? order by notice_id desc limit ?,?";
+							
+						}else {
+							//내용으로 검색할 때
+							sql = "select * from notice where content like ? order by notice_id desc limit ?,?";
+						}
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setString(1, "%"+search+"%");
+						pstmt.setInt(2, startRow-1);
+						pstmt.setInt(3, pageSize);
+						
+						rs = pstmt.executeQuery();
+						
+						// DB정보(rs) -> DTO -> list
+						while (rs.next()) {
+							NoticeDTO dto = new NoticeDTO();
+							
+							dto.setNotice_id(rs.getInt("notice_id"));
+							dto.setContent(rs.getString("content"));
+							dto.setCount(rs.getInt("count"));
+							dto.setDate(rs.getDate("date"));
+							dto.setNotice_image(rs.getString("notice_image"));
+							dto.setTitle(rs.getString("title"));
+							
+							noticeList.add(dto);
+						}
+						
+						System.out.println(" DAO : 공지목록 조회성공! ");
+						System.out.println(" DAO : 목록 수 " + noticeList.size());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} finally {
+						closeDB();
+					}
+					
+					return noticeList;		
+				}//검색처리 -공지리스트를 불러오는 getNoticeList()메소드 시작
+				
+				//검색처리 끝
+				///////////////////////////////////////////////////////////////////////////////
 			
 			//공지리스트의 공지글을 불러오는 getNoticeContent()메소드 시작
 			public NoticeDTO getNoticeContent(String notice_id) {

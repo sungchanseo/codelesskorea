@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -24,19 +25,23 @@ public class FaqProUpdateAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : FaqProUpdateAction_execute()메소드 호출!");
 		
+		//관리자 계정인지 확인 
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
+		
 		ActionForward forward = new ActionForward();
 		
-//		계정정보가 없을 떄 
-//		if(id == null) {
-//			forward.setPath("./MemberLogin.me");
-//			forward.setRedirect(false);
-//			return forward;
-//		}
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./FaqList.fa");
+			forward.setRedirect(true);
+			return forward;
+		}
 		
 		
-		    
+	    String pageNum = request.getParameter("pageNum");
 		String faq_id = request.getParameter("faq_id");
-		System.out.println("FAQ글수정 페이지의 글번호 "+faq_id);
+		System.out.println("글번호 "+faq_id+"페이지 번호 "+pageNum);
 		
 		FaqDAO dao = new FaqDAO();
 		FaqDTO dto = dao.getFaqContent(faq_id);
@@ -45,6 +50,7 @@ public class FaqProUpdateAction implements Action {
 		System.out.println("FAQ업데이트프로 액션의 "+dto);
 		//정보 저장
 		request.setAttribute("dto", dto);
+		request.setAttribute("pageNum", pageNum);
 				
 		//저장한 정보를 ./member/updateForm.jps에서  출력
 		forward.setPath("./faq/faqUpdate.jsp");

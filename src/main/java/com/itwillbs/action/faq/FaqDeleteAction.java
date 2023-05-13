@@ -18,26 +18,29 @@ public class FaqDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : FaqDeleteAction_execute()메소드 호출! ");
 		
-		//공지사항 계정이 admin인지 확인 
-		/*
+		//관리자 계정인지 확인 
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		System.out.println("현재 계정 : "+id);
 		
 		ActionForward forward = new ActionForward();
-
-		if(id.equals("admin")) {
-			forward.setPath("./FaqList.me");
-			forward.setRedirect(false);
+		
+		if(id == null || !id.equals("admin@gmail.com")) {
+			forward.setPath("./FaqList.fa");
+			forward.setRedirect(true);
 			return forward;
 		}
-		*/
+		
+		String pageNum = request.getParameter("pageNum");
+		
 		FaqDAO dao = new FaqDAO();
 		FaqDTO dto = new FaqDTO();
 		dto.setFaq_id(Integer.parseInt(request.getParameter("faq_id")));
 		int result = dao.deleteFaq(dto);
 		
+		
 		if(result ==1) {
-			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./FaqList.fa");
+			JSForward.alertAndMove(response, "게시글 삭제 성공!", "./FaqList.fa?pageNum="+pageNum);
 		}
 		
 		
