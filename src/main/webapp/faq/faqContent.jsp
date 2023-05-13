@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>자주하는 질문</h1>
-
+페이지번호 ${pageNum }
 	<table border="1">
 		   <tr>
 		     <th>FAQ번호</th>

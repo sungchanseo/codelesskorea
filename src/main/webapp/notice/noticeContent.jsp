@@ -8,9 +8,6 @@
 </head>
 <body>
 <h1>noticeContent</h1>
-<%-- ${requestScope.dto } --%>
-${dto.notice_image }
-${realpath }
 	<table border="1">
 		   <tr>
 		     <th>글번호</th>

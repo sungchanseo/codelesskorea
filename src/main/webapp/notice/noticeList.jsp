@@ -25,8 +25,8 @@
   <br>
   <h4> 공지게시판</h4>
   <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./NoticeList.me'"> 공지사항</h5>
-  <h5> 자주하는질문</h5>
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
+  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
   </div>
 	</div>	
   
@@ -42,35 +42,48 @@
   <table class="table" id="nttable">
    <thead style="background-color: #F6F6F6;">
    <tr>
-     <th>NO.</th>
+     <th style="text-align: center;">NO.</th>
      <th style="text-align: center;">제목</th>
-     <th>게시일</th>
-     <th>조회수</th>
+     <th style="text-align: center;">게시일</th>
+     <th style="text-align: center;">조회수</th>
    </tr> 
 	</thead>
 	<tbody>
    <c:forEach var="dto" items="${requestScope.noticeList }">
 <!-- rs <- DTO <- List -->
    <tr>
-     <td width="30px;">${dto.notice_id }<input type="hidden" name="notice_id" value="${dto.notice_id }"></td>
+     <td width="30px;" style="text-align: center;">${dto.notice_id }<input type="hidden" name="notice_id" value="${dto.notice_id }"></td>
      <td width="500px;" style="text-align: center;"><a href="./NoticeContent.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">${dto.title }</a></td>
-     <td width="100px;">${dto.date}</td>
-     <td width="100px;">${dto.count }</td>
+     <td width="100px;" style="text-align: center;">${dto.date}</td>
+     <td width="100px;" style="text-align: center;">${dto.count }</td>
    </tr>
 	</c:forEach>
 	</tbody>
 </table>
+
+<!-- 검색창기능 -->
+<div id="table_search">
+	<form action="./NoticeList.no?" method="post">
+		<select name="category">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+		</select>
+		<input type="text" name="search" class="input_box">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+	</form>
+</div>
+<!-- 검색창기능 -->
 	
 	<div class="container">
 	  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
   	<c:if test="${startPage > pageBlock }"> 
-	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage-pageBlock} "><sapn>다음</sapn></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 	</c:if>
    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${i }"><span>${i }</span></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${i }&category=${category }&search=${search } "><span>${i }</span></a></li>
 	</c:forEach>
     <c:if test="${endPage<pageCount }">
-	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+	<li class="page-item"><a class="page-link" href="./NoticeList.no?pageNum=${startPage+pageBlock}&category=${category }&search=${search } "><span>다음</span></a></li>
 	</c:if>
   </ul>
   </div>

@@ -18,11 +18,14 @@ public class FaqUpdateAction implements Action{
 			
 		request.setCharacterEncoding("UTF-8");
 		
+		String pageNum = request.getParameter("pageNum");
+		
 		FaqDTO dto = new FaqDTO();
 		dto.setFaq_id(Integer.parseInt(request.getParameter("faq_id")));
 		
 		dto.setTitle(request.getParameter("title"));
 		dto.setContent(request.getParameter("content"));
+		dto.setCategory(request.getParameter("category"));
 		
 		//공지사항 업데이트 메소드 호출 
 		FaqDAO dao = new FaqDAO();
@@ -30,7 +33,7 @@ public class FaqUpdateAction implements Action{
 		
 		//디비처리를 완료하고 페이지 이동 -> 티켓 가지고서
 		ActionForward forward = new ActionForward();
-		forward.setPath("./FaqContent.fa?faq_id="+request.getParameter("faq_id")); //공지사항 쓴 뒤에는 공지 보기 페이지로 이동한다. 
+		forward.setPath("./FaqContent.fa?pageNum="+request.getParameter("pageNum")+"&faq_id="+request.getParameter("faq_id"));  
 		forward.setRedirect(true);
 		System.out.println("M : FAQ 수정 완료=> FAQ 보기 페이지로 이동합니다.");
 		

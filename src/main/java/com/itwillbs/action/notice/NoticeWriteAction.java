@@ -25,7 +25,7 @@ public class NoticeWriteAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		//notice_image 업로드
-		String realpath = request.getRealPath("/upload"); //deprecated -> 실무에선 context에 있는 realpath를 사용함
+		String realpath = request.getRealPath("/upload");
 		System.out.println("realpath: "+realpath);
 		int maxSize = 10 * 1024 * 1024; //10MB
 		MultipartRequest multupartRequest 

@@ -34,9 +34,9 @@ public class FaqProUpdateAction implements Action {
 //		}
 		
 		
-		    
+	    String pageNum = request.getParameter("pageNum");
 		String faq_id = request.getParameter("faq_id");
-		System.out.println("FAQ글수정 페이지의 글번호 "+faq_id);
+		System.out.println("글번호 "+faq_id+"페이지 번호 "+pageNum);
 		
 		FaqDAO dao = new FaqDAO();
 		FaqDTO dto = dao.getFaqContent(faq_id);
@@ -45,6 +45,7 @@ public class FaqProUpdateAction implements Action {
 		System.out.println("FAQ업데이트프로 액션의 "+dto);
 		//정보 저장
 		request.setAttribute("dto", dto);
+		request.setAttribute("pageNum", pageNum);
 				
 		//저장한 정보를 ./member/updateForm.jps에서  출력
 		forward.setPath("./faq/faqUpdate.jsp");

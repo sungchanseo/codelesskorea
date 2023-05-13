@@ -11,6 +11,7 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.db.FaqDAO;
 import com.itwillbs.db.FaqDTO;
 import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.NoticeDAO;
 import com.itwillbs.db.NoticeDTO;
 
 public class FaqListAction implements Action{
@@ -19,6 +20,8 @@ public class FaqListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : FaqListAction.execute() 메소드 호출");
 		
+		//한글처리
+		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
 		
@@ -29,11 +32,34 @@ public class FaqListAction implements Action{
 //		}
 		
 		//////////////////////////////////////////////////////////
-		//페이징처리1/
+		//검색로직 
+		String category= request.getParameter("category");
+		String selecter = request.getParameter("selecter");
+		String search = request.getParameter("search");
+		System.out.println("검색어 : "+search+" 검색카테고리 : "+selecter+" 카테고리 : "+category);
+		int count; 
+		
 		FaqDAO dao = new FaqDAO();
+		
+		if(search != null) {
+		//검색어가 있을 때 
+		search = search.trim();
+		count= dao.getFaqCount(search, selecter);
+		}else if(category != null){
+		//카테고리를 선택했을 때
+		count= dao.getFaqCount(category);
+		}else{
+		//검색어가 없을 때
+		//전체 글 갯수 
+		count = dao.getFaqCount();
+		}
+		
+		//////////////////////////////////////////////////////////
+				
+		
+		//////////////////////////////////////////////////////////
+		//페이징처리1/
 
-		int count = dao.getFaqCount();
-		System.out.println("faqList의 getFaqCount()메소드 값 : "+count);
 		int pageSize =5;
 		int pageBlcok;
 		
@@ -44,13 +70,24 @@ public class FaqListAction implements Action{
 		int startRow = (currentPage-1)*pageSize+1;
 		int endRow = currentPage*pageSize+1;
 
-		List<FaqDTO> faqList = dao.getFaqList(startRow, pageSize);
 		
 		//////////////////////////////////////////////////////////
 
 		
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
+		List<FaqDTO> faqList =null;
+		if(search != null) {
+			//검색어가 있는 경우
+			faqList = dao.getFaqList(startRow, pageSize, search, selecter); 
+		}else if(category != null) {
+			//카테고리를 선택한 경우
+			faqList = dao.getFaqList(startRow, pageSize, category); 
+		}else {
+			//검색어가 없는 경우
+			faqList = dao.getFaqList(startRow, pageSize);
+		}
+		
 		int pageCount;
 		int pageBlock;
 		int startPage;
@@ -79,6 +116,9 @@ public class FaqListAction implements Action{
 		//회원정보를 request 영역에 저장
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("category", category);
+		request.setAttribute("search", search);
+		request.setAttribute("selecter", selecter);
 		
 		
 		forward.setPath("./faq/faqList.jsp");

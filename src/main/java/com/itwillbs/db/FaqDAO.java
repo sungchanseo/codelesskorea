@@ -93,7 +93,8 @@ public class FaqDAO {
 				try {
 					con = getCon();
 					System.out.println("디비연결, 드라이버 로드 성공");
-					
+					System.out.println("getFaqCount() 호출됨");
+
 					sql = "select count(*) from faq";
 					pstmt = con.prepareStatement(sql);
 					
@@ -111,6 +112,68 @@ public class FaqDAO {
 				return result;
 			}
 			//getBoradCount()메소드 끝
+			
+			//카테고리를 선택했을 때 
+			public int getFaqCount(String category) {
+				int result=0;
+				try {
+					con = getCon();
+					System.out.println("디비연결, 드라이버 로드 성공");
+					System.out.println("getFaqCount(category)");
+
+					sql = "select count(*) from faq where category=?";
+			
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, category);
+					
+					//sql문 실행
+					rs=pstmt.executeQuery();
+					
+					if(rs.next()) {
+						result = rs.getInt(1);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					closeDB();
+				}
+				return result;
+			}
+			
+			public int getFaqCount(String search, String selecter) {
+				int result=0;
+				try {
+					con = getCon();
+					System.out.println("디비연결, 드라이버 로드 성공");
+					System.out.println("getFaqCount(search, selecter) 호출됨!");
+
+					if(selecter.equals("title")) {
+						//제목으로 검색할 때 
+						sql = "select count(*) from faq where title like ?";
+					}else {
+						//내용으로 검색할 때
+						sql = "select count(*) from faq where content like ?";
+					}
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, "%"+search+"%");
+					
+					//sql문 실행
+					rs=pstmt.executeQuery();
+					
+					if(rs.next()) {
+						result = rs.getInt(1);
+					}
+					System.out.println("getFaqCount(search, selecter) : "+result);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					closeDB();
+				}
+				return result;
+			}
+			//검색처리 -getBoradCount()메소드 끝
 			
 			//페이징처리 - 자주묻는질문 리스트를 불러오는 getFaqList()메소드 시작
 			public List<FaqDTO> getFaqList(int startRow, int pageSize) {
@@ -145,7 +208,89 @@ public class FaqDAO {
 					closeDB();
 				}
 				return faqList;		
-		}//자주묻는질문 리스트를 불러오는 getFaqList()메소드 시작
+			}//자주묻는질문 리스트를 불러오는 getFaqList()메소드 시작
+			
+			//카테고리 선택했을 때 불러오기메소드
+				public List<FaqDTO> getFaqList(int startRow, int pageSize, String category) {
+				
+				List<FaqDTO> faqList = new ArrayList<FaqDTO>();
+				
+				try {
+					con = getCon();
+					sql = "select * from faq where category=? order by faq_id desc limit ?,?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, category);
+					pstmt.setInt(2, startRow-1);
+					pstmt.setInt(3, pageSize);
+					rs = pstmt.executeQuery();
+					// DB정보(rs) -> DTO -> list
+					while (rs.next()) {
+						FaqDTO dto = new FaqDTO();
+						
+						dto.setFaq_id(rs.getInt("faq_id"));
+						dto.setContent(rs.getString("content"));
+						dto.setCategory(rs.getString("category"));
+						dto.setTitle(rs.getString("title"));
+						
+						faqList.add(dto);
+					}
+					
+					System.out.println(" DAO : 자주묻는질문 조회성공! ");
+					System.out.println(" DAO : 질문목록 수 " + faqList.size());
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+				return faqList;		
+			}
+			
+			//검색처리 -자주묻는 리스트 출력하기 
+			public List<FaqDTO> getFaqList(int startRow, int pageSize, String search, String selecter) {
+				
+				List<FaqDTO> faqList = new ArrayList<FaqDTO>();
+				
+				try {
+					con = getCon();
+					
+					if(selecter.equals("title")) {
+						//제목으로 검색할 때
+						sql = "select * from faq where title like ? order by faq_id desc limit ?,?";
+						
+					}else {
+						//내용으로 검색할 때
+						sql = "select * from faq where content like ? order by faq_id desc limit ?,?";
+					}
+					pstmt = con.prepareStatement(sql);
+				
+					pstmt.setString(1, "%"+search+"%");
+					pstmt.setInt(2, startRow-1);
+					pstmt.setInt(3, pageSize);
+					
+					rs = pstmt.executeQuery();
+					
+					// DB정보(rs) -> DTO -> list
+					while (rs.next()) {
+						FaqDTO dto = new FaqDTO();
+						
+						dto.setFaq_id(rs.getInt("faq_id"));
+						dto.setContent(rs.getString("content"));
+						dto.setCategory(rs.getString("category"));
+						dto.setTitle(rs.getString("title"));
+						
+						faqList.add(dto);
+					}
+					
+					System.out.println(" DAO : 자주묻는질문 조회성공! ");
+					System.out.println(" DAO : 질문목록 수 " + faqList.size());
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+				return faqList;		
+			}//자주묻는질문 리스트를 불러오는 getFaqList()메소드 시작
 			
 			//자주묻는질문 리스트의 자주묻는질문 글을 불러오는 getFaqContent()메소드 시작
 			public FaqDTO getFaqContent(String faq_id) {
