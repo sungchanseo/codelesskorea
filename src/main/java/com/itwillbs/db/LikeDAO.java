@@ -155,7 +155,7 @@ import javax.sql.DataSource;
 		    try {
 		        con = getCon();
 		        // 3. sql & pstmt
-		        sql = "update product set like_count=like_count+1 where product_id=?";
+		        sql = "update product set like_count = IFNULL(like_count, 0) + 1 where product_id=?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, product_id);
 		        pstmt.executeUpdate();
