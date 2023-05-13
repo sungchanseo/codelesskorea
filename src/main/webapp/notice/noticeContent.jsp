@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h1>noticeContent</h1>
+페이지번호 ${pageNum }
 	<table border="1">
 		   <tr>
 		     <th>글번호</th>
@@ -34,9 +36,10 @@
    			
 		</table>
 
-
-<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }">게시글 수정</a>
-<a href="./NoticeDelete.no?notice_id=${dto.notice_id }">게시글 삭제</a>
+<c:if test="${id.equals('admin@gmail.com') }">
+<a href="./NoticeProUpdateAction.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">게시글 수정</a>
+<a href="./NoticeDelete.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">게시글 삭제</a>
+</c:if>
 <a href="./NoticeList.no?pageNum=${pageNum }">목록으로</a>
 </body>
 </html>

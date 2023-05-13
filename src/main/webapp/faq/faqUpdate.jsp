@@ -35,7 +35,7 @@
 	<input type="hidden" name="pageNum" value="${pageNum }">
     <input type="submit" value="수정하기">
   </form>
- <a href="./FaqList.fa?pageNum="${pageNum }>목록으로</a>
+ <a href="./FaqList.fa?pageNum=${pageNum }">목록으로</a>
 </div>
 </body>
 </html>

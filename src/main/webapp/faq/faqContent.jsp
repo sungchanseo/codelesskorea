@@ -29,9 +29,10 @@
 		   </tr> 
 		</table>
 
-
+<c:if test="${id.equals('admin@gmail.com') }">
 <a href="./FaqProUpdateAction.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">게시글 수정</a>
-<a href="./FaqDelete.fa?faq_id=${dto.faq_id }">게시글 삭제</a>
+<a href="./FaqDelete.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">게시글 삭제</a>
+</c:if>
 <a href="./FaqList.fa?pageNum=${pageNum }">목록으로</a>
 </body>
 </html>

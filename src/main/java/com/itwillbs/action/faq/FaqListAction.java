@@ -25,12 +25,6 @@ public class FaqListAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		
-//		if(id == null || !id.equals("admin")) {
-//			forward.setPath("./MemberLogin.me");
-//			forward.setRedirect(false);
-//			return forward;
-//		}
-		
 		//////////////////////////////////////////////////////////
 		//검색로직 
 		String category= request.getParameter("category");
@@ -39,6 +33,10 @@ public class FaqListAction implements Action{
 		System.out.println("검색어 : "+search+" 검색카테고리 : "+selecter+" 카테고리 : "+category);
 		int count; 
 		
+		if(search =="") search=null;
+		if(category =="") category=null;
+		System.out.println("검색어 : "+search+" 검색카테고리 : "+selecter+" 카테고리 : "+category);
+		
 		FaqDAO dao = new FaqDAO();
 		
 		if(search != null) {
@@ -46,14 +44,15 @@ public class FaqListAction implements Action{
 		search = search.trim();
 		count= dao.getFaqCount(search, selecter);
 		}else if(category != null){
-		//카테고리를 선택했을 때
-		count= dao.getFaqCount(category);
+			//카테고리를 선택했을 때
+			search = null;
+			count= dao.getFaqCount(category);
 		}else{
-		//검색어가 없을 때
-		//전체 글 갯수 
-		count = dao.getFaqCount();
+			//검색어가 없을 때
+			//전체 글 갯수 
+			count = dao.getFaqCount();
 		}
-		
+			
 		//////////////////////////////////////////////////////////
 				
 		

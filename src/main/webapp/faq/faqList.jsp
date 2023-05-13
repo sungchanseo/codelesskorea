@@ -32,7 +32,6 @@
 <hr style="border: 0;height: 3px; background-color: black;">
 
 페이지번호 : ${pageNum }<br>
-
 <!-- 검색창기능 -->
 <div id="table_search">
 	<form action="./FaqList.fa" method="post">
@@ -82,7 +81,7 @@
 	<div class="container">
 	  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
 	<c:if test="${startPage > pageBlock }"> 
-	<li class="page-item"><a class="page-link" a href="./FaqList.fa?pageNum=${startPage-pageBlock}"><sapn>이전</sapn></a></li>
+	<li class="page-item"><a class="page-link" a href="./FaqList.fa?pageNum=${startPage-pageBlock}&category=${category }&selecter=${selecter}&search=${search}"><sapn>이전</sapn></a></li>
 	</c:if>
 
 	<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
@@ -90,7 +89,7 @@
 	</c:forEach>
 	
 	<c:if test="${endPage<pageCount }">
-	<li class="page-item"><a class="page-link" href="./FaqList.fa?pageNum=${startPage+pageBlock}"><span>다음</span></a></li>
+	<li class="page-item"><a class="page-link" href="./FaqList.fa?pageNum=${startPage+pageBlock}&category=${category }&selecter=${selecter}&search=${search}"><span>다음</span></a></li>
 	</c:if>
   </ul>
   </div>	
@@ -102,7 +101,9 @@
 <div style= "float: right;">
 
 <!-- Faq 글쓰기는 관리자만 가능  -->
+<c:if test="${id.equals('admin@gmail.com') }">
 <button type="button" class="btn btn-primary" onclick="location.href='./FaqWrite.fa'">글쓰기</button>
+</c:if>
 <button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
 </div>
 </div>

@@ -13,7 +13,7 @@
  
   <form action="./NoticeUpdateAction.no" method="post">
 
-   	글번호 ${dto.notice_id }
+   	글번호 ${dto.notice_id } 페이지번호 ${pageNum }
    	<input type="hidden" name="notice_id" value="${dto.notice_id }">
 	<br>
     <label>글제목<br>
@@ -29,11 +29,11 @@
 	</label>
 	<br>
 
-
+	<input type="hidden" name="pageNum" value="${pageNum }">
     <input type="submit" value="작성완료">
 	
   </form>
- <a href="./NoticeList.no">목록으로</a>
+ <a href="./NoticeList.no?pageNum=${pageNum }">목록으로</a>
 </div>
 
 </body>

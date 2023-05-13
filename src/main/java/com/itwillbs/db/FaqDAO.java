@@ -338,14 +338,16 @@ public class FaqDAO {
 					if(rs.next()){ 
 						if(faq_id==rs.getInt("faq_id")){
 						
-							sql = "update faq set title=?, content=? where faq_id=?";
+							sql = "update faq set title=?, content=?, category=? where faq_id=?";
 							pstmt = con.prepareStatement(sql);
 							
 							pstmt.setString(1, dto.getTitle());
 							pstmt.setString(2, dto.getContent());
-							pstmt.setInt(3, dto.getFaq_id());
+							pstmt.setString(3, dto.getCategory());
+							pstmt.setInt(4, dto.getFaq_id());
 							
 							result = pstmt.executeUpdate();
+							System.out.println("업데이트 내용 : "+dto);
 							System.out.println("자주묻는질문 업데이트 성공!");
 						}
 					}

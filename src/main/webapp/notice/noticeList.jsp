@@ -38,7 +38,6 @@
 <hr style="border: 0;height: 3px; background-color: black;">
 
 페이지번호 : ${pageNum }<br>
-
   <table class="table" id="nttable">
    <thead style="background-color: #F6F6F6;">
    <tr>
@@ -63,7 +62,7 @@
 
 <!-- 검색창기능 -->
 <div id="table_search">
-	<form action="./NoticeList.no?" method="post">
+	<form action="./NoticeList.no" method="post">
 		<select name="category">
 			<option value="title">제목</option>
 			<option value="content">내용</option>
@@ -88,9 +87,15 @@
   </ul>
   </div>
 <br>
+<c:set var="category" value="${category }"/>
+<c:set var="search" value="${search }"/>
+<c:set var="pageNum" value="${pageNum }"/>
 <div style= "float: right;">
+
 <!-- 관리자만 글작성할 수 있게 해주세요 -->
+<c:if test="${id.equals('admin@gmail.com') }">
 <button type="button" class="btn btn-primary" onclick="location.href='./NoticeWrite.no'">글작성</button>
+</c:if>
 <button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
 </div>
 </div>
