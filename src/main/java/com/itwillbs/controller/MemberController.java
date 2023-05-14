@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.action.member.IdFindAction;
+import com.itwillbs.action.member.KakaoLoginAction;
 import com.itwillbs.action.member.MemberDeleteAction;
 import com.itwillbs.action.member.MemberJoinAction;
 import com.itwillbs.action.member.MemberListAction;
@@ -62,7 +63,17 @@ public class MemberController extends HttpServlet{
 		forward.setPath("./main.jsp");
 		forward.setRedirect(false);
 		}
-		
+		else if(command.equals("/KakaoLogin.me")) {
+			System.out.println(" C : /KakaoLogin.me 호출");
+			System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+			
+			action = new KakaoLoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}//카카오로그인
 		
 		// 로그인처리
 		else if(command.equals("/MemberLogin.me")) { 
@@ -221,6 +232,7 @@ public class MemberController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
 //		}else if (command.equals("/MypageQNAList.me")) {
 //			//임시 이동 코드
 //			forward = new ActionForward();

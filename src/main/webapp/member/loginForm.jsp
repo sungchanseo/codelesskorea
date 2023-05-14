@@ -1,11 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
   <head>
   <%@ include file="../head.jsp" %>
-  <script src="../js/jquery-3.6.4.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('d024657e59f07ee69d6d1407441dfe53'); //js토큰키 사용
+console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (res) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+        	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
+        	  var id = sessionStorage.getItem("id");
+        	  $.ajax({
+				  url : "./AjaxAction.aj",
+				  data: {"id": id},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes"){
+						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
+						location.href="./MemberJoin.me?id="+id;
+					  
+					  }else if ( result=="no"){
+					 	alert('코드리스 회원입니다.');
+					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
+				
+					  }
+				  }//success 
+			  });// ajax
+        	  
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
 
+</script>
   <script type="text/javascript">
 
 		
@@ -24,7 +67,9 @@
 					return false;
 				}//비밀번호 입력 제어
 			});
+			
 		});
+		
 
   
   </script>
@@ -46,13 +91,27 @@
      
       <button type="button" class="btn btn-dark btn-block" style="margin-top: 15px;" onclick="location.href='./MemberJoin.me'" >
       회원가입</button>
-      <hr>
-               
+   	  
+   	  <a href="javascript:void(0)">
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" 
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
+      </a><!-- 카카오 로그인 버튼!-->
+  
+  
+       <hr>        
       <span onclick="location.href='./IdFind.me'" style="margin-left:85px; cursor:pointer;" >아이디 찾기</span>  |
       
       <span onclick="location.href='./PwFind.me'" style="cursor:pointer;" >비밀번호 찾기</span>  
       
-
+<ul>
+	
+	
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+</ul>
     
    </div>
   </form>

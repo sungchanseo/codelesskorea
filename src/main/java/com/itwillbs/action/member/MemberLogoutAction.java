@@ -18,6 +18,7 @@ public class MemberLogoutAction implements Action {
 		// 세션정보 초기화
 		HttpSession session = request.getSession();
 		session.invalidate();
+				
 		
 		System.out.println(" M : 세션정보 초기화 완료!");		
 
