@@ -25,12 +25,12 @@
 		
 		$('#id').keyup(function(){
 
-			  if(!$('#id').val().includes('@') && !$('#id').val() == ""){
+			 /*  if(!$('#id').val().includes('@') && !$('#id').val() == ""){
 				  $('#idmsg').css('color','red');
 				  $('#idmsg').text("이메일 형식으로 입력해주세요.");  
 				  $('#submit').attr('disabled','disabled'); 
 				  return;
-			  }//이메일형식으로 입력하지않을 시 제어
+			  }//이메일형식으로 입력하지않을 시 제어 */
 			  $.ajax({
 				  url : "./AjaxAction.aj",
 				  data: {"id": $('#id').val()},
@@ -155,7 +155,6 @@
 <body>
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
-
 	<div class="container" id="login-con"
 		style="width: 800px; color: black;">
 
@@ -169,9 +168,17 @@
 				<h2 style="margin-bottom: 50px;">
 					<b>정보를 입력해주세요:)</b>
 				</h2>
-	
-				   아이디 <input type="email" class="form-control" id="id"
-					placeholder="아이디를 입력해주세요." name="id" >  
+						
+				   아이디 
+				   <c:if test="${empty param.id }">
+				   <input type="text" class="form-control" id="id"
+					placeholder="아이디를 입력해주세요." name="id">
+					</c:if> <!-- 간편로그인이 아닌 경우 -->
+				   
+				   <c:if test="${!empty param.id }">
+				   <input type="text" class="form-control" id="id"
+					value="${param.id }" name="id" readonly="readonly">
+					</c:if> <!-- 간편로그인의 아이디(한번도 가입하지않은)인 경우 -->					 
 		
 				<span id="idmsg"></span>
 				<br>	 				

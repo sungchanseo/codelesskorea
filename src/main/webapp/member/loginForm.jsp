@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -16,9 +17,25 @@ function kakaoLogin() {
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (res) {
-        	  sessionStorage.setItem("kakao_id",res.id); //session에 카카오로그인 아이디 담음
-        	  var kakao_id = sessionStorage.getItem("kakao_id");
-        	  location.href="./Main.me?kakao_id="+kakao_id;
+        	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
+        	  var id = sessionStorage.getItem("id");
+        	  $.ajax({
+				  url : "./AjaxAction.aj",
+				  data: {"id": id},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes"){
+						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
+						location.href="./MemberJoin.me?id="+id;
+					  
+					  }else if ( result=="no"){
+					 	alert('코드리스 회원입니다.');
+					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
+				
+					  }
+				  }//success 
+			  });// ajax
+        	  
           },
           fail: function (error) {
             console.log(error)
@@ -76,7 +93,8 @@ function kakaoLogin() {
       회원가입</button>
    	  
    	  <a href="javascript:void(0)">
-      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="100%;" height ="50px" style="margin-top: 15px;" />
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" 
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
       </a><!-- 카카오 로그인 버튼!-->
   
   
