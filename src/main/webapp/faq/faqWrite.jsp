@@ -3,17 +3,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CODELESS - 자주묻는질문 작성</title>
+<%@include file="../head.jsp" %>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#fr').submit(function() {
+		if($('#title').val() == ""){
+			alert('제목을 입력하세요.');
+			$('#title').focus();
+			return false;
+		}//제목 입력 제어
+		
+		if($('#content').val() == ""){
+			alert('내용를 입력하세요.');
+			$('#content').focus();
+			return false;
+		}//내용 입력 제어
+		
+	
+	});//정보 입력안하면 submit기능 제어 끝
+});
+</script>
 </head>
 <body>
-<h1>faqWrite</h1>
-<h1>자주묻는 질문 작성하기 페이지(성찬스키)</h1>
-<div class="container">
+<%@include file="../nav.jsp" %>
+
+ <!-- 사이드바 -->
+
+  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> 공지게시판</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
+  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
+  </div>
+	</div>	
+  
+ <!--   사이드바 -->
+
+<div class="col-sm-8" style="margin:auto;">
+ <div class="container" id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">자주묻는질문 작성</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
   <form action="./FaqWriteAction.fa" method="post">
 
-   	<label>카데고리
- 	<select name="category">
+   	<label>카테고리
+ 	<select name="category" class="form-control">
   		<option value="이용정책">이용정책</option>
   		<option value="구매">구매</option>
   		<option value="판매">판매</option>
@@ -22,17 +61,22 @@
   	</select><br>
 	</label>
     <label>글제목
-    <input type="text" name="title" placeholder="글제목을 입력하세요">
+    <input type="text" name="title" placeholder="글제목을 입력하세요" class="form-control" size="110">
 	</label>
 	<br>
     <label>글 내용<br>
-    <textarea name="content" placeholder="글 내용을 작성하세요" style="height:200px"></textarea>
+    <textarea name="content" placeholder="글 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control"></textarea>
 	</label>
 	<br>
-    <input type="submit" value="작성완료">
+	
+	<div style= "float: right; margin-top: 60px;">
+    <input type="submit" value="작성완료" class="btn btn-primary">
+	<a href="./FaqList.fa" class="btn btn-secondary">목록으로</a>
+	</div>
   </form>
- <a href="./FaqList.fa">목록으로</a>
+</div>
 </div>
 
+<%@include file="../footer.jsp" %>
 </body>
 </html>

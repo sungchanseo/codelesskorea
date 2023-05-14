@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CODELESS - 공지사항 수정</title>
 <%@include file="../head.jsp" %>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <h4> 공지게시판</h4>
   <hr style="border: 0;height: 1px; background-color: black;">
   <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
-  <h5> 자주하는질문</h5>
+  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
   </div>
 	</div>	
   
@@ -47,13 +47,9 @@
     <input type="file" name="notice_image" class="form-control">
 	</label>
 	<br>
-	<label>첨부 이미지
-    <input type="file" name="notice_image" class="form-control">
-	</label>
-	<br>
 
 	<div style= "float: right;">
- <input type="submit" value="작성완료" class="btn btn-primary">
+ <input type="submit" value="수정완료" class="btn btn-primary">
  <a href="./NoticeList.no?pageNum=${pageNum }" class="btn btn-secondary">목록으로</a>
 	 </div>
   </form>

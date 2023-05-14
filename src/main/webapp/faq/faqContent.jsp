@@ -5,35 +5,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CODELESS - 자주묻는질문 내용</title>
+<%@include file="../head.jsp" %>
 </head>
 <body>
-<h1>자주하는 질문</h1>
+<%@include file="../nav.jsp" %>
+
+ <!-- 사이드바 -->
+
+  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> 공지게시판</h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
+  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
+  </div>
+	</div>	
+ <!--   사이드바 -->
+ 
+<div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold'; font-size:25px ;">${dto.title }</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
 페이지번호 ${pageNum }
-	<table border="1">
+	<table class="table" id="nttable">
 		   <tr>
-		     <th>FAQ번호</th>
+		     <th style="width:94px; text-align: center;">FAQ번호</th>
 		     <td>${dto.faq_id }</td>
 		   </tr> 
 		   <tr>
-		     <td>카테고리</td>
+		     <td style="text-align: center;">카테고리</td>
 		     <td>${dto.category }</td>
 		   </tr> 
 		   <tr>
-		     <td>제목</td>
+		     <td style="text-align: center;">제목</td>
 		     <td>${dto.title }</td>
 		   </tr> 
 		   <tr>
-		     <td>내용</td>
+		     <td style="text-align: center;">내용</td>
 		     <td>${dto.content }</td>
 		   </tr> 
 		</table>
+		
+<div style= "float: right; margin-top: 80px;">
 
 <c:if test="${id.equals('admin@gmail.com') }">
-<a href="./FaqProUpdateAction.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">게시글 수정</a>
-<a href="./FaqDelete.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}">게시글 삭제</a>
+<a href="./FaqProUpdateAction.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 수정</a>
+<a href="./FaqDelete.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 삭제</a>
 </c:if>
-<a href="./FaqList.fa?pageNum=${pageNum }">목록으로</a>
+<a href="./FaqList.fa?pageNum=${pageNum }" class="btn btn-secondary">목록으로</a>
+</div>
+</div>
+</div>
+<%@include file="../footer.jsp" %>
 </body>
 </html>
 </body>
