@@ -1,5 +1,7 @@
 package com.itwillbs.action.qna;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +26,13 @@ public class MypageQNABoardInsertAction implements Action{
 				ActionForward forward = new ActionForward();
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("id");
-				String uploadPath = request.getRealPath("/upload");
+				
+				String uploadPath = request.getServletContext().getRealPath("/upload");
+				File uploadDir = new File(uploadPath);
+				if (!uploadDir.exists()) {
+				    uploadDir.mkdirs(); // 디렉토리 생성
+				}
+				
 				System.out.println(uploadPath);
 				 // => 톰켓에 저장되는 경로
 				

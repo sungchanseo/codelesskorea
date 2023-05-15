@@ -151,12 +151,14 @@
 		  <c:choose>
 		    <c:when test="${empty dto.user_image}">
 		      <img src="./member/userimg.png" alt="프로필사진 " style="max-width: 200px; max-height: 200px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
+		   
 		    </c:when>
 		    <c:otherwise>
 		      <img src="./upload/${dto.user_image}" alt="프로필사진" style="max-width: 200px; max-height: 200px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
 		    </c:otherwise>
 		  </c:choose>
 		</div>
+		<input type="file" name="user_image" value="${dto.user_image}">
 				<br>
 				
 
@@ -178,7 +180,7 @@
 					 <br> 
 				
 				생년월일 <input type="date" class="form-control"
-					name="birth_date" id="birth_date" value="${dto.birth_date }" readonly="readonly"> 
+					name="birth_date" id="birth_date" value="${dto.birth_date }" > 
 					<br>
 			 	
 			 	주소

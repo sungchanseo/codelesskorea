@@ -1,6 +1,8 @@
 package com.itwillbs.action.qna;
 
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,11 +27,16 @@ public class MypageQNABoardReInsertAction implements Action{
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("id");
 				
-				if(id == null || !id.equals("admin@gmail.com")) {
+				if(id == null) {
 					JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
 					return forward;
 				}
 				
+				//  관리자 세션제어
+				if(!id.equals("admin@gmail.com") && !id.equals("admin")) {
+					JSForward.alertAndBack(response, "잘못된 접근입니다!");
+					return forward;
+				}
 				
 				MemberDAO dao = new MemberDAO();
 				MemberDTO dto = dao.getMember(id);
@@ -39,8 +46,11 @@ public class MypageQNABoardReInsertAction implements Action{
 					return forward;
 				}
 				
-				String uploadPath = request.getRealPath("/upload");
-				System.out.println(uploadPath);
+				String uploadPath = request.getServletContext().getRealPath("/upload");
+				File uploadDir = new File(uploadPath);
+				if (!uploadDir.exists()) {
+				    uploadDir.mkdirs(); // 디렉토리 생성
+				}
 				 // => 톰켓에 저장되는 경로
 				
 				//  업로드 할 파일의 크기 10mb

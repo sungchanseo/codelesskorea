@@ -62,11 +62,11 @@ public class PasswordUpdateAction implements Action {
 		}
 		if(result == 0) { // 비밀번호 오류
 
-			JSForward.alertAndBack(response, "비밀번호 오류!!!");
+			JSForward.alertAndBack(response, "비밀번호 오류!");
 			return null;
 		}
 
-		JSForward.alertAndMove(response, "비밀번호 수정완료!!", "./MemberInfo.my");
+		JSForward.alertAndMove(response, "비밀번호 수정완료!", "./MemberInfo.my");
 
 		
 

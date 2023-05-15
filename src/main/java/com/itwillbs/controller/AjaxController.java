@@ -15,6 +15,7 @@ import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.action.mypage.AjaxLikedAction;
 import com.itwillbs.action.mypage.AjaxProductDelAction;
 import com.itwillbs.action.mypage.AjaxUnLikedAction;
+import com.itwillbs.action.mypage.GetLikedProductsAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -115,6 +116,21 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
+		}
+		
+		// ./GetLikedProducts.aj (상품정리)
+		else if(command.equals("/GetLikedProducts.aj")) {
+			System.out.println("/GetLikedProducts.aj");
+			action = new GetLikedProductsAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	
 		}
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");

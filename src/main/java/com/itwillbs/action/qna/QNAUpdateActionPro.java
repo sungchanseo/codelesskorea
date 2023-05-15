@@ -1,5 +1,6 @@
 package com.itwillbs.action.qna;
 
+import java.io.File;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.MypageDAO;
 import com.itwillbs.db.QnADTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class QNAUpdateActionPro implements Action{
 
@@ -25,8 +28,14 @@ public class QNAUpdateActionPro implements Action{
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("id");
 			String pageNum = request.getParameter("pageNum");
-			if(id == null || !id.equals("admin@gmail.com")) {
+			if(id == null) {
 				JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+				return forward;
+			}
+			
+			//  관리자 세션제어
+			if(!id.equals("admin@gmail.com") && !id.equals("admin")) {
+				JSForward.alertAndBack(response, "잘못된 접근입니다!");
 				return forward;
 			}
 			
@@ -39,25 +48,46 @@ public class QNAUpdateActionPro implements Action{
 				return forward;
 			}
 			
+			String uploadPath = request.getServletContext().getRealPath("/upload");
+			File uploadDir = new File(uploadPath);
+			if (!uploadDir.exists()) {
+			    uploadDir.mkdirs(); // 디렉토리 생성
+			}
+			 // => 톰켓에 저장되는 경로
 			
-			// 한글처리 
+			//  업로드 할 파일의 크기 10mb
+			int maxSize = 10 * 1024 * 1024;
+
+			// 파일업로드 
+			MultipartRequest multi 
+			           = new MultipartRequest(
+			        		   request,
+			        		   uploadPath,
+			        		   maxSize,
+			        		   "UTF-8",
+			        		   new DefaultFileRenamePolicy()		        		   
+			        		   );
+			
+			
+			
 		
 			// 전달되는값들 저장  (이름,비밀번호,제목, 내용, bno,pageNum)
-			int bno = Integer.parseInt(request.getParameter("bno"));
+			int bno = Integer.parseInt(multi.getParameter("bno"));
 	
 			// BoardDTO 객체 생성
 			QnADTO qdto = new QnADTO();
-			qdto.setBno(Integer.parseInt(request.getParameter("bno")));
-			qdto.setNickname(request.getParameter("nickname"));
-			qdto.setContent(request.getParameter("content"));
-			qdto.setTitle(request.getParameter("title"));
+			qdto.setBno(Integer.parseInt(multi.getParameter("bno")));
+			qdto.setNickname(multi.getParameter("nickname"));
+			qdto.setContent(multi.getParameter("content"));
+			qdto.setTitle(multi.getParameter("title"));
+			qdto.setImage(multi.getFilesystemName("image"));
 
 			
 			// BoardDAO 객체 생성 -> 정보 수정 메서드 updateBoard(dto)
 			MypageDAO mdao = new MypageDAO();
 			
 			int result = mdao.updateQNA(qdto);
-			
+			request.setAttribute("qdto", qdto);
 			System.out.println("M : DB 처리 완료후 결과  -> "+result);
 			
 			// 결과를 리턴받아서 처리 (1, 0 ,-1)

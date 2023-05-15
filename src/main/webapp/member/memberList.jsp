@@ -113,9 +113,7 @@ font-weight: bold !important;
  <h1 style="font-family: 'TheJamsil5Bold';" align="center">회원목록</h1>
 <hr style="border: 0;height: 3px; background-color: gray;" width="95%";>
 	
-	<c:if test="${ empty sessionScope.id || !id.equals('admin@gmail.com') }">
-		<c:redirect url="./MemberLogin.me"/>
-	</c:if>
+
 	<br>
 	  <table class="table" id="nttable" style= "width: 95%"; align="center"; >
    <thead style="background-color: #F6F6F6;">
