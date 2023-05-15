@@ -10,8 +10,103 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+	
+	  function openModal() {
+		    var modal = document.getElementById("myModal");
+		    modal.style.display = "block";
+		  }
 
-<%@ include file="../head.jsp"%>
+		  function closeModal() {
+		    var modal = document.getElementById("myModal");
+		    modal.style.display = "none";
+		  }
+
+		  // When the user clicks anywhere outside of the modal, close it
+		  window.onclick = function(event) {
+		    var modal = document.getElementById("myModal");
+		    if (event.target == modal) {
+		      closeModal();
+		    }
+	 }
+
+	</script>
+	
+	<%@ include file="../head.jsp" %>
+	
+		<meta charset="UTF-8">
+	<style>
+    .profile-img {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+
+    .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-img img:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: transform 0.2s ease-in-out;
+    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  max-height: 70%;
+  overflow: auto;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <style type="text/css">
 table {
@@ -125,10 +220,14 @@ th:nth-of-type(3), td:nth-of-type(4) {
     <th>제목</th>
     <td colspan="5">${qdto.title}</td>
   </tr>
+<c:if test="${not empty qdto.image}">
   <tr>
-<th>이미지</th>
-<td colspan="3"><img src="./upload/${qdto.image}" alt="첨부사진" style="max-width: 300px; max-height: 300px;"></td>
-  </tr>
+    <th>이미지</th>
+							<td colspan="3">	<img src="./upload/${qdto.image}" alt="사진"
+									style="max-width: 200px; max-height: 200px; cursor: pointer;"
+									onclick="openModal()"> </td>
+	</tr>
+</c:if>
   <tr>
     <th>내용</th>
     <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea></td>
@@ -145,6 +244,14 @@ th:nth-of-type(3), td:nth-of-type(4) {
 	</div>
 </fieldset>
 </div></div>
+
+
+	<div id="myModal" class="modal">
+		  <span class="close" onclick="closeModal()">&times;</span>
+		  <img class="modal-content" src="./upload/${qdto.image}" alt="사진">
+		</div>
+
+
 <br>
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

@@ -332,11 +332,12 @@ public class MypageDAO {
 			try {
 				//1.2. 디비연결
 				con = getCon();
-				sql = "update QNA set title=?,content=? where bno=?";
+				sql = "update QNA set title=?,content=?,image=? where bno=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, qdto.getTitle());
 				pstmt.setString(2, qdto.getContent());
-				pstmt.setInt(3, qdto.getBno());
+				pstmt.setString(3, qdto.getImage());
+				pstmt.setInt(4, qdto.getBno());
 						
 				// 4. sql 실행
 				result = pstmt.executeUpdate();

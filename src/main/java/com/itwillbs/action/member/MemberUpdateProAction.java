@@ -98,11 +98,11 @@ public class MemberUpdateProAction implements Action {
 		}
 		if(result == 0) { // 비밀번호 오류
 			// JS이동 처리 객체 동작 호출
-			JSForward.alertAndBack(response, "수정 오류!!!");
+			JSForward.alertAndBack(response, "수정 오류!");
 			return null;
 		}
 
-		JSForward.alertAndMove(response, "수정완료!!", "./MemberInfo.my");
+		JSForward.alertAndMove(response, "수정완료!", "./MemberInfo.my");
 		return null;
 	}
 

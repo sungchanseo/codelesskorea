@@ -19,10 +19,7 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-	<c:if test="${ empty sessionScope.id || !id.equals('admin@gmail.com') }">
-		<c:redirect url="./MemberLogin.me"/>
-	</c:if>
-		
+
 
 <%-- 	페이지번호 : ${pageNum }<br> --%>
 <%-- 	아이디 : ${id }<br> --%>
