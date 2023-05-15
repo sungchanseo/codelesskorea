@@ -2,6 +2,7 @@ package com.itwillbs.action.mypage;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +29,13 @@ public class LikeListAction implements Action {
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		
+		String sessionId = session.getId();
+		//쿠키에 세션아이디 저장
+		Cookie cookie = new Cookie("JSESSIONID", sessionId);
+		cookie.setMaxAge(-1); // 브라우저 종료 시 세션 ID 쿠키 삭제
+		response.addCookie(cookie);
+		
 		
 		if(id == null) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");

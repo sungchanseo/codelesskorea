@@ -48,11 +48,10 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
+			  $('.like-btn').addClass('liked');
 			  var userId = '<%= session.getAttribute("id") %>';
-
 			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
 			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
-
 			  // 사용자의 찜한 상품 정보를 가져옵니다.
 			  var userLikedProducts = likedProducts[userId] || {};
 
@@ -65,7 +64,6 @@
 			      $btn.addClass('liked');
 			    }
 			  });
-
 
 			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
 			  $('.like-btn').on('click', function() {
