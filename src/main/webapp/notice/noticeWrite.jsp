@@ -49,7 +49,7 @@ $(document).ready(function () {
  <h1 style="font-family: 'TheJamsil5Bold';">공 지 작 성</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
-  <form action="./NoticeWriteAction.no" id="fr" method="post" enctype="multipart/form-data" method="post">
+  <form action="./NoticeWriteAction.no" id="fr" method="post" enctype="multipart/form-data">
   
     <label>글제목
     <input type="text" id="title" name="title" placeholder="글제목을 입력하세요" class="form-control" size="110">
@@ -59,8 +59,8 @@ $(document).ready(function () {
     <textarea name="content" id="content" placeholder="공지사항 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control"></textarea>
 	</label>
 	<br>
-	<label>첨부 이미지
-    <input type="file" name="notice_image" class="form-control">
+	<label>첨부 이미지 (이미지 화일만 업로드 가능합니다)
+    <input type="file" name="notice_image" class="form-control" accept="image/*" class="form-control">
 	</label>
 	
  <div style= "float: right; margin-top: 60px;">
