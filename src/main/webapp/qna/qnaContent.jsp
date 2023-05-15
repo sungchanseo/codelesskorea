@@ -156,6 +156,11 @@ th:nth-of-type(3), td:nth-of-type(4) {
   width: 80px; !important;
 }
 
+fieldset {
+  margin-bottom: 130px; !important;
+}
+
+
 </style>
 
 
@@ -241,16 +246,21 @@ th:nth-of-type(3), td:nth-of-type(4) {
 	<input type="button" value="글삭제" class="btn btn-primary" onclick="location.href='./UserQNADeleteAction.qn?bno=${qdto.bno}&pageNum=${pageNum}'">
 	</c:if>
 	
-	</div>
+
+	
 </fieldset>
-</div></div>
 
+</div></div></div>
 
+	
+<!-- 	모달 -->
 	<div id="myModal" class="modal">
 		  <span class="close" onclick="closeModal()">&times;</span>
 		  <img class="modal-content" src="./upload/${qdto.image}" alt="사진">
 		</div>
+<!-- 	모달 -->
 
+<div style="padding-bottom: 50px;"></div>
 
 <br>
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->

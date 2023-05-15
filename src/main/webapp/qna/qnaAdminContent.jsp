@@ -247,12 +247,12 @@ fieldset {
 	<div style= "float: right; margin-top: 30px;">
      <input type="button" value="목록으로" class="btn btn-secondary" onclick="location.href='./AdminQNAList.qn'">
      <input type="button" value="글삭제" class="btn btn-primary" onclick="location.href='./QNADeleteAction.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
-     <c:if test="${id eq qdto.id}">
+   	<c:if test="${id eq qdto.id}">
 	<input type="button" value="글수정" class="btn btn-primary" onclick="location.href='./QNAUpdate.qn?bno=${qdto.bno }&pageNum=${pageNum}'">
 	</c:if>
-	 
+	
 	<c:if test="${qdto.re_Lev < 1 }">
-  <c:choose>
+ 	 <c:choose>
     <c:when test="${qdto.is_answered eq true}">
       <input type="button" value="답변하기" class="btn btn-primary" onclick="alert('이미 처리된 답변입니다!');">
     </c:when>
@@ -260,7 +260,7 @@ fieldset {
       <input type="button" value="답변하기" class="btn btn-primary" onclick="location.href='./QNAReWrite.qn?bno=${qdto.bno }&pageNum=${pageNum}&re_ref=${qdto.re_Ref }&re_lev=${qdto.re_Lev }&re_seq=${qdto.re_Seq }'">
     </c:otherwise>
   </c:choose>
-</c:if>
+	</c:if>
 
 </fieldset>
 

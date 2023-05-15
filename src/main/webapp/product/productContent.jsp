@@ -125,16 +125,21 @@
 
 		<script type="text/javascript">
 		$(document).ready(function() {
+			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
+			  var userId = '<%= session.getAttribute("id") %>';
+
 			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
 			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
+
+			  // 사용자의 찜한 상품 정보를 가져옵니다.
+			  var userLikedProducts = likedProducts[userId] || {};
 
 			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
 			  $('.like-btn').each(function() {
 			    var $btn = $(this);
 			    var productId = $btn.data('product-id');
-			    var userId = $btn.data('user-id');
-			    var key = productId + '_' + userId;
-			    if (likedProducts[key]) {
+			    var key = productId.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
+			    if (userLikedProducts[key]) {
 			      $btn.addClass('liked');
 			    }
 			  });
@@ -143,8 +148,7 @@
 			  $('.like-btn').on('click', function() {
 			    var $btn = $(this);
 			    var productId = $btn.data('product-id');
-			    var userId = $btn.data('user-id');
-			    var key = productId + '_' + userId;
+			    var key = productId.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
 			    var isLiked = $btn.hasClass('liked');
 
 			    if (!isLiked) {
@@ -154,8 +158,9 @@
 			        success: function(response) {
 			          if (response.success) {
 			            $btn.addClass('liked');
-			            // 찜한 상품 정보를 로컬 스토리지에 저장합니다.
-			            likedProducts[key] = true;
+			            // 사용자의 찜한 상품 정보를 업데이트합니다.
+			            userLikedProducts[key] = true;
+			            likedProducts[userId] = userLikedProducts;
 			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
 			            location.reload();
 			            alert('찜 추가완료!');
@@ -171,8 +176,9 @@
 			        success: function(response) {
 			          if (response.success) {
 			            $btn.removeClass('liked');
-			            // 로컬 스토리지에서 해당 상품 정보를 삭제합니다.
-			            delete likedProducts[key];
+			            // 사용자의 찜한 상품 정보에서 해당 상품을 삭제합니다.
+			            delete userLikedProducts[key];
+			            likedProducts[userId] = userLikedProducts;
 			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
 			            location.reload();
 			            alert('찜 해제완료!');
