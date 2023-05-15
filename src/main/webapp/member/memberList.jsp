@@ -49,6 +49,8 @@
   text-align: left;
 font-weight: bold !important;
   style="font-family: 'Font Awesome 5 Free';"
+  
+   padding-left: 100px;important;
 }
 #nttable th {
   width: 30%;
@@ -94,8 +96,21 @@ font-weight: bold !important;
 		    	  var id = $(this).val();
 		    	  window.open('./AdminbuyListAction.my?id=' + id, '_blank', 'width=800,height=600');
 		    });
+		    	
+		    	
+		   // /AdminMemberInfo.my 	
+		    	
 		    
 		});
+		
+
+
+		function openWindow(url, name, width, height) {
+			  var left = (window.innerWidth - width) / 2;
+			  var top = (window.innerHeight - height) / 2;
+			  var options = 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
+			  window.open(url, name, options);
+			}
 
 		</script>
 
@@ -103,30 +118,34 @@ font-weight: bold !important;
 </head>
 <body>
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-<!-- 	<h1>memberList.jsp</h1> -->
-	
-<%-- 	<%@ include file="../mySide.jsp"%> --%>
+
+		<br>
+	<%@ include file="../mySide.jsp"%>
 	
 		 <!--   사이드바 -->
 	 
-	<br>
- <h1 style="font-family: 'TheJamsil5Bold';" align="center">회원목록</h1>
-<hr style="border: 0;height: 3px; background-color: gray;" width="95%";>
+
+  
+ <div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 100px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">회 원 목 록</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
 	
 
-	<br>
-	  <table class="table" id="nttable" style= "width: 95%"; align="center"; >
+
+	  <table class="table" id="nttable" style= "width: 100%"; align="center"; >
    <thead style="background-color: #F6F6F6;">
 	   <tr>
 	      <td>아이디</td>
-	      <td>비밀번호</td>
+<!-- 	      <td>비밀번호</td> -->
 	      <td>이름</td>
-	      <td>닉네임</td>
+<!-- 	      <td>닉네임</td> -->
 	      <td>전화번호</td>
-	      <td>주소</td>
-	      <td>사진</td>
+<!-- 	      <td>주소</td> -->
+<!-- 	      <td>사진</td> -->
 	      <td>가입일</td>
-	      <td>생년월일</td>
+<!-- 	      <td>생년월일</td> -->
 	      <td>회원상태</td>
 	      <td>구매목록</td>
 	      <td>판매목록</td>
@@ -137,15 +156,19 @@ font-weight: bold !important;
 	   <!-- rs(데이터) <- DTO <- List -->
 	   <c:forEach var="dto" items="${requestScope.memberList }">
 		   <tr>
-		      <td>${dto.id }</td>
-		      <td>${dto.password }</td>
+		      <td>
+<a href="#" onclick="openWindow('./AdminMemberInfo.my?id=${dto.id}', 'AdminMemberInfo', 500, 700); return false;"> <span style="color: #FFB609;">${dto.id}</span>
+				</a>
+				
+				</td>
+<%-- 		      <td>${dto.password }</td> --%>
 		      <td>${dto.name }</td>
-		      <td>${dto.nickname }</td>
+<%-- 		      <td>${dto.nickname }</td> --%>
 		      <td>${dto.phone_number }</td>
-		      <td>${dto.address }</td>
-		      <td>${dto.user_image }</td>
+<%-- 		      <td>${dto.address }</td> --%>
+<%-- 		      <td>${dto.user_image }</td> --%>
 		      <td>${dto.regdate }</td>
-		      <td>${dto.birth_date }</td>
+<%-- 		      <td>${dto.birth_date }</td> --%>
 <td>
   <label class="checkbox-container">
     <input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" style="transform: scale(1.5); margin-right: 5px" data-user-id="${dto.id}"
@@ -165,10 +188,10 @@ font-weight: bold !important;
 	   	</c:forEach>
 	</tbody>
 </table>
-	
+	</div></div>
 
 		<div class="container" style="margin: auto;">
-				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
+				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 0px;">
 			  	<c:if test="${startPage > pageBlock }"> 
 				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
 				</c:if>

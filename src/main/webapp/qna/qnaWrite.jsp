@@ -76,17 +76,25 @@ String nickname = mdto.getNickname();
 		<fieldset>	
 		   <form action="./MypageQNAInsertAction.qn" method="post" enctype="multipart/form-data">
 		   <input type="hidden" name="id" value="${sessionScope.id}"><br>
-		   <input type="hidden" name="product_id" value="${param.product_id}">
-		  ${param.product_id}
+			<c:if test="${not empty param.product_id}"> 
+			    <input type="hidden" name="product_id" value="${param.product_id}">
+			</c:if>
 		   <input type="hidden" name="isanswered"" value="${qdto.is_answered}">
-<!-- 		회원정보, 상품, 신고, 결제, 기타 -->
-		   카테고리 <select name="qna_category">
-					  <option value='회원정보'>회원정보</option>
-					  <option value='상품'>상품</option>
-					  <option value='신고'>신고</option>
-					  <option value='결제' >결제</option>
-					  <option value='기타'>기타</option>
-					</select>
+			<!-- 		회원정보, 상품, 신고, 결제, 기타 -->
+					<select name="qna_category">
+			    <c:choose>
+			        <c:when test="${param.product_id ne 0}">
+			            <option value="신고" selected>신고</option>
+			        </c:when>
+			        <c:otherwise>
+			            <option value="회원정보">회원정보</option>
+			            <option value="상품">상품</option>
+			            <option value="신고">신고</option>
+			            <option value="결제">결제</option>
+			            <option value="기타">기타</option>
+			        </c:otherwise>
+			    </c:choose>
+			</select>
 		   	  작성자(닉네임) : <%=nickname %><input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
 	          <label>글제목
 				    <input type="text" name="title" placeholder="제목을 입력해 주세요."class="form-control" size="110" required="required">
@@ -105,7 +113,9 @@ String nickname = mdto.getNickname();
 * 사이트 이용관련(주문,취소,배송 등) 각종궁금하신 사항은 
 [고객센터] - [자주하는질문] 으로 들어가시면 자세하게 답변이 남겨져있으니 참고 바랍니다.
 				    </textarea>
-
+		<c:if test="${param.product_id ne null}">
+    <a href="./ProductContent.pr?product_id=${param.product_id}" style="color: red">신고된 상품링크로 가기 상품번호 : ${param.product_id}번</a>
+		</c:if>
 					</label>
 					<br>
 					<label>첨부 이미지

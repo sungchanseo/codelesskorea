@@ -239,8 +239,18 @@ fieldset {
 	</tr>
 </c:if>
     <th>내용</th>
-    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea></td>
+    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea>
+            <c:if test="${qdto.productId ne 0}">
+    <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
+		</c:if>
+    
+    
+    </td>
+
+    
   </tr>
+  
+  
   </table>
  
   

@@ -114,28 +114,18 @@
 		
 		<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
-		<c:if test="${ empty sessionScope.id }">
-		   <c:redirect url="./MemberLogin.me"/>
-		</c:if>
-<div class="col-sm-4">
-<%@ include file="../mySide.jsp"%>
-</div>
-</div>
+
 <!--  사이드바 -->
 			
-
-	<div class="col-sm-8" style=" margin-left: 350px;">
-	<div class="container" id="login-con"
-		style="width: 900px; color: black;">
-
+		<br>
 
 		<form action="./MemberUpdateProAction.me" id="fr" method="post">
 
-			<div class="form-group" id="log-form" style="width: 400px;">
+			<div class="form-group" id="log-form" style="width: 400px;" >
 
-				<h2 style="margin-bottom: 50px;">
-					<b>내 정보 보기</b>
-				</h2>
+			<h2 style="margin-top: 10px; font-size: 24px;">
+			    <b>회원 <span style="color: #FFB609;">${id }</span> 정보 보기</b>
+			</h2>
 		<div style="text-align: center; background-color: white;">
 		  <c:choose>
 		    <c:when test="${empty dto.user_image}">
@@ -190,7 +180,7 @@
 				<table>
 					<tr>
 						<td><input type="text" name="zipcode" id="zipcode" size="15" readonly >
-
+						
 					</tr>
 					<tr>
 						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}" readonly></td>
@@ -199,22 +189,9 @@
 						<td><input type="text" name="address2" id="address2" size="45" readonly value="${dto.address2}"></td>
 					<tr>
 				</table>
-				
-
 
 		
-		
-      	<a href="./MemberUpdate.me" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" >
-										내정보 수정 하기</a>
 
-		<a href="./PasswordUpdate.me" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" >비밀번호 변경</a> 
-										
-		<a href="./MemberDelete.me" class="btn btn-secondary btn-block"
-										style="margin-top: 40px;" >코드리스와 이별하기</a>  <br>
-			</div>
-</div></div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -231,6 +208,6 @@
 <script src="js/jquery.timepicker.min.js"></script>
 
 <script src="js/main.js"></script>
-<%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
+
 	</body>
 </html>

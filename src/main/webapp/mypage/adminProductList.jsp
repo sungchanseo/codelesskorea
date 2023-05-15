@@ -18,7 +18,7 @@ span {
 }
 
 #nttable * {
-  font-size: 100%;
+  font-size: 95%;
   text-align: left;
   style="font-family: 'Noto Sans KR', sans-serif, 'Font Awesome 5 Free';"
 }
@@ -85,19 +85,24 @@ $(document).on("click", ".del-btn", function() {
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
+<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
+
 <!-- 관리자페이지의 [상품관리]탭을 누르면 판매 상태여부에 관계 없이 모든 거래 리스트를 볼 수 있다. -->
 <!-- 최신순으로 모든 상품의 리스트가 한 페이지 20개씩 출력됨 -->
 <!-- 리스트로 출력되는 내용은 상품번호, 상품명, 판매가, 판매자, 구매자, 등록일시, 판매 상태(판매중, 판매완료) -->
 <!-- 상품 링크를 클릭하면 해당 상품 페이지로 이동할 수 있음 -->
-	<br>
- <h1 style="font-family: 'TheJamsil5Bold';" align="center">상품관리</h1>
-<hr style="border: 0;height: 3px; background-color: gray;" width="95%";>	
+<br>
+ <div class="col-sm-8" style="margin:auto;">
+ <div id="right" style="margin-left: 100px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">상 품 관 리</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
 	  
-	  
-	  <table id=nttable class="table" style= "width: 95%" ; align="center";  >
+
+	  <table id=nttable class="table" style= "width: 100%" ; align="center";  >
    <thead style="background-color: #F6F6F6;">
 		<tr>
 			<th>상품번호</th>
+<!-- 			<th>신고여부</th> -->
 			<th>상품명</th>
 			<th>가격</th>
 			<th>판매자</th>
@@ -111,6 +116,7 @@ $(document).on("click", ".del-btn", function() {
 		<c:forEach var="dto" items="${requestScope.adminProductList}">
 			<tr>
 				<td>${dto.product_id}</td>
+<%-- 				<td>${dto.product_id}</td> --%>
 				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span>${dto.title}</span></a></td>
 				<td>${dto.price}</td>
 				<td>${dto.seller_id}</td>
@@ -141,7 +147,7 @@ $(document).on("click", ".del-btn", function() {
 		</c:forEach>
 	</tbody>
 </table>
-
+	</div>	</div>
 
 			<div class="container" style="margin: auto;">
 			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">

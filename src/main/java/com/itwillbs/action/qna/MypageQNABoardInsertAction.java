@@ -67,10 +67,8 @@ public class MypageQNABoardInsertAction implements Action{
 					return forward;
 				}
 				
-//				int product_id = Integer.parseInt(multi.getParameter("product_id"));
-//				System.out.println("product_id : "+product_id);
-				
-//				
+
+
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
 				qdto.setTitle(multi.getParameter("title"));
@@ -80,7 +78,13 @@ public class MypageQNABoardInsertAction implements Action{
 				qdto.setNickname(multi.getParameter("nickname"));
 				qdto.setQnaCategory(multi.getParameter("qna_category"));
 				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
-//				qdto.setProductId(Integer.parseInt(multi.getParameter("product_id")));
+				String productIdParameter = multi.getParameter("product_id");
+				if (productIdParameter != null) {
+				    qdto.setProductId(Integer.parseInt(productIdParameter));
+				} else {
+				    // product_id가 null인 경우에 대한 처리
+				    qdto.setProductId(0);
+				}
 //				mdto.setUserID(Integer.parseInt(request.getParameter("userID")));
 //				mdto.setRe_Ref(Integer.parseInt(request.getParameter("re_ref")));
 //				mdto.setRe_Lev(Integer.parseInt(request.getParameter("re_lev")));
