@@ -54,6 +54,7 @@ public class QnaController extends HttpServlet{
 	      if(command.equals("/MypageQNAInsertAction.qn")) {
 	         System.out.println(" C : /MypageQNAInsertAction.qn 호출 ");
 	         System.out.println(" C : DB사용 O, 페이지 이동O (패턴2)");
+	         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	         // MypageQNABoardInsertAction 객체 생성
 	         action = new MypageQNABoardInsertAction();
 	         try {

@@ -66,8 +66,8 @@ public class MypageDAO {
 			
 			MemberDTO member = new MemberDTO();
 			System.out.println("DAO : 글번호 "+bno);
-			sql ="insert into QNA(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered) "
-					+ "values(?,?,?,now(),?,?,?,?,?,?,?,?)";
+			sql ="insert into QNA(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered,product_id) "
+					+ "values(?,?,?,now(),?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bno); // 글번호
 			pstmt.setString(2, qdto.getTitle()); //제목
@@ -82,6 +82,7 @@ public class MypageDAO {
 			pstmt.setString(9, qdto.getNickname()); // id
 			pstmt.setString(10, qdto.getQnaCategory());
 			pstmt.setBoolean(11, qdto.isIs_answered());
+			pstmt.setInt(12, qdto.getProductId());
 			// 실행			
 			result = pstmt.executeUpdate();
 			System.out.println("DAO : 글쓰기 완료! ");

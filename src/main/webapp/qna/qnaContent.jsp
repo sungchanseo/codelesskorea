@@ -238,7 +238,7 @@ fieldset {
     <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea></td>
   </tr>
   </table>
-
+	${qdto.productId}
 
 	<div style= "float: right; margin-top: 30px;">
      <input type="button" value="목록으로" class="btn btn-secondary" onclick="location.href='./UserQNAList.qn?pageNum=${pageNum }'">
