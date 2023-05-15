@@ -123,57 +123,16 @@ $('document').ready(function() {
 
 	});//script끝
 
-	//모달 창 열기 함수
 	function openModal() {
-	  document.getElementById("myModal").style.display = "block";
+	  document.getElementById("mainModal").style.display = "block";
 	}
 
-	// 모달 창 닫기 함수
 	function closeModal() {
-	  document.getElementById("myModal").style.display = "none";
+	  document.getElementById("mainModal").style.display = "none";
 	}
 	
 </script>
 
-<!-- 모달창 스타일 -->
-<style>
-/* 모달 창 스타일 */
-.modal {
-  display: none; /* 초기에는 숨김 상태 */
-  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
-  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
-}
-
-.modal-content {
-    width: 600px; 
-  height: 400px;
-  position: absolute; /* 모달 창 내에서 상대적인 위치 */
-  top: 50%; /* 상위 요소에서 50% 위치 */
-  left: 50%; /* 상위 요소에서 50% 위치 */
-  transform: translate(-50%, -50%); /* 가운데 정렬 */
-  width: 80%;
-  max-height: 90%;
-  overflow-y: auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-/* iframe 스타일 */
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-</style>
 
 </head>
 <body style="font-family: 'TheJamsil5';">
@@ -261,7 +220,7 @@ iframe {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="매칭하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
 
 					</div>
 				</form>
@@ -494,7 +453,7 @@ iframe {
 
 	<%@include file="../footer.jsp"%>
 
-<div id="myModal" class="modal">
+<div id="mainModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
     <iframe src="./ProductList.pr"></iframe>

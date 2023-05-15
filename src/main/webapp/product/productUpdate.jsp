@@ -1,84 +1,45 @@
 <%@page import="com.itwillbs.db.ProductDTO"%>
 <%@page import="com.itwillbs.db.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 등록</title>
+<title>상품 수정</title>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 
-<style>
-	body {
-		background-color: #f2f2f2;
-		font-family: Arial, sans-serif;
-	}
-
-	h1 {
-		color: #000000;
-	}
-
-	form {
-		background-color: #fff;
-		padding: 20px;
-		border-radius: 5px;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-	}
-
-	input[type="text"], select, textarea {
-		display: block;
-		width: 100%;
-		padding: 12px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-
-	input[type="file"] {
-		padding: 5px;
-		border: none;
-		border-bottom: 1px solid #ccc;
-	}
-
-	input[type="submit"] {
-		display: inline-block;
-		margin: 10px;
-		padding: 10px 20px;
-		background-color: #333;
-		color: #fff;
-		text-decoration: none;
-		border-radius: 4px;
-		border: 1px solid #333;
-		transition: all 0.3s ease;
-	}
-
-	input[type="submit"]:hover {
-			background-color: #fff;
-			color: #333;
-	}
-
-	input[type="radio"], input[type="checkbox"] {
-		margin-right: 10px;
-	}
-
-	label {
-		display: block;
-		margin-bottom: 10px;
-	}
-
-	.error-message {
-		color: red;
-		margin-top: 10px;
-	}
-</style>
-
+<%@include file="../head.jsp" %>
 </head>
 <body>
+<%@include file="../nav.jsp" %>
+
+ <!-- 사이드바 -->
+
+  <div class="col-sm-4">
+ <div class="container" id="left">
+  <br>
+  <h4> 마이페이지 </h4>
+  <hr style="border: 0;height: 1px; background-color: black;">
+  <h5 onclick="location.href='./ProductList.pr'"> 판매 목록</h5>
+  <h5 onclick="location.href='./ProductList.no'"> 구매 목록</h5>
+  <h5 onclick="location.href='./ProductList.no'"> 찜 목록</h5>
+  <h5 onclick="location.href='./ProductList.no'"> 1대1 문의</h5>
+  <h5 onclick="location.href='./ProductList.no'"> 내 정보 보기</h5>
+  </div>
+	</div>	
+  
+ <!--   사이드바 -->
+ 
 	
-	<h1>상품 수정</h1>
+<div class="col-sm-8" style="margin:auto;">
+ <div class="container" id="right" style="margin-left: 150px; width: 100%;">
+ <h1 style="font-family: 'TheJamsil5Bold';">상 품 수 정</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
 	
-	<form action="./ProductUpdateProAction.pr" method="post">
+	<form action="./ProductWriteAction.pr" method="post" enctype="multipart/form-data" >
 		<table>
 			<tr>
 				<td>상품 번호:</td>
@@ -97,8 +58,12 @@
 			</tr>
 			<tr>
 				<td>상품 모델:</td>
-				<td><input type="text" name="model" value="${product.model}"
-					required></td>
+				<td><select name="parts" required>
+						<option value="samsung" ${product.model == 'samsung' ? 'selected' : ''}>SAMSUNG</option>
+						<option value="apple"
+							${product.model == 'apple' ? 'selected' : ''}>APPLE</option>
+						<option value="etc" ${product.model == 'etc' ? 'selected' : ''}>etc</option>
+				</select></td>
 			</tr>
 			<tr>
 				<td>상품 부품:</td>
@@ -113,10 +78,10 @@
 				<td>상품 내용:</td>
 				<td><textarea name="content" rows="5" cols="30">${product.content}</textarea></td>
 			</tr>
-			<tr>
-				<td>이미지 업로드 :</td>
-				<td><input type="file" name="product_image"></td>
-			</tr>
+		<tr>
+  <td>이미지 업로드 :</td>
+  <td><input type="file" name="product_image1" id="product_image1" required></td>
+	</tr>
 			<tr>
 				<td>상품 가격:</td>
 				<td><input type="number" name="price" value="${product.price}"
@@ -161,6 +126,9 @@
 		</table>
 		<input type="submit" value="수정하기">
 	</form>
+</div>
+</div>
 
+<%@include file="../footer.jsp" %>
 </body>
 </html>
