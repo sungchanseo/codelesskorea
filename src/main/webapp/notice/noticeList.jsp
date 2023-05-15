@@ -53,7 +53,7 @@
    <tr>
      <td width="30px;" style="text-align: center;">${dto.notice_id }<input type="hidden" name="notice_id" value="${dto.notice_id }"></td>
      <td width="500px;" style="text-align: center;"><a href="./NoticeContent.no?notice_id=${dto.notice_id }&pageNum=${pageNum}">${dto.title }</a></td>
-     <td width="100px;" style="text-align: center;">${dto.date}</td>
+     <td width="200px;" style="text-align: center;">${dto.date}</td>
      <td width="100px;" style="text-align: center;">${dto.count }</td>
    </tr>
 	</c:forEach>

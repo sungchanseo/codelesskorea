@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="search_box.css">
 <meta charset="UTF-8">
 <title>CODE LESS - 자주묻는 질문</title>
 <%@ include file="../head.jsp"%>
@@ -19,8 +20,8 @@
   <br>
   <h4> 자주묻는 질문</h4>
   <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
-  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
+  <h5 onclick="location.href='./NoticeList.no'">공지사항</h5>
+  <h5 onclick="location.href='./FaqList.fa'">자주하는질문</h5>
   </div>
 	</div>	
   
@@ -33,7 +34,7 @@
 
 페이지번호 : ${pageNum }<br>
 <!-- 검색창기능 -->
-<div id="table_search">
+<div id="table_search" class="aram-outline-input header-search mat-form-field ng-tns-c14-6 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-outline mat-form-field-can-float ng-untouched ng-pristine ng-valid">
 	<form action="./FaqList.fa" method="post">
 		<select name="selecter">
 			<option value="title">제목</option>

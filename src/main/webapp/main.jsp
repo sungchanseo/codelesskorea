@@ -3,8 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<%@ include file="../head.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<%@ include file="../head.jsp"%>
 <script type="text/javascript">
 
 $('document').ready(function() {
@@ -176,38 +176,34 @@ iframe {
 </style>
 
 </head>
-
+<body style="font-family: 'TheJamsil5';">
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- END head -->
 
 <section class="site-hero overlay"
-	style="background-image: url(images/background-g70cf72a56_1920.png)"
+	style="background-image: url(images/background-6556414_1920.jpg)"
 	data-stellar-background-ratio="0.5">
 	<div class="container">
 		<div
 			class="row site-hero-inner justify-content-center align-items-center">
 			<div class="col-md-10 text-center" data-aos="fade-up">
-				<h2>CODE LESS</h2>
-				<h1 class="heading">코드리스</h1>
+				<h1 style=" font-family: 'Noto Sans KR', sans-serif; color: #262626;"><b>새로운 매칭서비스의 시작</b></h1>
+				<h1 style=" font-family: 'Noto Sans KR', sans-serif; color: #262626;"><b>코드리스</b></h1>
+			<!-- 	<h5 class="heading"></h5> -->
 			</div>
 		</div>
 	</div>
 
-	<a class="mouse smoothscroll" href="#next">
-		<div class="mouse-icon">
-			<span class="mouse-wheel"></span>
-		</div>
-	</a>
 </section>
 <!-- END section -->
 
-<section class="section bg-light pb-0">
+<section class="section pb-0">
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 3px solid;">
+					<h5 style=" font-family: 'TheJamsil5Bold'; text-align: center; color:#262626;">새로운 짝을 매칭해보세요!</h5><br>
 				<form action="#">
 					
 					<div class="row">
@@ -265,7 +261,7 @@ iframe {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+						<input type="button" value="매칭하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
 
 					</div>
 				</form>
@@ -276,19 +272,16 @@ iframe {
 	</div>
 </section>
 
-<section class="py-5 bg-light">
+<!-- <section class="py-5 bg-light">
 	<div class="container">
 		<div class="row align-items-center">
 			<div
 				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
 				data-aos="fade-up">
-				<figure class="img-absolute">
-					<img src="" alt="Image" class="img-fluid">
-				</figure>
-				<!-- <img src="images/chat.jpg" alt="Image" class="img-fluid rounded" > -->
+
 			</div>
-			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-				<h2 class="heading">코드리스코드리스</h2>
+			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up" style="text-align: center;">
+				<h2 class="heading"  style="text-align: center;">코드리스코드리스</h2>
 				<p style="font-size: 18px;">코드리스코드리스코드리스코드리스코드리스코드리스</p>
 				<p>
 					<a href="#" class="btn btn-primary text-white py-2 mr-3">링크거세요</a>
@@ -297,251 +290,69 @@ iframe {
 
 		</div>
 	</div>
-</section>
+</section> -->
 
-<!--  <section class="section">
+  <section class="section">
       <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Rooms &amp; Suites</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+        <div class="row justify-content-left text-left mb-5">
+          <div class="col-md-7" style="margin-bottom: 50px;">
+            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">어떻게 이용하나요?</h3>
+           <!--  <p data-aos="fade-up" data-aos-delay="100"></p> -->
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Family Room</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Presidential Room</h2>
-                <span class="text-uppercase letter-spacing-1">250$ / per night</span>
-              </div>
-            </a>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-    
-    
-    <section class="section slider-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Photos</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-              <div class="slider-item">
-                <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-            </div>
-            END slider
+        
+                  <div class="col-md-6 col-lg-3" data-aos="fade-up">
+           
+             <div class="image-with-text text-center">
+  <img src="https://cdn-icons-png.flaticon.com/128/4185/4185655.png" alt="your-image">
+  <h2>매칭하기</h2>
+  <p>원하는 옵션을 선택하여 매칭을 시작하세요.</p>
+</div>
+            
           </div>
         
-        </div>
-      </div>
-    </section>
-    END section
-    
-    <section class="section bg-image overlay" style="background-image: url('images/hero_3.jpg');">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
-            <p class="text-white" data-aos="fade" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-        <div class="food-menu-tabs" data-aos="fade">
-          <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
-            </li>
-          </ul>
-          <div class="tab-content py-5" id="myTabContent">
+          <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          
+                      <div class="image-with-text text-center">
+  <img src="https://cdn-icons-png.flaticon.com/128/4185/4185572.png" alt="your-image">
+  <h2>주문서작성</h2>
+  <p>원하는 상품을 선택후, 주문서를 작성하세요(택배거래만 해당)</p>
+</div>
             
-            
-            <div class="tab-pane fade show active text-left" id="mains" role="tabpanel" aria-labelledby="mains-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$20.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Murgh Tikka Masala</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$35.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Fish Moilee</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$15.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Safed Gosht</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$10.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">French Toast Combo</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$8.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Vegie Omelet</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Chorizo &amp; Egg Omelet</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-              </div>
-              
-
-            </div> .tab-pane
-
-            <div class="tab-pane fade text-left" id="desserts" role="tabpanel" aria-labelledby="desserts-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$11.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Banana Split</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$72.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Sticky Toffee Pudding</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$26.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Pecan</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$42.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Apple Strudel</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$7.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Pancakes</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Ice Cream Sundae</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-              </div>
-            </div> .tab-pane
-            <div class="tab-pane fade text-left" id="drinks" role="tabpanel" aria-labelledby="drinks-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$32.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Spring Water</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$14.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Coke, Diet Coke, Coke Zero</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$93.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Orange Fanta</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$18.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Lemonade, Lemon Squash</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$38.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Sparkling Mineral Water</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$69.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Lemon, Lime &amp; Bitters</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-              </div>
-            </div> .tab-pane
           </div>
+
+
+          <div class="col-md-6 col-lg-3" data-aos="fade-up">
+        
+                             <div class="image-with-text text-center">
+  <img src="https://cdn-icons-png.flaticon.com/128/4185/4185633.png" alt="your-image">
+  <h2>채팅하기</h2>
+  <p>판매자와 소통할 수 있는 채팅이 가능합니다</p>
+</div>
+              </div>
+           
+          
+          
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up">
+           <div class="image-with-text text-center">
+  <img src="https://cdn-icons-png.flaticon.com/128/4185/4185445.png" alt="your-image">
+  <h2>거래완료</h2>
+  <p></p>
+</div>
+          </div>
+
+
         </div>
       </div>
     </section>
     
-    END section
+  
     <section class="section testimonial-section">
       <div class="container">
-        <div class="row justify-content-center text-center mb-5">
+        <div class="row justify-content-left text-left mb-5">
           <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">People Says</h2>
+            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">코드리스 이용자 후기</h3>
           </div>
         </div>
         <div class="row">
@@ -549,78 +360,81 @@ iframe {
             
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001799.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
 
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
+                <p>&ldquo;코드리스와 함께하면서</p>
+                <p>제 인생의 반이 채워졌어요!&rdquo;</p>
               </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
+              <p><em>&mdash;최*원</em></p>
             </div> 
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001775.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+                <p>&ldquo;한쪽만 잃어버렸는데</p>
+                 <p>한쪽만 구매할 수 있어서 편해요!&rdquo;</p>
               </blockquote>
-              <p><em>&mdash; John Doe</em></p>
+              <p><em>&mdash;서*찬</em></p>
             </div>
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001817.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
 
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
+                <p>&ldquo;한쪽만 없어서 팔고싶었는데</p>
+                 <p>코드리스덕에 편하게 팔았어요!&rdquo;</p>
               </blockquote>
-              <p><em>&mdash; John Doe</em></p>
+              <p><em>&mdash;양*영</em></p>
             </div>
 
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001799.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
-
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
+				 <p>&ldquo;직거래와 택배거래 둘다 가능해서</p>
+                 <p>편하게 거래할 수 있었어요!&rdquo;</p>
+             </blockquote>
+              <p><em>&mdash; 이*연</em></p>
             </div> 
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001775.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+				 <p>&ldquo;새거 사기는 부담스러웠는데</p>
+                 <p>중고로 싸게사서 좋았어요!&rdquo;</p>	
               </blockquote>
-              <p><em>&mdash; John Doe</em></p>
+              <p><em>&mdash; 임*희</em></p>
             </div>
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
-                <img src="images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                <img src="https://cdn-icons-png.flaticon.com/128/3001/3001758.png" alt="Image placeholder" class="rounded-circle mx-auto">
               </div>
               <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
+				 <p>&ldquo;원하는 옵션으로만 매칭이 가능해서</p>
+                 <p>편하게 이용했어요!&rdquo;</p>
               </blockquote>
-              <p><em>&mdash; John Doe</em></p>
+              <p><em>&mdash; 나*우</em></p>
             </div>
 
           </div>
-            END slider
         </div>
 
       </div>
     </section>
     
 
-    <section class="section blog-post-entry bg-light">
+   <!--  <section class="section blog-post-entry bg-light">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -663,20 +477,20 @@ iframe {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
+    <section class="section bg-image overlay" style="background-color: FFFFCC;">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 상품을 등록해보세요!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="" class="btn btn-outline-white-primary py-3 text-white px-5">상품 올리기</a>
             </div>
           </div>
         </div>
-      </section> -->
+      </section> 
 
 	<%@include file="../footer.jsp"%>
 

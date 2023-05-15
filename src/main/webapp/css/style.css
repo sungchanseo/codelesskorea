@@ -1,6 +1,6 @@
 body {
   background: #fff;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'TheJamsil5';
   font-weight: 200;
   font-size: 16px;
   line-height: 1.8;
@@ -138,7 +138,7 @@ textarea.form-control {
   bottom: 0;
   z-index: 99;
   border: 20px solid transparent;
-  background: #fff;
+
   min-height: 300px;
   overflow-y: scroll; }
   .site-navbar nav {
@@ -176,8 +176,8 @@ textarea.form-control {
 
 .site-hero {
   background-size: cover;
-  height: 100vh;
-  min-height: 700px;
+  height: 550px;
+  min-height: 500px;
   width: 100%;
   position: relative; }
   .site-hero .heading {
@@ -187,12 +187,12 @@ textarea.form-control {
     position: absolute;
     bottom: 20px;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+/*     -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%); */
+/*     transform: translateX(-50%); */
     color: #fff; }
   .site-hero.overlay:before {
-    background: rgba(0, 0, 0, 0.45);
+/*  background: rgba(0, 0, 0, 0.45); */
     content: "";
     position: absolute;
     height: 100vh;
@@ -209,8 +209,8 @@ textarea.form-control {
       min-height: 700px; }
 
 .site-hero-inner {
-  height: 100vh;
-  min-height: 700px; }
+  height: 500px;
+  min-height: 500px; }
   .site-hero-inner .heading {
     font-size: 80px;
     font-family: "Playfair Display", times, serif;
@@ -901,9 +901,9 @@ textarea.form-control {
 
 .block-32 {
   background: #fff;
-  padding: 30px;
-  -webkit-box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
+  padding: 45px;
+/*   -webkit-box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2); */
   width: 100%; }
   .block-32 .field-icon-wrap {
     position: relative; }
