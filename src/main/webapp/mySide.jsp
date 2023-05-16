@@ -31,7 +31,7 @@
 	</script>
 
 
-			 <div class="col-md-10">
+			 <div class="col-md-2">
 		  <div class="container" id="left">
 		  <br>
 		  
