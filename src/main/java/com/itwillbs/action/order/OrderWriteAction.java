@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -22,23 +23,27 @@ public class OrderWriteAction implements Action {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		System.out.println("id: "+id +" / product_id: " +product_id);
 		
-		ActionForward forward = new ActionForward();
 		if(id == null) {
-			System.out.println("ID 정보가 없습니다.");
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			return forward;
+			JSForward jsf = new JSForward();
+			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
+		
+
 		
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		OrderDAO dao = new OrderDAO();
-		System.out.println("OrderWriteAction1");
-		OrderDTO dto = dao.addOrder(id, product_id);
+		
+		OrderDTO dto = new OrderDTO();
+		dto.setId(id);
+		dto.setProduct_id(product_id);
+			dto = dao.orderWrite(dto);
 		System.out.println("OrderWriteAction2 : DAO 메서드 완료");
+		System.out.println("dto : "+dto);
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		
 		// 페이지 forward 이동(jsp) + 정보 출력
+		ActionForward forward = new ActionForward();
 		forward.setPath("./order/orderWrite.jsp");
 		forward.setRedirect(false);
 		

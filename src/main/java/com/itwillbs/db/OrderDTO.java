@@ -23,6 +23,7 @@ public class OrderDTO {
 	private String seller_id; // 판매자 아이
 	private int is_accept; // 구매여부
 	private int tracking_number; //운송장번호
+	private String order_status; //주문 상태
 	private String imp_uid; // 고유 id
 	private String merchant_uid; // 상점 거래 id
 	private String paid_amount; // 결제 금액
@@ -34,6 +35,7 @@ public class OrderDTO {
 	private int price ; //상품가격
 	private int fee; //배송비
 	private int charge; // 택배 or 직거래
+	private String product_image;
 	
 	// user 테이블
 	private String id; // 구매자 아이디(이메일)
@@ -46,6 +48,18 @@ public class OrderDTO {
 	
 	
 	
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
 	public String getAddress2() {
 		return address2;
 	}
@@ -220,13 +234,13 @@ public class OrderDTO {
 				+ user_id + ", receiver_name=" + receiver_name + ", receiver_phone=" + receiver_phone
 				+ ", receiver_addr1=" + receiver_addr1 + ", receiver_addr2=" + receiver_addr2 + ", receiver_post="
 				+ receiver_post + ", receiver_id=" + receiver_id + ", seller_id=" + seller_id + ", is_accept="
-				+ is_accept + ", tracking_number=" + tracking_number + ", imp_uid=" + imp_uid + ", merchant_uid="
-				+ merchant_uid + ", paid_amount=" + paid_amount + ", apply_num=" + apply_num + ", product_id="
-				+ product_id + ", title=" + title + ", price=" + price + ", fee=" + fee + ", charge=" + charge + ", id="
-				+ id + ", name=" + name + ", phone_number=" + phone_number + ", address=" + address + ", address2="
-				+ address2 + ", post_number=" + post_number + "]";
+				+ is_accept + ", tracking_number=" + tracking_number + ", order_status=" + order_status + ", imp_uid="
+				+ imp_uid + ", merchant_uid=" + merchant_uid + ", paid_amount=" + paid_amount + ", apply_num="
+				+ apply_num + ", product_id=" + product_id + ", title=" + title + ", price=" + price + ", fee=" + fee
+				+ ", charge=" + charge + ", id=" + id + ", name=" + name + ", phone_number=" + phone_number
+				+ ", address=" + address + ", address2=" + address2 + ", post_number=" + post_number + "]";
 	}
-	
+
 	
 
 	
