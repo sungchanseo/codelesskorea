@@ -25,8 +25,8 @@ public class AdminProductListAction implements Action {
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
-		
+		System.out.println("M: AdminProductListAciton_execute();");
+/*		
 		if(id == null) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
 			return forward;
@@ -47,10 +47,9 @@ public class AdminProductListAction implements Action {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
-		
+*/		
 				
 
-		System.out.println("모델: MypageQNAListAction안의 execute() 실행됨");
 		
 		// 페이징 처리*****************************
 		// 한 페이지에서 보여줄 글의 개수 설정
