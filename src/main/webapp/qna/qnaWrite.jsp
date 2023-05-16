@@ -43,6 +43,7 @@ String nickname = mdto.getNickname();
 // int product_id = Integer.parseInt(request.getParameter("product_id"));
 %>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+<div class="row" style="margin-left: 100px;">
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 	
 <!-- 		로그인 세션제어 -->
@@ -51,8 +52,8 @@ String nickname = mdto.getNickname();
 		</c:if>
 					
 	 
-	 <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 50px; width: 100%;">
+ 	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">1 : 1 문 의 글 작 성</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -114,6 +115,8 @@ String nickname = mdto.getNickname();
 	</div>	
 
 </div>	
+
+</div>
 		<br><br>
 
 

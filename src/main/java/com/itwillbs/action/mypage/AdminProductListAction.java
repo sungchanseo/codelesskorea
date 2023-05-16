@@ -13,7 +13,6 @@ import com.itwillbs.db.ListDTO;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.MypageDAO;
-import com.itwillbs.db.QnADTO;
 
 public class AdminProductListAction implements Action {
 
@@ -21,6 +20,7 @@ public class AdminProductListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		System.out.println("M : AdminProductListAction_execute() 호출!");
 		
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
@@ -38,17 +38,39 @@ public class AdminProductListAction implements Action {
 			return forward;
 		}
 		
-		
-		// 차단 사용자 세션제어
-		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id);
-		boolean blocked = dto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
-*/		
 				
+
+
+		// 차단 사용자 세션제어
+		// 차단 사용자 세션제어
+*/		// 차단 사용자 세션제어
+//		MemberDAO dao = new MemberDAO();
+//		MemberDTO dto = dao.getMember(id);
+//		boolean blocked = dto.getBlocked();
+//		if(blocked == true) {
+//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+//			return forward;
+//		}
+		//////////////////////////////////////////////////////////
+		//검색로직 
+		String category= request.getParameter("category");
+		String search = request.getParameter("search");
+		System.out.println("검색어 : "+search+" 카테고리 : "+category);
+		int count; 
+		
+		// DAO 객체 생성
+		MypageDAO mdao = new MypageDAO();
+		
+		if(search != null) {
+		//검색어와 일치하는 글의 갯수
+		search = search.trim();
+		count= mdao.getBoardCount(search, category);
+		}else {
+		//검색어가 없을 때
+		//전체 글 갯수 
+		count = mdao.getAdminProductCount();
+		}
+		//////////////////////////////////////////////////////////
 
 		
 		// 페이징 처리*****************************
@@ -57,11 +79,10 @@ public class AdminProductListAction implements Action {
 		// 현 페이지의 페이지값을 확인
 
 
-		// BoardDAO 객체 생성
-		MypageDAO mdao = new MypageDAO();
+//		// BoardDAO 객체 생성
+//		MypageDAO mdao = new MypageDAO();
 		// 글 개수 체크하는 메서드, 정보 가져오는 메서드
 		// getBoardCount(), getBoardList()
-		int count = mdao.getAdminListCount();
 
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null)	pageNum = "1";
@@ -69,13 +90,23 @@ public class AdminProductListAction implements Action {
 		int startRow = (currentPage-1)*pageSize+1;
 		int endRow = currentPage*pageSize+1;
 
-		List<ListDTO> adminProductList = mdao.getAdminList(startRow, pageSize);
+//		List<ListDTO> adminsCProductList = mdao.getAdminList(startRow, pageSize);
 		
 		//////////////////////////////////////////////////////////
 
 		
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
+		
+		List<ListDTO> adminList = null;
+		if(search != null) {
+			//검색어가 있는 경우
+			adminList = mdao.getAdminList(startRow, pageSize, search, category); 
+		}else {
+			//검색어가 없는 경우
+			adminList = mdao.getAdminList(startRow, pageSize);
+		}
+		
 		int pageCount;
 		int pageBlock;
 		int startPage;
@@ -97,10 +128,12 @@ public class AdminProductListAction implements Action {
 			
 		}
 		
-		System.out.println("M : 전체 글수 : "+adminProductList.size());
+		System.out.println("M : 전체 글수 : "+adminList.size());
 		//회원정보를 request 영역에 저장
-		request.setAttribute("adminProductList", adminProductList);
+		request.setAttribute("adminProductList", adminList);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("category", category);
+		request.setAttribute("search", search);
 		
 		
 		//////////////////////////////////////////////////////////
