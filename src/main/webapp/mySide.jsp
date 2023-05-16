@@ -31,7 +31,7 @@
 	</script>
 
 
-
+			<div class="col-md-2">
 		  <div class="container" id="left">
 		  <br>
 		  
@@ -80,4 +80,4 @@
 		  <h5 onclick="location.href='./AdminQNAList.qn'"> 1:1문의관리</h5>
 		  </c:if>
 		  </div>
-		  
+		  </div>
