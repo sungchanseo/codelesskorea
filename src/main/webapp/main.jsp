@@ -279,6 +279,24 @@ $('document').ready(function() {
 				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
 				data-aos="fade-up">
 
+	<section class="section">
+		<div class="container">
+		<div class="row justify-content-left text-left mb-5">
+          <div class="col-md-7" style="margin-bottom: 50px;">
+            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">CODELESS?</h3>
+           <!-- <p data-aos="fade-up" data-aos-delay="100"></p> -->
+          </div>
+        </div>
+	<div class="row">
+	<div class="col-md-12 col-lg-4" data-aos="fade-up">
+			<img src="images/airpot.jpg" alt="your-image" style="max-width: 400px;max-height: 300px">
+				</div>
+				<div class="col-md-6 col-lg-8"data-aos="fade-up">
+				<p style="font-size: 30px;">
+				<br>
+				불필요한 중개업체를 거치지 않고 바로  <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.
+<!-- 				CODELESS는 무선 이어폰의 편리함과 현대인들의 스마트 라이프스타일에 최적화된 제품을 제공함으로써, 이어폰 사용 경험을 더욱 향상시키고자 합니다. -->
+				</p>
 			</div>
 			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up" style="text-align: center;">
 				<h2 class="heading"  style="text-align: center;">코드리스코드리스</h2>
@@ -307,7 +325,9 @@ $('document').ready(function() {
              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185655.png" alt="your-image">
   <h2>매칭하기</h2>
-  <p>원하는 옵션을 선택하여 매칭을 시작하세요.</p>
+  <p>브랜드, 모델, 색상, 짝 등</p>
+  <p>원하는 옵션을 선택하여</p>
+  <p> 매칭을 시작하세요!</p>
 </div>
             
           </div>
@@ -328,7 +348,9 @@ $('document').ready(function() {
                              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185633.png" alt="your-image">
   <h2>채팅하기</h2>
-  <p>판매자와 소통할 수 있는 채팅이 가능합니다</p>
+  <p>관심 있는 물건의 판매자와</p>
+  <p>실시간으로 소통할 수 있는</p>
+  <p>채팅이 가능합니다</p>
 </div>
               </div>
            
@@ -338,6 +360,8 @@ $('document').ready(function() {
            <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185445.png" alt="your-image">
   <h2>거래완료</h2>
+  <p>구매자가 물건을 수령한 뒤에</p>
+  <p>거래완료할 수 있어 보다 안전합니다</p>
   <p></p>
 </div>
           </div>
