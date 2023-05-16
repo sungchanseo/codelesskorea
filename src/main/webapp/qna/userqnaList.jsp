@@ -17,7 +17,7 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
+
 
    <c:if test="${ empty sessionScope.id }">
       <c:redirect url="./MemberLogin.me" />

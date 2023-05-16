@@ -225,11 +225,12 @@
 <%@include file="../nav.jsp" %>
 
  <!-- 사이드바 -->
+ <div class="row" style="margin-left: 100px;">
 <%@include file="../mySide.jsp" %>
  <!--   사이드바 -->
 
-<div class="col-sm-8" style="margin:auto;"></div>
- <div id="right" style="margin-left: 150px; width: 100%;">
+ 	 <div class="col-md-10">
+ <div id="right" style="width: 80%;">
  <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -255,18 +256,20 @@
     <div class="label">등록일: </div>
     <div class="value">${product.reg_date}</div>
   </div>
-					<!-- 찜 버튼 -->
+	
+	  <div class="row">			<!-- 찜 버튼 -->
 	<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
 		  <i class="fa fa-heart"></i>
 	</button>
 					<!-- 찜수 -->
-					<span style="font-size: 0.8em; color: gray;">찜수: ${product.like_count }</span>
+	<span style="font-size: 0.8em; color: gray;">찜수: ${product.like_count }</span>
+	   </div>
     <div class="label">조회수: </div>
     <div class="value">${product.read_count} </div>
 
     <div class="label">채팅수: </div>
     <div class="value">${product.chat_count} </div>
-  </div>
+ 
   <div class="row">
     <div class="label">판매자: </div>
     <div class="value">${product.user_id}</div>
@@ -308,9 +311,12 @@
     <div class="label">배송방법: </div>
     <div class="value">${product.method}</div>
   </div>
+
+   </div>
 </div>
+
 <div>
-<div style= "text-align: center ; margin-top: 10px;">
+<div style= "text-align: center ; margin-top: 0px;">
 	<a href="./ProductList.pr" class="btn btn-primary" >상품 리스트로 이동</a>
 	<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary" >구매하기</a>
 
@@ -335,7 +341,8 @@
 </div>
 </div>
 </div>
-
+</div>
+<br>
 <script>
 const dotsContainer = document.querySelector('.dots-container');
 const imageContainer = document.querySelector('.image-container');

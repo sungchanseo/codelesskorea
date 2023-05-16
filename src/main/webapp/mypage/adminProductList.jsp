@@ -90,16 +90,16 @@ $(document).on("click", ".del-btn", function() {
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-
+<div class="row" style="margin-left: 100px;">
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 
 <!-- 관리자페이지의 [상품관리]탭을 누르면 판매 상태여부에 관계 없이 모든 거래 리스트를 볼 수 있다. -->
 <!-- 최신순으로 모든 상품의 리스트가 한 페이지 20개씩 출력됨 -->
 <!-- 리스트로 출력되는 내용은 상품번호, 상품명, 판매가, 판매자, 구매자, 등록일시, 판매 상태(판매중, 판매완료) -->
 <!-- 상품 링크를 클릭하면 해당 상품 페이지로 이동할 수 있음 -->
-<br>
- <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 100px; width: 100%;">
+
+ 	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 관 리</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 	  
@@ -172,8 +172,8 @@ $(document).on("click", ".del-btn", function() {
 
 
 
-<br>
 
+</div>
 
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

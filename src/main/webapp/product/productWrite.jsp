@@ -17,23 +17,13 @@
 
  <!-- 사이드바 -->
 
-  <div class="col-sm-4">
- <div class="container" id="left">
-  <br>
-  <h4> 마이페이지 </h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./ProductList.pr'"> 판매 목록</h5>
-  <h5 onclick="location.href='./ProductList.no'"> 구매 목록</h5>
-  <h5 onclick="location.href='./ProductList.no'"> 찜 목록</h5>
-  <h5 onclick="location.href='./ProductList.no'"> 1대1 문의</h5>
-  <h5 onclick="location.href='./ProductList.no'"> 내 정보 보기</h5>
-  </div>
-	</div>	
+<div class="row" style="margin-left: 100px;">
+<%@include file="../mySide.jsp" %>
   
  <!--   사이드바 -->
  
-<div class="col-sm-8" style="margin:auto;">
- <div class="container" id="right" style="margin-left: 150px; width: 100%;">
+ 	 <div class="col-md-10">
+ <div id="right" style="width: 80%;">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 등 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -163,7 +153,9 @@
     </td>
   </tr>
 </table>
-		<input type="submit" value="등록">
+<input type="submit" value="등록" >
+  </div>
+		
 	</form>
 </div>
 </div>
