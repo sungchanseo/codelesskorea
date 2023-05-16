@@ -108,7 +108,7 @@
 	 margin-left:80px;  
 	width:900px;
 	height:700px;
-	margin-top: 150px;
+	margin-top: 130px;
 	margin-bottom: 150px; 
 	font-family: 'TheJamsil5';
 	 }
@@ -125,13 +125,8 @@
 		cursor: pointer;
 }
 
-.navbar {
-  background-color: transparent !important;
-  border-color: transparent;
-}
-.navbar-transparent {
-  background-color: transparent !important;
-  box-shadow: none !important;
+ .navbar.shadow {
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .navbar-nav li a {
@@ -156,4 +151,10 @@
 .image-with-text h2 {
 	font-family:'TheJamsil5';
 	margin-top: 30px;
+}
+
+.col-md-6 p{
+	color: #322F2C;
+	font-size: 20px;
+	margin: 2px;
 }

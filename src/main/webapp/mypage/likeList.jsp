@@ -113,9 +113,13 @@
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- LikeList -->
+
+<div class=row style="margin-left: 100px;"> 
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 150px; width: 100%;">
+
+
+	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">찜 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;" >
 
@@ -128,7 +132,7 @@
 		        <tr>
 		      </c:if>
 		        <td style="border: none; vertical-align: top; padding: 10px;">
-		         <a href="./ProductContent.pr?product_id=${dto.product_id}">
+		         <a href="./ProductContent.pr?product_id=${dto.product_id}"></a>
 		          <img src="${dto.product_image}" width="250px" height="200px">
 		          <br>
 		          <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
@@ -163,7 +167,7 @@
 				</c:if>
 			  </ul>
 	  		</div>
-
+		</div>
 
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->

@@ -3316,8 +3316,8 @@ input[type="button"].btn-block {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-      background-color: transparent !important;
-  border-color: transparent !important; }
+  /*     background-color: transparent !important;
+  border-color: transparent !important;  */}
 
 .navbar-brand {
   display: inline-block;

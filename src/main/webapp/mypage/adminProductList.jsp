@@ -12,9 +12,15 @@
 
 <style type="text/css">
 
-span {
-  color: #FFB609;
+#span {
+  color: #064CB5;
   font-weight: bold;
+}
+
+#span :hover{
+  color: #064CB5;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 #nttable * {
@@ -111,7 +117,7 @@ $(document).on("click", ".del-btn", function() {
 		<c:forEach var="dto" items="${requestScope.adminProductList}">
 			<tr>
 				<td>${dto.product_id}</td>
-				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span>${dto.title}</span></a></td>
+				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span id="span">${dto.title}</span></a></td>
 				<td>${dto.price}</td>
 				<td>${dto.seller_id}</td>
 				<td>${dto.buyer_id}</td>

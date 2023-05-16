@@ -103,15 +103,6 @@ function kakaoLogin() {
       
       <span onclick="location.href='./PwFind.me'" style="cursor:pointer;" >비밀번호 찾기</span>  
       
-<ul>
-	
-	
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>
     
    </div>
   </form>
