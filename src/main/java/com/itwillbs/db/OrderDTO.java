@@ -1,5 +1,7 @@
 package com.itwillbs.db;
 
+import java.sql.Date;
+
 /**
  * 주문정보를 저장하는 객체
  * @author 현솔
@@ -10,10 +12,9 @@ public class OrderDTO {
 	// order 테이블 (select)
 	private int order_id; // 주문번호
 //	private int product_id; // 상품번호
-	private String order_date; //날짜
+	private Date order_date; //날짜
 	private int payment; // 결제수단 
 	private int user_id; // 회원번호
-//	private int post_number; //우편번호
 	private String receiver_name; //구매자 이름
 	private String receiver_phone; // 받는사람 전화번호
 	private String receiver_addr1; //받는사람 주소
@@ -96,10 +97,10 @@ public class OrderDTO {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public String getOrder_date() {
+	public Date getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(String order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
 	public int getPayment() {

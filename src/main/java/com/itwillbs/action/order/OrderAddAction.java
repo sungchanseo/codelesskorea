@@ -33,7 +33,6 @@ public class OrderAddAction implements Action {
 		dto.setId(id);
 		dto.setOrder_id(Integer.parseInt(request.getParameter("order_id")));
 		dto.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
-		dto.setOrder_date(request.getParameter("order_date"));
 		dto.setReceiver_name(request.getParameter("name"));
 		dto.setReceiver_phone(request.getParameter("receiver_phone"));
 		dto.setReceiver_addr1(request.getParameter("receiver_addr1"));
@@ -42,7 +41,6 @@ public class OrderAddAction implements Action {
 		System.out.println("dto : "+dto);
 		String order_date = request.getParameter("order_date");
 		System.out.println(order_date);
-		dto.setOrder_date(order_date);
 		// 아래는 결제정보, 일단은 넘어오는지 확인만 함.
 		dto.setImp_uid(request.getParameter("imp_uid"));
 		dto.setMerchant_uid(request.getParameter("merchant_uid"));
@@ -60,12 +58,6 @@ public class OrderAddAction implements Action {
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		System.out.println("id: "+id +" / product_id: " +product_id);
-		// 페이지 forward 이동(jsp) + 정보 출력
-		
-//		ActionForward forward = new ActionForward();
-//		forward.setPath("./order/orderContent.jsp");
-////		forward.setPath("./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
-//		forward.setRedirect(false);
 		
 		System.out.println("M : 결제정보 저장, 주문정보 가져오기 끝");
 		return null;

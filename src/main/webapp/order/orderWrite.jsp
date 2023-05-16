@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- jQuery -->
+ <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <%@ include file="../head.jsp"%>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <!-- 주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -210,7 +211,7 @@
     } // function requestPay()
         
     </script>
-    <%@ include file="../head.jsp"%>
+
     <style type="text/css">
 
 	
@@ -220,6 +221,7 @@
     <title>Sample Payment</title>
 </head>
 <body>
+<%-- <%@ include file="../nav.jsp"%><!-- nav 삽입 --> --%>
 
 <div class="col-sm-8" style="margin:auto;">
  <div id="right" style="margin: 50px; width: 100%;">
@@ -231,6 +233,7 @@
 	
 	<fieldset>
 	<legend>상품 정보</legend>
+<%-- 		<input type="hidden"  name = "id" value="${dto.product_id }" readonly ><br> --%>
 		<input type="hidden" id="title" name = "title" value="${dto.title }" readonly >
 		상품번호 : ${dto.product_id }<br>
 <!-- 		상품사진 :  -->
@@ -264,7 +267,7 @@
 <!--                     <li> -->
                     
 <!--                         <label class="field" for="shippingAddr">주소: </label>  -->
-<!-- <!--                         <input type="text" class="input-box" id="shippingAddr" name="shippingAddr"> --> -->
+<!-- <!--                         <input type="text" class="input-box" id="shippingAddr" name="shippingAddr"> -->
 <!--                         <table> -->
 <!--                         <tr> -->
 <!--                         <td> -->
@@ -337,7 +340,7 @@
 		<input type="submit" value="변경하기" >
 		</form>
 	</fieldset>
-
+	<hr>
 	<fieldset>
 	<legend>결제정보</legend>
 		총 금액 : ${dto.price + dto.fee } 원 <br>
@@ -350,7 +353,7 @@
 	<fieldset>				
 	이용약관 내용
 	</fieldset>
-	
+		<br>
 	  <div class="check">
 	  <label><input type="checkbox" id="checkbox" >
 	  이용 약관 동의</label>
