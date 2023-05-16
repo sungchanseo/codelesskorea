@@ -118,16 +118,15 @@ font-weight: bold !important;
 </head>
 <body>
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-
-		<br>
+	<div class="row" style="margin-left: 100px;">
 	<%@ include file="../mySide.jsp"%>
 	
 		 <!--   사이드바 -->
 	 
 
   
- <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 100px; width: 100%;">
+ 	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">회 원 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -209,7 +208,7 @@ font-weight: bold !important;
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
 
-
+</div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

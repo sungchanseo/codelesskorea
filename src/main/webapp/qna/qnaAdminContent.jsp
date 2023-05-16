@@ -169,10 +169,6 @@ fieldset {
 
 <body>
 <%@ include file="../nav.jsp"%>
-<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
-
-
-
 <div class=row style="margin-left: 100px;">	
 	<%@ include file="../mySide.jsp"%>	 <!--   사이드바 -->
 	
