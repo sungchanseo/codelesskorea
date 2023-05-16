@@ -16,7 +16,6 @@
 					<b style="color:white;">사업자번호 </b> 507-85-07103<br>
 					<b style="color:white;">직업정보제공사업</b> <br>
 					신고번호 2007-부산부산진구-0001 <br>
-					
 				</span>
             </ul>
           </div>

@@ -144,13 +144,18 @@ public class NoticeController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/CompanyInfo.no")) {
-			
+			System.out.println("/CompanyInfo.no 호출!");
 			forward = new ActionForward();
 			forward.setPath("./notice/companyInfo.jsp");
 			forward.setRedirect(false);
 			
+		}else if(command.equals("/PrivacyPolicy.no")) {
+			
+			forward = new ActionForward();
+			forward.setPath("./notice/privacyPolicy.jsp");
+			forward.setRedirect(false);
+			
 		}
-	
 		
 		
 		
