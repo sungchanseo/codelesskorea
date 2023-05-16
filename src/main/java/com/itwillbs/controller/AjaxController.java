@@ -117,6 +117,8 @@ public class AjaxController extends HttpServlet {
 		
 		}
 		
+
+		
 		System.out.println(" 2. 가상주소 매핑 - 끝 ");
 		System.out.println("\n");
 		/**********************2. 가상주소 매핑****************************/

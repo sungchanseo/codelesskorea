@@ -40,20 +40,14 @@
 		   <c:redirect url="./MemberLogin.me"/>
 		</c:if>
 
-		 <!--   사이드바 -->
-<div class="col-sm-4" >
- <div class="container" id="left">
-  <br>
-  <h4> QnA 게시판</h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./AdminQNAList.qn'"> 질문 목록  </h5>
-  </div>
-	</div>	
-	
-	 <!--   사이드바 -->
-	 
-	<div class="col-sm-8" style="margin:auto;">
- <div class="container" id="right" style="margin-left: 150px; width: 100%;">
+	<div class="row" style="margin-left: 100px;">
+ <!-- 사이드바 -->
+ <%@ include file="../mySide.jsp"%>		
+  
+ <!--   사이드바 -->
+  
+ <div class="col-md-10">
+ <div id="right">
  <h1 style="font-family: 'TheJamsil5Bold';">답 변 하 기</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 	
@@ -91,7 +85,7 @@
 		
 	</div>	</div>
 	
-	
+	</div>
 	
 
 

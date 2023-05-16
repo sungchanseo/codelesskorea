@@ -91,24 +91,24 @@
   color: black;;
 }
   #left{
-    position: absolute;
+   /*  position: absolute; */
     width: 230px;
     height: 600px;
     margin-top: 150px;
     background: rgb(51, 56, 62);
     border-radius: 15px 0 0 15px;
-    margin-left: 120px;
+  /*   margin-left: 120px; */
 	}
   #right { 
    background: #fff;
-  padding: 30px;
+  /* padding: 30px; */
 /*   -webkit-box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2); */
-  width: 100%; 
-	margin-left:200px;
+   width: 100%; 
+	 margin-left:80px;  
 	width:900px;
 	height:700px;
-	margin-top: 120px;
+	margin-top: 130px;
 	margin-bottom: 150px; 
 	font-family: 'TheJamsil5';
 	 }
@@ -125,13 +125,8 @@
 		cursor: pointer;
 }
 
-.navbar {
-  background-color: transparent !important;
-  border-color: transparent;
-}
-.navbar-transparent {
-  background-color: transparent !important;
-  box-shadow: none !important;
+ .navbar.shadow {
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .navbar-nav li a {
@@ -156,4 +151,41 @@
 .image-with-text h2 {
 	font-family:'TheJamsil5';
 	margin-top: 30px;
+}
+
+.mainModal {
+  display: none; /* 초기에는 숨김 상태 */
+  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
+  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
+}
+
+#mainModal .modal-content {
+  width: 1000px; 
+  height: 850px;
+  position: absolute; /* 모달 창 내에서 상대적인 위치 */
+  top: 50%; /* 상위 요소에서 50% 위치 */
+  left: 50%; /* 상위 요소에서 50% 위치 */
+  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#mainModal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.col-md-6 p{
+	color: #322F2C;
+	font-size: 20px;
+	margin: 2px;
 }

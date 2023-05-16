@@ -114,28 +114,19 @@
 		
 		<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
-		<c:if test="${ empty sessionScope.id }">
-		   <c:redirect url="./MemberLogin.me"/>
-		</c:if>
-	<div class="row" style="margin-left: 100px;">
-<%@ include file="../mySide.jsp"%>
-
 
 <!--  사이드바 -->
 			
+		<br>
 
-	 <div class="col-md-10">
-	 
-
-	<div class="container" id="login-con"
-		style="width: 900px; color: black; margin: 100px 100px;">
-		
 		<form action="./MemberUpdateProAction.me" id="fr" method="post">
-			<div class="form-group" id="log-form"style="width: 400px;">
-		
 
+			<div class="form-group" id="log-form" style="width: 400px;" >
+
+			<h2 style="margin-top: 10px; font-size: 24px;">
+			    <b>회원 <span style="color: #FFB609;">${id }</span> 정보 보기</b>
+			</h2>
 		<div style="text-align: center; background-color: white;">
-		 <h1 style="font-family: 'TheJamsil5Bold';">내정보 보기</h1>
 		  <c:choose>
 		    <c:when test="${empty dto.user_image}">
 		      <img src="./member/userimg.png" alt="프로필사진 " style="max-width: 200px; max-height: 200px; border-radius: 50%; cursor: pointer;" onclick="openModal()">
@@ -189,7 +180,7 @@
 				<table>
 					<tr>
 						<td><input type="text" name="zipcode" id="zipcode" size="15" readonly >
-							<input type="button" value="우편번호찾기" onclick="addr();" readonly></td>
+						
 					</tr>
 					<tr>
 						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}" readonly></td>
@@ -198,25 +189,9 @@
 						<td><input type="text" name="address2" id="address2" size="45" readonly value="${dto.address2}"></td>
 					<tr>
 				</table>
-				
-
 
 		
-		
-      	<a href="./MemberUpdate.me" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" >
-										내정보 수정 하기</a>
 
-		<a href="./PasswordUpdate.me" class="btn btn-primary btn-block"
-										style="margin-top: 40px;" >비밀번호 변경</a> 
-										
-		<a href="./MemberDelete.me" class="btn btn-secondary btn-block"
-									style="margin-top: 40px;" >코드리스와 이별하기</a>  <br>
-			</div>
-			</form>
-</div></div>
-			
-</div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -233,6 +208,6 @@
 <script src="js/jquery.timepicker.min.js"></script>
 
 <script src="js/main.js"></script>
-<%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
+
 	</body>
 </html>

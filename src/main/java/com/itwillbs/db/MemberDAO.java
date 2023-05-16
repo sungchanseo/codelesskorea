@@ -75,7 +75,7 @@ public class MemberDAO {
 				}// if
 				
 				System.out.println(" DAO : 회원정보 저장완료! ");
-				System.out.println(dto);
+//				System.out.println(dto);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

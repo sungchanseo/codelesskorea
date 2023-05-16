@@ -42,36 +42,37 @@ public class ProductDAO {
 		}
 	}
 	
-	//productWrite()
-	public void productWrite(ProductDTO dto) {
-		try {
-			// 1.2 DB 연결
-			getCon();
-			// 3. SQL 작성 & pstmt 객체
-			sql = "insert into product(title,model,content,price,product_image,grade,city,parts,method,charge,fee,user_id,reg_date) "
-					+ " values (?,?,?,?,?,?,?,?,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getModel());
-			pstmt.setString(3, dto.getContent());
-			pstmt.setInt(4, dto.getPrice());
-			pstmt.setString(5, dto.getProduct_image());
-			pstmt.setInt(6, dto.getGrade());
-			pstmt.setString(7, dto.getCity());
-			pstmt.setString(8, dto.getParts());
-			pstmt.setInt(9, dto.getMethod());
-			pstmt.setInt(10, dto.getCharge());
-			pstmt.setInt(11, dto.getFee());
-			pstmt.setString(12, dto.getUser_id());
-			// 4. SQL 실행
-			pstmt.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
+	// 상품 등록 - productWrite()
+		public void productWrite(ProductDTO dto) {
+			try {
+				// 1.2 DB 연결
+				getCon();
+				// 3. SQL 작성 & pstmt 객체
+				sql = "insert into product(title,model,content,price,grade,city,parts,method,charge,fee,user_id,reg_date,product_image) "
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getTitle());
+				pstmt.setString(2, dto.getModel());
+				pstmt.setString(3, dto.getContent());
+				pstmt.setInt(4, dto.getPrice());
+				pstmt.setInt(5, dto.getGrade());
+				pstmt.setString(6, dto.getCity());
+				pstmt.setString(7, dto.getParts());
+				pstmt.setInt(8, dto.getMethod());
+				pstmt.setInt(9, dto.getCharge());
+				pstmt.setInt(10, dto.getFee());
+				pstmt.setString(11, dto.getUser_id());
+				pstmt.setString(12, dto.getProduct_image());
+				// 4. SQL 실행
+				pstmt.executeUpdate();
+				System.out.println(" DAO : 상품 등록 완료! ");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
 		}
-	}
-	//productWrite()
+		// 상품 등록 - productWrite()
 	
 	//getProductList()
 	public List<ProductDTO> getProductList() {
@@ -136,9 +137,11 @@ public class ProductDAO {
 	            product.setCity(rs.getString("city"));
 	            product.setMethod(rs.getInt("method"));
 	            product.setCharge(rs.getInt("charge"));
-	            product.setLike_count(rs.getInt("like_count"));
 	            product.setFee(rs.getInt("fee"));
 	            product.setReg_date(rs.getDate("reg_date"));
+	            product.setRead_count(rs.getInt("read_count"));
+	            product.setLike_count(rs.getInt("like_count"));
+	            product.setChat_count(rs.getInt("chat_count"));
 	            product.setUser_id(rs.getString("user_id"));
 	        }
 	        
@@ -173,7 +176,7 @@ public class ProductDAO {
 	        	
 	            sql = "update product set title=?, model=?, parts=?, product_image=?, content=?, "
 	                    + " price=?,grade=?,city=?, method=?, charge=?, fee=?, "
-	                    + " user_id=?, reg_date=now() where product_id=?";
+	                    + " user_id=?, product_image=?, reg_date=now() where product_id=?";
 
 	            pstmt = con.prepareStatement(sql);
 
@@ -189,7 +192,8 @@ public class ProductDAO {
 	            pstmt.setInt(10, dto.getCharge());
 	            pstmt.setInt(11, dto.getFee());
 	            pstmt.setString(12, dto.getUser_id());
-	            pstmt.setInt(13, dto.getProduct_id());
+	            pstmt.setString(13, dto.getProduct_image());
+	            pstmt.setInt(14, dto.getProduct_id());
 	            System.out.println(" P : " + dto);
 	            // 4. SQL 실행(update)
 	            result = pstmt.executeUpdate();

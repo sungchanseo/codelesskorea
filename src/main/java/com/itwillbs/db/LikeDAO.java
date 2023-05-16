@@ -187,7 +187,46 @@ import javax.sql.DataSource;
 		}
 		
 		
-		
+		// 찜목록 리스트
+		public List<ProductDTO> getLikeList(String id) {
+		    List<ProductDTO> getLikeList = new ArrayList<ProductDTO>();
+
+		    try {
+		        // 1. 디비연결
+		        con = getCon();
+		        // 2. SQL 쿼리
+		        sql = "SELECT p.* FROM product p INNER JOIN likee l ON p.product_id = l.product_id WHERE l.id = ?";
+		        
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, id);
+		        // 3. SQL 실행
+		        rs = pstmt.executeQuery();
+		        // 4. 데이터 처리
+		        // DB 정보(rs) -> DTO -> List
+		        while (rs.next()) {
+		            ProductDTO dto = new ProductDTO();
+		            dto.setProduct_id(rs.getInt("product_id"));
+		            dto.setTitle(rs.getString("title"));
+		            dto.setProduct_image(rs.getString("product_image"));
+		            dto.setPrice(rs.getInt("price"));
+		            
+		            // 필요한 필드들을 가져와 ProductDTO 객체를 생성하고 설정합니다.
+		            // 필드명은 데이터베이스 테이블의 컬럼명에 맞춰서 설정해야 합니다.
+		            
+		            getLikeList.add(dto);
+		            System.out.println("LikedList: 찜목록 조회 성공! " + dto);
+		        }
+		        
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        // 5. 리소스 해제
+		        closeDB();
+		    }
+		    
+		    return getLikeList;
+		}
+
 		
 }
 		

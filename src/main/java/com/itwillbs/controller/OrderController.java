@@ -11,8 +11,11 @@ import javax.servlet.RequestDispatcher;
 
 
 import com.itwillbs.action.order.AddrChangeAction;
+import com.itwillbs.action.order.OrderAddAction;
 import com.itwillbs.action.order.OrderContentAction;
+import com.itwillbs.action.order.OrderIsAccept;
 import com.itwillbs.action.order.OrderWriteAction;
+import com.itwillbs.action.order.TrackingNumberAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -43,7 +46,7 @@ public class OrderController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 
-		// 메인페이지
+		// 주문서 작성
 		if (command.equals("/OrderWrite.or")) {
 			System.out.println("C : ./OrderWrite.or 호출");
 			
@@ -56,9 +59,36 @@ public class OrderController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
-			forward = new ActionForward();
-			forward.setPath("./order/orderWrite.jsp");
-			forward.setRedirect(false);
+//			forward = new ActionForward();
+//			forward.setPath("./order/orderWrite.jsp");
+//			forward.setRedirect(false);
+		}
+		
+		// 주문 등록
+		else if(command.equals("/OrderAddAction.or")) {
+			System.out.println("C : ./OrderAddAction.or 호출");
+			// OrderAddAction() 객체 생성
+			action = new OrderAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// 주문서 보기
+		else if(command.equals("/OrderContent.or")) {
+			System.out.println("C : ./OrderContent.or 호출");
+			action = new OrderContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		
@@ -71,24 +101,33 @@ public class OrderController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			forward = new ActionForward();
-//			forward.setPath("./order/orderWrite.jsp");
-//			forward.setRedirect(false);
 			
 		}
 		
-		else if (command.equals("/OrderContent.or")) {
-			System.out.println("C : ./OrderContent.or 호출");
-			action = new OrderContentAction();
+		
+		else if(command.equals("/OrderIsAccept.or")) {
+			System.out.println(" C: ./OrderIsAccept.or 호출");
+			action = new OrderIsAccept();
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			forward = new ActionForward();
-			forward.setPath("./order/orderContent.jsp");
-			forward.setRedirect(false);
+		}
+		else if(command.equals("/TrackingNumberAction.or")) {
+			System.out.println(" C: ./TrackingNumberAction.or 호출");
+			action = new TrackingNumberAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝");

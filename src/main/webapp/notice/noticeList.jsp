@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>CODE LESS - 공지사항</title>
@@ -18,22 +18,14 @@
 <body>
 <%@ include file="../nav.jsp"%>
 
+  <div class="row" style="margin-left: 100px;">
  <!-- 사이드바 -->
-
-  <div class="col-sm-4">
- <div class="container" id="left">
-  <br>
-  <h4> 공지게시판</h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
-  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
-  </div>
-	</div>	
+ <%@ include file="../noSide.jsp"%>	
   
  <!--   사이드바 -->
   
- <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 150px; width: 100%;">
+ <div class="col-12 col-md-10 col-lg-10">
+ <div id="right">
  <h1 style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -61,14 +53,14 @@
 </table>
 
 <!-- 검색창기능 -->
-<div id="table_search">
+<div class="table" id="nttable">
 	<form action="./NoticeList.no" method="post">
-		<select name="category">
+		<select name="category" class="form-control" style="width:80px; display:inline;">
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="input_box">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="35px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <!-- 검색창기능 -->
@@ -100,7 +92,7 @@
 </div>
 </div>
 </div>
-
+</div>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

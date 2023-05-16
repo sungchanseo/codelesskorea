@@ -1,5 +1,6 @@
 package com.itwillbs.action.qna;
 
+import java.io.File;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +48,11 @@ public class QNAUpdateActionPro implements Action{
 				return forward;
 			}
 			
-			String uploadPath = request.getRealPath("/upload");
-			System.out.println(uploadPath);
+			String uploadPath = request.getServletContext().getRealPath("/upload");
+			File uploadDir = new File(uploadPath);
+			if (!uploadDir.exists()) {
+			    uploadDir.mkdirs(); // 디렉토리 생성
+			}
 			 // => 톰켓에 저장되는 경로
 			
 			//  업로드 할 파일의 크기 10mb

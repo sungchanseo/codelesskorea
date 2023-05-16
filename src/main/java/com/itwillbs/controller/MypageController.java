@@ -15,6 +15,7 @@ import com.itwillbs.action.member.MemberListAction;
 import com.itwillbs.action.member.MemberUpdateAction;
 import com.itwillbs.action.member.MemberUpdateProAction;
 import com.itwillbs.action.member.PasswordUpdateAction;
+import com.itwillbs.action.mypage.AdminMemberInfoAction;
 import com.itwillbs.action.mypage.AdminProductListAction;
 import com.itwillbs.action.mypage.AdminbuyListAction;
 import com.itwillbs.action.mypage.AdminsaleListAction;
@@ -193,7 +194,16 @@ public class MypageController extends HttpServlet{
 			           e.printStackTrace();
 			         }
 			     }
-			
+		     else if (command.equals("/AdminMemberInfo.my")) {
+			        System.out.println(" C : /AdminMemberInfo.my");
+			        System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+			        action = new AdminMemberInfoAction();
+			        try {
+			           forward = action.execute(request, response);
+			        } catch (Exception e) {
+			           e.printStackTrace();
+			         }
+			     }
 			
 			
 			

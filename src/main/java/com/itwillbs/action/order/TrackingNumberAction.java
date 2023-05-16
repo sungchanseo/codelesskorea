@@ -12,11 +12,11 @@ import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
-public class AddrChangeAction implements Action {
+public class TrackingNumberAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : AddrChangeAction_execute() 호출");
+		System.out.println(" M : TrackingNumberAction_execute() 호출");
 		
 		// 한글처리(인코딩)
 				request.setCharacterEncoding("UTF-8");
@@ -27,7 +27,7 @@ public class AddrChangeAction implements Action {
 		// 세션정보 제어
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		int product_id = Integer.parseInt(request.getParameter("product_id"));
+//		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		ActionForward forward = new ActionForward();
 		if(id == null ) {
 			forward.setPath(".MemberLogin.me");
@@ -38,27 +38,27 @@ public class AddrChangeAction implements Action {
 		
 		
 		// 전달정보(파라메터) 저장(DTO)
+		int tracking_number = Integer.parseInt(request.getParameter("tracking_number"));
 		OrderDAO dao = new OrderDAO();
 		OrderDTO dto = new OrderDTO();
+		dto.setTracking_number(tracking_number);
 		dto.setOrder_id(Integer.parseInt(request.getParameter("order_id")));
 		dto.setId(id);
-		dto.setProduct_id(product_id);
-		dto.setReceiver_name(request.getParameter("receiver_name"));
-		dto.setReceiver_phone(request.getParameter("receiver_phone"));
-		dto.setReceiver_addr1(request.getParameter("receiver_addr1"));
-		dto.setReceiver_addr2(request.getParameter("receiver_addr2"));
-		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
+		
+//		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
 	
 		System.out.println(" M : "+dto);
 		// DAO - 배송지 변경 메서드 호출 
-		 dto = dao.AddrChange(dto);
-//		 dto = dao.addOrder(id, product_id);
+		 dto = dao.trackingNumber(dto);
+		 dto = dao.getOrderContent(dto);
+		 int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
 //		forward.setPath("./order/orderWrite.jsp");
 //		forward.setRedirect(false);
-		JSForward jsforward = new JSForward();
-		jsforward.alertAndBack(response, "배송정보 변경 완료");
-		System.out.println("M : 배송지 변경 완료");
+		JSForward jsf = new JSForward();
+		jsf.alertAndMove(response, "운송장 등록 완료", "./OrderContent.or?product_id="+product_id);
+//		jsf.alertAndBack(response, "운송장 등록 완료");
+		System.out.println("M : 운송장 변경 완료");
 		return null;
 		
 		

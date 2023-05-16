@@ -1,6 +1,8 @@
 package com.itwillbs.action.qna;
 
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,8 +46,11 @@ public class MypageQNABoardReInsertAction implements Action{
 					return forward;
 				}
 				
-				String uploadPath = request.getRealPath("/upload");
-				System.out.println(uploadPath);
+				String uploadPath = request.getServletContext().getRealPath("/upload");
+				File uploadDir = new File(uploadPath);
+				if (!uploadDir.exists()) {
+				    uploadDir.mkdirs(); // 디렉토리 생성
+				}
 				 // => 톰켓에 저장되는 경로
 				
 				//  업로드 할 파일의 크기 10mb
@@ -62,7 +67,7 @@ public class MypageQNABoardReInsertAction implements Action{
 				        		   );
 				
 				
-				
+				System.out.println("아아아ㅏ아아아아앙아ㅏ아아아앙아아ㅏ아아ㅏ");
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
 				qdto.setTitle(multi.getParameter("title"));
@@ -76,7 +81,7 @@ public class MypageQNABoardReInsertAction implements Action{
 				qdto.setRe_Ref(Integer.parseInt(multi.getParameter("re_ref")));
 				qdto.setRe_Lev(Integer.parseInt(multi.getParameter("re_lev")));
 				qdto.setRe_Seq(Integer.parseInt(multi.getParameter("re_seq")));
-				qdto.setQnaCategory(request.getParameter("qna_category"));
+				qdto.setQnaCategory(multi.getParameter("qna_category"));
 				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
 				System.out.println(qdto);
 				//3.BoardDAO객체생성

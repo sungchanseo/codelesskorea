@@ -40,23 +40,68 @@
 		.like-btn:hover i {
 		  color: #ff6969;
 		}
-						
+		
+		
+		
+    .fade-in {
+        opacity: 0;
+        margin-top: 250px;
+        animation: fadeInAnimation 1s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    
+        .fade-in2 {
+        opacity: 0;
+        margin-top: 10px;
+        animation: fadeInAnimation 1s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+        .fade-in2 td {
+        padding: 10px 20px; /* 가로 간격을 조정할 수 있는 padding 값 설정 */
+    }
+    			
 	</style>
 
 
 
 		<script type="text/javascript">
 		$(document).ready(function() {
+			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
+			  $('.like-btn').addClass('liked');
+			  var userId = '<%= session.getAttribute("id") %>';
 			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
 			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
+			  // 사용자의 찜한 상품 정보를 가져옵니다.
+			  var userLikedProducts = likedProducts[userId] || {};
 
 			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
 			  $('.like-btn').each(function() {
 			    var $btn = $(this);
 			    var productId = $btn.data('product-id');
-			    var userId = $btn.data('user-id');
-			    var key = productId + '_' + userId;
-			    if (likedProducts[key]) {
+			    var key = productId.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
+			    if (userLikedProducts[key]) {
 			      $btn.addClass('liked');
 			    }
 			  });
@@ -65,8 +110,7 @@
 			  $('.like-btn').on('click', function() {
 			    var $btn = $(this);
 			    var productId = $btn.data('product-id');
-			    var userId = $btn.data('user-id');
-			    var key = productId + '_' + userId;
+			    var key = productId.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
 			    var isLiked = $btn.hasClass('liked');
 
 			    if (!isLiked) {
@@ -76,8 +120,9 @@
 			        success: function(response) {
 			          if (response.success) {
 			            $btn.addClass('liked');
-			            // 찜한 상품 정보를 로컬 스토리지에 저장합니다.
-			            likedProducts[key] = true;
+			            // 사용자의 찜한 상품 정보를 업데이트합니다.
+			            userLikedProducts[key] = true;
+			            likedProducts[userId] = userLikedProducts;
 			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
 			            location.reload();
 			            alert('찜 추가완료!');
@@ -86,15 +131,16 @@
 			          }
 			        }
 			      });
-			    } else {
+			    } else { 
 			      $.ajax({
 			        url: './AjaxUnLikedAction.aj',
 			        data: { product_id: productId, id: userId },
 			        success: function(response) {
 			          if (response.success) {
 			            $btn.removeClass('liked');
-			            // 로컬 스토리지에서 해당 상품 정보를 삭제합니다.
-			            delete likedProducts[key];
+			            // 사용자의 찜한 상품 정보에서 해당 상품을 삭제합니다.
+			            delete userLikedProducts[key];
+			            likedProducts[userId] = userLikedProducts;
 			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
 			            location.reload();
 			            alert('찜 해제완료!');
@@ -106,6 +152,7 @@
 			    }
 			  });
 			});
+
 		</script>
 
 </head>
@@ -113,42 +160,55 @@
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- LikeList -->
+
+<div class=row style="margin-left: 100px;"> 
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 150px; width: 100%;">
+
+
+	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">찜 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;" >
 
 
 	<!-- Action에서 받아온 정보(LikeList) -->	
-	<div style="text-align:center;">
-		  <table style="border-collapse: collapse;">
-		    <c:forEach var="dto" items="${requestScope.LikeList}" varStatus="status">
-		      <c:if test="${status.index % 3 == 0}">
-		        <tr>
-		      </c:if>
-		        <td style="border: none; vertical-align: top; padding: 10px;">
-		         <a href="./ProductContent.pr?product_id=${dto.product_id}">
-		          <img src="${dto.product_image}" width="250px" height="200px">
-		          <br>
-		          <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
-					          	<!-- 찜 버튼 -->
-				<button class="like-btn" data-product-id="${dto.product_id}" data-user-id="${sessionScope.id }">
-					  <i class="fa fa-heart"></i>
-				</button>
-								<!-- 찜 버튼 -->
-		          
-		          <br>
-		          ${dto.price}원
-		        </td>
-		      <c:if test="${status.index % 3 == 2}">
-		        </tr>
-		      </c:if>
-		    </c:forEach>
-		  </table>
+<div style="text-align:center;">
+    <c:choose>
+        <c:when test="${empty requestScope.LikeList}">
+            <p class="fade-in"><button class="like-btn" onclick="location.href='./ProductList.pr'">
+                                <i class="fa fa-heart"></i>   찜목록이 없습니다!<br> (클릭시 매칭리스트로 이동합니다)
+                            </button></p>
+        </c:when>
+        <c:otherwise>
+            <table style="border-collapse: collapse;" class="fade-in2">
+                <c:forEach var="dto" items="${requestScope.LikeList}" varStatus="status">
+                    <c:if test="${status.index % 3 == 0}">
+                        <tr>
+                    </c:if>
+                    <td style="border: none; vertical-align: top; padding: 10px;">
+                        <a href="./ProductContent.pr?product_id=${dto.product_id}">
+                            <img src="${dto.product_image}" width="250px" height="200px">
+                            <br>
+                            <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
+                            <!-- 찜 버튼 -->
+                            <button class="like-btn" data-product-id="${dto.product_id}" data-user-id="${sessionScope.id}">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                            <!-- 찜 버튼 -->
+                            <br>
+                            ${dto.price}원
+                        </td>
+                    <c:if test="${status.index % 3 == 2}">
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </table>
+			
+        </c:otherwise>
+    </c:choose>
+</div>
 		</div>
-		</div>
-		 </div>
+		 
 
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
@@ -163,7 +223,11 @@
 				</c:if>
 			  </ul>
 	  		</div>
+			</div>
+		</div>
+		
 
+<br>
 
 
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
