@@ -35,8 +35,6 @@ public class AddrChangeAction implements Action {
 			return forward;
 		}
 		
-		
-		
 		// 전달정보(파라메터) 저장(DTO)
 		OrderDAO dao = new OrderDAO();
 		OrderDTO dto = new OrderDTO();
@@ -52,10 +50,7 @@ public class AddrChangeAction implements Action {
 		System.out.println(" M : "+dto);
 		// DAO - 배송지 변경 메서드 호출 
 		 dto = dao.AddrChange(dto);
-//		 dto = dao.addOrder(id, product_id);
-		
-//		forward.setPath("./order/orderWrite.jsp");
-//		forward.setRedirect(false);
+
 		JSForward jsforward = new JSForward();
 		jsforward.alertAndBack(response, "배송정보 변경 완료");
 		System.out.println("M : 배송지 변경 완료");

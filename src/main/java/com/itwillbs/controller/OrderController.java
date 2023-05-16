@@ -58,10 +58,6 @@ public class OrderController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-//			forward = new ActionForward();
-//			forward.setPath("./order/orderWrite.jsp");
-//			forward.setRedirect(false);
 		}
 		
 		// 주문 등록
@@ -103,7 +99,7 @@ public class OrderController extends HttpServlet{
 			}
 			
 		}
-		
+
 		
 		else if(command.equals("/OrderIsAccept.or")) {
 			System.out.println(" C: ./OrderIsAccept.or 호출");
@@ -115,7 +111,6 @@ public class OrderController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		else if(command.equals("/TrackingNumberAction.or")) {
 			System.out.println(" C: ./TrackingNumberAction.or 호출");
@@ -127,7 +122,6 @@ public class OrderController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		
 		System.out.println(" 2. 가상주소 매핑 - 끝");

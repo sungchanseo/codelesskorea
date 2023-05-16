@@ -28,17 +28,15 @@ public class OrderWriteAction implements Action {
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
 		
-
-		
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		OrderDAO dao = new OrderDAO();
-		
 		OrderDTO dto = new OrderDTO();
 		dto.setId(id);
 		dto.setProduct_id(product_id);
 			dto = dao.orderWrite(dto);
 		System.out.println("OrderWriteAction2 : DAO 메서드 완료");
 		System.out.println("dto : "+dto);
+		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		

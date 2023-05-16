@@ -21,9 +21,7 @@ public class OrderIsAccept implements Action {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		System.out.println("is_accept : "+is_accept);
 		System.out.println("order_id: "+order_id +" / product_id: " +product_id);
-			// 주문 취소
-			// 주문 취소일 경우 주문 수락 버튼이 나타나지 않음
-			// 주문상태 - 주문취소
+			
 			OrderDTO dto = new OrderDTO();
 			dto.setIs_accept(is_accept);
 			dto.setOrder_id(order_id);
@@ -43,11 +41,6 @@ public class OrderIsAccept implements Action {
 				jsf.alertAndBack(response, "주문 확정");
 			}
 			
-			
-//			ActionForward forward = new ActionForward();
-//			forward.setPath("./OrderContent.or");
-//			forward.setRedirect(true);
-		
 		return null;
 	}
 

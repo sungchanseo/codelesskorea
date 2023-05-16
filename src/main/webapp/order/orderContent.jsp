@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
  <!-- jQuery -->
  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+   <%@ include file="../head.jsp"%>
  <!-- iamport.payment.js -->
  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -29,10 +31,10 @@
 			$("#accept_3").hide();
 		}
 		// 판매자에게만 보이는 버튼
-		if(id != seller_id){
-			$("#accept_1").hide();
-			$("#tracking").hide();
-		}
+// 		if(id != seller_id){
+// 			$("#accept_1").hide();
+// 			$("#tracking").hide();
+// 		}
 		
 		$(function (){
 			$("#accept_1").click(function(){
@@ -51,6 +53,7 @@
 	 					alert(error);
 	 				},
 	 				success : function(text){
+	 					location.reload();
 // 	 					alert(text)
 	 				}
 				})
@@ -58,12 +61,11 @@
 		});
 		
 	});
-	    <%@ include file="../head.jsp"%>
-    <style type="text/css">
+//     <style type="text/css">
 
 	
 	
-	</style>
+// 	</style>
 	 </script>
 <meta charset="UTF-8">
 <title>주문서 보기</title>
@@ -78,24 +80,30 @@
 	<input type="hidden" id="receiver_id" name="receiver_id" value="${dto.receiver_id }">
 	<input type="hidden" id="seller_id" name="seller_id" value="${dto.seller_id }">
 	<input type="hidden" id="order_status" name="order_status" value="${dto.order_status }">
-	주문번호 : ${dto.order_id }
-	주문일자 : ${dto.order_date }
+	주문번호 : ${dto.order_id }    
+	/       
+	주문일자 : ${dto.order_date }         
+	/ 
 	주문상태 : ${dto.order_status }
 
 	<fieldset>
 	<legend>상품 정보</legend>
-		상품번호 : <input type="text"  id="product_id" name="product_id" value="${dto.product_id }" readonly ><br>
+		상품번호 : ${dto.product_id }
+		<input type="hidden"  id="product_id" name="product_id" value="${dto.product_id }" readonly ><br>
 		상품사진 : <img src="${dto.product_image}" alt="이미지 없음" width="200px"><br>
-		상품이름 : <input type="text" name = "title" value="${dto.title }" readonly ><br>
-		상품가격 : <input type="text" name = "price" value="${dto.price }" readonly ><br>
-		배송비 : <input type="text" name = "fee" value="${dto.fee }" readonly ><br>
+		상품이름 : ${dto.title }
+		<input type="hidden" name = "title" value="${dto.title }" readonly ><br>
+		상품가격 : ${dto.price }
+		<input type="hidden" name = "price" value="${dto.price }" readonly ><br>
+		배송비 : ${dto.fee }
+		<input type="hidden" name = "fee" value="${dto.fee }" readonly ><br>
 	</fieldset>
 		<hr>
 	<fieldset>
 	<legend>배송 정보</legend>
 	<!--  action주소가 없으면 자신의 페이지 호출 -->
 		<input type="hidden" name="order_id" value="${dto.order_id }">
-		<input type="hidden" id = "e1" name="id" value="${dto.id }">
+		<input type="hidden" id = "id" name="id" value="${dto.id }">
 		이름 : ${dto.receiver_name } <br>
 		전화번호 : ${dto.receiver_phone } <br>
 		우편번호 : ${dto.receiver_post } <br> 
@@ -109,13 +117,16 @@
 		</form>
 		
 	</fieldset>
-	
+	<hr>
 	<fieldset>
 	<legend>결제정보</legend>
-		총 금액 : ${dto.price + dto.fee }  <br>
+		결제수단 : 
+<%-- 		${dto.payment } --%> <br>
+		결제 금액 : ${dto.price + dto.fee }  <br>
 		<input type="hidden" id="t1" name="total" value="${dto.price+dto.fee }">
-		결제수단 : <input type="text" name="payment" value="카드결제" readonly> 
-		결제금액 : <input type="text" name = "fee" value="${dto.paid_amount }" readonly ><br>
+		<input type="hidden" name="payment" value="카드결제" readonly> 
+<%-- 		결제금액 : ${dto.price+dto.fee } --%>
+		<input type="hidden" name = "fee" value="${dto.price+dto.fee }" readonly ><br>
 	
 	</fieldset>
 	
@@ -124,7 +135,7 @@
 	<input type="hidden" id="id" name="id" value="${dto.id }">
 	<input type="hidden" id="order_id" name="order_id" value="${dto.order_id }">
 	<input type="hidden" id="product_id" name="product_id" value="${dto.product_id }">
-	
+	<br>
 	<button type="submit" id="accept_0" name="is_accept" value="0">주문 취소</button>
 	<button type="submit" id="accept_1" name="is_accept" value="1" >주문 수락</button>
 	<button type="submit" id="accept_3" name="is_accept" value="3">주문 확정</button>

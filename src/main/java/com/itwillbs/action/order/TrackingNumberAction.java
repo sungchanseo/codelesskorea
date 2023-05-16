@@ -22,20 +22,17 @@ public class TrackingNumberAction implements Action {
 				request.setCharacterEncoding("UTF-8");
 				System.out.println(" M : 한글처리 완료");
 				System.out.println(request.getParameter("order_id"));
-				System.out.println(request.getParameter("receiver_addr1"));
+				System.out.println(request.getParameter("tracking_number"));
 				
 		// 세션정보 제어
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-//		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		ActionForward forward = new ActionForward();
 		if(id == null ) {
 			forward.setPath(".MemberLogin.me");
 			forward.setRedirect(true);
 			return forward;
 		}
-		
-		
 		
 		// 전달정보(파라메터) 저장(DTO)
 		int tracking_number = Integer.parseInt(request.getParameter("tracking_number"));
@@ -51,13 +48,10 @@ public class TrackingNumberAction implements Action {
 		// DAO - 배송지 변경 메서드 호출 
 		 dto = dao.trackingNumber(dto);
 		 dto = dao.getOrderContent(dto);
-		 int product_id = Integer.parseInt(request.getParameter("product_id"));
-		
-//		forward.setPath("./order/orderWrite.jsp");
-//		forward.setRedirect(false);
+		 
+		 // 돌아가기
 		JSForward jsf = new JSForward();
-		jsf.alertAndMove(response, "운송장 등록 완료", "./OrderContent.or?product_id="+product_id);
-//		jsf.alertAndBack(response, "운송장 등록 완료");
+		jsf.alertAndBack(response, "운송장번호 수정완료");
 		System.out.println("M : 운송장 변경 완료");
 		return null;
 		
