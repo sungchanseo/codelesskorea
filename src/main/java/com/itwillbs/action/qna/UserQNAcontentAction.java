@@ -52,6 +52,8 @@ public class UserQNAcontentAction implements Action{
 		//pageNum도 함께 전달해야한다
 		request.setAttribute("pageNum", pageNum);
 		
+
+		
 		//6. 화면출력하는 뷰페이지(.jsp)로 전달
 //		ActionForward forward = new ActionForward();
 		forward.setPath("./qna/qnaContent.jsp");

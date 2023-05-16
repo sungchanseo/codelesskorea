@@ -123,14 +123,12 @@ $('document').ready(function() {
 
 	});//script끝
 
-	//모달 창 열기 함수
 	function openModal() {
-	  document.getElementById("myModal").style.display = "block";
+	  document.getElementById("mainModal").style.display = "block";
 	}
 
-	// 모달 창 닫기 함수
 	function closeModal() {
-	  document.getElementById("myModal").style.display = "none";
+	  document.getElementById("mainModal").style.display = "none";
 	}
 	
 </script>
@@ -173,6 +171,31 @@ iframe {
   border: none;
 }
 
+
+.typewriter {
+	width: 14.5ch;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: 4px solid #212121;
+	animation: cursor 1s step-start infinite, 
+    text 2.5s steps(18) alternate infinite;
+}
+
+@keyframes cursor {
+	0%, 100% { 
+    border-color: #212121; 
+  }
+}
+
+@keyframes text {
+	0% { 
+    width: 0; 
+  }
+	100% { 
+    width: 19.5ch;
+  }
+}
+
 </style>
 
 </head>
@@ -195,15 +218,15 @@ iframe {
 		</div>
 	</div>
 
-</section>
-<!-- END section -->
+</section><!-- 메인 제목 끝 -->
 
-<section class="section pb-0">
+
+<section class="section pb-0" id="match">
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 3px solid;">
-					<h5 style=" font-family: 'TheJamsil5Bold'; text-align: center; color:#262626;">새로운 짝을 매칭해보세요!</h5><br>
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 2.8px solid #202020;box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1); ">
+					<h4 style=" font-family: 'TheJamsil5Bold';" class="typewriter">새로운 짝을 매칭해보세요!</h4><br>
 				<form action="#">
 					
 					<div class="row">
@@ -261,7 +284,7 @@ iframe {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="매칭하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
 
 					</div>
 				</form>
@@ -270,27 +293,28 @@ iframe {
 
 		</div>
 	</div>
-</section>
+</section> <!-- 매칭 선택창 끝 -->
 
-<!-- <section class="py-5 bg-light">
-	<div class="container">
-		<div class="row align-items-center">
-			<div
-				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
-				data-aos="fade-up">
-
+	<section class="section">
+		<div class="container">
+		<div class="row justify-content-left text-left mb-5">
+          <div class="col-md-7" style="margin-bottom: 50px;">
+            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">CODELESS?</h3>
+           <!-- <p data-aos="fade-up" data-aos-delay="100"></p> -->
+          </div>
+        </div>
+	<div class="row">
+	<div class="col-md-12 col-lg-4" data-aos="fade-up">
+			<img src="images/airpot.jpg" alt="your-image" style="max-width: 400px;max-height: 300px">
+				</div>
+				<div class="col-md-6 col-lg-8"data-aos="fade-up">
+				<p style="font-size: 30px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
 			</div>
-			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up" style="text-align: center;">
-				<h2 class="heading"  style="text-align: center;">코드리스코드리스</h2>
-				<p style="font-size: 18px;">코드리스코드리스코드리스코드리스코드리스코드리스</p>
-				<p>
-					<a href="#" class="btn btn-primary text-white py-2 mr-3">링크거세요</a>
-				</p>
 			</div>
-
 		</div>
-	</div>
-</section> -->
+			</section><!-- 섹션1 끝-->
+
+
 
   <section class="section">
       <div class="container">
@@ -307,7 +331,8 @@ iframe {
              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185655.png" alt="your-image">
   <h2>매칭하기</h2>
-  <p>원하는 옵션을 선택하여 매칭을 시작하세요.</p>
+  <p>원하는 옵션을 선택하여</p>
+  <p> 매칭을 시작하세요!</p>
 </div>
             
           </div>
@@ -317,7 +342,9 @@ iframe {
                       <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185572.png" alt="your-image">
   <h2>주문서작성</h2>
-  <p>원하는 상품을 선택후, 주문서를 작성하세요(택배거래만 해당)</p>
+  <p>원하는 상품을 선택후,</p>
+  <p>주문서를 작성하세요</p>
+  <p>(주문서는 택배거래 시만 작성합니다.)</p>
 </div>
             
           </div>
@@ -328,7 +355,8 @@ iframe {
                              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185633.png" alt="your-image">
   <h2>채팅하기</h2>
-  <p>판매자와 소통할 수 있는 채팅이 가능합니다</p>
+  <p>판매자와 소통할 수 있는</p>
+  <p>채팅이 가능합니다</p>
 </div>
               </div>
            
@@ -345,7 +373,7 @@ iframe {
 
         </div>
       </div>
-    </section>
+    </section><!-- 섹션2 끝-->
     
   
     <section class="section testimonial-section">
@@ -431,70 +459,25 @@ iframe {
         </div>
 
       </div>
-    </section>
+    </section><!-- 섹션3 끝-->
     
 
-   <!--  <section class="section blog-post-entry bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Events</h2>
-            <p data-aos="fade-up">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
-                <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">30 Great Ideas On Gifts For Travelers</a></h2>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <section class="section bg-image overlay" style="background-color: FFFFCC;">
+    <section class="section bg-image overlay" style="background-image: url(images/background-6556414_1920.jpg)">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 상품을 등록해보세요!</h2>
+              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 매칭을 시작해보세요!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="" class="btn btn-outline-white-primary py-3 text-white px-5">상품 올리기</a>
+              <a href="#match" class="btn btn-outline-white-primary py-3 text-white px-5">매칭하러 가기</a>
             </div>
           </div>
         </div>
-      </section> 
+      </section> <!-- 섹션4 끝  -->
 
 	<%@include file="../footer.jsp"%>
 
-<div id="myModal" class="modal">
+<div id="mainModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
     <iframe src="./ProductList.pr"></iframe>

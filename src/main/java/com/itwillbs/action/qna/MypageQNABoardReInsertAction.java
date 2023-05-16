@@ -67,7 +67,7 @@ public class MypageQNABoardReInsertAction implements Action{
 				        		   );
 				
 				
-				
+				System.out.println("아아아ㅏ아아아아앙아ㅏ아아아앙아아ㅏ아아ㅏ");
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
 				qdto.setTitle(multi.getParameter("title"));
@@ -81,7 +81,7 @@ public class MypageQNABoardReInsertAction implements Action{
 				qdto.setRe_Ref(Integer.parseInt(multi.getParameter("re_ref")));
 				qdto.setRe_Lev(Integer.parseInt(multi.getParameter("re_lev")));
 				qdto.setRe_Seq(Integer.parseInt(multi.getParameter("re_seq")));
-				qdto.setQnaCategory(request.getParameter("qna_category"));
+				qdto.setQnaCategory(multi.getParameter("qna_category"));
 				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
 				System.out.println(qdto);
 				//3.BoardDAO객체생성

@@ -27,6 +27,7 @@ public class MypageQNABoardInsertAction implements Action{
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("id");
 				
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 				String uploadPath = request.getServletContext().getRealPath("/upload");
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
@@ -49,7 +50,7 @@ public class MypageQNABoardInsertAction implements Action{
 				        		   new DefaultFileRenamePolicy()		        		   
 				        		   );
 				
-				 System.out.println("MultipartRequest 객체 생성-파일 업로드 성공!");
+				 System.out.println("안녕하세요!");
 
 				
 				// 차단 사용자 세션제어
@@ -66,6 +67,8 @@ public class MypageQNABoardInsertAction implements Action{
 					return forward;
 				}
 				
+
+
 				//2.전달되는 파라미터 정보저장 ->MemberDTO생성
 				QnADTO qdto = new QnADTO();
 				qdto.setTitle(multi.getParameter("title"));
@@ -75,19 +78,30 @@ public class MypageQNABoardInsertAction implements Action{
 				qdto.setNickname(multi.getParameter("nickname"));
 				qdto.setQnaCategory(multi.getParameter("qna_category"));
 				qdto.setIs_answered(Boolean.parseBoolean(multi.getParameter("isanswered")));
+				String productIdParameter = multi.getParameter("product_id");
+				if (productIdParameter != null) {
+				    qdto.setProductId(Integer.parseInt(productIdParameter));
+				} else {
+				    // product_id가 null인 경우에 대한 처리
+				    qdto.setProductId(0);
+				}
 //				mdto.setUserID(Integer.parseInt(request.getParameter("userID")));
 //				mdto.setRe_Ref(Integer.parseInt(request.getParameter("re_ref")));
 //				mdto.setRe_Lev(Integer.parseInt(request.getParameter("re_lev")));
 //				mdto.setRe_Seq(Integer.parseInt(request.getParameter("re_seq")));
-				System.out.println(qdto);
+				
+				
+
 				//3.BoardDAO객체생성
 				MypageDAO mdao = new MypageDAO();
 				int result = mdao.insertQNABoard(qdto);
 				request.setAttribute("mdto", mdto);
 				request.setAttribute("qdto", qdto);
+//				System.out.println(qdto);
+				
 				
 				//4페이지 이동
-				 forward = new ActionForward();
+				forward = new ActionForward();
 				
 		        if(result == 1){ // 글하나 작성완료
 		        	JSForward.alertAndMove(response, "글작성 성공", "./UserQNAList.qn");

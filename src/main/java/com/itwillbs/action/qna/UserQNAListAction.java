@@ -25,7 +25,7 @@ public class UserQNAListAction implements Action{
 		String id = (String)session.getAttribute("id");
 		
 		if(id == null) {
-			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+			JSForward.alertAndMove(response, "로그인이 필요합니다.", "./MemberLogin.me");
 			return forward;
 		}
 		
@@ -34,7 +34,7 @@ public class UserQNAListAction implements Action{
 		MemberDTO dto = dao.getMember(id);
 		boolean blocked = dto.getBlocked();
 		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			JSForward.alertAndBack(response, "로그인이 필요합니다.");
 			return forward;
 		}
 		

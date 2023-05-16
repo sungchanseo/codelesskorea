@@ -169,25 +169,18 @@ fieldset {
 
 <body>
 <%@ include file="../nav.jsp"%>
+<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 
 
 
-	 <!--   사이드바 -->
-	  <div class="col-sm-4">
- <div class="container" id="left">
-  <br>
-  <h4> QnA 게시판</h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./AdminQNAList.qn'"> 질문 목록  </h5>
-  </div>
-	</div>	
+<div class=row style="margin-left: 100px;">	
+	<%@ include file="../mySide.jsp"%>	 <!--   사이드바 -->
 	
 	
-	 <!--   사이드바 -->
-<div  style="margin: auto; margin-bottom: 300px;">	 
-<div class="col-sm-8" style="margin:auto;">
-<div id="right" style="margin-left: 50px; width: 100%;">
- <h1 style="font-family: 'TheJamsil5Bold';">QnA 상세보기</h1>
+
+<div class="col-md-10">
+ <div id="right" style="width: 80%">
+ <h1 style="font-family: 'TheJamsil5Bold';">1:1문의 상세보기</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
 
@@ -239,8 +232,18 @@ fieldset {
 	</tr>
 </c:if>
     <th>내용</th>
-    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea></td>
+    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea>
+            <c:if test="${qdto.productId ne 0}">
+    <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
+		</c:if>
+    
+    
+    </td>
+
+    
   </tr>
+  
+  
   </table>
  
   
@@ -267,14 +270,14 @@ fieldset {
 <div style="padding-bottom: 50px;"></div>
 </div>	
 </div>
-</div>
+
 
 
 	<div id="myModal" class="modal">
 		  <span class="close" onclick="closeModal()">&times;</span>
 		  <img class="modal-content" src="./upload/${qdto.image}" alt="사진">
 		</div>
-
+</div>
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

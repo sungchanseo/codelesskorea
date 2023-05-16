@@ -18,6 +18,12 @@ public class AddrChangeAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : AddrChangeAction_execute() 호출");
 		
+		// 한글처리(인코딩)
+				request.setCharacterEncoding("UTF-8");
+				System.out.println(" M : 한글처리 완료");
+				System.out.println(request.getParameter("order_id"));
+				System.out.println(request.getParameter("receiver_addr1"));
+				
 		// 세션정보 제어
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -29,30 +35,26 @@ public class AddrChangeAction implements Action {
 			return forward;
 		}
 		
-		// 한글처리(인코딩)
-		request.setCharacterEncoding("UTF-8");
-		System.out.println(" M : 한글처리 완료");
-		System.out.println(request.getParameter("order_id"));
-		
 		// 전달정보(파라메터) 저장(DTO)
 		OrderDAO dao = new OrderDAO();
 		OrderDTO dto = new OrderDTO();
 		dto.setOrder_id(Integer.parseInt(request.getParameter("order_id")));
-		dto.setId(request.getParameter("id"));
+		dto.setId(id);
+		dto.setProduct_id(product_id);
 		dto.setReceiver_name(request.getParameter("receiver_name"));
 		dto.setReceiver_phone(request.getParameter("receiver_phone"));
 		dto.setReceiver_addr1(request.getParameter("receiver_addr1"));
+		dto.setReceiver_addr2(request.getParameter("receiver_addr2"));
+		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
 	
 		System.out.println(" M : "+dto);
 		// DAO - 배송지 변경 메서드 호출 
 		 dto = dao.AddrChange(dto);
-		 dto = dao.addOrder(id, product_id);
-		
-		forward.setPath("./order/orderWrite.jsp");
-		forward.setRedirect(false);
-		
+
+		JSForward jsforward = new JSForward();
+		jsforward.alertAndBack(response, "배송정보 변경 완료");
 		System.out.println("M : 배송지 변경 완료");
-		return forward;
+		return null;
 		
 		
 	}

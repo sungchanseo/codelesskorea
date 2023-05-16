@@ -40,7 +40,48 @@
 		.like-btn:hover i {
 		  color: #ff6969;
 		}
-						
+		
+		
+		
+    .fade-in {
+        opacity: 0;
+        margin-top: 250px;
+        animation: fadeInAnimation 1s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    
+        .fade-in2 {
+        opacity: 0;
+        margin-top: 10px;
+        animation: fadeInAnimation 1s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+        .fade-in2 td {
+        padding: 10px 20px; /* 가로 간격을 조정할 수 있는 padding 값 설정 */
+    }
+    			
 	</style>
 
 
@@ -90,7 +131,7 @@
 			          }
 			        }
 			      });
-			    } else {
+			    } else { 
 			      $.ajax({
 			        url: './AjaxUnLikedAction.aj',
 			        data: { product_id: productId, id: userId },
@@ -119,42 +160,55 @@
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- LikeList -->
+
+<div class=row style="margin-left: 100px;"> 
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 100px; width: 100%;">
+
+
+	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">찜 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;" >
 
 
 	<!-- Action에서 받아온 정보(LikeList) -->	
-	<div style="text-align:center;">
-		  <table style="border-collapse: collapse;">
-		    <c:forEach var="dto" items="${requestScope.LikeList}" varStatus="status">
-		      <c:if test="${status.index % 3 == 0}">
-		        <tr>
-		      </c:if>
-		        <td style="border: none; vertical-align: top; padding: 10px;">
-		         <a href="./ProductContent.pr?product_id=${dto.product_id}">
-		          <img src="${dto.product_image}" width="250px" height="200px">
-		          <br>
-		          <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
-					          	<!-- 찜 버튼 -->
-				<button class="like-btn" data-product-id="${dto.product_id}" data-user-id="${sessionScope.id }">
-					  <i class="fa fa-heart"></i>
-				</button>
-								<!-- 찜 버튼 -->
-		          
-		          <br>
-		          ${dto.price}원
-		        </td>
-		      <c:if test="${status.index % 3 == 2}">
-		        </tr>
-		      </c:if>
-		    </c:forEach>
-		  </table>
+<div style="text-align:center;">
+    <c:choose>
+        <c:when test="${empty requestScope.LikeList}">
+            <p class="fade-in"><button class="like-btn" onclick="location.href='./ProductList.pr'">
+                                <i class="fa fa-heart"></i>   찜목록이 없습니다!<br> (클릭시 매칭리스트로 이동합니다)
+                            </button></p>
+        </c:when>
+        <c:otherwise>
+            <table style="border-collapse: collapse;" class="fade-in2">
+                <c:forEach var="dto" items="${requestScope.LikeList}" varStatus="status">
+                    <c:if test="${status.index % 3 == 0}">
+                        <tr>
+                    </c:if>
+                    <td style="border: none; vertical-align: top; padding: 10px;">
+                        <a href="./ProductContent.pr?product_id=${dto.product_id}">
+                            <img src="${dto.product_image}" width="250px" height="200px">
+                            <br>
+                            <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
+                            <!-- 찜 버튼 -->
+                            <button class="like-btn" data-product-id="${dto.product_id}" data-user-id="${sessionScope.id}">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                            <!-- 찜 버튼 -->
+                            <br>
+                            ${dto.price}원
+                        </td>
+                    <c:if test="${status.index % 3 == 2}">
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </table>
+			
+        </c:otherwise>
+    </c:choose>
+</div>
 		</div>
-		</div>
-		 </div>
+		 
 
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
@@ -169,7 +223,9 @@
 				</c:if>
 			  </ul>
 	  		</div>
-
+			</div>
+		</div>
+		
 
 <br>
 
