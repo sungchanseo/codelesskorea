@@ -186,6 +186,7 @@ public class MypageController extends HttpServlet{
 		     } else if (command.equals("/AdminProductList.my")) {
 			        System.out.println(" C : /AdminProductList.my");
 			        System.out.println(" C : DB사용O, view 페이지 출력 (패턴3)");
+//			        action = new AdminProductListAction();
 			        action = new AdminProductListAction();
 			        try {
 			           forward = action.execute(request, response);
