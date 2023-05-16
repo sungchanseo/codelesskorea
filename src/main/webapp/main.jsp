@@ -227,7 +227,7 @@ iframe {
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 2.8px solid #03398A;box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1); ">
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 2.8px solid #202020;box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1); ">
 					<h4 style=" font-family: 'TheJamsil5Bold';" class="typewriter">새로운 짝을 매칭해보세요!</h4><br>
 				<form action="#">
 					
