@@ -39,14 +39,14 @@ public class AdminProductListAction implements Action {
 		}
 		
 		
-		// 차단 사용자 세션제어
-		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id);
-		boolean blocked = dto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
+//		// 차단 사용자 세션제어
+//		MemberDAO dao = new MemberDAO();
+//		MemberDTO dto = dao.getMember(id);
+//		boolean blocked = dto.getBlocked();
+//		if(blocked == true) {
+//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+//			return forward;
+//		}
 		//////////////////////////////////////////////////////////
 		//검색로직 
 		String category= request.getParameter("category");
@@ -64,7 +64,7 @@ public class AdminProductListAction implements Action {
 		}else {
 		//검색어가 없을 때
 		//전체 글 갯수 
-		count = mdao.getBoardCount();
+		count = mdao.getAdminProductCount();
 		}
 		//////////////////////////////////////////////////////////
 		
@@ -78,7 +78,6 @@ public class AdminProductListAction implements Action {
 //		MypageDAO mdao = new MypageDAO();
 		// 글 개수 체크하는 메서드, 정보 가져오는 메서드
 		// getBoardCount(), getBoardList()
-		count = mdao.getBoardCount();
 
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null)	pageNum = "1";
@@ -102,7 +101,6 @@ public class AdminProductListAction implements Action {
 			//검색어가 없는 경우
 			adminList = mdao.getAdminList(startRow, pageSize);
 		}
-		System.out.println("rMDKKKKKRMdkkkkkkkkkkkkkk<Dfkddd아까아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ");
 		
 		int pageCount;
 		int pageBlock;
