@@ -10,11 +10,17 @@
 #category_search>button{
  width:33%; display:inline;"
  margin-bottom:10px;
- border-color: buttonface;
+ border:2px solid #ced4da;
  background-color:white;
  }
-
+#category_search>button:active{
+ width:33%; display:inline;"
+ margin-bottom:10px;
+ border:2px solid #ced4da;
+ background-color:#F6F6F6;
+ }
 </style>
+
 <link rel="stylesheet" href="../css/_custom.css" type="text/css"/>
 <meta charset="UTF-8">
 <title>CODE LESS - 자주묻는 질문</title>
@@ -52,7 +58,7 @@
 <!-- 카테고리 기능 -->
 <form action="./FaqList.fa" method="post">
 <p id="category_search">
-<button onclick="./FaqList.fa" class="btn btn-secondary" style="color:black;">전체</button>
+<button onclick="./FaqList.fa" class="btn btn-secondary" style="color:black;" >전체</button>
 <button name="category" value="이용정책" class="btn btn-secondary" style="color:black;">이용정책</button>
 <button name="category" value="구매" class="btn btn-secondary" style="color:black;">구매</button>
 <button name="category" value="판매" class="btn btn-secondary" style="color:black;">판매</button>
