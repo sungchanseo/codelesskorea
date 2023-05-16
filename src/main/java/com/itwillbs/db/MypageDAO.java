@@ -66,8 +66,8 @@ public class MypageDAO {
 			
 			MemberDTO member = new MemberDTO();
 			System.out.println("DAO : 글번호 "+bno);
-			sql ="insert into QNA(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered,product_id) "
-					+ "values(?,?,?,now(),?,?,?,?,?,?,?,?,?)";
+			sql ="insert into QNA(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered) "
+					+ "values(?,?,?,now(),?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bno); // 글번호
 			pstmt.setString(2, qdto.getTitle()); //제목
@@ -82,7 +82,6 @@ public class MypageDAO {
 			pstmt.setString(9, qdto.getNickname()); // id
 			pstmt.setString(10, qdto.getQnaCategory());
 			pstmt.setBoolean(11, qdto.isIs_answered());
-			pstmt.setInt(12, qdto.getProductId());
 			// 실행			
 			result = pstmt.executeUpdate();
 			System.out.println("DAO : 글쓰기 완료! ");
@@ -447,24 +446,189 @@ public class MypageDAO {
 			return getAdminList;
 		}
 		
-		// 관리자 - 상품관리 리스트 카운트
-		public int getAdminListCount() {
-		    int count = 0;
-		    try {
-		        con = getCon();
-		        sql = "SELECT COUNT(*) FROM MYPAGE";
-		        pstmt = con.prepareStatement(sql);
-		        rs = pstmt.executeQuery();
-		        if(rs.next()) {
-		            count = rs.getInt(1);
-		        }
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    } finally {
-		        closeDB();
-		    }
-		    return count;
+		///////////////////////////////////////////////////////////////////////////////
+		//검색처리 시작
+		
+		//페이징 처리 - getAdminProductCount()메소드 시작
+		public int getAdminProductCount() {
+		int result=0;
+		try {
+		con = getCon();
+		System.out.println("디비연결, 드라이버 로드 성공");
+		
+		sql = "select count(*) from mypage";
+		pstmt = con.prepareStatement(sql);
+		
+		//sql문 실행
+		rs=pstmt.executeQuery();
+		
+		//데이타처리
+		if(rs.next()) {
+		result = rs.getInt(1);
 		}
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		closeDB();
+		}
+		return result;
+		}
+		//getAdminProductCount()메소드 끝
+		
+		//검색처리 오버로딩- getBoradCount(String search)메소드 시작
+		public int getBoardCount(String search, String category) {
+		int result=0;
+		try {
+		con = getCon();
+		System.out.println("디비연결, 드라이버 로드 성공");
+		
+		if(category.equals("title")) {
+		//제목으로 검색할 때 
+		sql = "select count(*) from mypage where title like ?";
+		}else {
+		//내용으로 검색할 때
+		sql = "select count(*) from mypage where content like ?";
+		}
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, "%"+search+"%");
+		
+		//sql문 실행
+		rs=pstmt.executeQuery();
+		
+		//데이타처리
+		if(rs.next()) {
+		result = rs.getInt(1);
+		}
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		closeDB();
+		}
+		return result;
+		}
+		//getBoradCount()메소드 끝
+		
+//		//페이징처리 - 공지리스트를 불러오는 getNoticeList()메소드 시작
+//		public List<ListDTO> getAdminProductList(int startRow, int pageSize) {
+//		
+//		List<ListDTO> adminProductList = new ArrayList<ListDTO>();
+//		
+//		try {
+//		con = getCon();
+//		sql = "select * from mypage order by product_id desc limit ?,?";
+//		pstmt = con.prepareStatement(sql);
+//		
+//		pstmt.setInt(1, startRow-1);
+//		pstmt.setInt(2, pageSize);
+//		
+//		rs = pstmt.executeQuery();
+//		// DB정보(rs) -> DTO -> list
+//		while (rs.next()) {
+//		ListDTO dto = new ListDTO();
+//		
+//		dto.setProduct_id(rs.getInt("product_id"));
+//		dto.setUser_id(rs.getInt("user_id"));
+//		dto.setLike_id(rs.getInt("like_id"));
+//		dto.setOrder_status(rs.getInt("order_status"));
+//		dto.setOrder_id(rs.getInt("order_id"));
+//		dto.setId(rs.getString("id"));
+//		dto.setTitle(rs.getString("title"));
+//		dto.setPrice(rs.getInt("price"));
+//		dto.setBuyer_id(rs.getString("buyer_id"));
+//		dto.setSeller_id(rs.getString("seller_id"));
+//		dto.setOrder_date(rs.getDate("order_date"));
+//		
+//		adminProductList.add(dto);
+//		}
+//		
+//		System.out.println(" DAO : 상품관리 조회성공! ");
+//		System.out.println(" DAO : 목록 수 " + adminProductList.size());
+//		} catch (Exception e) {
+//		e.printStackTrace();
+//		} finally {
+//		closeDB();
+//		}
+//		
+//		return adminProductList;		
+//		}//공지리스트를 불러오는 getNoticeList()메소드 시작
+		
+		//검색기능을 추가한 getAdminList()메소드 시작
+		public List<ListDTO> getAdminList(int startRow, int pageSize, String search, String category) {
+		
+		List<ListDTO> getAdminList = new ArrayList<ListDTO>();
+		try {
+		con = getCon();
+		
+		if(category.equals("title")) {
+		//제목으로 검색할 때
+		sql = "select * from mypage where title like ? order by product_id desc limit ?,?";
+		
+		}else {
+		//내용으로 검색할 때
+		sql = "select * from mypage where content like ? order by product_id desc limit ?,?";
+		}
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, "%"+search+"%");
+		pstmt.setInt(2, startRow-1);
+		pstmt.setInt(3, pageSize);
+		
+		rs = pstmt.executeQuery();
+		
+		// DB정보(rs) -> DTO -> list
+		while (rs.next()) {
+		ListDTO dto = new ListDTO();
+		
+		dto.setProduct_id(rs.getInt("product_id"));
+		dto.setUser_id(rs.getInt("user_id"));
+		dto.setLike_id(rs.getInt("like_id"));
+		dto.setOrder_status(rs.getInt("order_status"));
+		dto.setOrder_id(rs.getInt("order_id"));
+		dto.setId(rs.getString("id"));
+		dto.setTitle(rs.getString("title"));
+		dto.setPrice(rs.getInt("price"));
+		dto.setBuyer_id(rs.getString("buyer_id"));
+		dto.setSeller_id(rs.getString("seller_id"));
+		dto.setOrder_date(rs.getDate("order_date"));
+		
+		getAdminList.add(dto);
+		}
+		
+		System.out.println(" DAO : 상품관리 조회성공! ");
+		System.out.println(" DAO : 목록 수 " + getAdminList.size());
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		closeDB();
+		}
+		
+		return getAdminList;		
+		}//검색처리 -공지리스트를 불러오는 getNoticeList()메소드 시작
+		
+		//검색처리 끝
+		///////////////////////////////////////////////////////////////////////////////
+
+		
+		
+//		// 관리자 - 상품관리 리스트 카운트
+//		public int getAdminListCount() {
+//		    int count = 0;
+//		    try {
+//		        con = getCon();
+//		        sql = "SELECT COUNT(*) FROM MYPAGE";
+//		        pstmt = con.prepareStatement(sql);
+//		        rs = pstmt.executeQuery();
+//		        if(rs.next()) {
+//		            count = rs.getInt(1);
+//		        }
+//		    } catch (Exception e) {
+//		        e.printStackTrace();
+//		    } finally {
+//		        closeDB();
+//		    }
+//		    return count;
+//		}
 
 
 		public int mypageDelete(int product_id) {
@@ -499,5 +663,4 @@ public class MypageDAO {
 		// productDelete()
 
 		
-	
 }

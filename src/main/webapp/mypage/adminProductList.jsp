@@ -102,8 +102,23 @@ $(document).on("click", ".del-btn", function() {
  <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 관 리</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
-	  
 
+<!-- 검색창기능 -->
+<br>
+<div id="admin_search" align="center">
+	<form action="./AdminProductList.my" method="post">
+		<select name="category">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+		</select>
+		<input type="text" name="search" class="input_box" style="height:40px; width:50%;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+	</form>
+</div>
+<br>
+<!-- 검색창기능 -->	
+	  
+	  
 	  <table id=nttable class="table" style= "width: 100%" ; align="center";  >
    <thead style="background-color: #F6F6F6;">
 		<tr>
@@ -139,15 +154,10 @@ $(document).on("click", ".del-btn", function() {
 					</c:choose>
 				</td>
 				
-				
 				<td>
-			
-				
 				  <button class="del-btn" data-product-id="${dto.product_id}" >
 					  <i class="fas fa-trash"></i>
-					</button> 
-					
-					
+					</button> 	
 			</td>
 			</tr>
 		</c:forEach>
@@ -167,11 +177,8 @@ $(document).on("click", ".del-btn", function() {
 			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
 			</c:if>
 		  </ul>
-		 
   		</div>
-
-
-
+<br>
 
 </div>
 
