@@ -129,7 +129,7 @@ public class NoticeController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if (command.equals("/NoticeDelete.no")) {
-			//임시 이동 코드
+			//임시 이동 코드 
 			/*
 			 * 공지사항 게시글 삭제 주소로 이동
 			 * 삭제 액션페이지로 이동, 해당 페이지에서 삭제를 완료하고 noticeList페이지로 이동한다.  
@@ -143,6 +143,12 @@ public class NoticeController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/CompanyInfo.no")) {
+			
+			forward = new ActionForward();
+			forward.setPath("./notice/companyInfo.jsp");
+			forward.setRedirect(false);
+			
 		}
 	
 		

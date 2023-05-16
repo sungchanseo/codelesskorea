@@ -8,9 +8,16 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="#">회사정보</a></li>
-              <li><a href="#">개인정보정책</a></li>
-       
+              <li><a href="./CompanyInfo.no">회사정보</a></li>
+              <li><a href="./PrivacyPolicy.no">개인정보정책</a></li>
+       			<span style="color: rgba(255, 255, 255, 0.7);">
+	       			<i style="color:white;">대표 </i>  강진석<br>
+	       			<b style="color:white;">설립자 </b> (주)아이티윌부산지점<br>
+					<b style="color:white;">사업자번호 </b> 507-85-07103<br>
+					<b style="color:white;">직업정보제공사업</b> <br>
+					신고번호 2007-부산부산진구-0001 <br>
+					
+				</span>
             </ul>
           </div>
           <div class="col-md-3 mb-5" >
