@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -57,56 +58,58 @@ $('document').ready(function() {
 	   });
 	  }
 	 });
-	 
-	 //특정 브랜드 선택시 모델옵션 변경
-	 var apple = ["에어팟 1세대","에어팟 2세대","에어팟 3세대","에어팟프로","에어팟프로 2세대"];
-	 var samsung = ["버즈","버즈 플러스","버즈 라이브","버즈 프로","버즈2","버즈2 프로"];
-	 
-	 //삼성 브랜드 색상
-	 var color1=  ["블랙","옐로우","화이트"];
-	 var color2 = ["블루","블랙","화이트","레드","핑크"];
-	 var color3 = ["미스틱 블랙","미스틱 화이트","미스틱 브론즈","레드","오닉스"];
-	 var color4 = ["팬텀 바이올렛","팬텀 블랙","팬텀 실버","팬텀 화이트"];
-	 var color5 = ["라벤더","올리브","화이트","그라파이트"];
-	 var color6 = ["퍼플","그라파이트","화이트"];
-	 
+
+	const modelList = JSON.parse('${modelList}');
+	const colorList = JSON.parse('${colorList}');
 	 $('#brand').change(function () {
 		if($('#brand').val() == "1"){
 			$('#model option').remove();
 			$('#color option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 			$('#color').append("<option value=''>색상을 선택하세요</option>");
-			$('#color').append("<option value='1'>화이트</option>");			
-			$.each(apple,function(idx,model){
-			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//애플 모델 
+			$.each(modelList,function(idx, obj){
+				console.log(obj.model_id);
+				console.log(obj.model);
+				if(obj.model_id>5) return false;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected apple
 		}else if($('#brand').val() == "2"){
+			// Init selectBox
 			$('#model option').remove();
 			$('#color option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 			$('#color').append("<option value=''>색상을 선택하세요</option>");
-			$.each(samsung,function(idx,model){
-			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//삼성 모델
-				 
+			// add values
+			$.each(modelList,function(idx, obj){
+				if(obj.model_id<6) return true;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected samsung
 		}else{
 			$('#model option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 		}//미선택시
 	});//특정 브랜드 선택시 모델옵션 변경
-	 
 	
 	 $('#model').change(function() {
-			if($('#brand').val() == "2")  {
-			var color = "color"+$("option",$(this)).index($("option:selected",$(this)));
-		    $('#color option').remove();
-		    $('#color').append("<option value=''>색상을 선택하세요</option>");
-		    $.each(eval(color), function() {
-			$('#color').append("<option value='"+this+"'>"+this+"</option>");
-		    });
-		    }
-	});//삼성 모델 색상 옵션
-	
+		$('#color option').remove();
+		$('#color').append("<option value=''>모델명을 선택하세요</option>");
+		 var color = "";
+		$.each(modelList,function(idx, obj){
+// 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
+			if(obj.model_id == $('#model').val()) {
+				color = obj.color;
+				return false;
+			}
+		}); // get Colors by Model
+		var colorArr = color.split("/");
+		$.each(colorList,function(idx, obj){
+			$.each(colorArr, function(idx, colorEle){
+				if(obj.color_id == colorEle) {
+					$('#color').append("<option value='"+obj.color_id+"'>"+obj.color+"</option>");
+				}
+			});
+		});
+	 });
 	
 	$('#trade').change(function() {
 		if($('#trade').val()=="1"){
@@ -121,82 +124,56 @@ $('document').ready(function() {
 		}//택배거래 선택시 지역선택 못하게함
 	});
 
-	});//script끝
+});//script끝
 
-	function openModal() {
-	  document.getElementById("mainModal").style.display = "block";
-	}
 
 	function closeModal() {
 	  document.getElementById("mainModal").style.display = "none";
 	}
 	
+	function checkData() {
+		const eleArr = ['#brand', '#model', '#color', '#parts','#trade'];
+		var condition = 0;
+		var str = "?";
+		$.each(eleArr, function(idx, selector) {
+			if($(selector).val() == "") {
+				alert("검색조건을 선택하세요");
+				$(selector).focus();
+				condition = 1;
+				return false;
+			}
+			str += selector.substr(1) + "="+ $(selector).val() + "&";
+		});
+		if(condition == 1) {
+			return false;
+		}
+		if($('#trade').val()=="1"){
+			if($('#sido1').val() == "") {
+				alert("시/도를 선택하세요");
+				$('#sido1').focus();
+				return false;
+			}
+			if($('#gugun1').val() == "") {
+				alert("시/도를 선택하세요");
+				$('#gugun1').focus();
+				return false;
+			}
+			str+= "sido1=" + $('#sido1').val() + "&";
+			str+= "gugun1=" + $('#gugun1').val() + "&";
+		}
+		openModal(str.substr(0, str.length-1));
+	}	
+	function openModal(str) {
+	  document.getElementById("mainModal").style.display = "block";
+	  $('#mainModal').append(
+			'<div class="modal-content">' + 
+			'<span class="close" onclick="closeModal()">&times;</span>' +
+			'<iframe src="./ProductList.pr'+str+'"></iframe>' +
+			'</div>'
+	  );
+	}
 </script>
 
-<!-- 모달창 스타일 -->
-<style>
-/* 모달 창 스타일 */
-.modal {
-  display: none; /* 초기에는 숨김 상태 */
-  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
-  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
-}
-
-.modal-content {
-    width: 600px; 
-  height: 400px;
-  position: absolute; /* 모달 창 내에서 상대적인 위치 */
-  top: 50%; /* 상위 요소에서 50% 위치 */
-  left: 50%; /* 상위 요소에서 50% 위치 */
-  transform: translate(-50%, -50%); /* 가운데 정렬 */
-  width: 80%;
-  max-height: 90%;
-  overflow-y: auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-/* iframe 스타일 */
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-
-.typewriter {
-	width: 14.5ch;
-	white-space: nowrap;
-	overflow: hidden;
-	border-right: 4px solid #212121;
-	animation: cursor 1s step-start infinite, 
-    text 2.5s steps(18) alternate infinite;
-}
-
-@keyframes cursor {
-	0%, 100% { 
-    border-color: #212121; 
-  }
-}
-
-@keyframes text {
-	0% { 
-    width: 0; 
-  }
-	100% { 
-    width: 19.5ch;
-  }
-}
-
-</style>
 
 </head>
 <body style="font-family: 'TheJamsil5';">
@@ -218,16 +195,16 @@ iframe {
 		</div>
 	</div>
 
-</section><!-- 메인 제목 끝 -->
+</section>
+<!-- END section -->
 
-
-<section class="section pb-0" id="match">
+<section class="section pb-0">
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 2.8px solid #202020;box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1); ">
-					<h4 style=" font-family: 'TheJamsil5Bold';" class="typewriter">새로운 짝을 매칭해보세요!</h4><br>
-				<form action="#">
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 3px solid;">
+					<h5 style=" font-family: 'TheJamsil5Bold'; text-align: center; color:#262626;">새로운 짝을 매칭해보세요!</h5><br>
+				<form action="" method="post" id="matchfr">
 					
 					<div class="row">
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
@@ -253,10 +230,11 @@ iframe {
 						</div>
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
 							<label for="checkout_date" class="font-weight-bold text-black">좌우선택</label>
-								<select name="" id="direc" class="form-control">
+								<select name="" id="parts" class="form-control">
 									<option value="">좌우를 선택하세요</option>
-									<option value="">좌</option>
-									<option value="">우</option>
+									<option value="left">좌</option>
+									<option value="right">우</option>
+									<option value="body">본체</option>
 								</select>
 							
 						</div>
@@ -271,7 +249,6 @@ iframe {
 											<option value="">거래방법을 선택하세요</option>
 											<option value="1">직거래</option>
 											<option value="2">택배</option>
-								
 										</select>
 									
 								</div>
@@ -284,7 +261,7 @@ iframe {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="checkData();">
 
 					</div>
 				</form>
@@ -293,28 +270,27 @@ iframe {
 
 		</div>
 	</div>
-</section> <!-- 매칭 선택창 끝 -->
+</section>
 
-	<section class="section">
-		<div class="container">
-		<div class="row justify-content-left text-left mb-5">
-          <div class="col-md-7" style="margin-bottom: 50px;">
-            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">CODELESS?</h3>
-           <!-- <p data-aos="fade-up" data-aos-delay="100"></p> -->
-          </div>
-        </div>
-	<div class="row">
-	<div class="col-md-12 col-lg-4" data-aos="fade-up">
-			<img src="images/airpot.jpg" alt="your-image" style="max-width: 400px;max-height: 300px">
-				</div>
-				<div class="col-md-6 col-lg-8"data-aos="fade-up">
-				<p style="font-size: 30px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
+<!-- <section class="py-5 bg-light">
+	<div class="container">
+		<div class="row align-items-center">
+			<div
+				class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5"
+				data-aos="fade-up">
+
 			</div>
+			<div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up" style="text-align: center;">
+				<h2 class="heading"  style="text-align: center;">코드리스코드리스</h2>
+				<p style="font-size: 18px;">코드리스코드리스코드리스코드리스코드리스코드리스</p>
+				<p>
+					<a href="#" class="btn btn-primary text-white py-2 mr-3">링크거세요</a>
+				</p>
 			</div>
+
 		</div>
-			</section><!-- 섹션1 끝-->
-
-
+	</div>
+</section> -->
 
   <section class="section">
       <div class="container">
@@ -331,8 +307,7 @@ iframe {
              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185655.png" alt="your-image">
   <h2>매칭하기</h2>
-  <p>원하는 옵션을 선택하여</p>
-  <p> 매칭을 시작하세요!</p>
+  <p>원하는 옵션을 선택하여 매칭을 시작하세요.</p>
 </div>
             
           </div>
@@ -342,9 +317,7 @@ iframe {
                       <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185572.png" alt="your-image">
   <h2>주문서작성</h2>
-  <p>원하는 상품을 선택후,</p>
-  <p>주문서를 작성하세요</p>
-  <p>(주문서는 택배거래 시만 작성합니다.)</p>
+  <p>원하는 상품을 선택후, 주문서를 작성하세요(택배거래만 해당)</p>
 </div>
             
           </div>
@@ -355,8 +328,7 @@ iframe {
                              <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185633.png" alt="your-image">
   <h2>채팅하기</h2>
-  <p>판매자와 소통할 수 있는</p>
-  <p>채팅이 가능합니다</p>
+  <p>판매자와 소통할 수 있는 채팅이 가능합니다</p>
 </div>
               </div>
            
@@ -373,7 +345,7 @@ iframe {
 
         </div>
       </div>
-    </section><!-- 섹션2 끝-->
+    </section>
     
   
     <section class="section testimonial-section">
@@ -459,32 +431,77 @@ iframe {
         </div>
 
       </div>
-    </section><!-- 섹션3 끝-->
+    </section>
     
 
-    <section class="section bg-image overlay" style="background-image: url(images/background-6556414_1920.jpg)">
-        <div class="container" >
-          <div class="row align-items-center">
-            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 매칭을 시작해보세요!</h2>
+   <!--  <section class="section blog-post-entry bg-light">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-7">
+            <h2 class="heading" data-aos="fade-up">Events</h2>
+            <p data-aos="fade-up">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="media media-custom d-block mb-4 h-100">
+              <a href="#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <div class="media-body">
+                <span class="meta-post">February 26, 2018</span>
+                <h2 class="mt-0 mb-3"><a href="#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              </div>
             </div>
-            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="#match" class="btn btn-outline-white-primary py-3 text-white px-5">매칭하러 가기</a>
+
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
+            <div class="media media-custom d-block mb-4 h-100">
+              <a href="#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <div class="media-body">
+                <span class="meta-post">February 26, 2018</span>
+                <h2 class="mt-0 mb-3"><a href="#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
+                <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
+            <div class="media media-custom d-block mb-4 h-100">
+              <a href="#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <div class="media-body">
+                <span class="meta-post">February 26, 2018</span>
+                <h2 class="mt-0 mb-3"><a href="#">30 Great Ideas On Gifts For Travelers</a></h2>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
+              </div>
             </div>
           </div>
         </div>
-      </section> <!-- 섹션4 끝  -->
+      </div>
+    </section> -->
+
+    <section class="section bg-image overlay" style="background-color: FFFFCC;">
+        <div class="container" >
+          <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 상품을 등록해보세요!</h2>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+              <a href="" class="btn btn-outline-white-primary py-3 text-white px-5">상품 올리기</a>
+            </div>
+          </div>
+        </div>
+      </section> 
 
 	<%@include file="../footer.jsp"%>
 
 <div id="mainModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <iframe src="./ProductList.pr"></iframe>
-  </div>
+<!--   <div class="modal-content"> -->
+<!--     <span class="close" onclick="closeModal()">&times;</span> -->
+<!--     <iframe src="./ProductList.pr"></iframe> -->
+<!--   </div> -->
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
+<!-- <script src="js/jquery-3.3.1.min.js"></script> -->
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

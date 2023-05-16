@@ -17,6 +17,7 @@ import com.itwillbs.action.product.ProductListAction;
 import com.itwillbs.action.product.ProductUpdateAction;
 import com.itwillbs.action.product.ProductUpdateProAction;
 import com.itwillbs.action.product.ProductWriteAction;
+import com.itwillbs.action.product.SearchBoxAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -61,6 +62,13 @@ public class ProductController extends HttpServlet{
 			System.out.println(" C : /ProductWrite.pr 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 
+			action = new SearchBoxAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
