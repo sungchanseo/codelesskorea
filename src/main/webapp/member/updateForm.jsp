@@ -122,20 +122,18 @@
 <!-- 		이름, 연락처,  닉네임(중복불가), 사진(선택사항), 주소 수정가능-->
 
 			<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
-			
+
+<div class=row style="margin-left: 100px;">			
 <!--  사이드바 -->
-<div>
-<div class="col-sm-4">
+
 <%@ include file="../mySide.jsp"%>
-</div>
-</div>
+
 <!--  사이드바 -->
 			
 
-	<div class="col-sm-8" style=" margin-left: 350px;">
+ <div class="col-md-10">
 	<div class="container" id="login-con"
-		style="width: 900px; color: black;">
-
+		style="width: 900px; color: black; margin: 100px 100px;">
 
 		<form action="./MemberUpdateProAction.me" id="fr" method="post" enctype="multipart/form-data">
 
@@ -224,7 +222,7 @@
 </div>
 </div>
 	<!-- 업데이트 컨테이너박스 끝 -->
-	
+	</div>
 	
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 	

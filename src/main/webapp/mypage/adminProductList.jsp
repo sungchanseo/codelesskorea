@@ -12,9 +12,15 @@
 
 <style type="text/css">
 
-span {
-  color: #FFB609;
+#span {
+  color: #064CB5;
   font-weight: bold;
+}
+
+#span :hover{
+  color: #064CB5;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 #nttable * {

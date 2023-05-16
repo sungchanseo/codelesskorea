@@ -12,7 +12,7 @@ function kakaoLogout() {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	alert('로그아웃 되었습니다.');
+        	
         	location.href='./MemberLogout.me';
         
         },
@@ -27,17 +27,36 @@ function kakaoLogout() {
     }
   }  //카카오 간편로그인 로그아웃. (간편로그인 토큰때문에 따로 로그아웃 처리를 해주어야한다!)
 
+   window.onload = function() {
+    // 스크롤 이벤트 핸들러 등록
+    window.addEventListener('scroll', function() {
+      // 현재 스크롤 위치
+      var scrollPosition = window.pageYOffset;
+      // 배경색을 변경할 요소
+      var targetElement = document.querySelector('.navbar');
+      // 스크롤 위치에 따라 배경색 변경
+      if (scrollPosition > 150) {
+		 targetElement.style.backgroundColor = '#FCFCFC';//연회색 적용
+		 targetElement.classList.add('shadow');//그림자적용
+	} else {
+		 targetElement.style.backgroundColor = 'transparent';
+	 	 targetElement.classList.remove('shadow');	
+		}
+	  });
+	}; //스크롤 내리면 회색, 올리면 투명
+  
 </script>
+<!-- 
+style="  background-color: transparent !important;box-shadow: none !important;" nav바 투명하게 -->
 
 
-
-
-	 <nav class="navbar navbar-expand-lg fixed-top" style="  background-color: transparent !important;box-shadow: none !important;">
-	    <div class="container">
-	      <a class="navbar-brand" href="./Main.me">CODE<span>LESS</span></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+	 <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: transparent !important;transition: background-color 0.3s ease;" id="navbar">
+		<div class="container">
+			<a class="navbar-brand" href="./Main.me">
+			<span style=" color: black; border: 5px solid #ffba5a; padding: 5px 5px;">CODELESS</span></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+			</button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">

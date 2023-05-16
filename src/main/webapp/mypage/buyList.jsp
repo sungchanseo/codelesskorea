@@ -21,6 +21,11 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
+
+
+
+
+<div class=row style="margin-left: 100px;"> 
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 
 	<%
@@ -29,8 +34,8 @@
 	ArrayList buyList = (ArrayList) li.getBuyList(id);
 	%>
 
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 150px; width: 100%;">
+	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">구 매 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -77,7 +82,7 @@
 
 </div>
 </div>
-
+</div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

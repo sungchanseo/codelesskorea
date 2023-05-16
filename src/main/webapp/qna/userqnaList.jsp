@@ -23,10 +23,18 @@
       <c:redirect url="./MemberLogin.me" />
    </c:if>
 
+
+
+		
+<div class=row style="margin-left: 100px;"> 
+	 <!--   사이드바 -->
+<%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
+
+	 <!--   사이드바 -->
 	 
-	 <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 50px; width: 100%;">
- <h1 style="font-family: 'TheJamsil5Bold';">1 : 1 문 의</h1>
+ <div class="col-md-10">
+ <div id="right" style="width: 80%">
+ <h1 style="font-family: 'TheJamsil5Bold';">1:1 질문리스트</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
 
@@ -97,7 +105,7 @@
   		</div>
    
 	<br>
-
+</div>
 
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

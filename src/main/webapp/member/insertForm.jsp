@@ -58,6 +58,35 @@
 				  return;
 			  }
 		  }); // 아이디중복확인 
+		  
+		  $('#nickname').keyup(function(){
+		 $.ajax({
+			  url : "./AjaxNickAction.aj",
+			  data: {"nickname": $('#nickname').val()},
+			  success:function(data){
+				  const result = $.trim(data);
+				  if(result=="yes" && !$('#nickname').val() == ""){
+				
+				  $('#nickmsg').css('color','green');
+				  $('#nickmsg').text("사용가능한 닉네임 입니다.");
+				  $('#submit').removeAttr('disabled');
+				  return;
+				  }else if ( result=="no" && !$('#nickname').val() == ""){
+				 
+				  $('#nickmsg').css('color','red');
+				  $('#nickmsg').text("이미 존재하는 닉네임 입니다.");  
+				  $('#submit').attr('disabled','disabled');
+				  return;
+				  }
+			  }//success 
+		  });// ajax
+		  if($('#nickname').val() == ""){
+			  $('#nickmsg').css('color','red');
+			  $('#nickmsg').text("닉네임을 입력해주세요.");  
+			  $('#submit').attr('disabled','disabled'); 
+			  return;
+		  }
+	  }); // 닉네임중복확인 
 				
 		
 		$('#alert-success').hide();
@@ -196,7 +225,10 @@
 					 <br>
 				
 				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요.">
+					 
+					 <span id="nickmsg"></span>
 					 <br> 
+					 
 				
 				연락처 <input type="text" class="form-control"
 					name="phone_number" placeholder="010-0000-0000 형태로 입력해주세요." id="phone_number" maxlength="13">

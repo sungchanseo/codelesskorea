@@ -160,9 +160,13 @@
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 
 <!-- LikeList -->
+
+<div class=row style="margin-left: 100px;"> 
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 100px; width: 100%;">
+
+
+	 <div class="col-md-10">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">찜 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;" >
 
@@ -199,11 +203,12 @@
                     </c:if>
                 </c:forEach>
             </table>
+			
         </c:otherwise>
     </c:choose>
 </div>
 		</div>
-		 </div>
+		 
 
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">
@@ -218,7 +223,9 @@
 				</c:if>
 			  </ul>
 	  		</div>
-
+			</div>
+		</div>
+		
 
 <br>
 

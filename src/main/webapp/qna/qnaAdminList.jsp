@@ -24,15 +24,19 @@
 <%-- 	페이지번호 : ${pageNum }<br> --%>
 <%-- 	아이디 : ${id }<br> --%>
 	
-<div class="col-sm-4">
-<%@ include file="../mySide.jsp"%>
-</div>
+
+
+<div class=row style="margin-left: 100px;">	
+
+
+
+
+<%@ include file="../mySide.jsp"%>	 <!--   사이드바 -->
+
 	
-	 <!--   사이드바 -->
-	 
-	 <div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 50px; width: 100%;">
- <h1 style="font-family: 'TheJamsil5Bold';">1 : 1 문 의 관 리</h1>
+ <div class="col-md-10">
+ <div id="right" style="width: 80%">
+ <h1 style="font-family: 'TheJamsil5Bold';">1:1문의 질문목록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
 
@@ -94,7 +98,7 @@
 		  </ul>
 		 
   		</div>
-   
+    </div>
 	<br>
 
   <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
