@@ -32,7 +32,7 @@
 	 
 	 <div class="col-sm-8" style="margin:auto;">
  <div id="right" style="margin-left: 50px; width: 100%;">
- <h1 style="font-family: 'TheJamsil5Bold';">QnA 질문목록</h1>
+ <h1 style="font-family: 'TheJamsil5Bold';">1 : 1 문 의 관 리</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
 
