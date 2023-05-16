@@ -3,10 +3,1158 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.page-content{
+	padding-bottom: 3.2rem;
+	max-width:740px;
+	margin:0 auto;
+}
+div{
+	display:block;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.page-content table {
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 1.6rem 0;
+}
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+body {
+    position: relative;
+    color: #212529;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    min-height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+able {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+@import url(https://d1unjqcospf8gs.cloudfront.net/assets/@karrotmarket/design-token/lib/colors/dark-c7cf6d433b87ca9572c1eafdc506db071f61caba1b453b99b3c7655ae7d44813.css);
+@import url(https://d1unjqcospf8gs.cloudfront.net/assets/@karrotmarket/design-token/lib/colors/light-c60153a1d293a56134cccb645f6f2c820aec33da60a6f32dbbff909c31f8267b.css);
+/* line 63, app/assets/stylesheets/home/theme.scss */
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+/* line 69, app/assets/stylesheets/home/theme.scss */
+section,
+article,
+aside,
+footer,
+header,
+nav,
+hgroup {
+  display: block;
+}
+
+/* line 79, app/assets/stylesheets/home/theme.scss */
+a {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+/* line 85, app/assets/stylesheets/home/theme.scss */
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+/* line 90, app/assets/stylesheets/home/theme.scss */
+body {
+  position: relative;
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+  min-height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 100, app/assets/stylesheets/home/theme.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* line 110, app/assets/stylesheets/home/theme.scss */
+h1 {
+  font-size: 2rem;
+}
+
+/* line 114, app/assets/stylesheets/home/theme.scss */
+h2 {
+  font-size: 1.8rem;
+}
+
+/* line 118, app/assets/stylesheets/home/theme.scss */
+h3 {
+  font-size: 1.6rem;
+}
+
+/* line 122, app/assets/stylesheets/home/theme.scss */
+h4 {
+  font-size: 1.4rem;
+}
+
+/* line 126, app/assets/stylesheets/home/theme.scss */
+h5 {
+  font-size: 1.3rem;
+}
+
+/* line 130, app/assets/stylesheets/home/theme.scss */
+h6 {
+  font-size: 1.2rem;
+}
+
+/* line 134, app/assets/stylesheets/home/theme.scss */
+strong,
+b {
+  font-weight: 700;
+}
+
+/* line 139, app/assets/stylesheets/home/theme.scss */
+ul {
+  list-style-type: disc;
+}
+
+/* line 141, app/assets/stylesheets/home/theme.scss */
+ul li {
+  margin: 1.6rem;
+}
+
+/* line 146, app/assets/stylesheets/home/theme.scss */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+/* line 153, app/assets/stylesheets/home/theme.scss */
+textarea {
+  font-family: inherit;
+  font-size: 1.6rem;
+  color: #212529;
+  margin: 1.6rem 0;
+}
+
+/* line 159, app/assets/stylesheets/home/theme.scss */
+textarea.border {
+  border: 1px solid #CED4DA;
+  border-radius: 6px;
+  padding: 1rem 1.4rem;
+  margin: 1.6rem 0;
+}
+
+/* line 166, app/assets/stylesheets/home/theme.scss */
+textarea.width-full {
+  display: block;
+  width: calc(100% - 1.4rem*2 - 2px);
+}
+
+/* line 172, app/assets/stylesheets/home/theme.scss */
+input {
+  -webkit-appearance: none;
+  border: solid 1px #CED4DA;
+  padding: 1rem 1.4rem;
+  margin: 1.6rem 0;
+  font-size: 1.6rem;
+  border-radius: 3px;
+}
+
+/* line 180, app/assets/stylesheets/home/theme.scss */
+input.input-full, input.width-full {
+  display: block;
+  width: calc(100% - 1.4rem*2 - 2px);
+}
+
+/* line 186, app/assets/stylesheets/home/theme.scss */
+input.width-full.border-none {
+  width: 100%;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+/* line 192, app/assets/stylesheets/home/theme.scss */
+input.width-full[type=submit] {
+  display: block;
+  width: 100%;
+}
+
+/* line 197, app/assets/stylesheets/home/theme.scss */
+input.border-carrot {
+  border: 1px solid #FF8A3D;
+}
+
+/* line 201, app/assets/stylesheets/home/theme.scss */
+input:disabled {
+  background-color: #E9ECEF;
+  color: #fff;
+}
+
+/* line 207, app/assets/stylesheets/home/theme.scss */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* line 214, app/assets/stylesheets/home/theme.scss */
+input::-webkit-input-placeholder {
+  color: #CED4DA;
+}
+
+/* line 218, app/assets/stylesheets/home/theme.scss */
+input:-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 4-18 */
+/* line 223, app/assets/stylesheets/home/theme.scss */
+input::-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 19+ */
+/* line 228, app/assets/stylesheets/home/theme.scss */
+input:-ms-input-placeholder {
+  color: #CED4DA;
+}
+
+/* IE 10+ */
+/* line 234, app/assets/stylesheets/home/theme.scss */
+textarea::-webkit-input-placeholder {
+  color: #CED4DA;
+}
+
+/* line 238, app/assets/stylesheets/home/theme.scss */
+textarea:-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 4-18 */
+/* line 243, app/assets/stylesheets/home/theme.scss */
+textarea::-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 19+ */
+/* line 248, app/assets/stylesheets/home/theme.scss */
+textarea:-ms-input-placeholder {
+  color: #CED4DA;
+}
+
+/* IE 10+ */
+/* line 254, app/assets/stylesheets/home/theme.scss */
+textarea:focus::-webkit-input-placeholder {
+  color: #CED4DA;
+}
+
+/* line 258, app/assets/stylesheets/home/theme.scss */
+textarea:focus:-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 4-18 */
+/* line 263, app/assets/stylesheets/home/theme.scss */
+textarea:focus::-moz-placeholder {
+  color: #CED4DA;
+}
+
+/* FF 19+ */
+/* line 268, app/assets/stylesheets/home/theme.scss */
+textarea:focus:-ms-input-placeholder {
+  color: #CED4DA;
+}
+
+/* IE 10+ */
+/* line 274, app/assets/stylesheets/home/theme.scss */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* line 281, app/assets/stylesheets/home/theme.scss */
+::-moz-selection {
+  color: #212529;
+  background: #FFB98B;
+}
+
+/* line 285, app/assets/stylesheets/home/theme.scss */
+::-moz-selection {
+  color: #212529;
+  background: #FFB98B;
+}
+::selection {
+  color: #212529;
+  background: #FFB98B;
+}
+
+/* line 290, app/assets/stylesheets/home/theme.scss */
+.clear {
+  clear: both;
+}
+
+/* line 294, app/assets/stylesheets/home/theme.scss */
+.hide {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 0;
+}
+
+/* line 301, app/assets/stylesheets/home/theme.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+/* line 312, app/assets/stylesheets/home/theme.scss */
+.text-normal {
+  font-weight: normal;
+}
+
+/* line 316, app/assets/stylesheets/home/theme.scss */
+.text-bold {
+  font-weight: bold;
+}
+
+/* line 320, app/assets/stylesheets/home/theme.scss */
+.text-black {
+  color: #212529;
+}
+
+/* line 324, app/assets/stylesheets/home/theme.scss */
+.text-carrot {
+  color: #FF8A3D;
+}
+
+/* line 328, app/assets/stylesheets/home/theme.scss */
+.text-tomato {
+  color: #FF3E46;
+}
+
+/* line 332, app/assets/stylesheets/home/theme.scss */
+.text-green {
+  color: #56C271;
+}
+
+/* line 336, app/assets/stylesheets/home/theme.scss */
+.text-gray {
+  color: #868e96;
+}
+
+/* line 340, app/assets/stylesheets/home/theme.scss */
+.text-light-gray {
+  color: #ADB5BD;
+}
+
+/* line 344, app/assets/stylesheets/home/theme.scss */
+.text-dark-gray {
+  color: #495057;
+}
+
+/* line 347, app/assets/stylesheets/home/theme.scss */
+.text-white {
+  color: #fff;
+}
+
+/* line 351, app/assets/stylesheets/home/theme.scss */
+.text-center {
+  text-align: center;
+}
+
+/* line 355, app/assets/stylesheets/home/theme.scss */
+.text-xxl {
+  font-size: 2.4rem !important;
+  line-height: 1.54;
+  letter-spacing: -0.8px;
+}
+
+/* line 361, app/assets/stylesheets/home/theme.scss */
+.text-xl {
+  font-size: 2rem !important;
+  line-height: 1.55;
+  letter-spacing: -0.3px;
+}
+
+/* line 367, app/assets/stylesheets/home/theme.scss */
+.text-l {
+  font-size: 1.8rem !important;
+  line-height: 1.47;
+  letter-spacing: -0.3px;
+}
+
+/* line 373, app/assets/stylesheets/home/theme.scss */
+.text-m {
+  font-size: 1.6rem !important;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+}
+
+/* line 379, app/assets/stylesheets/home/theme.scss */
+.text-s {
+  font-size: 1.4rem !important;
+  line-height: 1.5;
+}
+
+/* line 384, app/assets/stylesheets/home/theme.scss */
+.text-xs {
+  font-size: 1.3rem !important;
+  line-height: 1.5;
+}
+
+/* line 389, app/assets/stylesheets/home/theme.scss */
+.text-xxs {
+  font-size: 1.2rem !important;
+  line-height: 1.5;
+}
+
+/* line 394, app/assets/stylesheets/home/theme.scss */
+.text-no-decoration {
+  text-decoration: none;
+}
+
+/* line 398, app/assets/stylesheets/home/theme.scss */
+.overflow-hidden {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* line 404, app/assets/stylesheets/home/theme.scss */
+.background-gray {
+  background-color: #F8F9FA;
+}
+
+/* line 408, app/assets/stylesheets/home/theme.scss */
+.background-dark-gray {
+  background-color: #E9ECEF;
+}
+
+/* line 412, app/assets/stylesheets/home/theme.scss */
+.background-white {
+  background-color: #fff;
+}
+
+/* line 416, app/assets/stylesheets/home/theme.scss */
+.background-green {
+  background-color: #56C271;
+}
+
+/* line 420, app/assets/stylesheets/home/theme.scss */
+.background-pale-green {
+  background-color: #E6F3E6;
+}
+
+/* line 424, app/assets/stylesheets/home/theme.scss */
+.circle-image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+/* line 431, app/assets/stylesheets/home/theme.scss */
+.circle-image-s {
+  width: 40px;
+  height: 40px;
+}
+
+/* line 436, app/assets/stylesheets/home/theme.scss */
+.circle-image-m {
+  width: 48px;
+  height: 48px;
+}
+
+/* line 441, app/assets/stylesheets/home/theme.scss */
+.circle-image-l {
+  width: 60px;
+  height: 60px;
+}
+
+/* line 446, app/assets/stylesheets/home/theme.scss */
+.rounded {
+  border-radius: 4px;
+}
+
+/* line 451, app/assets/stylesheets/home/theme.scss */
+.center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 455, app/assets/stylesheets/home/theme.scss */
+.center-image img {
+  width: 100%;
+}
+
+/* line 461, app/assets/stylesheets/home/theme.scss */
+.image-s img {
+  width: 48px;
+  height: 48px;
+}
+
+/* line 467, app/assets/stylesheets/home/theme.scss */
+.article-thumbnail {
+  width: 180px;
+  height: 180px;
+}
+
+/* line 472, app/assets/stylesheets/home/theme.scss */
+.article-thumbnail-text {
+  width: 180px;
+}
+
+/* line 476, app/assets/stylesheets/home/theme.scss */
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 481, app/assets/stylesheets/home/theme.scss */
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* line 487, app/assets/stylesheets/home/theme.scss */
+.block {
+  display: block;
+}
+
+/* line 491, app/assets/stylesheets/home/theme.scss */
+.flex {
+  display: flex;
+}
+
+/* line 496, app/assets/stylesheets/home/theme.scss */
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 501, app/assets/stylesheets/home/theme.scss */
+.flex-1 {
+  flex: 1;
+}
+
+/* line 505, app/assets/stylesheets/home/theme.scss */
+.relative {
+  position: relative;
+}
+
+/* line 509, app/assets/stylesheets/home/theme.scss */
+.vertical-top {
+  vertical-align: top;
+}
+
+/* line 513, app/assets/stylesheets/home/theme.scss */
+.vertical-text-top {
+  vertical-align: text-top;
+}
+
+/* line 517, app/assets/stylesheets/home/theme.scss */
+.width-full {
+  width: 100%;
+}
+
+/* line 521, app/assets/stylesheets/home/theme.scss */
+.list-unstyled {
+  list-style-type: none;
+}
+
+/* line 525, app/assets/stylesheets/home/theme.scss */
+.shadow-bottom {
+  box-shadow: 0 1px 0 0 #E9ECEF;
+}
+
+/* line 529, app/assets/stylesheets/home/theme.scss */
+.border-bottom {
+  border-bottom: 1px solid #E9ECEF;
+}
+
+/* line 533, app/assets/stylesheets/home/theme.scss */
+.border-top {
+  border-top: 1px solid #E9ECEF;
+}
+
+/* line 537, app/assets/stylesheets/home/theme.scss */
+.border-none {
+  border: none;
+}
+
+/* line 541, app/assets/stylesheets/home/theme.scss */
+.tag {
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.2rem;
+  margin-top: 0.4rem;
+  background-color: #F8F9FA;
+  color: #212529;
+  font-size: 1.3rem;
+}
+
+/* line 550, app/assets/stylesheets/home/theme.scss */
+button,
+.button {
+  -webkit-appearance: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: 1px solid #CED4DA;
+  color: #212529;
+  text-align: center;
+  font-weight: 700;
+  background-color: #fff;
+  margin: 1.6rem 0;
+  text-decoration: none;
+}
+
+/* line 565, app/assets/stylesheets/home/theme.scss */
+button:disabled,
+.button:disabled {
+  background-color: #E9ECEF;
+  color: #fff;
+  border: none;
+}
+
+/* line 572, app/assets/stylesheets/home/theme.scss */
+.button-rounded {
+  border-radius: 100px;
+}
+
+/* line 578, app/assets/stylesheets/home/theme.scss */
+.button-s {
+  padding: 0.4rem 1rem;
+}
+
+/* line 582, app/assets/stylesheets/home/theme.scss */
+.button-m {
+  padding: 1rem 1.4rem;
+  font-size: 1.6rem;
+}
+
+/* line 587, app/assets/stylesheets/home/theme.scss */
+.button-xl {
+  padding: 1.1rem 2rem;
+  font-size: 1.8rem;
+}
+
+/* line 592, app/assets/stylesheets/home/theme.scss */
+.button-full {
+  display: block;
+  width: 100%;
+}
+
+/* line 597, app/assets/stylesheets/home/theme.scss */
+.button-carrot {
+  background-color: #FF8A3D;
+  color: #fff;
+  border: 1px solid #FF8A3D;
+}
+
+/* line 603, app/assets/stylesheets/home/theme.scss */
+.button-tomato {
+  background-color: #fff;
+  color: #FF3E46;
+  border: 1px solid #FF3E46;
+}
+
+/* line 609, app/assets/stylesheets/home/theme.scss */
+.button-green {
+  background-color: #fff;
+  color: #56C271;
+  border: none;
+}
+
+/* line 615, app/assets/stylesheets/home/theme.scss */
+.button-dark-gray {
+  background-color: #495057;
+  color: #fff;
+  border: 1px solid #495057;
+}
+
+/* line 621, app/assets/stylesheets/home/theme.scss */
+.button-black {
+  background-color: #fff;
+  color: #212529;
+  border: 1px solid #212529;
+}
+
+/* line 627, app/assets/stylesheets/home/theme.scss */
+.button-black:hover {
+  border: 1px solid #868e96;
+  color: #868e96;
+}
+
+/* line 632, app/assets/stylesheets/home/theme.scss */
+.right-arrow {
+  background: #fff url(https://d1unjqcospf8gs.cloudfront.net/assets/wv/smbs/icon-small-rignt-arrow-c84f1abd85c1f283b11c7605514833e464cd93cf5b309c62477ab4a299fc63f0.svg) no-repeat right 0 center;
+}
+
+/* line 635, app/assets/stylesheets/home/theme.scss */
+.right-arrow-disabled {
+  background: #fff url(https://d1unjqcospf8gs.cloudfront.net/assets/wv/smbs/icon-small-rignt-arrow-disabled-f9761ec61d7893eba985673575d5dfdf56ddcfe1392261e035dd4840c71270c7.svg) no-repeat right 0 center;
+}
+
+/* line 639, app/assets/stylesheets/home/theme.scss */
+.divider-bold {
+  border-bottom: 2px solid #212529;
+}
+
+/*
+m - margin
+p - padding
+
+t - margin-top or padding-top
+b - margin-bottom or padding-bottom
+l - margin-left or padding-left
+r - margin-right or padding-right
+x - both *-left and *-right
+y - both *-top and *-bottom
+
+0   - $spacer * 0
+1   - $spacer * .25
+2   - $spacer * .5
+25  - $spacer * .75
+3   - $spacer
+4   - $spacer * 1.5
+5   - $spacer * 2
+auto - auto
+*/
+/* line 667, app/assets/stylesheets/home/theme.scss */
+.m-3 {
+  margin: 1.6rem;
+}
+
+/* line 669, app/assets/stylesheets/home/theme.scss */
+.ml-0_5 {
+  margin-left: 0.2rem;
+}
+
+/* line 670, app/assets/stylesheets/home/theme.scss */
+.ml-1 {
+  margin-left: 0.4rem;
+}
+
+/* line 671, app/assets/stylesheets/home/theme.scss */
+.ml-2 {
+  margin-left: 0.8rem;
+}
+
+/* line 672, app/assets/stylesheets/home/theme.scss */
+.ml-3 {
+  margin-left: 1.6rem;
+}
+
+/* line 674, app/assets/stylesheets/home/theme.scss */
+.mr-2 {
+  margin-right: 0.8rem;
+}
+
+/* line 676, app/assets/stylesheets/home/theme.scss */
+.mt-0 {
+  margin-top: 0;
+}
+
+/* line 677, app/assets/stylesheets/home/theme.scss */
+.mt-0_5 {
+  margin-top: 0.2rem;
+}
+
+/* line 678, app/assets/stylesheets/home/theme.scss */
+.mt-1 {
+  margin-top: 0.4rem;
+}
+
+/* line 679, app/assets/stylesheets/home/theme.scss */
+.mt-2 {
+  margin-top: 0.8rem;
+}
+
+/* line 680, app/assets/stylesheets/home/theme.scss */
+.mt-3 {
+  margin-top: 1.6rem;
+}
+
+/* line 681, app/assets/stylesheets/home/theme.scss */
+.mt-4 {
+  margin-top: 2.4rem;
+}
+
+/* line 682, app/assets/stylesheets/home/theme.scss */
+.mt-5 {
+  margin-top: 3.2rem;
+}
+
+/* line 684, app/assets/stylesheets/home/theme.scss */
+.mb-1 {
+  margin-bottom: 0.4rem;
+}
+
+/* line 685, app/assets/stylesheets/home/theme.scss */
+.mb-2 {
+  margin-bottom: 0.8rem;
+}
+
+/* line 686, app/assets/stylesheets/home/theme.scss */
+.mb-3 {
+  margin-bottom: 1.6rem;
+}
+
+/* line 687, app/assets/stylesheets/home/theme.scss */
+.mb-4 {
+  margin-bottom: 2.4rem;
+}
+
+/* line 688, app/assets/stylesheets/home/theme.scss */
+.mb-5 {
+  margin-bottom: 3.2rem;
+}
+
+/* line 690, app/assets/stylesheets/home/theme.scss */
+.mx-1 {
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
+
+/* line 694, app/assets/stylesheets/home/theme.scss */
+.mx-3 {
+  margin-left: 1.6rem;
+  margin-right: 1.6rem;
+}
+
+/* line 698, app/assets/stylesheets/home/theme.scss */
+.mx-4 {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+}
+
+/* line 703, app/assets/stylesheets/home/theme.scss */
+.my-1 {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+/* line 708, app/assets/stylesheets/home/theme.scss */
+.my-2 {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+/* line 713, app/assets/stylesheets/home/theme.scss */
+.my-3 {
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+/* line 718, app/assets/stylesheets/home/theme.scss */
+.my-4 {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+/* line 723, app/assets/stylesheets/home/theme.scss */
+.my-5 {
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
+}
+
+/* line 728, app/assets/stylesheets/home/theme.scss */
+.pt-1 {
+  padding-top: 0.4rem;
+}
+
+/* line 729, app/assets/stylesheets/home/theme.scss */
+.pt-2 {
+  padding-top: 0.8rem;
+}
+
+/* line 730, app/assets/stylesheets/home/theme.scss */
+.pt-3 {
+  padding-top: 1.6rem;
+}
+
+/* line 731, app/assets/stylesheets/home/theme.scss */
+.pt-4 {
+  padding-top: 2.4rem;
+}
+
+/* line 732, app/assets/stylesheets/home/theme.scss */
+.pt-5 {
+  padding-top: 3.2rem;
+}
+
+/* line 734, app/assets/stylesheets/home/theme.scss */
+.pb-2 {
+  padding-bottom: 0.8rem;
+}
+
+/* line 735, app/assets/stylesheets/home/theme.scss */
+.pb-3 {
+  padding-bottom: 1.6rem;
+}
+
+/* line 736, app/assets/stylesheets/home/theme.scss */
+.pb-4 {
+  padding-bottom: 2.4rem;
+}
+
+/* line 737, app/assets/stylesheets/home/theme.scss */
+.pb-5 {
+  padding-bottom: 3.2rem;
+}
+
+/* line 739, app/assets/stylesheets/home/theme.scss */
+.py-1 {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+/* line 744, app/assets/stylesheets/home/theme.scss */
+.py-2 {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/* line 749, app/assets/stylesheets/home/theme.scss */
+.py-2_5 {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+/* line 754, app/assets/stylesheets/home/theme.scss */
+.py-3 {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+/* line 759, app/assets/stylesheets/home/theme.scss */
+.py-4 {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+
+/* line 764, app/assets/stylesheets/home/theme.scss */
+.py-5 {
+  padding-top: 3.2rem;
+  padding-bottom: 3.2rem;
+}
+
+/* line 769, app/assets/stylesheets/home/theme.scss */
+.px-1 {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+/* line 773, app/assets/stylesheets/home/theme.scss */
+.px-3 {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+/* line 778, app/assets/stylesheets/home/theme.scss */
+.p-1 {
+  padding: 0.4rem;
+}
+
+/* line 780, app/assets/stylesheets/home/theme.scss */
+.p-3 {
+  padding: 1.6rem;
+}
+
+/* line 781, app/assets/stylesheets/home/theme.scss */
+.p-4 {
+  padding: 2.4rem;
+}
+
+/* line 783, app/assets/stylesheets/home/theme.scss */
+.mb-0 {
+  margin-bottom: 0;
+}
+
+/* line 784, app/assets/stylesheets/home/theme.scss */
+.pb-0 {
+  padding-bottom: 0;
+}
+
+/* line 5, app/assets/stylesheets/wv/darkmode.css.scss */
+.dark-theme body {
+  color: var(--color-gray900);
+  background-color: var(--color-background);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 13, app/assets/stylesheets/wv/darkmode.css.scss */
+.dark-theme .section-svg-icon path, .dark-theme .section-svg-icon rect {
+  stroke: var(--color-background);
+}
+
+/* line 19, app/assets/stylesheets/wv/darkmode.css.scss */
+.dark-theme .force-darkmode h1, .dark-theme .force-darkmode h2, .dark-theme .force-darkmode h3, .dark-theme .force-darkmode h4, .dark-theme .force-darkmode h5, .dark-theme .force-darkmode h6, .dark-theme .force-darkmode p {
+  color: var(--color-gray900) !important;
+}
+
+/* line 4, app/assets/stylesheets/home/policy.scss */
+.page-content {
+  padding-bottom: 3.2rem;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+/* line 8, app/assets/stylesheets/home/policy.scss */
+.page-content .wrapper {
+  margin: 1.6rem;
+}
+
+/* line 11, app/assets/stylesheets/home/policy.scss */
+.page-content a {
+  color: #212529;
+  text-decoration: underline;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+/* line 17, app/assets/stylesheets/home/policy.scss */
+.dark-theme .page-content a {
+  color: var(--color-blue800);
+}
+
+/* line 21, app/assets/stylesheets/home/policy.scss */
+.page-content p {
+  margin: 1.6rem 0;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+/* line 26, app/assets/stylesheets/home/policy.scss */
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  margin-top: 3.2rem;
+  margin-bottom: 1.6rem;
+}
+
+/* line 35, app/assets/stylesheets/home/policy.scss */
+.page-content h1 {
+  font-size: 2.4rem;
+}
+
+/* line 40, app/assets/stylesheets/home/policy.scss */
+.page-content ol li,
+.page-content ul li {
+  font-size: 1.6rem;
+  margin: 1.2rem 0 1.2rem 2.4rem;
+  line-height: 1.6;
+}
+
+/* line 44, app/assets/stylesheets/home/policy.scss */
+.page-content ol li p,
+.page-content ul li p {
+  margin: 1.6rem 0;
+}
+
+/* line 47, app/assets/stylesheets/home/policy.scss */
+.page-content ol li::marker,
+.page-content ul li::marker {
+  text-indent: 0.8rem;
+}
+
+/* line 52, app/assets/stylesheets/home/policy.scss */
+.page-content ol li > ol li {
+  list-style-type: lower-alpha;
+}
+
+/* line 55, app/assets/stylesheets/home/policy.scss */
+.page-content ul li > ul li {
+  list-style-type: circle;
+}
+
+/* line 58, app/assets/stylesheets/home/policy.scss */
+.page-content table {
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 1.6rem 0;
+}
+
+/* line 64, app/assets/stylesheets/home/policy.scss */
+.page-content table thead th {
+  padding: 0.8rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* line 71, app/assets/stylesheets/home/policy.scss */
+.page-content table tbody td {
+  padding: 0.8rem;
+  vertical-align: top;
+}
+
+/* line 76, app/assets/stylesheets/home/policy.scss */
+.page-content table th,
+.page-content table td {
+  min-width: 8rem;
+  border: 1px solid #CED4DA;
+}
+
+/* line 82, app/assets/stylesheets/home/policy.scss */
+.page-content table ol li, .page-content table ul li {
+  font-size: 1.2rem;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<div class="page-content">
 <div class="wrapper" data-controller="components--darkmode-debugger">
       <h2>CODELESS 개인정보처리방침</h2>
 
@@ -595,5 +1743,6 @@ CODELESS은 모바일 앱에서 온라인 맞춤형 광고를 위하여 광고�
 <a href="https://www.daangn.com/policy/previous_privacy">이전 개인정보처리방침(시행일자-23.01.19)</a></p>
 
     </div>
+</div>
 </body>
 </html>
