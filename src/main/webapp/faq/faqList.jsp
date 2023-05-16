@@ -5,7 +5,17 @@
 <html>
 <head>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="search_box.css">
+<style type="text/css">
+
+#category_search>button{
+ width:33%; display:inline;"
+ margin-bottom:10px;
+ border-color: buttonface;
+ background-color:white;
+ }
+
+</style>
+<link rel="stylesheet" href="../css/_custom.css" type="text/css"/>
 <meta charset="UTF-8">
 <title>CODE LESS - 자주묻는 질문</title>
 <%@ include file="../head.jsp"%>
@@ -34,29 +44,30 @@
 
 페이지번호 : ${pageNum }<br>
 <!-- 검색창기능 -->
-<div id="table_search" class="aram-outline-input header-search mat-form-field ng-tns-c14-6 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-outline mat-form-field-can-float ng-untouched ng-pristine ng-valid">
+<div id="table_search" class="button" style="margin-bottom:10px;">
 	<form action="./FaqList.fa" method="post">
-		<select name="selecter">
+		<select name="selecter" class="form-control" style="height:40px; width:80px; display:inline;" >
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="input_box">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <!-- 검색창기능 -->
 
 <!-- 카테고리 기능 -->
 <form action="./FaqList.fa" method="post">
-<button onclick="./FaqList.fa">전체</button>
-<button name="category" value="이용정책">이용정책</button>
-<button name="category" value="구매">구매</button>
-<br>
-<button name="category" value="판매">판매</button>
-<button name="category" value="신고">신고</button>
-<button name="category" value="기타">기타</button>
-</form>
+<p id="category_search">
+<button onclick="./FaqList.fa" class="btn btn-secondary" style="color:black;">전체</button>
+<button name="category" value="이용정책" class="btn btn-secondary" style="color:black;">이용정책</button>
+<button name="category" value="구매" class="btn btn-secondary" style="color:black;">구매</button>
+<button name="category" value="판매" class="btn btn-secondary" style="color:black;">판매</button>
+<button name="category" value="신고" class="btn btn-secondary" style="color:black;">신고</button>
+<button name="category" value="기타" class="btn btn-secondary" style="color:black;">기타</button>
+</p>
 
+</form>
 
 
 <!-- 카테고리 기능 -->

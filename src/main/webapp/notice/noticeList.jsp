@@ -61,14 +61,14 @@
 </table>
 
 <!-- 검색창기능 -->
-<div id="table_search">
+<div class="table" id="nttable">
 	<form action="./NoticeList.no" method="post">
-		<select name="category">
+		<select name="category" class="form-control" style="width:80px; display:inline;">
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="input_box">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="35px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <!-- 검색창기능 -->

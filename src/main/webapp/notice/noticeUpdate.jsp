@@ -29,7 +29,7 @@
  <h1 style="font-family: 'TheJamsil5Bold';">공 지 수 정</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
-  <form action="./NoticeUpdateAction.no" method="post">
+  <form action="./NoticeUpdateAction.no" method="post" enctype="multipart/form-data">
 
    	글번호 ${dto.notice_id } 페이지번호 ${pageNum }
    	<input type="hidden" name="notice_id" value="${dto.notice_id }">
@@ -43,8 +43,8 @@
     <textarea name="content"  cols="110px;" rows="10px;" class="form-control">${dto.content }</textarea>
 	</label>
 	<br>
-	<label>첨부 이미지
-    <input type="file" name="notice_image" class="form-control">
+	<label>첨부 이미지 (이미지 화일만 업로드 가능합니다)
+    <input type="file" name="notice_image" class="form-control" accept="image/*">
 	</label>
 	<br>
 

@@ -45,7 +45,7 @@
 		     <td colspan="4">${dto.content }</td>
 		   </tr> 
 			 <td>이미지</td>   
-   			<td colspan="4"><img src="./upload/${dto.notice_image }"/></td>
+   			<td colspan="4"><img src="./upload/${dto.notice_image }" height="400px"/></td>
    			
 		</table>
 

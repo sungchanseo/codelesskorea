@@ -74,7 +74,7 @@ public class NoticeDAO {
 				pstmt.setString(2, dto.getTitle());
 				pstmt.setInt(3, dto.getCount());
 				pstmt.setString(4, dto.getContent());
-				pstmt.setString(5,  dto.getNotice_image());
+				pstmt.setString(5, dto.getNotice_image());
 				
 				result= pstmt.executeUpdate();
 				System.out.println(dto.getTitle());
@@ -331,7 +331,11 @@ public class NoticeDAO {
 							
 							pstmt.setString(1, dto.getTitle());
 							pstmt.setString(2, dto.getContent());
-							pstmt.setString(3, dto.getNotice_image());
+							if(dto.getNotice_image()==null) {
+								pstmt.setString(3, rs.getString("notice_image"));
+							}else {
+								pstmt.setString(3, dto.getNotice_image());
+							}
 							pstmt.setInt(4, dto.getNotice_id());
 							
 							result = pstmt.executeUpdate();
