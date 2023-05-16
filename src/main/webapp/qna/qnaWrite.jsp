@@ -67,10 +67,14 @@ String nickname = mdto.getNickname();
 			</c:if>
 		   <input type="hidden" name="isanswered"" value="${qdto.is_answered}">
 			<!-- 		회원정보, 상품, 신고, 결제, 기타 -->
-					<select name="qna_category">
+			<select name="qna_category">
 			    <c:choose>
 			        <c:when test="${param.product_id ne 0}">
 			            <option value="신고" selected>신고</option>
+			            <option value="회원정보">회원정보</option>
+			            <option value="상품">상품</option>
+			            <option value="결제">결제</option>
+			            <option value="기타">기타</option>
 			        </c:when>
 			        <c:otherwise>
 			            <option value="회원정보">회원정보</option>

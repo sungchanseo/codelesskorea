@@ -320,7 +320,7 @@
 	<a href="./ProductList.pr" class="btn btn-primary" >상품 리스트로 이동</a>
 	<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary" >구매하기</a>
 
-	<a href="./QNAWrite.qn" class="btn btn-primary" >신고하기</a>
+	<a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary" >신고하기</a>
 	<c:if test="${ sessionScope.id != product.user_id }">
 		<a href="./ChatToSeller.ch?toID=${product.user_id }" class="btn btn-primary" >채팅하기</a>
 	</c:if>
