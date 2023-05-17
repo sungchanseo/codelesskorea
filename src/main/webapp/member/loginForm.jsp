@@ -79,8 +79,6 @@ function kakaoLogin() {
 <body>
  <%@ include file="../nav.jsp" %><!-- nav 삽입 -->
  
- <%@ include file="../background.jsp" %><!-- 배경 삽입 -->
- 
 	
  <div class="container" id="login-con">
   <form action="./MemberLoginAction.me" id="fr" method="post"> 

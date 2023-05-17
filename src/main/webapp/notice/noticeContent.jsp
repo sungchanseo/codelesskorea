@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@include file="../nav.jsp" %>
+<%@ include file="../background.jsp"%> <!-- END 배경 -->
 
   <div class="row" style="margin-left: 100px;">
   <!-- 사이드바 -->
