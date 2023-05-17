@@ -63,6 +63,7 @@ public class MemberJoinAction implements Action{
 		dto.setBirth_date(multupartRequest.getParameter("birth_date"));
 		dto.setAddress2(multupartRequest.getParameter("address2"));
 		dto.setPost_number(Integer.parseInt(multupartRequest.getParameter("post_number")));
+		dto.setEmail(multupartRequest.getParameter("email"));
 		
 		
 		

@@ -544,5 +544,32 @@ public class MemberDAO {
 			}
 			return check;
 		}//아이디 중복
+		
+		
+		public String emailCheck(String email) {
+			String check = "";
+			try {
+				con = getCon();
+				sql = "select email from user where email=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, email);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					check = "1";//중복됨
+				}else {
+					check = "0";
+				}
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			return check;
+		}//아이디 중복
 
 }//MemberDAO
