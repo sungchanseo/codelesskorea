@@ -48,11 +48,11 @@ public class ProductDAO {
 				// 1.2 DB 연결
 				getCon();
 				// 3. SQL 작성 & pstmt 객체
-				sql = "insert into product(title,model,content,price,grade,city,parts,method,charge,fee,user_id,reg_date,product_image) "
-						+ " values (?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+				sql = "insert into product(title,model,content,price,grade,city,parts,method,charge,fee,user_id,reg_date,product_image,brand,color) "
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,now(),?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, dto.getTitle());
-				pstmt.setString(2, dto.getModel());
+				pstmt.setInt(2, dto.getModel());
 				pstmt.setString(3, dto.getContent());
 				pstmt.setInt(4, dto.getPrice());
 				pstmt.setInt(5, dto.getGrade());
@@ -63,6 +63,8 @@ public class ProductDAO {
 				pstmt.setInt(10, dto.getFee());
 				pstmt.setString(11, dto.getUser_id());
 				pstmt.setString(12, dto.getProduct_image());
+				pstmt.setInt(13, dto.getBrand());
+				pstmt.setInt(14, dto.getColor());
 				// 4. SQL 실행
 				pstmt.executeUpdate();
 				System.out.println(" DAO : 상품 등록 완료! ");
@@ -81,6 +83,7 @@ public class ProductDAO {
 		try {
 			con = getCon();
 			sql = "select * from product";
+//			sql = "select * from product join color on product.color_id = color.color_id";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -88,7 +91,7 @@ public class ProductDAO {
 				ProductDTO product= new ProductDTO();
 				product.setProduct_id(rs.getInt("product_id"));
 	            product.setTitle(rs.getString("title"));
-	            product.setModel(rs.getString("model"));
+	            product.setModel(rs.getInt("model"));
 	            product.setContent(rs.getString("content"));
 	            product.setPrice(rs.getInt("price"));
 	            product.setParts(rs.getString("parts"));
@@ -103,6 +106,8 @@ public class ProductDAO {
 	            product.setLike_count(rs.getInt("like_count"));
 	            product.setChat_count(rs.getInt("chat_count"));
 	            product.setUser_id(rs.getString("user_id"));
+	            product.setBrand(rs.getInt("brand"));
+	            product.setColor(rs.getInt("color"));
 				productList.add(product);
 			}
 		} catch (Exception e) {
@@ -128,9 +133,11 @@ public class ProductDAO {
 	            product = new ProductDTO();
 				product.setProduct_id(rs.getInt("product_id"));
 	            product.setTitle(rs.getString("title"));
-	            product.setModel(rs.getString("model"));
+	            product.setModel(rs.getInt("model"));
 	            product.setContent(rs.getString("content"));
 	            product.setPrice(rs.getInt("price"));
+	            product.setParts(rs.getString("parts"));
+	            product.setParts(rs.getString("parts"));
 	            product.setParts(rs.getString("parts"));
 	            product.setProduct_image(rs.getString("product_image"));
 	            product.setGrade(rs.getInt("grade"));
@@ -143,6 +150,8 @@ public class ProductDAO {
 	            product.setLike_count(rs.getInt("like_count"));
 	            product.setChat_count(rs.getInt("chat_count"));
 	            product.setUser_id(rs.getString("user_id"));
+	            product.setBrand(rs.getInt("brand"));
+	            product.setColor(rs.getInt("color"));
 	        }
 	        
 	        System.out.println(" DAO : 상품정보 저장완료! ");
@@ -176,12 +185,12 @@ public class ProductDAO {
 	        	
 	            sql = "update product set title=?, model=?, parts=?, product_image=?, content=?, "
 	                    + " price=?,grade=?,city=?, method=?, charge=?, fee=?, "
-	                    + " user_id=?, product_image=?, reg_date=now() where product_id=?";
+	                    + " user_id=?, product_image=?, brand=?, color=?, reg_date=now() where product_id=?";
 
 	            pstmt = con.prepareStatement(sql);
 
 	            pstmt.setString(1, dto.getTitle());
-	            pstmt.setString(2, dto.getModel());
+	            pstmt.setInt(2, dto.getModel());
 	            pstmt.setString(3, dto.getParts());
 	            pstmt.setString(4, dto.getProduct_image());
 	            pstmt.setString(5, dto.getContent());
@@ -193,7 +202,9 @@ public class ProductDAO {
 	            pstmt.setInt(11, dto.getFee());
 	            pstmt.setString(12, dto.getUser_id());
 	            pstmt.setString(13, dto.getProduct_image());
-	            pstmt.setInt(14, dto.getProduct_id());
+	            pstmt.setInt(14, dto.getBrand());
+	            pstmt.setInt(15, dto.getColor());
+	            pstmt.setInt(16, dto.getProduct_id());
 	            System.out.println(" P : " + dto);
 	            // 4. SQL 실행(update)
 	            result = pstmt.executeUpdate();

@@ -26,7 +26,7 @@ public class ProductUpdateProAction  implements Action {
 		// 업로드 폴더(가상경로)
 		ServletContext ctx = request.getServletContext();
 		String realPath = ctx.getRealPath("/upload/product");// 서버의 주소
-		int maxSize = 10 * 1024 * 1024; // 5MB
+		int maxSize = 10 * 1024 * 1024; // 10MB
 		System.out.println(" M : "+realPath);
 
 		// 파일업로드
@@ -42,21 +42,25 @@ public class ProductUpdateProAction  implements Action {
 		
 		// 전달정보(파라메터) 저장(DTO)
 		ProductDTO dto = new ProductDTO();
-		
+		System.out.println(multi.getParameter("title"));
 		dto.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
 		dto.setTitle(multi.getParameter("title"));
-		dto.setModel(multi.getParameter("model"));
+		dto.setModel(Integer.parseInt(multi.getParameter("model")));
 		dto.setParts(multi.getParameter("parts"));
 		dto.setContent(multi.getParameter("content"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setGrade(Integer.parseInt(multi.getParameter("grade")));
-		dto.setCity(multi.getParameter("city"));
+		String address1 = multi.getParameter("address1");
+		String address2	= multi.getParameter("address2");
+		String city = address1 + address2;
+		dto.setCity(city);
 		dto.setMethod(Integer.parseInt(multi.getParameter("method")));
 		dto.setCharge(Integer.parseInt(multi.getParameter("charge")));
 		dto.setFee(Integer.parseInt(multi.getParameter("fee")));
 		dto.setUser_id(multi.getParameter("user_id"));
 		dto.setReg_date(new Date(System.currentTimeMillis()));
-		
+		dto.setBrand(Integer.parseInt(multi.getParameter("brand")));
+		dto.setColor(Integer.parseInt(multi.getParameter("color")));
 		System.out.println(" P : " + dto);
 		
 		String product_image = multi.getFilesystemName("product_image1");

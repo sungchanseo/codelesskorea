@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -19,15 +20,14 @@ public class ProductWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" P : ProductInsertAction_execute() 실행");
-		
+
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		// 파일업로드 + 상품정보(파라메터)
-		
 		// 업로드 폴더(가상경로)
 		ServletContext ctx = request.getServletContext();
 		String realPath = ctx.getRealPath("/upload/product");// 서버의 주소
-		int maxSize = 10 * 1024 * 1024; // 5MB
+		int maxSize = 10 * 1024 * 1024; // 10MB
 		System.out.println(" M : "+realPath);
 		
 		// 파일업로드
@@ -41,23 +41,25 @@ public class ProductWriteAction implements Action {
 		
 		System.out.println(" M : 상품 파일 업로드 성공! ");
 		
-
-		
 		// 전달된 정보 저장 ProductDTO 객체 저장
 		ProductDTO dto = new ProductDTO();
 		dto.setTitle(multi.getParameter("title"));
-		dto.setModel(multi.getParameter("model"));
+		dto.setModel(Integer.parseInt(multi.getParameter("model")));
 		dto.setParts(multi.getParameter("parts"));
 		dto.setContent(multi.getParameter("content"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setGrade(Integer.parseInt(multi.getParameter("grade")));
-		dto.setCity(multi.getParameter("city"));
+		String address1 = multi.getParameter("address1");
+		String address2	= multi.getParameter("address2");
+		String city = address1 + address2;
+		dto.setCity(city);
 		dto.setMethod(Integer.parseInt(multi.getParameter("method")));
 		dto.setCharge(Integer.parseInt(multi.getParameter("charge")));
 		dto.setFee(Integer.parseInt(multi.getParameter("fee")));
 		dto.setUser_id(multi.getParameter("user_id"));
 		dto.setReg_date(new Date(System.currentTimeMillis()));
-
+		dto.setBrand(Integer.parseInt(multi.getParameter("brand")));
+		dto.setColor(Integer.parseInt(multi.getParameter("color")));
 		System.out.println(" P : " + dto);
 		
 		String product_image = multi.getFilesystemName("product_image1");

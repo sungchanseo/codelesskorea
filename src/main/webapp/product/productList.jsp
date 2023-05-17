@@ -12,6 +12,7 @@
 <title>매칭된 리스트</title>
 <%@ include file="../head.jsp"%>
 <style>
+
   h2, p, button {
     font-family: 'TheJamsil5Bold';
   }
@@ -52,12 +53,38 @@
     font-size: 16px;
     line-height: 1.5;
   }
+  /* 로딩 이미지 오버레이 */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
 
+  .loading-overlay img {
+    width: 240px;
+    height: 180px;
+  }
+
+  /* 숨김 클래스 */
+  .hidden {
+    display: none;
+  }
 </style>
 </head>
 <body style="margin: 10px; padding: 10px; max-width: 900px;">
+  <div class="loading-overlay hidden">
+    <img src="./upload/product/loading.gif" width="1000" height="800" >
+  </div>
+  
   <div style="text-align: center;">
-    <h2>매칭된 리스트</h2>
+    <h2>매칭 리스트</h2>
     <div class="product-list-wrapper" style="display: flex; flex-wrap: wrap; justify-content: center;">
       <c:forEach var="product" items="${requestScope.productList}" varStatus="status">
         <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;">
@@ -79,9 +106,19 @@
       </c:forEach>
     </div>
     <div style="margin-top: 20px;">
-      <button onclick="window.location.reload();" type="button" class="btn btn-secondary">새로운 매칭 보기</button>
+      <button onclick="location.reload();"type="button" class="btn btn-secondary">새로운 매칭 보기</button>
     </div>
   </div>
+  
+  <script>
+  window.addEventListener('DOMContentLoaded', function() {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.remove('hidden');
+      setTimeout(function() {
+          loadingOverlay.classList.add('hidden');
+      }, 1000); // 1초 후에 로딩 이미지를 숨김
+    });
+  </script>
 </body>
 
 </head>

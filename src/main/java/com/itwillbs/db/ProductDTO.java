@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ProductDTO {
 	private int product_id;
 	private String title;
-	private String model;
+	private int model;
 	private String content;
 	private int price;
 	private String product_image;
@@ -20,8 +20,21 @@ public class ProductDTO {
 	private int charge;
 	private String parts;
 	private String user_id;
-	
+	private int brand;
+	private int color;
 
+	public int getBrand() {
+		return brand;
+	}
+	public void setBrand(int brand) {
+		this.brand = brand;
+	}
+	public int getColor() {
+		return color;
+	}
+	public void setColor(int color) {
+		this.color = color;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -34,10 +47,10 @@ public class ProductDTO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getModel() {
+	public int getModel() {
 		return model;
 	}
-	public void setModel(String model) {
+	public void setModel(int model) {
 		this.model = model;
 	}
 	public String getContent() {
@@ -124,14 +137,12 @@ public class ProductDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	
 	@Override
 	public String toString() {
-		return "ProductDTO [product_id=" + product_id + ", title=" + title + ", model=" + model + ", content=" + content
-				+ ", price=" + price + ", product_image=" + product_image + ", grade=" + grade + ", reg_date="
-				+ reg_date + ", read_count=" + read_count + ", like_count=" + like_count + ", chat_count=" + chat_count
-				+ ", city=" + city + ", method=" + method + ", fee=" + fee + ", charge=" + charge + ", parts=" + parts
-				+ ", user_id=" + user_id + "]";
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
+	
+
 	
 }
