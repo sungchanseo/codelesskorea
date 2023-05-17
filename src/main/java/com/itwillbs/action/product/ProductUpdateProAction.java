@@ -80,7 +80,7 @@ public class ProductUpdateProAction  implements Action {
 		// 수정 처리 결과에 따른 페이지 이동 (JS)
 		// 삭제 결과에 따른 페이지 이동(JS)
 		if(result == 1) {
-			JSForward.alertAndMove(response, "상품 수정 성공!", "./ProductList.pr");
+			JSForward.alertAndMove(response, "상품 수정 성공!", "MypageSalesList.my");
 			return null;
 		} else {
 			JSForward.alertAndBack(response, "상품 수정 실패");

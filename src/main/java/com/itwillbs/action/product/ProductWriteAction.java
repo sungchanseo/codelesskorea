@@ -78,7 +78,7 @@ public class ProductWriteAction implements Action {
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
-		forward.setPath("./ProductList.pr");
+		forward.setPath("./MypageSalesList.my");
 		forward.setRedirect(true);
 		
 		System.out.println(" P : 상품 등록 완료! 상품 리스트 페이지 이동 ");

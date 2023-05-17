@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 		private Connection getCon() throws Exception{
 		Context initCTX = new InitialContext();
 		DataSource ds
-			= (DataSource) initCTX.lookup("java:comp/env/jdbc/class7_230118_team1");
+			= (DataSource) initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
 		// 디비연결
 		con = ds.getConnection();
 		System.out.println(" DAO : 디비연결 성공! " +con);
