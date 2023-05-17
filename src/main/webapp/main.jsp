@@ -6,7 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <%@ include file="../head.jsp"%>
 <script type="text/javascript">
-
 $('document').ready(function() {
 	//지역 변수생성
 	
@@ -27,11 +26,8 @@ $('document').ready(function() {
 	   var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
 	   var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
 	   var area16 = ["서귀포시","제주시","남제주군","북제주군"];
-
-	 
-
+	
 	 // 시/도 선택 박스 초기화
-
 	 $("select[name^=sido]").each(function() {
 	  $selsido = $(this);
 	  $.each(eval(area0), function() {
@@ -39,16 +35,12 @@ $('document').ready(function() {
 	  });
 	  $selsido.next().append("<option value=''>구/군 선택</option>");
 	 });
-
-	 
-
+	
 	 // 시/도 선택시 구/군 설정
-
 	 $("select[name^=sido]").change(function() {
 	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
 	  var $gugun = $(this).next(); // 선택영역 군구 객체
 	  $("option",$gugun).remove(); // 구군 초기화
-
 	  if(area == "area0")
 	   $gugun.append("<option value=''>구/군 선택</option>");
 	  else {
@@ -57,56 +49,57 @@ $('document').ready(function() {
 	   });
 	  }
 	 });
-	 
-	 //특정 브랜드 선택시 모델옵션 변경
-	 var apple = ["에어팟 1세대","에어팟 2세대","에어팟 3세대","에어팟프로","에어팟프로 2세대"];
-	 var samsung = ["버즈","버즈 플러스","버즈 라이브","버즈 프로","버즈2","버즈2 프로"];
-	 
-	 //삼성 브랜드 색상
-	 var color1=  ["블랙","옐로우","화이트"];
-	 var color2 = ["블루","블랙","화이트","레드","핑크"];
-	 var color3 = ["미스틱 블랙","미스틱 화이트","미스틱 브론즈","레드","오닉스"];
-	 var color4 = ["팬텀 바이올렛","팬텀 블랙","팬텀 실버","팬텀 화이트"];
-	 var color5 = ["라벤더","올리브","화이트","그라파이트"];
-	 var color6 = ["퍼플","그라파이트","화이트"];
-	 
+	const modelList = JSON.parse('${modelList}');
+	const colorList = JSON.parse('${colorList}');
 	 $('#brand').change(function () {
 		if($('#brand').val() == "1"){
 			$('#model option').remove();
 			$('#color option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 			$('#color').append("<option value=''>색상을 선택하세요</option>");
-			$('#color').append("<option value='1'>화이트</option>");			
-			$.each(apple,function(idx,model){
-			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//애플 모델 
+			$.each(modelList,function(idx, obj){
+				console.log(obj.model_id);
+				console.log(obj.model);
+				if(obj.model_id>5) return false;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected apple
 		}else if($('#brand').val() == "2"){
+			// Init selectBox
 			$('#model option').remove();
 			$('#color option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 			$('#color').append("<option value=''>색상을 선택하세요</option>");
-			$.each(samsung,function(idx,model){
-			$('#model').append("<option value='"+idx+"'>"+model+"</option>");
-			});//삼성 모델
-				 
+			// add values
+			$.each(modelList,function(idx, obj){
+				if(obj.model_id<6) return true;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected samsung
 		}else{
 			$('#model option').remove();
 			$('#model').append("<option value=''>모델명을 선택하세요</option>");
 		}//미선택시
 	});//특정 브랜드 선택시 모델옵션 변경
-	 
 	
 	 $('#model').change(function() {
-			if($('#brand').val() == "2")  {
-			var color = "color"+$("option",$(this)).index($("option:selected",$(this)));
-		    $('#color option').remove();
-		    $('#color').append("<option value=''>색상을 선택하세요</option>");
-		    $.each(eval(color), function() {
-			$('#color').append("<option value='"+this+"'>"+this+"</option>");
-		    });
-		    }
-	});//삼성 모델 색상 옵션
-	
+		$('#color option').remove();
+		$('#color').append("<option value=''>모델명을 선택하세요</option>");
+		 var color = "";
+		$.each(modelList,function(idx, obj){
+// 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
+			if(obj.model_id == $('#model').val()) {
+				color = obj.color;
+				return false;
+			}
+		}); // get Colors by Model
+		var colorArr = color.split("/");
+		$.each(colorList,function(idx, obj){
+			$.each(colorArr, function(idx, colorEle){
+				if(obj.color_id == colorEle) {
+					$('#color').append("<option value='"+obj.color_id+"'>"+obj.color+"</option>");
+				}
+			});
+		});
+	 });
 	
 	$('#trade').change(function() {
 		if($('#trade').val()=="1"){
@@ -120,58 +113,56 @@ $('document').ready(function() {
 			$('#gugun1').hide();
 		}//택배거래 선택시 지역선택 못하게함
 	});
-
-	});//script끝
-
-	//모달 창 열기 함수
-	function openModal() {
-	  document.getElementById("myModal").style.display = "block";
-	}
-
-	// 모달 창 닫기 함수
+});//script끝
 	function closeModal() {
-	  document.getElementById("myModal").style.display = "none";
+	  document.getElementById("mainModal").style.display = "none";
 	}
 	
+	function checkData() {
+		const eleArr = ['#brand', '#model', '#color', '#parts','#trade'];
+		var condition = 0;
+		var str = "?";
+		$.each(eleArr, function(idx, selector) {
+			if($(selector).val() == "") {
+				alert("검색조건을 선택하세요");
+				$(selector).focus();
+				condition = 1;
+				return false;
+			}
+			str += selector.substr(1) + "="+ $(selector).val() + "&";
+		});
+		if(condition == 1) {
+			return false;
+		}
+		if($('#trade').val()=="1"){
+			if($('#sido1').val() == "") {
+				alert("시/도를 선택하세요");
+				$('#sido1').focus();
+				return false;
+			}
+			if($('#gugun1').val() == "") {
+				alert("시/도를 선택하세요");
+				$('#gugun1').focus();
+				return false;
+			}
+			str+= "sido1=" + $('#sido1').val() + "&";
+			str+= "gugun1=" + $('#gugun1').val() + "&";
+		}
+		openModal(str.substr(0, str.length-1));
+	}	
+	function openModal(str) {
+	  document.getElementById("mainModal").style.display = "block";
+	  $('#mainModal').append(
+			'<div class="modal-content">' +
+			'<span class="close" onclick="closeModal()">&times;</span>' +
+			'<iframe src="./ProductList.pr'+str+'"></iframe>' +
+			'</div>'
+	  );
+	}
 </script>
 
 <!-- 모달창 스타일 -->
 <style>
-/* 모달 창 스타일 */
-.modal {
-  display: none; /* 초기에는 숨김 상태 */
-  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
-  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
-}
-
-.modal-content {
-    width: 600px; 
-  height: 400px;
-  position: absolute; /* 모달 창 내에서 상대적인 위치 */
-  top: 50%; /* 상위 요소에서 50% 위치 */
-  left: 50%; /* 상위 요소에서 50% 위치 */
-  transform: translate(-50%, -50%); /* 가운데 정렬 */
-  width: 80%;
-  max-height: 90%;
-  overflow-y: auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-/* iframe 스타일 */
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
 
 
 .typewriter {
@@ -223,11 +214,10 @@ iframe {
 </section><!-- 메인 제목 끝 -->
 
 
-<section class="section pb-0" id="match">
+<section class="section pb-0">
 	<div class="container">
-
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="background-color:#FAFAFA; box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);border: 5px solid;border-color: #ffba5a; ">
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="background-color:#FAFAFA; box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);border: 5px solid;border-color: #FFBA5A; ">
 					<h4 style=" font-family: 'TheJamsil5Bold'; color: black;" class="typewriter">새로운 짝을 매칭해보세요!</h4>
 					<hr style="border: 0; height: 3px; background-color: black; margin-bottom: 40px;">
 				<form action="#" >
@@ -256,10 +246,11 @@ iframe {
 						</div>
 						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
 							<label for="checkout_date" class="font-weight-bold text-black">좌우선택</label>
-								<select name="" id="direc" class="form-control">
+								<select name="" id="parts" class="form-control">
 									<option value="">좌우를 선택하세요</option>
-									<option value="">좌</option>
-									<option value="">우</option>
+									<option value="left">좌</option>
+									<option value="right">우</option>
+									<option value="body">본체</option>
 								</select>
 							
 						</div>
@@ -269,34 +260,29 @@ iframe {
 							<div class="row">
 								<div class="col-md-6 mb-3 mb-md-0">
 									<label for="adults" class="font-weight-bold text-black">거래방법</label>
-
 										<select name="" id="trade" class="form-control">
 											<option value="">거래방법을 선택하세요</option>
 											<option value="1">직거래</option>
 											<option value="2">택배</option>
-								
 										</select>
 									
 								</div>
 								<div class="col-md-6 mb-3 mb-md-0">
 									<label for="" class="font-weight-bold text-black">지역선택</label></label><span id="trmsg" style="color: red;"> </span>
-									 
-										<select name="sido1" id="sido1" class="form-control"></select>	 
+									
+										<select name="sido1" id="sido1" class="form-control"></select>	
 										<select name="gugun1" id="gugun1" class="form-control" style="margin-top: 10px;"></select>			
 								</div>
 							</div>
 						</div>
 						<br>
-						<input type="button" value="매칭하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="openModal();">
-
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="checkData();">
 					</div>
 				</form>
 			</div>
-
-
 		</div>
 	</div>
-</section> <!-- 매칭 선택창 끝 -->
+</section>
 
 	<section class="section">
 		<div class="container">
