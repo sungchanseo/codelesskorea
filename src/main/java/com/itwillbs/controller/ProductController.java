@@ -14,6 +14,7 @@ import com.itwillbs.action.order.OrderWriteAction;
 import com.itwillbs.action.product.ProductContentAction;
 import com.itwillbs.action.product.ProductDeleteAction;
 import com.itwillbs.action.product.ProductListAction;
+import com.itwillbs.action.product.ProductSoldAction;
 import com.itwillbs.action.product.ProductUpdateAction;
 import com.itwillbs.action.product.ProductUpdateProAction;
 import com.itwillbs.action.product.ProductWriteAction;
@@ -82,7 +83,7 @@ public class ProductController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/ProductContent.pr")) {
+		}else if(command.equals("/ProductContent.pr")) {
 			System.out.println(" C : ProductContent.pr 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");
 			action = new ProductContentAction();
@@ -115,6 +116,15 @@ public class ProductController extends HttpServlet{
 			System.out.println(" C : /ProductDeleteAction.pr 호출");
 			System.out.println(" C : DB사용O, 페이지 이동 (패턴2)");
 			action = new ProductDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ProductSoldAction.pr")) {
+			System.out.println(" C : /ProductSoldAction.pr 호출");
+			System.out.println(" C : DB사용O, 페이지 이동 (패턴2)");
+			action = new ProductSoldAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {

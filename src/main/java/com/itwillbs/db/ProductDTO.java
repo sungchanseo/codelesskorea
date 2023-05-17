@@ -22,7 +22,14 @@ public class ProductDTO {
 	private String user_id;
 	private int brand;
 	private int color;
+	private int product_status;
 
+	public int getProduct_status() {
+		return product_status;
+	}
+	public void setProduct_status(int product_status) {
+		this.product_status = product_status;
+	}
 	public int getBrand() {
 		return brand;
 	}

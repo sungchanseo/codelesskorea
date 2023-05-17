@@ -9,13 +9,13 @@ import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ProductDAO;
 
-public class ProductDeleteAction implements Action {
+public class ProductSoldAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" P : ProductDeleteAction_execute()");
+		System.out.println(" P : ProductSoldAction_execute() 호출");
 		
-		// 1. JSP 페이지에서 삭제할 상품의 id를 전달
+		// 1. JSP 페이지에서 판매완료 처리할 상품의 id를 전달
 		int productId =Integer.parseInt(request.getParameter("product_id"));
 		HttpSession session =  request.getSession();
 		
@@ -28,13 +28,13 @@ public class ProductDeleteAction implements Action {
 			return forward;
 		}
 		
-		// 2. DAO를 이용하여 product 테이블에서 해당 상품을 삭제
+		// 2. DAO를 이용하여 product 테이블에서 해당 상품을 판매완료 처리
 		ProductDAO dao = new ProductDAO();
-		int result = dao.productDelete(productId);
+		int result = dao.productSold(productId);
 		
 		// 삭제 결과에 따른 페이지 이동(JS)
 		if(result == 1) {
-			JSForward.alertAndMove(response, "상품 삭제 성공!", "MypageSalesList.my");
+			JSForward.alertAndMove(response, "상품 판매 완료 성공!", "./ProductContent.pr?product_id=" + productId);
 			return null;
 		}else {
 			JSForward.alertAndBack(response, "상품 정보 없음");

@@ -20,7 +20,17 @@ public class ProductWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" P : ProductInsertAction_execute() 실행");
-
+		
+		HttpSession session =  request.getSession();
+		// 세션정보 제어(로그인)
+		String id = (String)session.getAttribute("id");
+		ActionForward forward = new ActionForward();
+		if(id == null ) {
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		// 파일업로드 + 상품정보(파라메터)
@@ -51,7 +61,7 @@ public class ProductWriteAction implements Action {
 		dto.setGrade(Integer.parseInt(multi.getParameter("grade")));
 		String address1 = multi.getParameter("address1");
 		String address2	= multi.getParameter("address2");
-		String city = address1 + address2;
+		String city = address1 + " " + address2;
 		dto.setCity(city);
 		dto.setMethod(Integer.parseInt(multi.getParameter("method")));
 		dto.setCharge(Integer.parseInt(multi.getParameter("charge")));
@@ -77,7 +87,7 @@ public class ProductWriteAction implements Action {
 		dao.productWrite(dto);
 		
 		// 페이지 이동
-		ActionForward forward = new ActionForward();
+		
 		forward.setPath("./MypageSalesList.my");
 		forward.setRedirect(true);
 		

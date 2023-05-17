@@ -1,5 +1,3 @@
-<%@page import="com.itwillbs.db.ProductDTO"%>
-<%@page import="com.itwillbs.db.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,8 +15,61 @@
 	<title>상품 보기</title>
 
 <%@include file="../head.jsp" %>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function() {
+			
+			const dotsContainer = document.querySelector('.dots-container');
+			const imageContainer = document.querySelector('.image-container');
+			const images = imageContainer.querySelectorAll('img');
+			const dots = [];
+
+			//이미지마다 점 생성
+			for (let i = 0; i < images.length; i++) {
+			  const dot = document.createElement('div');
+			  dot.classList.add('dot');
+			  dotsContainer.appendChild(dot);
+			  dots.push(dot);
+			}
+
+			let currentImageIndex = 0;
+
+			function showImage(index) {
+			// 모든 이미지를 숨기고 모든 점을 비활성화
+			  for (let i = 0; i < images.length; i++) {
+			    images[i].style.display = 'none';
+			    dots[i].classList.remove('active');
+			  }
+			//선택한 이미지 보이기 및 해당하는 점 활성화
+			  images[index].style.display = 'block';
+			  dots[index].classList.add('active');
+			  currentImageIndex = index;
+			}
+
+			//초기에 첫번째 이미지와 점 활성화
+			showImage(0);
+			dots[0].classList.add('active');
+
+			//점 클릭 시 해당하는 이미지 보이기
+			for (let i = 0; i < dots.length; i++) {
+			  dots[i].addEventListener('click', function () {
+			    showImage(i);
+			  });
+			}
+
+			//이전/다음 버튼 클릭 시 이전/다음 이미지 보이기
+			const prevBtn = document.querySelector('.prev-btn');
+			const nextBtn = document.querySelector('.next-btn');
+
+			prevBtn.addEventListener('click', function () {
+			  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+			  showImage(currentImageIndex);
+			});
+
+			nextBtn.addEventListener('click', function () {
+			  currentImageIndex = (currentImageIndex + 1) % images.length;
+			  showImage(currentImageIndex);
+			});
+			
 			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
 
 			  var userId = '<%= session.getAttribute("id") %>';
@@ -91,7 +142,15 @@
 			    }
 			  });
 			});
-		</script>
+		
+		// 판매완료 처리 함수
+	    function completeSale() {
+	      // 판매완료 처리된 상품을 나타내는 요소들을 숨깁니다.
+	      $('.sale-elements').hide();
+	      // 판매완료 메시지를 보여줍니다.
+	      $('.sale-message').show();
+	    }
+</script>
 
 <style>
 
@@ -259,6 +318,11 @@
 		  color: #ff6969;
 	}
 	
+	.sale-message {
+      display: none;
+      font-weight: bold;
+      color: red;
+    }
 	
 </style>
 
@@ -270,11 +334,11 @@
 <%@include file="../mySide.jsp" %>
  <!--   사이드바 -->
  
-<div class="col-sm-8" style="margin:auto;">
+<div class="col-sm-8" style="margin-left: 10px;">
  <div id="right" style=" border: 0; margin-left: 10px; width: 93%;">
  <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
 <hr style="border: 0; height: 3px; background-color: black; width: 93%;">
-<h1 style="font-family:'TheJamsil5Bold';" align="center">${product.title}</h1>
+<h1 style="font-family:'TheJamsil5Bold';" align="center">${product.title}	</h1>
 
 <div class="product-table">
  <div class="product-info" >
@@ -286,7 +350,7 @@
     <td> ${product.product_id}</td>
     </tr>
   <tr>
-    <th style="border-right: 1px solid lightgray; display: flex; justify-content: center; align-items: center;">
+    <th style="display: flex; justify-content: center; align-items: center;">
     <div class="image-slider" >
 	  <div class="image-container">
 	    <img src="./upload/product/${product.product_image.split(',')[0]}" alt="이미지 없음" width="300px" align="middle">
@@ -300,7 +364,7 @@
 	  <div class="dots-container"></div>
 	</div>
     </th>
-    <th rowspan="2">
+    <th rowspan="2" style="border-left: 1px solid lightgray;" >
     <table>
       <tr>
         <td style="text-align: center;">등록일</td>
@@ -332,15 +396,15 @@
       </tr>
        <tr>
         <td style="text-align: center;">브랜드</td>
-        <td style="text-align: center;">${product.model}</td>
+        <td style="text-align: center;">${sessionScope.brandName}</td>
       </tr>
       <tr>
         <td style="text-align: center;">모델</td>
-        <td style="text-align: center;">${product.model}</td>
+        <td style="text-align: center;">${sessionScope.modelName}</td>
       </tr>
        <tr>
         <td style="text-align: center;">색상</td>
-        <td style="text-align: center;">${product.color}</td>
+        <td style="text-align: center;">${sessionScope.colorName}</td>
       </tr>
       <tr>
         <td style="text-align: center;">부품</td>
@@ -357,11 +421,12 @@
       </tr>
 	  <tr>
 	    <td style="text-align: center;">배송방법</td>
-		<td style="text-align: center;">${product.method}</td>
+		<td style="text-align: center;">${product.method == 1 ? '직거래' : product.method == 2 ? '택배' : ''}</td>
 	  </tr>
     </table>
     </th>
   </tr>
+  
   
   <tr>
     <th style="text-align: center;">
@@ -373,7 +438,9 @@
 	<span style="font-size: 0.8em; color: gray;">찜수: ${product.like_count }</span>
     </th>
   </tr>
-      <tr> <td></td>
+
+      <tr> 
+      <td></td>
   	  </tr>
   <tr>
     <td colspan="2" style="text-align: center;">
@@ -381,99 +448,53 @@
     </td>
   </tr>
   <tr>
+<c:choose>
+  <c:when test="${product.product_status == 1}">
+    <!-- 상품이 판매 완료된 경우 -->
+    <p>판매완료된 상품입니다</p>
+  </c:when>
+  <c:otherwise>
+    <!-- 판매 중인 경우 -->
     <td colspan="2" style="text-align: center;">
-      <div style= "text-align: center ; margin-top: 10px;">
-	<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary" >구매하기</a>
-	<a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary" >신고</a>
-	<c:if test="${ sessionScope.id != product.user_id }">
-		<a href="./ChatToSeller.ch?toID=${product.user_id }" class="btn btn-primary" >채팅하기</a>
-	</c:if>
-	</div>
+      <div style="text-align: center; margin-top: 10px;">
+        <a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
+        <a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary sale-elements">신고</a>
+        <c:if test="${ sessionScope.id != product.user_id }">
+          <a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-primary sale-elements">채팅하기</a>
+        </c:if>
+      </div>
     </td>
-  </tr>
-
-  <tr style="text-align: right;">
-    <td colspan="2" style="text-align: center;">
+    <tr style="text-align: right;">
+      <td colspan="2" style="text-align: center;">
     <c:if test="${ sessionScope.id eq 'admin@gmail.com' or product.user_id eq sessionScope.id }">
-  
-    <a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary">상품글 수정</a>
-        <form method="post" action="./ProductDeleteAction.pr"
-        onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;" style="display: inline-block;">
+      <a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary sale-elements">상품글 수정</a>
+      <form method="post" action="./ProductDeleteAction.pr" onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;" style="display: inline-block;">
         <input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
-        <button type="submit" class="btn btn-secondary">상품글 삭제</button>
-   	 </form>
-    <button type="button" class="btn btn-secondary" onclick="href='./ProductList.pr'">판매완료</button>
-    <br>
-  </c:if>
-    </td>
-  </tr>
+        <button type="submit" class="btn btn-secondary sale-elements">상품글 삭제</button>
+      </form>
+      <form method="post" action="ProductSoldAction.pr" class="sale-elements" onsubmit="if(!confirm('상품을 판매 완료 처리하시겠습니까?')) return false;" style="display: inline-block;">
+        <input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
+        <button type="submit" class="btn btn-secondary sale-elements">판매완료</button>
+      </form>
+    </c:if>
+  </td>
+  </c:otherwise>
+</c:choose>
+</tr>
+  
 </table>
 
-  </div>
+</div>
 </div> 
 </div>
 </div>
 <div>
-	</div>					
+</div>					
 <div style= "text-align: center; margin-top: 5px;">
 
 </div>
 </div>
-
-<script>
-const dotsContainer = document.querySelector('.dots-container');
-const imageContainer = document.querySelector('.image-container');
-const images = imageContainer.querySelectorAll('img');
-const dots = [];
-
-//이미지마다 점 생성
-for (let i = 0; i < images.length; i++) {
-  const dot = document.createElement('div');
-  dot.classList.add('dot');
-  dotsContainer.appendChild(dot);
-  dots.push(dot);
-}
-
-let currentImageIndex = 0;
-
-function showImage(index) {
-	// 모든 이미지를 숨기고 모든 점을 비활성화
-  for (let i = 0; i < images.length; i++) {
-    images[i].style.display = 'none';
-    dots[i].classList.remove('active');
-  }
-//선택한 이미지 보이기 및 해당하는 점 활성화
-  images[index].style.display = 'block';
-  dots[index].classList.add('active');
-  currentImageIndex = index;
-}
-
-//초기에 첫번째 이미지와 점 활성화
-showImage(0);
-dots[0].classList.add('active');
-
-//점 클릭 시 해당하는 이미지 보이기
-for (let i = 0; i < dots.length; i++) {
-  dots[i].addEventListener('click', function () {
-    showImage(i);
-  });
-}
-
-//이전/다음 버튼 클릭 시 이전/다음 이미지 보이기
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-
-prevBtn.addEventListener('click', function () {
-  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-  showImage(currentImageIndex);
-});
-
-nextBtn.addEventListener('click', function () {
-  currentImageIndex = (currentImageIndex + 1) % images.length;
-  showImage(currentImageIndex);
-});
-</script>
-	</div>	
+</div>	
 <%@include file="../footer.jsp" %>
 </body>
 </html>

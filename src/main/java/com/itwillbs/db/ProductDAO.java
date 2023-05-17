@@ -77,13 +77,11 @@ public class ProductDAO {
 		// 상품 등록 - productWrite()
 	
 	//getProductList()
-	public List<ProductDTO> getProductList() {
+	public List<ProductDTO> getProductList(String sql) {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		
 		try {
 			con = getCon();
-			sql = "select * from product";
-//			sql = "select * from product join color on product.color_id = color.color_id";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -137,8 +135,6 @@ public class ProductDAO {
 	            product.setContent(rs.getString("content"));
 	            product.setPrice(rs.getInt("price"));
 	            product.setParts(rs.getString("parts"));
-	            product.setParts(rs.getString("parts"));
-	            product.setParts(rs.getString("parts"));
 	            product.setProduct_image(rs.getString("product_image"));
 	            product.setGrade(rs.getInt("grade"));
 	            product.setCity(rs.getString("city"));
@@ -152,6 +148,7 @@ public class ProductDAO {
 	            product.setUser_id(rs.getString("user_id"));
 	            product.setBrand(rs.getInt("brand"));
 	            product.setColor(rs.getInt("color"));
+	            product.setProduct_status(rs.getInt("product_status"));
 	        }
 	        
 	        System.out.println(" DAO : 상품정보 저장완료! ");
@@ -278,5 +275,91 @@ public class ProductDAO {
 		}
 	}	
 	// updateReadcount()	
+	
+	//productSold()
+	public int productSold(int product_id) {
+	    int result = -1; // 0: 상품 정보 없음, 1: 상품 판매완료 성공
+	    
+	    try {
+	        // 1.2 DB 연결
+	        getCon();
+	        
+	        // 3. SQL 작성 (SET FOREIGN_KEY_CHECKS = 0; UPDATE) & pstmt 객체
+	        sql = "update product set product_status = 1 where product_id = ?;";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, product_id);
+	        
+	        // 4. SQL 실행(delete)
+	        result = pstmt.executeUpdate();
+	        
+	        if (result == 0) {
+	            System.out.println("DAO : 해당 상품 정보가 존재하지 않습니다.");
+	        } else {
+	            System.out.println("DAO : 상품 판매 완료 처리 성공(" + result + ")");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 5. DB 연결 해제
+	        closeDB();
+	    }
+	    return result;
+	}
+	//productSold()
+	
+	public String getBrandName(int brandId) {
+	    String brandName = null;
+	    try {
+	        con = getCon();
+	        sql = " select brand from brand where brand_id = ? ";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, brandId);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            brandName = rs.getString("brand");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+	    return brandName;
+	}
+	public String getModelName(int modelId) {
+	    String modelName = null;
+	    try {
+	        con = getCon();
+	        sql = " select model from model where model_id = ? ";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, modelId);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	        	modelName = rs.getString("model");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+	    return modelName;
+	}
+	public String getColorName(int colorId) {
+	    String colorName = null;
+	    try {
+	        con = getCon();
+	        sql = " select color from color where color_id = ? ";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, colorId);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	        	colorName = rs.getString("color");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+	    return colorName;
+	}
 	
 }
