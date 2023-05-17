@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<section class="site-hero overlay" style="background-image: url(images/abstract-gf7802ba87_1920.jpg)" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row site-hero-inner justify-content-center align-items-center">
-          <div class="col-md-10 text-center" data-aos="fade-up">
-            <h2>CODE LESS</h2>
-            <h1 class="heading">코드리스</h1>
-          </div>
-        </div>
-      </div>
 
-      <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-          <span class="mouse-wheel"></span>
-        </div>
-      </a>
-    </section>
-</html>
+
+<div class="box" data-aos="fade-up"  style="background-image:url(https://images.pexels.com/photos/3482442/pexels-photo-3482442.jpeg?auto=compress&cs=tinysrgb&w=1800); min-height: 300px; display: flex; align-items: center; justify-content: center;">
+    <div class="col-md-6 text-left">
+            <h1 id="login" style="font-family: 'TheJamsil5Bold';margin-top: 180px;color: white;">로그인</h1>
+            <ul class="custom-breadcrumbs mb-4">
+              <li><a href="index.html">Main으로</a></li>
+            </ul>
+          </div>
+</div>
+
+ <script src="js/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      // AOS 초기화
+      AOS.init();
+    });
+  </script>
+ <!-- END section -->

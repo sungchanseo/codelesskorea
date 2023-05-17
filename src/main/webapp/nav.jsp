@@ -36,10 +36,12 @@ function kakaoLogout() {
       var targetElement = document.querySelector('.navbar');
       // 스크롤 위치에 따라 배경색 변경
       if (scrollPosition > 150) {
-		 targetElement.style.backgroundColor = '#FCFCFC';//연회색 적용
+		 targetElement.style.backgroundColor = '#E2E2E2';//연회색 적용
+		 targetElement.style.height = '70px';//높이
 		 targetElement.classList.add('shadow');//그림자적용
 	} else {
 		 targetElement.style.backgroundColor = 'transparent';
+		 targetElement.style.height = '100px';//높이
 	 	 targetElement.classList.remove('shadow');	
 		}
 	  });
@@ -49,11 +51,11 @@ function kakaoLogout() {
 <!-- 
 style="  background-color: transparent !important;box-shadow: none !important;" nav바 투명하게 -->
 
-
-	 <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: transparent !important;transition: background-color 0.3s ease;" id="navbar">
+<!-- transition: background-color 0.5s ease; navbar 스무스하게 나오게 -->
+	 <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: transparent !important;transition: background-color 0.5s ease; height:100px; " id="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="./Main.me">
-			<span style=" color: black; border: 5px solid #ffba5a; padding: 5px 5px;">CODELESS</span></a>
+			<span style=" color: white; border: 5px solid #ffba5a; padding: 5px 5px;">CODELESS</span></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
 			</button>

@@ -207,14 +207,14 @@ iframe {
 <!-- END head -->
 
 <section class="site-hero overlay"
-	style="background-image: url(images/background-6556414_1920.jpg)"
-	data-stellar-background-ratio="0.5">
+	style="background-image: url(https://images.pexels.com/photos/8024034/pexels-photo-8024034.jpeg?auto=compress&cs=tinysrgb&w=1600)"
+	  data-stellar-background-ratio="0.5">
 	<div class="container">
 		<div
 			class="row site-hero-inner justify-content-center align-items-center">
 			<div class="col-md-10 text-center" data-aos="fade-up">
-				<h1 style=" font-family: 'Noto Sans KR', sans-serif; color: #262626;"><b>새로운 매칭서비스의 시작</b></h1>
-				<h1 style=" font-family: 'Noto Sans KR', sans-serif; color: #262626;"><b>코드리스</b></h1>
+				<h1 style=" font-family: 'Noto Sans KR', sans-serif; color: white;"><span style="border: 5px solid; padding: 8px;">CODE LESS</span></h1>
+				<h5 style=" font-family: 'Noto Sans KR', sans-serif; color: white; margin-top: 30px;"><b>이어폰의 짝을 찾아주는 신개념 중고거래 , 코드리스</b></h5>
 			<!-- 	<h5 class="heading"></h5> -->
 			</div>
 		</div>
@@ -227,12 +227,13 @@ iframe {
 	<div class="container">
 
 		<div class="row check-availabilty" id="next">
-			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="border: 2.8px solid #202020;box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1); ">
-					<h4 style=" font-family: 'TheJamsil5Bold';" class="typewriter">새로운 짝을 매칭해보세요!</h4><br>
-				<form action="#">
+			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="background-color:#FAFAFA; box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);border: 5px solid;border-color: #ffba5a; ">
+					<h4 style=" font-family: 'TheJamsil5Bold'; color: black;" class="typewriter">새로운 짝을 매칭해보세요!</h4>
+					<hr style="border: 0; height: 3px; background-color: black; margin-bottom: 40px;">
+				<form action="#" >
 					
-					<div class="row">
-						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+					<div class="row" >
+						<div class="col-md-6 mb-3 mb-lg-0 col-lg-3" >
 							<label for="checkin_date" class="font-weight-bold text-black">제조사</label>
 								<select name="" id="brand" class="form-control">
 									
@@ -299,9 +300,10 @@ iframe {
 
 	<section class="section">
 		<div class="container">
-		<div class="row justify-content-left text-left mb-5">
+		<div class="row justify-content-center text-center mb-5">
           <div class="col-md-7" style="margin-bottom: 50px;">
-            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">CODELESS?</h3>
+          <h2 data-aos="fade-up" style="font-family:'TheJamsil5'; color: #FFC257"><b>새로운 매칭서비스</b></h2>
+            <h1 data-aos="fade-up" style="font-family:'TheJamsil5';"><b>코드리스는 어떤 서비스인가요?</b></h1>
            <!-- <p data-aos="fade-up" data-aos-delay="100"></p> -->
           </div>
         </div>
@@ -310,7 +312,7 @@ iframe {
 			<img src="images/airpot.jpg" alt="your-image" style="max-width: 400px;max-height: 300px">
 				</div>
 				<div class="col-md-6 col-lg-8"data-aos="fade-up">
-				<p style="font-size: 30px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
+				<p style="font-size: 20px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
 			</div>
 			</div>
 		</div>
@@ -320,9 +322,11 @@ iframe {
 
   <section class="section">
       <div class="container">
-        <div class="row justify-content-left text-left mb-5">
+        <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7" style="margin-bottom: 50px;">
-            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">어떻게 이용하나요?</h3>
+          	
+             <h2 data-aos="fade-up" style="font-family:'TheJamsil5'; color: #FFC257"><b>코드리스 이용자를 위한</b></h2>
+             <h1 data-aos="fade-up" style="font-family:'TheJamsil5';"><b>체계적인 이용단계</b></h1>
            <!--  <p data-aos="fade-up" data-aos-delay="100"></p> -->
           </div>
         </div>
@@ -380,9 +384,10 @@ iframe {
   
     <section class="section testimonial-section">
       <div class="container">
-        <div class="row justify-content-left text-left mb-5">
+        <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
-            <h3 class="heading" data-aos="fade-up" style="font-family:'TheJamsil5';">코드리스 이용자 후기</h3>
+              <h2 data-aos="fade-up" style="font-family:'TheJamsil5'; color: #FFC257"><b>탁월한 선택의</b></h2>
+            <h1 data-aos="fade-up" style="font-family:'TheJamsil5';"><b>코드리스 이용 후기</b></h1>
           </div>
         </div>
         <div class="row">
