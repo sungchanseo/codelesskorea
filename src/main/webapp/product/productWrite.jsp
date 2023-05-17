@@ -139,7 +139,7 @@ function addr() {
 	</form>
 </div>
 </div>
-
+</div>
 <script src="js/main.js"></script>
 <%@include file="../footer.jsp" %>
 </body>

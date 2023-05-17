@@ -15,6 +15,7 @@ import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.action.mypage.AjaxLikedAction;
 import com.itwillbs.action.mypage.AjaxProductDelAction;
 import com.itwillbs.action.mypage.AjaxUnLikedAction;
+import com.itwillbs.action.mypage.LikedStatusAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -107,6 +108,20 @@ public class AjaxController extends HttpServlet {
 		else if(command.equals("/AjaxDeleteProduct.aj")) {
 			System.out.println("/AjaxDeleteProduct.aj");
 			action = new AjaxProductDelAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+		// ./getLikedStatus.aj
+		else if(command.equals("/getLikedStatus.aj")) {
+			System.out.println("/getLikedStatus.aj");
+			action = new LikedStatusAction();
 			
 			try {
 				forward = action.execute(request, response);

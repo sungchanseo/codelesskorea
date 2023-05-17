@@ -661,6 +661,32 @@ public class MypageDAO {
 		    return result;
 		}
 		// productDelete()
+
+		
+		// 찜 상태 수정 체크
+		public boolean isProductLiked(String id, int product_id) {
+		   
+			boolean isLiked = false;
+		    try {
+		        con = getCon();
+		        sql = "SELECT COUNT(*) FROM likee WHERE id = ? AND product_id = ?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, id);
+		        pstmt.setInt(2, product_id);
+		        rs = pstmt.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            if (count > 0) {
+		                isLiked = true;
+		            }
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        closeDB();
+		    }
+		    return isLiked;
+		}
 		
 
 
