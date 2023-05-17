@@ -31,7 +31,7 @@
 	</script>
 
 
-			 <div class="col-md-2">
+			<div class="col-md-2">
 		  <div class="container" id="left">
 		  <br>
 		  
@@ -81,4 +81,3 @@
 		  </c:if>
 		  </div>
 		  </div>
-		  

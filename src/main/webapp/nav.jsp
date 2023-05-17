@@ -36,10 +36,12 @@ function kakaoLogout() {
       var targetElement = document.querySelector('.navbar');
       // 스크롤 위치에 따라 배경색 변경
       if (scrollPosition > 150) {
-		 targetElement.style.backgroundColor = '#FCFCFC';//연회색 적용
+		 targetElement.style.backgroundColor = '#E2E2E2';//연회색 적용
+		 targetElement.style.height = '70px';//높이
 		 targetElement.classList.add('shadow');//그림자적용
 	} else {
-		 targetElement.style.backgroundColor = 'transparent';
+		 targetElement.style.backgroundColor = '#111111';
+		 targetElement.style.height = '80px';//높이
 	 	 targetElement.classList.remove('shadow');	
 		}
 	  });
@@ -49,17 +51,28 @@ function kakaoLogout() {
 <!-- 
 style="  background-color: transparent !important;box-shadow: none !important;" nav바 투명하게 -->
 
-
-	 <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: transparent !important;transition: background-color 0.3s ease;" id="navbar">
+<!-- transition: background-color 0.5s ease; navbar 스무스하게 나오게 -->
+	 <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: #111111 !important;transition: background-color 0.5s ease; height:80px; " id="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="./Main.me">
-			<span style=" color: black; border: 5px solid #ffba5a; padding: 5px 5px;">CODELESS</span></a>
+			<span style=" color: white; border: 5px solid #ffba5a; padding: 5px 5px;">CODELESS</span></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
 			</button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
+	         <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			<b>커뮤니티</b>
+      </a>
+      <div class="dropdown-menu">
+           <a class="dropdown-item" href="./NoticeList.no">공지사항 </a>
+		   <a class="dropdown-item" href="./FaqList.fa">자주하는질문</a>
+		   <a class="dropdown-item" href="./UserQNAList.qn">1:1문의</a>
+      </div>
+   	  </li>
+	        	
 				<c:if test="${empty id}">
 					<li class="nav-item"><a href="./MemberLogin.me" class="nav-link"><b>로그인</b></a></li>
 					<li class="nav-item"><a href="./MemberJoin.me" class="nav-link"><b>회원가입</b></a></li>

@@ -43,8 +43,9 @@
   text-transform: uppercase; }
   
   #login-con {
-	margin: auto; margin-top: 100px; margin-bottom: 100px; border: 1px solid #C0C0C0; width:500px;
+	margin: auto; margin-top: 250px; margin-bottom: 100px; border: 1px solid #C0C0C0; width:500px;
 	border-radius: 5px; font-family: 'RIDIBatang';
+	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
    }
    
   #log-form {
@@ -97,6 +98,7 @@
     margin-top: 150px;
     background: rgb(51, 56, 62);
     border-radius: 15px 0 0 15px;
+    box-shadow: -20px 20px 20px rgba(0, 0, 0, 0.3);
   /*   margin-left: 120px; */
 	}
   #right { 
@@ -129,9 +131,9 @@
 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
-.navbar-nav li a {
+.nav-link {
 	font-family:'TheJamsil5Bold';
-    color: black; /* 바꾸고 싶은 색상으로 변경해주세요 */
+    color: white; /* 바꾸고 싶은 색상으로 변경해주세요 */
 }
 .navbar-brand{
 	
@@ -188,4 +190,8 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	color: #322F2C;
 	font-size: 20px;
 	margin: 2px;
+}
+
+.dropdown-menu a{
+	color: black;
 }

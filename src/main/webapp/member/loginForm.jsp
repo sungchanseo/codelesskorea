@@ -4,8 +4,10 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-  <%@ include file="../head.jsp" %>
+	
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <%@ include file="../head.jsp" %>
+    <link rel="stylesheet" href="css/aos.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 Kakao.init('d024657e59f07ee69d6d1407441dfe53'); //js토큰키 사용
@@ -76,6 +78,7 @@ function kakaoLogin() {
   </head>    
 <body>
  <%@ include file="../nav.jsp" %><!-- nav 삽입 -->
+ 
 	
  <div class="container" id="login-con">
   <form action="./MemberLoginAction.me" id="fr" method="post"> 
@@ -108,5 +111,6 @@ function kakaoLogin() {
   </form>
 </div><!-- 로그인 컨테이너박스 끝 -->
  <%@ include file="../footer.jsp" %> <!-- footer 삽입 -->
+
 </body>
 </html>

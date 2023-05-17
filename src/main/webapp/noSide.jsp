@@ -6,8 +6,10 @@
  <div class="container" id="left">
   <br>
   <h4> 공지게시판</h4>
-  <hr style="border: 0;height: 1px; background-color: black;">
-  <h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5>
-  <h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5>
+  <hr style="border: 0;height: 3px; background-color: white;">
+  <ul>
+  <li><h5 onclick="location.href='./NoticeList.no'"> 공지사항</h5></li>
+  <li><h5 onclick="location.href='./FaqList.fa'"> 자주하는질문</h5></li>
+  </ul>
   </div>
 	</div>	

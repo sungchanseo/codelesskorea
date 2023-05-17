@@ -176,8 +176,8 @@ textarea.form-control {
 
 .site-hero {
   background-size: cover;
-  height: 550px;
-  min-height: 500px;
+  height: 80vh;
+  min-height: 700px;
   width: 100%;
   position: relative; }
   .site-hero .heading {
@@ -187,15 +187,15 @@ textarea.form-control {
     position: absolute;
     bottom: 20px;
     left: 50%;
-/*     -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%); */
-/*     transform: translateX(-50%); */
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
     color: #fff; }
   .site-hero.overlay:before {
-/*  background: rgba(0, 0, 0, 0.45); */
+    background: rgba(0, 0, 0, 0.45);
     content: "";
     position: absolute;
-    height: 100vh;
+    height: 80vh;
     min-height: 700px;
     top: 0;
     left: 0;
@@ -209,8 +209,8 @@ textarea.form-control {
       min-height: 700px; }
 
 .site-hero-inner {
-  height: 500px;
-  min-height: 500px; }
+  height: 80vh;
+  min-height: 700px; }
   .site-hero-inner .heading {
     font-size: 80px;
     font-family: "Playfair Display", times, serif;
@@ -228,7 +228,6 @@ textarea.form-control {
     @media (max-width: 991.98px) {
       .site-hero-inner .sub-heading {
         font-size: 18px; } }
-
 .inner-page .site-hero-inner {
   height: 50vh;
   min-height: 700px; }
