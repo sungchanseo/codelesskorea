@@ -60,7 +60,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT * FROM CHAT WHERE ((from_id = ? AND to_id =?) OR (from_id = ? AND to_id = ?)) AND chat_id > ? ORDER BY chat_time";
+			sql = "SELECT * FROM chat WHERE ((from_id = ? AND to_id =?) OR (from_id = ? AND to_id = ?)) AND chat_id > ? ORDER BY chat_time";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, fromID);
 			pstmt.setString(2, toID);
@@ -108,7 +108,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT * FROM CHAT WHERE ((from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)) AND chat_id > (SELECT MAX(chat_id) - ? FROM CHAT WHERE (from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)) ORDER BY chat_time";                     
+			sql = "SELECT * FROM chat WHERE ((from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)) AND chat_id > (SELECT MAX(chat_id) - ? FROM chat WHERE (from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)) ORDER BY chat_time";                     
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, fromID);
 			pstmt.setString(2, toID);
@@ -157,7 +157,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT * FROM CHAT WHERE chat_id IN (SELECT MAX(chat_id) FROM CHAT WHERE to_id = ? OR from_id = ? GROUP BY from_id, to_id)";                     
+			sql = "SELECT * FROM chat WHERE chat_id IN (SELECT MAX(chat_id) FROM chat WHERE to_id = ? OR from_id = ? GROUP BY from_id, to_id)";                     
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			pstmt.setString(2, userID);
@@ -177,7 +177,7 @@ public class ChatDAO {
 				}
 				chat.setChatTime(rs.getString("chat_time").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chat_time").substring(14, 16) + "");
 				chatList.add(chat);
-			}
+			} 
 			for(int i=0; i<chatList.size(); i++) {
 				ChatDTO x = chatList.get(i);
 				for(int j=0; j<chatList.size(); j++) {
@@ -217,7 +217,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "INSERT INTO CHAT VALUES (NULL, ?, ?, ?, NOW(), 0)";
+			sql = "INSERT INTO chat VALUES (NULL, ?, ?, ?, NOW(), 0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, fromID);
 			pstmt.setString(2, toID);
@@ -243,7 +243,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "UPDATE CHAT SET chat_read = 1 WHERE (from_id = ? AND to_id = ?)";
+			sql = "UPDATE chat SET chat_read = 1 WHERE (from_id = ? AND to_id = ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, toID);
 			pstmt.setString(2, fromID);
@@ -268,7 +268,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT COUNT(chat_id) FROM CHAT WHERE to_id = ? AND chat_read = 0";
+			sql = "SELECT COUNT(chat_id) FROM chat WHERE to_id = ? AND chat_read = 0";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
@@ -296,7 +296,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT COUNT(chat_id) FROM CHAT WHERE from_id = ? AND to_id = ? AND chat_read = 0";
+			sql = "SELECT COUNT(chat_id) FROM chat WHERE from_id = ? AND to_id = ? AND chat_read = 0";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, fromID);
 			pstmt.setString(2, toID);
@@ -325,7 +325,7 @@ public class ChatDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. SQL작성 & pstmt 객체
-			sql = "SELECT user_image FROM USER WHERE id = ?";
+			sql = "SELECT user_image FROM user WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();

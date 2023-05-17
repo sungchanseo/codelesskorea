@@ -44,6 +44,7 @@
 		
 		
     .fade-in {
+    
         opacity: 0;
         margin-top: 250px;
         animation: fadeInAnimation 1s ease-in forwards;
@@ -60,7 +61,7 @@
         }
     }
     
-    
+     
         .fade-in2 {
         opacity: 0;
         margin-top: 10px;

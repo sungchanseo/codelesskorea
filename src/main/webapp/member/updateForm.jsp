@@ -165,7 +165,8 @@
 					
 				
 				이름 <input type="text" class="form-control" name="name" id="name"  value="${dto.name }">
-					 <br>
+				<br>
+				이메일 <input type="text" class="form-control" name="email" id="name"  value="${dto.email }" readonly>
 				
 				닉네임 <input type="text" class="form-control" name="nickname" id="nickname"
 						value="${dto.nickname }">	

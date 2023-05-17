@@ -52,7 +52,7 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql & pstmt
-				sql = "select * from USER where id=?";
+				sql = "select * from user where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				// 4. sql 실행
@@ -72,6 +72,7 @@ public class MemberDAO {
 					dto.setPost_number(rs.getInt("post_number"));
 					dto.setUser_image(rs.getString("user_image"));
 					dto.setBirth_date(rs.getString("birth_date"));
+					dto.setEmail(rs.getString("email"));
 					dto.setBlocked(rs.getBoolean("blocked"));
 				}// if
 				
@@ -94,9 +95,10 @@ public class MemberDAO {
 			int result = -1; // -1   0    1
 			
 			try {
+				
 				// 1.2. 디비연결
 				con = getCon();
-				sql = "update USER set name=?, nickname=?, phone_number=?, address=?,user_image=?,address2=? where id=?";
+				sql = "update user set name=?, nickname=?, phone_number=?, address=?,user_image=?,address2=? where id=?";
 
 				// 3. sql 작성&pstmt 객체
 				pstmt = con.prepareStatement(sql);
@@ -133,7 +135,7 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql 작성 & pstmt객체 
-				sql = "select password from USER where id=?";
+				sql = "select password from user where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				
@@ -173,7 +175,7 @@ public class MemberDAO {
 		        // 1.2. 디비연결
 		        con = getCon();
 		        // 3. sql & pstmt
-		        sql = "select * from USER order by user_id desc limit ?, ?";
+		        sql = "select * from user order by user_id desc limit ?, ?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, startRow);
 		        pstmt.setInt(2, pageSize);
@@ -192,6 +194,7 @@ public class MemberDAO {
 		            dto.setAddress(rs.getString("address"));
 		            dto.setUser_image(rs.getString("user_image"));
 		            dto.setRegdate(rs.getDate("regdate"));
+		            dto.setEmail(rs.getString("email"));
 		            dto.setBirth_date(rs.getString("birth_date"));
 		            dto.setBlocked(rs.getBoolean("blocked"));
 
@@ -220,11 +223,12 @@ public class MemberDAO {
 		
 		if(category.equals("title")) {
 		//제목으로 검색할 때
-		sql = "select * from USER where id like ? order by user_id desc limit ?,?";
+		sql = "select * from user where id like ? order by user_id desc limit ?,?";
 		
 		}else {
 		//내용으로 검색할 때
-		sql = "select * from USER where phone_number like ? order by user_id desc limit ?,?";
+		sql = "select * from user where phone_number like ? order by user_id desc limit ?,?";
+		
 		}
 		pstmt = con.prepareStatement(sql);
 		
@@ -246,6 +250,7 @@ public class MemberDAO {
         dto.setPost_number(rs.getInt("post_number"));
         dto.setAddress(rs.getString("address"));
         dto.setUser_image(rs.getString("user_image"));
+        dto.setEmail(rs.getString("email"));
         dto.setRegdate(rs.getDate("regdate"));
         dto.setBirth_date(rs.getString("birth_date"));
         dto.setBlocked(rs.getBoolean("blocked"));
@@ -299,7 +304,7 @@ public class MemberDAO {
 			
 			try {
 				con = getCon();
-				String sql="UPDATE USER SET password=? WHERE id=? AND password=?";
+				String sql="UPDATE user SET password=? WHERE id=? AND password=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, newpassword);
@@ -324,7 +329,7 @@ public class MemberDAO {
 			int cnt = 0;
 			try{
 				getCon();
-				sql="select count(*) from USER";
+				sql="select count(*) from user";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				if(rs.next()){
@@ -381,7 +386,7 @@ public class MemberDAO {
 		    int result = 0;
 		    try {
 		        getCon();
-		        sql = "UPDATE USER SET blocked=? WHERE id=?";
+		        sql = "UPDATE user SET blocked=? WHERE id=?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setBoolean(1, blocked);
 		        pstmt.setString(2, id);
@@ -400,8 +405,8 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. SQL작성 & pstmt 객체
-				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date,post_number,address2) "
-						+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into user(id,password,name,nickname,phone_number,address,user_image,regdate,birth_date,post_number,address2,email) "
+						+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getId());
@@ -415,6 +420,7 @@ public class MemberDAO {
 				pstmt.setString(9, dto.getBirth_date());
 				pstmt.setInt(10, dto.getPost_number());
 				pstmt.setString(11, dto.getAddress2());
+				pstmt.setString(12, dto.getEmail());
 				
 				// 4. SQL 실행
 				pstmt.executeUpdate();

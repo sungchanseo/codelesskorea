@@ -211,7 +211,8 @@
 				   <input type="text" class="form-control" id="id"
 					value="${param.id }" name="id" readonly="readonly">
 					</c:if> <!-- 간편로그인의 아이디(한번도 가입하지않은)인 경우 -->					 
-		
+                <span id="emsg"></span>
+                <br>      
 				<span id="idmsg"></span>
 				<br>	 				
 				비밀번호 <input type="password" class="form-control" id="password"

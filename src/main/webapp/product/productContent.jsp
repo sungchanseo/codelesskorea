@@ -261,75 +261,7 @@
 	
 	
 </style>
-<script type="text/javascript">
-		$(document).ready(function() {
-			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
 
-			  var userId = '<%= session.getAttribute("id") %>';
-			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
-			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
-			  // 사용자의 찜한 상품 정보를 가져옵니다.
-			  var userLikedProducts = likedProducts[userId] || {}; 
-
-			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
-			  $('.like-btn').each(function() { 
-			    var $btn = $(this);
-			    var product_id = $btn.data('product-id');
-			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
-			    if (userLikedProducts[key]) {
-			      $btn.addClass('liked');
-			    }
-			  });
-
-			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
-			  $('.like-btn').on('click', function() {
-			    var $btn = $(this);
-			    var product_id = $btn.data('product-id');
-			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
-			    var isLiked = $btn.hasClass('liked');
-
-			    if (!isLiked) {
-			      $.ajax({
-			        url: './AjaxLikedAction.aj',
-			        data: { product_id: product_id, id: userId },
-			        success: function(response) {
-			          if (response.success) {
-			            $btn.addClass('liked');
-			            // 사용자의 찜한 상품 정보를 업데이트합니다.
-			            userLikedProducts[key] = true;
-			            likedProducts[userId] = userLikedProducts;
-			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
-			            location.reload();
-			            alert('찜 추가완료!');
-			          } else {
-			            alert('추가 실패!');
-			          }
-			        }
-			      });
-			    } else { 
-			      $.ajax({
-			        url: './AjaxUnLikedAction.aj',
-			        data: { product_id: product_id, id: userId },
-			        success: function(response) {
-			          if (response.success) {
-			            $btn.removeClass('liked');
-			            // 사용자의 찜한 상품 정보에서 해당 상품을 삭제합니다.
-			            delete userLikedProducts[key];
-			            likedProducts[userId] = userLikedProducts;
-			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
-			            location.reload();
-			            alert('찜 해제완료!');
-			          } else {
-			            alert('삭제 실패!');
-			          }
-			        }
-			      });
-			    }
-			  });
-			});
-
-
-		</script>
 </head>
 <body style="overflow: auto;">
 <%@include file="../nav.jsp" %>
@@ -452,8 +384,7 @@
     <td colspan="2" style="text-align: center;">
       <div style= "text-align: center ; margin-top: 10px;">
 	<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary" >구매하기</a>
-	<a href="./QNAWrite.qn" class="btn btn-primary" >채팅</a>
-	<a href="./QNAWrite.qn" class="btn btn-primary" >신고</a>
+	<a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary" >신고</a>
 	<c:if test="${ sessionScope.id != product.user_id }">
 		<a href="./ChatToSeller.ch?toID=${product.user_id }" class="btn btn-primary" >채팅하기</a>
 	</c:if>

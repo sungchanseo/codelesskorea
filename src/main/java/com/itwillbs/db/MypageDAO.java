@@ -55,7 +55,7 @@ public class MypageDAO {
 		try {
 			getCon(); // con 인스턴스 변수에 저장완료
 			// 글번호 계산
-			sql = "select max(bno) from QNA";
+			sql = "select max(bno) from qna";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -66,7 +66,7 @@ public class MypageDAO {
 			
 			MemberDTO member = new MemberDTO();
 			System.out.println("DAO : 글번호 "+bno);
-			sql ="insert into QNA(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered) "
+			sql ="insert into qna(bno,title,content,regdate,image,re_ref,re_lev,re_seq,id,nickname,qna_category,isanswered) "
 					+ "values(?,?,?,now(),?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bno); // 글번호
@@ -98,7 +98,7 @@ public class MypageDAO {
 		int cnt = 0;
 		try{
 			getCon();
-			sql="select count(*) from QNA";
+			sql="select count(*) from qna";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -118,7 +118,7 @@ public class MypageDAO {
 		int cnt = 0;
 		try{
 			getCon();
-			sql="select count(*) from QNA where id=? or id='admin@gmail.com'";
+			sql="select count(*) from qna where id=? or id='admin@gmail.com'";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -182,7 +182,7 @@ public class MypageDAO {
 	    List<QnADTO> boardList = new ArrayList<QnADTO>();
 	    try {
 	        con = getCon();
-	        sql = "SELECT * FROM QNA ORDER BY re_ref DESC, re_seq ASC LIMIT ?,?";
+	        sql = "SELECT * FROM qna ORDER BY re_ref DESC, re_seq ASC LIMIT ?,?";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, startRow - 1);
 	        pstmt.setInt(2, pageSize);
@@ -224,7 +224,7 @@ public class MypageDAO {
 	        getCon();
 	        // sql(게시판의 글번호 중 최댓값 계산) & pstmt
 	        // 1. 답글 번호 계산
-	        sql = "SELECT MAX(bno) FROM QNA";
+	        sql = "SELECT MAX(bno) FROM qna";
 	        pstmt = con.prepareStatement(sql);
 	        // 실행
 	        rs = pstmt.executeQuery();
@@ -238,7 +238,7 @@ public class MypageDAO {
 
 	        // 2. 답글 순서 재배치
 	        // re_ref(같은 그룹 기준)으로 re_seq값이 기존의 값보다 큰 값이 있을 경우 seq값을 1증가시킴
-	        sql = "UPDATE QNA SET re_seq = re_seq + 1 WHERE re_ref = ? AND re_seq > ?";
+	        sql = "UPDATE qna SET re_seq = re_seq + 1 WHERE re_ref = ? AND re_seq > ?";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, qdto.getRe_Ref());
 	        pstmt.setInt(2, qdto.getRe_Seq());
@@ -250,13 +250,13 @@ public class MypageDAO {
 	        }
 
 	     // 3. 답변 처리상태 변경
-	        sql = "UPDATE QNA SET isanswered = true WHERE bno = ? or bno = ?";
+	        sql = "UPDATE qna SET isanswered = true WHERE bno = ? or bno = ?";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, qdto.getRe_Ref()); // 원본 게시글의 번호를 설정합니다.
 	        pstmt.setInt(2, bno); // 원본 게시글의 번호를 설정합니다.
 	        result = pstmt.executeUpdate();
 	        // 4. 답글 삽입
-	        sql = "INSERT INTO QNA(bno, title, content, regdate, image, re_ref, re_lev, re_seq, id, nickname, qna_category, isanswered) "
+	        sql = "INSERT INTO qna(bno, title, content, regdate, image, re_ref, re_lev, re_seq, id, nickname, qna_category, isanswered) "
 	            + "VALUES (?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, bno);
@@ -286,7 +286,7 @@ public class MypageDAO {
 		QnADTO qdto = null;
 		try {
 			getCon();
-			sql ="select * from QNA where bno=?";
+			sql ="select * from qna where bno=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bno);
 			rs = pstmt.executeQuery();
@@ -332,7 +332,7 @@ public class MypageDAO {
 			try {
 				//1.2. 디비연결
 				con = getCon();
-				sql = "update QNA set title=?,content=?,image=? where bno=?";
+				sql = "update qna set title=?,content=?,image=? where bno=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, qdto.getTitle());
 				pstmt.setString(2, qdto.getContent());
@@ -362,7 +362,7 @@ public class MypageDAO {
 		    int result = 0;
 		    try {
 		        con = getCon();
-		        sql = "SELECT re_ref FROM QNA WHERE bno=?";
+		        sql = "SELECT re_ref FROM qna WHERE bno=?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, bno);
 		        ResultSet rs = pstmt.executeQuery();
@@ -395,7 +395,7 @@ public class MypageDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql & pstmt
-				sql = "select * from MYPAGE ORDER BY order_date desc LIMIT ?,?";
+				sql = "select * from mypage ORDER BY order_date desc LIMIT ?,?";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
@@ -508,50 +508,6 @@ public class MypageDAO {
 		return result;
 		}
 		//getBoradCount()메소드 끝
-		
-//		//페이징처리 - 공지리스트를 불러오는 getNoticeList()메소드 시작
-//		public List<ListDTO> getAdminProductList(int startRow, int pageSize) {
-//		
-//		List<ListDTO> adminProductList = new ArrayList<ListDTO>();
-//		
-//		try {
-//		con = getCon();
-//		sql = "select * from mypage order by product_id desc limit ?,?";
-//		pstmt = con.prepareStatement(sql);
-//		
-//		pstmt.setInt(1, startRow-1);
-//		pstmt.setInt(2, pageSize);
-//		
-//		rs = pstmt.executeQuery();
-//		// DB정보(rs) -> DTO -> list
-//		while (rs.next()) {
-//		ListDTO dto = new ListDTO();
-//		
-//		dto.setProduct_id(rs.getInt("product_id"));
-//		dto.setUser_id(rs.getInt("user_id"));
-//		dto.setLike_id(rs.getInt("like_id"));
-//		dto.setOrder_status(rs.getInt("order_status"));
-//		dto.setOrder_id(rs.getInt("order_id"));
-//		dto.setId(rs.getString("id"));
-//		dto.setTitle(rs.getString("title"));
-//		dto.setPrice(rs.getInt("price"));
-//		dto.setBuyer_id(rs.getString("buyer_id"));
-//		dto.setSeller_id(rs.getString("seller_id"));
-//		dto.setOrder_date(rs.getDate("order_date"));
-//		
-//		adminProductList.add(dto);
-//		}
-//		
-//		System.out.println(" DAO : 상품관리 조회성공! ");
-//		System.out.println(" DAO : 목록 수 " + adminProductList.size());
-//		} catch (Exception e) {
-//		e.printStackTrace();
-//		} finally {
-//		closeDB();
-//		}
-//		
-//		return adminProductList;		
-//		}//공지리스트를 불러오는 getNoticeList()메소드 시작
 		
 		//검색기능을 추가한 getAdminList()메소드 시작
 		public List<ListDTO> getAdminList(int startRow, int pageSize, String search, String category) {

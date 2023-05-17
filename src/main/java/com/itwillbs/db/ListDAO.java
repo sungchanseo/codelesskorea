@@ -48,7 +48,7 @@ public class ListDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. sql & pstmt
-			sql = "select * from MYPAGE WHERE buyer_id=?";
+			sql = "select * from mypage WHERE buyer_id=?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -107,7 +107,7 @@ public class ListDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql & pstmt
-				sql = "select * from MYPAGE WHERE seller_id=?";
+				sql = "select * from mypage WHERE seller_id=?";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
