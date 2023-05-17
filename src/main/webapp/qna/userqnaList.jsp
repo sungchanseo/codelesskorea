@@ -182,7 +182,7 @@
    
 	<br>
 </div>
-
+ </div>
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

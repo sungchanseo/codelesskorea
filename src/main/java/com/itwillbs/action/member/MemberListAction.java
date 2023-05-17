@@ -31,26 +31,42 @@ public class MemberListAction implements Action {
 			return forward;
 		}
 		
+		
 		//  관리자 세션제어
 		if(!id.equals("admin@gmail.com") && !id.equals("admin")) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
-		
-		//차단사용자 세션제어
-		MemberDAO qdao = new MemberDAO();
-		MemberDTO qdto = qdao.getMember(id);
-		boolean blocked = qdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
 
+		//차단사용자 세션제어
+//		MemberDAO qdao = new MemberDAO();
+//		MemberDTO qdto = qdao.getMember(id);
+//		boolean blocked = qdto.getBlocked();
+//		if(blocked == true) {
+//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+//			return forward;
+//		}
+		
+		
 		// 회원정보 목록 - MemberDAO : getMemberList()
 		MemberDAO dao = new MemberDAO();
-//		List<MemberDTO> memberList =  dao.getMemberList();
-	
-		// request 영역에 저장
+		//검색로직 
+		String category= request.getParameter("category");
+		String search = request.getParameter("search");
+		System.out.println("검색어 : "+search+" 카테고리 : "+category);
+		int count; 
+		
+		// DAO 객체 생성
+		
+		if(search != null) {
+		//검색어와 일치하는 글의 갯수
+		search = search.trim();
+		count= dao.getMemberCount(search, category);
+		}else {
+		//검색어가 없을 때
+		//전체 글 갯수 
+		count = dao.getMemberCount();
+		}
 		
 		
 		
@@ -63,24 +79,42 @@ public class MemberListAction implements Action {
 		int pageSize = 10;
 		// 현 페이지의 페이지값을 확인
 
+		
+		
 		// 글 개수 체크하는 메서드, 정보 가져오는 메서드
-		int count = dao.getMemberCount();
-
 		String pageNum = request.getParameter("pageNum");
+		int startRow;
+		int endRow;
+		
 		if(pageNum == null)	pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize;
-		int endRow = currentPage*pageSize+1;
+		
+		if(search != null) {
+			startRow = (currentPage-1)*pageSize+1;
+			endRow = currentPage*pageSize+1;
+		}else {
+			startRow = (currentPage-1)*pageSize;
+			endRow = currentPage*pageSize+1;
+		}
+		
+		
 
 		
 		
 		
-		List<MemberDTO> memberList = dao.getMemberList(startRow, pageSize);
-		request.setAttribute("memberList", memberList);
-		System.out.println(" M : 회원 수 " + memberList.size() + "명");
+		List<MemberDTO> memberList = null;
+		
+		
 		//////////////////////////////////////////////////////////
-
-		
+		if(search != null) {
+			//검색어가 있는 경우
+			memberList = dao.getMemberList(startRow, pageSize, search, category); 
+		}else {
+			//검색어가 없는 경우
+			memberList = dao.getMemberList(startRow, pageSize);
+		}
+		System.out.println(" M : 회원 수 " + memberList.size() + "명");
+		request.setAttribute("memberList", memberList);
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
 		int pageCount;

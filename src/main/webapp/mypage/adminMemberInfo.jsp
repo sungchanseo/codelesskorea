@@ -119,7 +119,6 @@
 			
 		<br>
 
-		<form action="./MemberUpdateProAction.me" id="fr" method="post">
 
 			<div class="form-group" id="log-form" style="width: 400px;" >
 
@@ -190,7 +189,7 @@
 					<tr>
 				</table>
 
-		
+		</div>
 
 
 <script src="js/jquery-3.3.1.min.js"></script>

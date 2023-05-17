@@ -661,6 +661,8 @@ public class MypageDAO {
 		    return result;
 		}
 		// productDelete()
+		
+
 
 		
 }

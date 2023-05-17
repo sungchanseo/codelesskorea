@@ -69,6 +69,7 @@ public class MemberDAO {
 					dto.setAddress2(rs.getString("address2"));
 					dto.setRegdate(rs.getDate("regdate"));
 					dto.setPhone_number(rs.getString("phone_number"));
+					dto.setPost_number(rs.getInt("post_number"));
 					dto.setUser_image(rs.getString("user_image"));
 					dto.setBirth_date(rs.getString("birth_date"));
 					dto.setBlocked(rs.getBoolean("blocked"));
@@ -208,6 +209,61 @@ public class MemberDAO {
 
 		    return memberList;
 		}
+		
+		
+		//검색기능을 추가한 getAdminList()메소드 시작
+		public List<MemberDTO> getMemberList(int startRow, int pageSize, String search, String category) {
+		
+			List<MemberDTO> memberList = new ArrayList<MemberDTO>();
+		try {
+		con = getCon();
+		
+		if(category.equals("title")) {
+		//제목으로 검색할 때
+		sql = "select * from USER where id like ? order by user_id desc limit ?,?";
+		
+		}else {
+		//내용으로 검색할 때
+		sql = "select * from USER where phone_number like ? order by user_id desc limit ?,?";
+		}
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, "%"+search+"%");
+		pstmt.setInt(2, startRow-1);
+		pstmt.setInt(3, pageSize);
+		
+		rs = pstmt.executeQuery();
+		
+		// DB정보(rs) -> DTO -> list
+		while (rs.next()) {
+		MemberDTO dto = new MemberDTO();
+		
+        dto.setId(rs.getString("id"));
+        dto.setPassword(rs.getString("password"));
+        dto.setName(rs.getString("name"));
+        dto.setNickname(rs.getString("nickname"));
+        dto.setPhone_number(rs.getString("phone_number"));
+        dto.setPost_number(rs.getInt("post_number"));
+        dto.setAddress(rs.getString("address"));
+        dto.setUser_image(rs.getString("user_image"));
+        dto.setRegdate(rs.getDate("regdate"));
+        dto.setBirth_date(rs.getString("birth_date"));
+        dto.setBlocked(rs.getBoolean("blocked"));
+		
+		memberList.add(dto);
+		}
+		
+		System.out.println(" DAO : 상품관리 조회성공! ");
+		System.out.println(" DAO : 목록 수 " + memberList.size());
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		closeDB();
+		}
+		
+		return memberList;		
+		}//검색처리 -공지리스트를 불러오는 getNoticeList()메소드 시작
+		
 
 		
 		
@@ -282,6 +338,41 @@ public class MemberDAO {
 			}
 			return cnt;
 		}		//getMemberCount()
+		
+		
+		//검색처리 오버로딩- getMemberCount(String search)메소드 시작
+		public int getMemberCount(String search, String category) {
+		int result=0;
+		try {
+		con = getCon();
+		System.out.println("디비연결, 드라이버 로드 성공");
+		
+		if(category.equals("title")) {
+		//제목으로 검색할 때 
+		sql = "select count(*) from user where id like ?";
+		}else {
+		//내용으로 검색할 때
+		sql = "select count(*) from user where phone_number like ?";
+		}
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, "%"+search+"%");
+		
+		//sql문 실행
+		rs=pstmt.executeQuery();
+		
+		//데이타처리
+		if(rs.next()) {
+		result = rs.getInt(1);
+		}
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		closeDB();
+		}
+		return result;
+		}
+		
 
 		
 		// userBlocked(id,blocked) 

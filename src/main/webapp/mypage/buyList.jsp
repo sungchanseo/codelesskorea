@@ -153,12 +153,14 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		
        </c:otherwise>
     </c:choose>
-    
+   
 </div>
 </div>
 </div>
+ </div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

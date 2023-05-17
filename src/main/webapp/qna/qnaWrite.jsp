@@ -121,7 +121,6 @@ String nickname = mdto.getNickname();
 </div>	
 
 </div>
-		<br><br>
 
 
 

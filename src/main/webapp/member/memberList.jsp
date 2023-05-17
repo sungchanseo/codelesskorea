@@ -130,7 +130,20 @@ font-weight: bold !important;
  <h1 style="font-family: 'TheJamsil5Bold';">회 원 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
-	
+<!-- 검색창기능 -->
+<br>
+<div id="admin_search" align="center">
+	<form action="./MemberList.me" method="post">
+		<select name="category">
+			<option value="title">아이디</option>
+			<option value="content">전화번호</option>
+		</select>
+		<input type="text" name="search" class="input_box" style="height:40px; width:50%;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+	</form>
+</div>
+<br>
+<!-- 검색창기능	 -->
 
 
 	  <table class="table" id="nttable" style= "width: 100%"; align="center"; >

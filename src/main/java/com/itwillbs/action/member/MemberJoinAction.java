@@ -51,6 +51,7 @@ public class MemberJoinAction implements Action{
 		 * JSForward.alertAndBack(response, "잘못된 접근입니다!"); return forward; }
 		 */
 		
+		
 		dto.setId(multupartRequest.getParameter("id"));
 		dto.setAddress(multupartRequest.getParameter("address"));
 		dto.setName(multupartRequest.getParameter("name"));
@@ -62,6 +63,8 @@ public class MemberJoinAction implements Action{
 		dto.setBirth_date(multupartRequest.getParameter("birth_date"));
 		dto.setAddress2(multupartRequest.getParameter("address2"));
 		dto.setPost_number(Integer.parseInt(multupartRequest.getParameter("post_number")));
+		
+		
 		
 		System.out.println(" M : "+dto);
 		
