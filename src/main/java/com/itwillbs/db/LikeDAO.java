@@ -173,7 +173,7 @@ import javax.sql.DataSource;
 		    try {
 		        con = getCon();
 		        // 3. sql & pstmt
-		        sql = "update product set like_count=like_count-1 where product_id=?";
+		        sql = "UPDATE product SET like_count = CASE WHEN like_count > 0 THEN like_count - 1 ELSE 0 END WHERE product_id = ?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, product_id);
 		        pstmt.executeUpdate();

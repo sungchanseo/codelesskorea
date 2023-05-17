@@ -23,7 +23,7 @@
   text-decoration: underline;
 }
 
-#nttable * {
+#nttable * { 
   font-size: 95%;
   text-align: left;
   style="font-family: 'Noto Sans KR', sans-serif, 'Font Awesome 5 Free';"

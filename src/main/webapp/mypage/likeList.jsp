@@ -85,11 +85,10 @@
 	</style>
 
 
-
 		<script type="text/javascript">
 		$(document).ready(function() {
 			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
-			  $('.like-btn').addClass('liked');
+
 			  var userId = '<%= session.getAttribute("id") %>';
 			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
 			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
@@ -98,13 +97,22 @@
 
 			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
 			  $('.like-btn').each(function() {
-			    var $btn = $(this);
-			    var productId = $btn.data('product-id');
-			    var key = productId.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
-			    if (userLikedProducts[key]) {
-			      $btn.addClass('liked');
-			    }
-			  });
+			        var $btn = $(this);
+			        var product_id = $btn.data('product-id');
+			        
+			        // 서버로 찜 상태 확인 요청
+			        $.ajax({
+			            url: './getLikedStatus.aj',
+			            data: { id: userId, product_id: product_id },
+			            success: function(response) {
+			                if (response.isLiked) {
+			                    $btn.addClass('liked');
+			                } else {
+			                    $btn.removeClass('liked');
+			                }
+			            }
+			        });
+			    });
 
 			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
 			  $('.like-btn').on('click', function() {
