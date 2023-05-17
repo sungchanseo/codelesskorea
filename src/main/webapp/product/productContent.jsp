@@ -17,75 +17,7 @@
 	<title>상품 보기</title>
 
 <%@include file="../head.jsp" %>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
-
-			  var userId = '<%= session.getAttribute("id") %>';
-			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
-			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
-			  // 사용자의 찜한 상품 정보를 가져옵니다.
-			  var userLikedProducts = likedProducts[userId] || {}; 
-
-			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
-			  $('.like-btn').each(function() { 
-			    var $btn = $(this);
-			    var product_id = $btn.data('product-id');
-			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
-			    if (userLikedProducts[key]) {
-			      $btn.addClass('liked');
-			    }
-			  });
-
-			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
-			  $('.like-btn').on('click', function() {
-			    var $btn = $(this);
-			    var product_id = $btn.data('product-id');
-			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
-			    var isLiked = $btn.hasClass('liked');
-
-			    if (!isLiked) {
-			      $.ajax({
-			        url: './AjaxLikedAction.aj',
-			        data: { product_id: product_id, id: userId },
-			        success: function(response) {
-			          if (response.success) {
-			            $btn.addClass('liked');
-			            // 사용자의 찜한 상품 정보를 업데이트합니다.
-			            userLikedProducts[key] = true;
-			            likedProducts[userId] = userLikedProducts;
-			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
-			            location.reload();
-			            alert('찜 추가완료!');
-			          } else {
-			            alert('추가 실패!');
-			          }
-			        }
-			      });
-			    } else { 
-			      $.ajax({
-			        url: './AjaxUnLikedAction.aj',
-			        data: { product_id: product_id, id: userId },
-			        success: function(response) {
-			          if (response.success) {
-			            $btn.removeClass('liked');
-			            // 사용자의 찜한 상품 정보에서 해당 상품을 삭제합니다.
-			            delete userLikedProducts[key];
-			            likedProducts[userId] = userLikedProducts;
-			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
-			            location.reload();
-			            alert('찜 해제완료!');
-			          } else {
-			            alert('삭제 실패!');
-			          }
-			        }
-			      });
-			    }
-			  });
-			});
-
-
-		</script>
+	
 
 <style>
 
@@ -222,8 +154,106 @@
     text-align: right;
     font-weight: bold;
   }
+  
+  .like-btn {
+		  border: none;
+		  background: none;
+		  cursor: pointer;
+		  font-size: 1.2em;
+		  transition: transform 0.3s ease-in-out;
+		  border: none; /* 버튼 주변의 테두리 제거 */
+  		  outline: none; /* 포커스 상자 제거 */
+  		 
+	}
+		
+	.like-btn i {
+		  font-size: 1.5em;
+		  color: #999;
+		  transition: color 0.3s ease-in-out;
+		}
+		
+		.like-btn.liked i {
+		 color: #FF6969;
+		}
+		
+		.like-btn:hover {
+		  transform: scale(1.1);
+		}
+		
+		.like-btn:hover i {
+		  color: #FF6969;
+		}
+  
 </style>
+<script type="text/javascript">
+		$(document).ready(function() {
+			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
 
+			  var userId = '<%= session.getAttribute("id") %>';
+			  // 찜한 상품 정보를 로컬 스토리지에서 가져옵니다.
+			  var likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || {};
+			  // 사용자의 찜한 상품 정보를 가져옵니다.
+			  var userLikedProducts = likedProducts[userId] || {}; 
+
+			  // 모든 찜하기 버튼을 돌며 찜한 상품인 경우 버튼에 liked 클래스를 추가합니다.
+			  $('.like-btn').each(function() { 
+			    var $btn = $(this);
+			    var product_id = $btn.data('product-id');
+			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
+			    if (userLikedProducts[key]) {
+			      $btn.addClass('liked');
+			    }
+			  });
+
+			  // 찜하기 버튼을 클릭할 때 찜한 상품 정보를 로컬 스토리지에 저장합니다.
+			  $('.like-btn').on('click', function() {
+			    var $btn = $(this);
+			    var product_id = $btn.data('product-id');
+			    var key = product_id.toString(); // 찜 상품 키로 사용할 문자열로 변환합니다.
+			    var isLiked = $btn.hasClass('liked');
+
+			    if (!isLiked) {
+			      $.ajax({
+			        url: './AjaxLikedAction.aj',
+			        data: { product_id: product_id, id: userId },
+			        success: function(response) {
+			          if (response.success) {
+			            $btn.addClass('liked');
+			            // 사용자의 찜한 상품 정보를 업데이트합니다.
+			            userLikedProducts[key] = true;
+			            likedProducts[userId] = userLikedProducts;
+			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+			            location.reload();
+			            alert('찜 추가완료!');
+			          } else {
+			            alert('추가 실패!');
+			          }
+			        }
+			      });
+			    } else { 
+			      $.ajax({
+			        url: './AjaxUnLikedAction.aj',
+			        data: { product_id: product_id, id: userId },
+			        success: function(response) {
+			          if (response.success) {
+			            $btn.removeClass('liked');
+			            // 사용자의 찜한 상품 정보에서 해당 상품을 삭제합니다.
+			            delete userLikedProducts[key];
+			            likedProducts[userId] = userLikedProducts;
+			            localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+			            location.reload();
+			            alert('찜 해제완료!');
+			          } else {
+			            alert('삭제 실패!');
+			          }
+			        }
+			      });
+			    }
+			  });
+			});
+
+
+		</script>
 </head>
 <body style="overflow: auto;">
 <%@include file="../nav.jsp" %>
@@ -233,14 +263,15 @@
  <!--   사이드바 -->
  
 <div class="col-sm-8" style="margin:auto;">
- <div id="right" style=" border: 0; margin-left: 150px; width: 93%;">
+ <div id="right" style=" border: 0; margin-left: 10px; width: 93%;">
  <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
-<hr style="border: 0; height: 3px; background-color: black;">
+<hr style="border: 0; height: 3px; background-color: black; width: 93%;">
 <h1 style="font-family:'TheJamsil5Bold';" align="center">${product.title}</h1>
 
 <div class="product-table">
  <div class="product-info" >
   <div class="product-info">
+  
 <table style="width: 1000px; border-collapse: collapse; ">
 	<tr>   
 	<td> No.</td>
