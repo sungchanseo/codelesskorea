@@ -13,8 +13,9 @@ public class OrderDTO {
 	private int order_id; // 주문번호
 //	private int product_id; // 상품번호
 	private Date order_date; //날짜
-	private int payment; // 결제수단 
+	private String payment; // 결제수단 
 	private int user_id; // 회원번호
+//	private int post_number; //우편번호
 	private String receiver_name; //구매자 이름
 	private String receiver_phone; // 받는사람 전화번호
 	private String receiver_addr1; //받는사람 주소
@@ -103,11 +104,11 @@ public class OrderDTO {
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
-	public int getPayment() {
+	public String getPayment() {
 		return payment;
 	}
-	public void setPayment(int payment) {
-		this.payment = payment;
+	public void setPayment(String string) {
+		this.payment = string;
 	}
 	public int getUser_id() {
 		return user_id;

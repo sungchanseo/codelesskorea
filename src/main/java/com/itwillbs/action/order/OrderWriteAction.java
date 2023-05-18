@@ -34,7 +34,7 @@ public class OrderWriteAction implements Action {
 		dto.setId(id);
 		dto.setProduct_id(product_id);
 			dto = dao.orderWrite(dto);
-		System.out.println("OrderWriteAction2 : DAO 메서드 완료");
+		System.out.println("OrderWriteAction : DAO 메서드 완료");
 		System.out.println("dto : "+dto);
 		
 		// 회원정보 저장(request 영역)
