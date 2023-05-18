@@ -127,7 +127,7 @@ $(document).on("click", ".del-btn", function() {
 			<th>상품명</th>
 			<th>가격</th>
 			<th>판매자</th>
-			<th>구매자</th>
+<!-- 			<th>구매자</th> -->
 			<th>등록일시</th>
 			<th>주문진행상태</th>
 			<th>삭제</th>
@@ -140,18 +140,18 @@ $(document).on("click", ".del-btn", function() {
 <%-- 				<td>${dto.product_id}</td> --%>
 				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span>${dto.title}</span></a></td>
 				<td>${dto.price}</td>
-				<td>${dto.seller_id}</td>
-				<td>${dto.buyer_id}</td>
-				<td>${dto.order_date}</td>
+				<td>${dto.user_id}</td>
+<!-- 				<td>구매자</td> -->
+				<td>${dto.reg_date}</td>
 				<td>
-					<c:set var="status" value="${dto.order_status}" />
-					<c:choose>
-						<c:when test="${status == 1}">주문확인</c:when>
-						<c:when test="${status == 2}">주문수락</c:when>
-						<c:when test="${status == 3}">발송</c:when>
-						<c:when test="${status == 4}">구매확정</c:when>
-						<c:otherwise>알 수 없음</c:otherwise>
-					</c:choose>
+<%-- 					<c:set var="status" value="${dto.order_status}" /> --%>
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${status == 1}">주문확인</c:when> --%>
+<%-- 						<c:when test="${status == 2}">주문수락</c:when> --%>
+<%-- 						<c:when test="${status == 3}">발송</c:when> --%>
+<%-- 						<c:when test="${status == 4}">구매확정</c:when> --%>
+<%-- 						<c:otherwise>알 수 없음</c:otherwise> --%>
+<%-- 					</c:choose> --%>
 				</td>
 				
 				<td>
@@ -182,6 +182,7 @@ $(document).on("click", ".del-btn", function() {
 
 </div>
 
+<br>
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>

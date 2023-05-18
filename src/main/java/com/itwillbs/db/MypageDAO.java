@@ -388,14 +388,14 @@ public class MypageDAO {
 		
 		
 		// 관리자 - 상품관리 리스트
-		public List<ListDTO> getAdminList(int startRow, int pageSize){
-			List<ListDTO> getAdminList = new ArrayList<ListDTO>();
+		public List<ProductDTO> getAdminList(int startRow, int pageSize){
+			List<ProductDTO> getAdminList = new ArrayList<ProductDTO>();
 			
 			try {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql & pstmt
-				sql = "select * from mypage ORDER BY order_date desc LIMIT ?,?";
+				sql = "select * from product ORDER BY reg_date desc LIMIT ?,?";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
@@ -405,36 +405,27 @@ public class MypageDAO {
 				// 5. 데이터 처리
 				// DB정보(rs) -> DTO -> list
 				while (rs.next()) {
-					ListDTO dto = new ListDTO();
-					
-					dto.setProduct_id(rs.getInt("product_id"));
-					dto.setUser_id(rs.getInt("user_id"));
-					dto.setLike_id(rs.getInt("like_id"));
-					dto.setOrder_status(rs.getInt("order_status"));
-					dto.setOrder_id(rs.getInt("order_id"));
-					dto.setId(rs.getString("id"));
-					dto.setTitle(rs.getString("title"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setBuyer_id(rs.getString("buyer_id"));
-					dto.setSeller_id(rs.getString("seller_id"));
-					dto.setOrder_date(rs.getDate("order_date"));
-					
-					// 상품별 링크 정보 설정
-					// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
-				    String productId = rs.getString("product_id");
-				    String productLink = "./productContent.pr?product_id=" + productId;
-				    dto.setProductLink(productLink);
-				    
-				    // 주문서별 링크 정보 설정
-				    String orderId = rs.getString("order_id");
-				    String orderLink = "/orderContent.pr/?order_id=" + orderId;
-				    dto.setOrderLink(orderLink);
-				    
-									
-				    getAdminList.add(dto);
-					System.out.println(" ListDAO : 구매목록 조회성공! "+ dto);
-					
-				    
+					ProductDTO product= new ProductDTO();
+					product.setProduct_id(rs.getInt("product_id"));
+		            product.setTitle(rs.getString("title"));
+		            product.setModel(rs.getInt("model"));
+		            product.setContent(rs.getString("content"));
+		            product.setPrice(rs.getInt("price"));
+		            product.setParts(rs.getString("parts"));
+		            product.setProduct_image(rs.getString("product_image"));
+		            product.setGrade(rs.getInt("grade"));
+		            product.setCity(rs.getString("city"));
+		            product.setMethod(rs.getInt("method"));
+		            product.setCharge(rs.getInt("charge"));
+		            product.setFee(rs.getInt("fee"));
+		            product.setReg_date(rs.getDate("reg_date"));
+		            product.setRead_count(rs.getInt("read_count"));
+		            product.setLike_count(rs.getInt("like_count"));
+		            product.setChat_count(rs.getInt("chat_count"));
+		            product.setUser_id(rs.getString("user_id"));
+		            product.setBrand(rs.getInt("brand"));
+		            product.setColor(rs.getInt("color"));
+		            getAdminList.add(product);
 				} // while
 				
 			} catch (Exception e) {
@@ -446,6 +437,9 @@ public class MypageDAO {
 			return getAdminList;
 		}
 		
+		
+	
+		
 		///////////////////////////////////////////////////////////////////////////////
 		//검색처리 시작
 		
@@ -456,7 +450,7 @@ public class MypageDAO {
 		con = getCon();
 		System.out.println("디비연결, 드라이버 로드 성공");
 		
-		sql = "select count(*) from mypage";
+		sql = "select count(*) from product";
 		pstmt = con.prepareStatement(sql);
 		
 		//sql문 실행
@@ -484,10 +478,10 @@ public class MypageDAO {
 		
 		if(category.equals("title")) {
 		//제목으로 검색할 때 
-		sql = "select count(*) from mypage where title like ?";
+		sql = "select count(*) from product where title like ?";
 		}else {
 		//내용으로 검색할 때
-		sql = "select count(*) from mypage where content like ?";
+		sql = "select count(*) from product where content like ?";
 		}
 		pstmt = con.prepareStatement(sql);
 		
@@ -510,19 +504,19 @@ public class MypageDAO {
 		//getBoradCount()메소드 끝
 		
 		//검색기능을 추가한 getAdminList()메소드 시작
-		public List<ListDTO> getAdminList(int startRow, int pageSize, String search, String category) {
+		public List<ProductDTO> getAdminList(int startRow, int pageSize, String search, String category) {
 		
-		List<ListDTO> getAdminList = new ArrayList<ListDTO>();
+		List<ProductDTO> getAdminList = new ArrayList<ProductDTO>();
 		try {
 		con = getCon();
 		
 		if(category.equals("title")) {
 		//제목으로 검색할 때
-		sql = "select * from mypage where title like ? order by product_id desc limit ?,?";
+		sql = "select * from product where title like ? order by product_id desc limit ?,?";
 		
 		}else {
 		//내용으로 검색할 때
-		sql = "select * from mypage where content like ? order by product_id desc limit ?,?";
+		sql = "select * from product where content like ? order by product_id desc limit ?,?";
 		}
 		pstmt = con.prepareStatement(sql);
 		
@@ -534,21 +528,27 @@ public class MypageDAO {
 		
 		// DB정보(rs) -> DTO -> list
 		while (rs.next()) {
-		ListDTO dto = new ListDTO();
-		
-		dto.setProduct_id(rs.getInt("product_id"));
-		dto.setUser_id(rs.getInt("user_id"));
-		dto.setLike_id(rs.getInt("like_id"));
-		dto.setOrder_status(rs.getInt("order_status"));
-		dto.setOrder_id(rs.getInt("order_id"));
-		dto.setId(rs.getString("id"));
-		dto.setTitle(rs.getString("title"));
-		dto.setPrice(rs.getInt("price"));
-		dto.setBuyer_id(rs.getString("buyer_id"));
-		dto.setSeller_id(rs.getString("seller_id"));
-		dto.setOrder_date(rs.getDate("order_date"));
-		
-		getAdminList.add(dto);
+			ProductDTO product= new ProductDTO();
+			product.setProduct_id(rs.getInt("product_id"));
+            product.setTitle(rs.getString("title"));
+            product.setModel(rs.getInt("model"));
+            product.setContent(rs.getString("content"));
+            product.setPrice(rs.getInt("price"));
+            product.setParts(rs.getString("parts"));
+            product.setProduct_image(rs.getString("product_image"));
+            product.setGrade(rs.getInt("grade"));
+            product.setCity(rs.getString("city"));
+            product.setMethod(rs.getInt("method"));
+            product.setCharge(rs.getInt("charge"));
+            product.setFee(rs.getInt("fee"));
+            product.setReg_date(rs.getDate("reg_date"));
+            product.setRead_count(rs.getInt("read_count"));
+            product.setLike_count(rs.getInt("like_count"));
+            product.setChat_count(rs.getInt("chat_count"));
+            product.setUser_id(rs.getString("user_id"));
+            product.setBrand(rs.getInt("brand"));
+            product.setColor(rs.getInt("color"));
+            getAdminList.add(product);
 		}
 		
 		System.out.println(" DAO : 상품관리 조회성공! ");
@@ -562,6 +562,7 @@ public class MypageDAO {
 		return getAdminList;		
 		}//검색처리 -공지리스트를 불러오는 getNoticeList()메소드 시작
 		
+	
 		//검색처리 끝
 		///////////////////////////////////////////////////////////////////////////////
 
