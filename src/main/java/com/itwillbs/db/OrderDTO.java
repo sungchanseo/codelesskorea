@@ -40,16 +40,23 @@ public class OrderDTO {
 	private String product_image;
 	
 	// user 테이블
-	private String id; // 구매자 아이디(이메일)
+	private String id; // 구매자 아이디
 	private String name; // 구매자 이름
 	private String phone_number; // 구매자 전화번호
 	private String address; // 구매자 주소
 	private String address2; // 구매자 주소
 	private int post_number; // 구매자 주소
+	private String email; // 구매자 이메일
 	
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getProduct_image() {
 		return product_image;
 	}
@@ -239,9 +246,11 @@ public class OrderDTO {
 				+ is_accept + ", tracking_number=" + tracking_number + ", order_status=" + order_status + ", imp_uid="
 				+ imp_uid + ", merchant_uid=" + merchant_uid + ", paid_amount=" + paid_amount + ", apply_num="
 				+ apply_num + ", product_id=" + product_id + ", title=" + title + ", price=" + price + ", fee=" + fee
-				+ ", charge=" + charge + ", id=" + id + ", name=" + name + ", phone_number=" + phone_number
-				+ ", address=" + address + ", address2=" + address2 + ", post_number=" + post_number + "]";
+				+ ", charge=" + charge + ", product_image=" + product_image + ", id=" + id + ", name=" + name
+				+ ", phone_number=" + phone_number + ", address=" + address + ", address2=" + address2
+				+ ", post_number=" + post_number + ", email=" + email + "]";
 	}
+
 
 	
 
