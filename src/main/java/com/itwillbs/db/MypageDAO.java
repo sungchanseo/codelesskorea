@@ -408,7 +408,7 @@ public class MypageDAO {
 					ListDTO dto = new ListDTO();
 					
 					dto.setProduct_id(rs.getInt("product_id"));
-					dto.setUser_id(rs.getInt("user_id"));
+					dto.setUser_id(rs.getString("user_id"));
 					dto.setLike_id(rs.getInt("like_id"));
 					dto.setOrder_status(rs.getInt("order_status"));
 					dto.setOrder_id(rs.getInt("order_id"));
@@ -537,7 +537,7 @@ public class MypageDAO {
 		ListDTO dto = new ListDTO();
 		
 		dto.setProduct_id(rs.getInt("product_id"));
-		dto.setUser_id(rs.getInt("user_id"));
+		dto.setUser_id(rs.getString("user_id"));
 		dto.setLike_id(rs.getInt("like_id"));
 		dto.setOrder_status(rs.getInt("order_status"));
 		dto.setOrder_id(rs.getInt("order_id"));
