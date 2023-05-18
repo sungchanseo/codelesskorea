@@ -45,8 +45,6 @@ public class OrderAddAction implements Action {
 		System.out.println(Integer.parseInt(request.getParameter("receiver_post")));
 		dto.setPayment(request.getParameter("payment"));
 		System.out.println("dto : "+dto);
-		String order_date = request.getParameter("order_date");
-		System.out.println(order_date);
 		// 아래는 결제정보, 일단은 넘어오는지 확인만 함.
 //		dto.setImp_uid(request.getParameter("imp_uid"));
 //		dto.setMerchant_uid(request.getParameter("merchant_uid"));

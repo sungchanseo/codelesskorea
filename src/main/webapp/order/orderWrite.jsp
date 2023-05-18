@@ -27,6 +27,7 @@
 	};
 	// 변수
     var email ="";
+	var id = "";
     var name ="";
     var receiver_phone ="";
     var receiver_addr1 ="";
@@ -37,15 +38,16 @@
     var title ="";
     var payment ="";
     $(function(){
-    	email = $('#id').attr('value');
-    	name = $('#receiver_name').attr('value');
-    	receiver_phone = $('#receiver_phone').attr('value');
-    	receiver_addr1 = $('#receiver_addr1').attr('value');
-    	receiver_addr2 = $('#receiver_addr2').attr('value');
-    	receiver_post = $('#receiver_post').attr('value');
-    	amount = $('#amount').attr('value');
-    	product_id = $('#product_id').attr('value');
-    	title = $('#title').attr('value');
+    	email = $('#email').val();
+    	id = $('#id').val();
+    	name = $('#receiver_name').val();
+    	receiver_phone = $('#receiver_phone').val();
+    	receiver_addr1 = $('#receiver_addr1').val();
+    	receiver_addr2 = $('#receiver_addr2').val();
+    	receiver_post = $('#receiver_post').val();
+    	amount = $('#amount').val();
+    	product_id = $('#product_id').val();
+    	title = $('#title').val();
     	payment = $('.pm:checked').val();
     	console.log(name);
     	console.log(email);
@@ -71,7 +73,7 @@
     			return false;
     	 	}
         	// 카드결제
-        	if($('.pm:checked').val() == "html5_inicis"){
+        	if($('.pm:checked').val() == "카드결제"){
         	var pay_form = {
                     pg : 'html5_inicis',
                     pay_method : 'card',
@@ -85,7 +87,7 @@
                     buyer_postcode : receiver_post // 우편변호
                 };
 			// 카카오페이
-        	}else if($('.pm:checked').val() == "kakaopay"){
+        	}else if($('.pm:checked').val() == "카카오페이"){
             	var pay_form = {
                         pg : 'kakaopay',
                         pay_method : 'EASY_PAY',
@@ -127,12 +129,6 @@
                     product_id_objs.setAttribute('name', 'product_id');         // 값을 담을 변수 이름
                     product_id_objs.setAttribute('value', product_id);      	// 값 
                     form.appendChild(product_id_objs);
-					
-                    var order_date_objs = document.createElement('input');    
-                    order_date_objs.setAttribute('type', 'hidden');          
-                    order_date_objs.setAttribute('name', 'order_date');       
-                    order_date_objs.setAttribute('value', order_date);      
-                    form.appendChild(order_date_objs);
                     
                     var name_objs = document.createElement('input');              
                     name_objs.setAttribute('type', 'hidden');                                 
@@ -247,6 +243,8 @@
 		<input type="hidden" id="order_id" name="order_id" value="${dto.order_id}">
 		<input type="hidden" id="id" name="id" value="${dto.id}">
 		<input type="hidden" id="product_id" name="product_id" value="${dto.product_id}">
+		<input type="hidden" id="email" name="email" value="${dto.email}">
+		
 		<table>
 			<tr>
 				<td style="text-align: justify; "><label for="receiver_name"><span style="color: black; margin-right: 20px;">이름</span></label></td>

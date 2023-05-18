@@ -26,8 +26,8 @@ public class OrderDAO {
 		// Context 객체생성
 		Context initCTX = new InitialContext();
 		// 디비 연결정보 불러와서 사용
-		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/class7_230118_team1");
-	con = ds.getConnection();
+		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
+		con = ds.getConnection();
 		System.out.println("DAO : 디비 연결 성공(CP) : "+con);
 		return con;
 	} //getCon()
@@ -68,6 +68,7 @@ public class OrderDAO {
 							dto.setAddress2(rs.getString("address2"));
 							dto.setPhone_number(rs.getString("phone_number"));
 							dto.setPost_number(rs.getInt("post_number"));
+							dto.setEmail(rs.getString("email"));
 						}// if
 						
 						System.out.println("DAO : 구매자 회원정보 dto에 저장 완료");
