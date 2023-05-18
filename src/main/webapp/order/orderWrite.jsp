@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
  <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <%@ include file="../head.jsp"%>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <!-- 주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- 부트스트랩 -->
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" /> 
+
     <script>
     // 주소 메서드
     function addr() {
@@ -25,7 +26,6 @@
 		}).open();
 	};
 	// 변수
-    var order_id ="";
     var email ="";
     var name ="";
     var receiver_phone ="";
@@ -37,7 +37,6 @@
     var title ="";
     var payment ="";
     $(function(){
-    	order_id = $('#order_id').attr('value');
     	email = $('#id').attr('value');
     	name = $('#receiver_name').attr('value');
     	receiver_phone = $('#receiver_phone').attr('value');
@@ -62,15 +61,7 @@
         var seconds = today.getSeconds();  // 초
         var milliseconds = today.getMilliseconds();
         var makeMerchantUid = hours +  minutes + seconds + milliseconds; //주문일시
-       	var year = today.getFullYear(); // 년도
-       	var month = today.getMonth() + 1;  // 월
-       	var date = today.getDate();  // 날짜
-       	var day = today.getDay();  // 요일
-     	// 두자리 수를 표현하기 위한 0 추가 
-        if(month <10){ month = "0"+month; } 
-        if(date <10){ date = "0"+date; }      
-       	var order_date = year+"-"+month+"-"+date+" "+hours+":"+minutes+":"+seconds; //주문일시
-       	
+      
        	// 결제
         function requestPay() {
         	// 약관동의 결제제한
@@ -121,35 +112,81 @@
 //                 			msg += '카드 승인번호 : ' + rsp.apply_num;
                 	alert(msg);
                 	
-                	var data ={
-                			order_id : order_id,
-                			product_id : product_id,
-                			order_date : order_date,
-                			name : name,
-                			receiver_phone : receiver_phone,
-                			receiver_addr1 : receiver_addr1,
-                			receiver_addr2 : receiver_addr2,
-                			receiver_post : receiver_post,
-                			amount : amount,
-                			payment : payment
-                			}
-
-                	$.ajax({
-    					type : 'post',
-    	 				url : './OrderAddAction.or',
-    	 				data : data,
-    	 				dataType : 'TEXT',
-    	 				error: function(xhr, status, error){
-    	 					alert(error);
-    	 				},
-    	 				success : function(text){
-//     	 					msg : "데이터 전송 성공";
-//     	 					alert(msg);
-    	 					
-						location.href="./OrderContent.or?product_id="+product_id+"&order_id="+order_id;
-    	 				}
-                	})// ajax
-    	 			
+                	// 전달할 정보 지역변수 선언
+                	var name = $('#receiver_name').val();
+        			var receiver_phone = $('#receiver_phone').val();
+        	    	var receiver_addr1 = $('#receiver_addr1').val();
+        	    	var receiver_addr2 = $('#receiver_addr2').val();
+        	    	var receiver_post = $('#receiver_post').val();
+        	    	
+                	// form 태그 JS에서 생성해서 파라미터 전달
+					const form = document.createElement('form');       			// form 태그 생성 
+		
+                    var product_id_objs = document.createElement('input');    	// 값을 넣을 input 생성 
+                    product_id_objs.setAttribute('type', 'hidden');          	// 값의 type
+                    product_id_objs.setAttribute('name', 'product_id');         // 값을 담을 변수 이름
+                    product_id_objs.setAttribute('value', product_id);      	// 값 
+                    form.appendChild(product_id_objs);
+					
+                    var order_date_objs = document.createElement('input');    
+                    order_date_objs.setAttribute('type', 'hidden');          
+                    order_date_objs.setAttribute('name', 'order_date');       
+                    order_date_objs.setAttribute('value', order_date);      
+                    form.appendChild(order_date_objs);
+                    
+                    var name_objs = document.createElement('input');              
+                    name_objs.setAttribute('type', 'hidden');                                 
+                    name_objs.setAttribute('name', 'name');                
+                    name_objs.setAttribute('value', name);          
+                    form.appendChild(name_objs);
+                    
+					var receiver_phone_objs = document.createElement('input');              
+					receiver_phone_objs.setAttribute('type', 'hidden');                                 
+					receiver_phone_objs.setAttribute('name', 'receiver_phone');                
+					receiver_phone_objs.setAttribute('value', receiver_phone);          
+                    form.appendChild(receiver_phone_objs);
+                    
+                    var receiver_addr1_objs = document.createElement('input');              
+                    receiver_addr1_objs.setAttribute('type', 'hidden');                                 
+                    receiver_addr1_objs.setAttribute('name', 'receiver_addr1');                
+                    receiver_addr1_objs.setAttribute('value', receiver_addr1);          
+                    form.appendChild(receiver_addr1_objs);
+                    
+                    var receiver_addr2_objs = document.createElement('input');              
+                    receiver_addr2_objs.setAttribute('type', 'hidden');                                 
+                    receiver_addr2_objs.setAttribute('name', 'receiver_addr2');                
+                    receiver_addr2_objs.setAttribute('value', receiver_addr2);          
+                    form.appendChild(receiver_addr2_objs);
+                    
+                    var receiver_post_objs = document.createElement('input');              
+                    receiver_post_objs.setAttribute('type', 'hidden');                                 
+                    receiver_post_objs.setAttribute('name', 'receiver_post');                
+                    receiver_post_objs.setAttribute('value', receiver_post);          
+                    form.appendChild(receiver_post_objs);
+                    
+                    var merchant_uid_objs = document.createElement('input');           
+                    merchant_uid_objs.setAttribute('type', 'hidden');                 
+                    merchant_uid_objs.setAttribute('name', 'merchant_uid');          
+                    merchant_uid_objs.setAttribute('value', rsp.merchant_uid);        
+                    form.appendChild(merchant_uid_objs);
+                    
+                    var paid_amount_objs = document.createElement('input');       
+                    paid_amount_objs.setAttribute('type', 'hidden');               
+                    paid_amount_objs.setAttribute('name', 'paid_amount');          
+                    paid_amount_objs.setAttribute('value', rsp.paid_amount);        
+                    form.appendChild(paid_amount_objs);
+                    
+                    var apply_num_objs = document.createElement('input');       
+                    apply_num_objs.setAttribute('type', 'hidden');             
+                    apply_num_objs.setAttribute('name', 'apply_num');          
+                    apply_num_objs.setAttribute('value', rsp.apply_num);      
+                    form.appendChild(apply_num_objs);
+                    
+                    form.setAttribute('method', 'post');                     
+                    form.setAttribute('action', './OrderAddAction.or');      
+                    form.setAttribute('accept-charset', 'utf-8');      
+                    document.body.appendChild(form);
+                    form.submit();
                 	}else{
                 	// 결제 실패시 로직
                 	var msg = '결제 실패';
@@ -162,28 +199,26 @@
     } // function requestPay()
         
     </script>
-
-  
-    <meta charset="UTF-8">
-    <title>Sample Payment</title>
+<meta charset="UTF-8">
+<title>결제 하기</title>
 </head>
 <body>
-<%-- <%@ include file="../nav.jsp"%> --%>
+<jsp:include page="../nav.jsp"/>
 <!-- nav 삽입 --> 
-
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin: 50px; width: 100%; color: black;" >
+<div class="row">
+<jsp:include page="../mySide.jsp"/>
+<div class="col-sm-10">
+ <div id="right" style="width: 100%; color: black; margin-bottom: 700px;" >
  <h1 style="font-family: 'TheJamsil5Bold';">주 문 서</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
-
 <!-- 	<h1>주문서</h1> -->
-	<div class="orderWrite">
+<!-- 	<div class="orderWrite"> -->
 	<fieldset>
 		<legend>상품 정보</legend>
 		<input type="hidden" id="title" name="title" value="${dto.title}">
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="fee" value="${dto.fee}">
-		<div style="display: flex; align-items: center;" >
+		<div style="display: flex; align-items: center;">
 			<img src="${dto.product_image}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
 			<table>
 				<tr>
@@ -203,12 +238,10 @@
 					<td style="text-align: right;"><span style="color: black;">${dto.fee}원</span></td>
 				</tr>
 			</table>
-		</div>
 	</fieldset>
-</div>
-		<hr>
-	<div class="tracking" style="color: black;">
-	<fieldset>
+	
+<!--     <div class="tracking"> -->
+<fieldset>
 	<legend>배송 정보</legend>
 	<form action="./AddrChangeAction.or" method="post">
 		<input type="hidden" id="order_id" name="order_id" value="${dto.order_id}">
@@ -218,24 +251,24 @@
 			<tr>
 				<td style="text-align: justify; "><label for="receiver_name"><span style="color: black; margin-right: 20px;">이름</span></label></td>
 				<td style="text-align: justify;">
-					<input type="text" id="receiver_name" name="receiver_name" value="${dto.receiver_name}" placeholder="이름을 입력해주세요">
+					<input type="text" id="receiver_name" name="receiver_name" value="${dto.name}" placeholder="이름을 입력해주세요">
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: justify; "><label for="receiver_phone"><span style="color: black; margin-right: 20px;">전화번호</span></label></td>
 				<td style="text-align: justify;">
-					<input type="text" id="receiver_phone" name="receiver_phone" value="${dto.receiver_phone}" placeholder="전화번호를 입력해주세요">
+					<input type="text" id="receiver_phone" name="receiver_phone" value="${dto.phone_number}" placeholder="전화번호를 입력해주세요">
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: justify; "><label for="receiver_addr"><span style="color: black; margin-right: 20px;">주소</span></label></td>
 				<td style="text-align: justify;">
-					<input type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.receiver_post}" readonly>
+					<input type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.post_number}" readonly>
 					<input type="button" value="우편번호찾기" onclick="addr();">
 					<br>
-					<input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.receiver_addr1}" size="35" onclick="addr();">
+					<input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.address}" size="35" onclick="addr();">
 					<br>
-					<input type="text" name="receiver_addr2" id="receiver_addr2" value="${dto.receiver_addr2}" size="35" placeholder="상세주소를 입력해주세요.">
+					<input type="text" name="receiver_addr2" id="receiver_addr2" value="${dto.address2}" size="35" placeholder="상세주소를 입력해주세요.">
 				</td>
 			</tr>
 			<tr>
@@ -246,9 +279,9 @@
 		</table>
 	</form>
 </fieldset>
-	</div>
+
 	<hr>
-	<div class="payInfo">
+<!-- 	<div class="payInfo"> -->
 	<fieldset>
 	<legend>결제정보</legend>
 		<table>
@@ -259,12 +292,12 @@
 		<input type="hidden" id="amount" name="amount" value="${dto.price+dto.fee }">
 		<!-- 카드결제 선택시 일반 카드결제 / 카카오페이 선택시 카카오페이 간편결제 -->
 		결제수단 : 
-		<input type="radio" class="pm" name = "payment" value="html5_inicis" checked="checked"> 카드결제  
-		<input type="radio" class="pm" name = "payment"  value="kakaopay"> 카카오페이
+		<input type="radio" class="pm" name = "payment" value="카드결제" checked="checked"> 카드결제  
+		<input type="radio" class="pm" name = "payment"  value="카카오페이"> 카카오페이
 	</fieldset>
-	</div>
+
 	<hr>
-	 <fieldset>
+		 <fieldset>
     <legend>약관동의</legend>
     <div class="payAgreement">
       <div class="form-check">
@@ -450,10 +483,16 @@
       }
     });
   </script>
+	
+	 
+		
+<!-- 	  </div> -->
 
  	<br>
- 	<button type="submit" id="pay_btn" onclick="requestPay()">결제하기</button>
+ 	<button type="submit" class="btn btn-secondary" id="pay_btn" onclick="requestPay()">결제하기</button>
 </div>
 </div>
+</div>
+	<jsp:include page="../footer.jsp"/>
 </body>
 </html>

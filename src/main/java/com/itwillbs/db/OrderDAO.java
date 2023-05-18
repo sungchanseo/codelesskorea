@@ -26,7 +26,7 @@ public class OrderDAO {
 		// Context 객체생성
 		Context initCTX = new InitialContext();
 		// 디비 연결정보 불러와서 사용
-		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
+		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/class7_230118_team1");
 	con = ds.getConnection();
 		System.out.println("DAO : 디비 연결 성공(CP) : "+con);
 		return con;
@@ -46,19 +46,11 @@ public class OrderDAO {
 				// orderWrite() - 주문서 작성
 				public OrderDTO orderWrite(OrderDTO dto) {
 					System.out.println("DAO : orderWrite 시작");
-					int order_id = 0; //주문번호
+					
 								
 						try {
 							con = getCon();
-							// 주문번호 계산하기
-							sql = "select max(order_id) from orderr";
-							pstmt = con.prepareStatement(sql);
-							rs = pstmt.executeQuery();
-							if(rs.next()){
-								order_id = rs.getInt(1)+1;
-							}
-							dto.setOrder_id(order_id);
-							System.out.println("order_id= "+order_id);
+							
 						
 						// 구매자 관련 정보 가져오기
 						sql = "select * from user where id=?";
@@ -69,7 +61,8 @@ public class OrderDAO {
 						
 						// 5. 데이터 처리
 						if(rs.next()) {
-//							dto.setId(dto.getId());
+							dto.setId(dto.getId());
+							dto.setUser_id(rs.getInt("user_id"));
 							dto.setName(rs.getString("name"));
 							dto.setAddress(rs.getString("address"));
 							dto.setAddress2(rs.getString("address2"));
@@ -87,7 +80,7 @@ public class OrderDAO {
 						rs = pstmt.executeQuery();
 						// 데이터 처리
 						if(rs.next()) {
-//							dto.setProduct_id(dto.getProduct_id());
+							dto.setProduct_id(dto.getProduct_id());
 							dto.setSeller_id(rs.getString("user_id"));
 							dto.setPrice(rs.getInt("price"));
 							dto.setTitle(rs.getString("title"));
@@ -97,24 +90,7 @@ public class OrderDAO {
 						} //if
 						System.out.println("DAO : 상품정보 가져오기 완료");
 						
-						// 주문 번호 등록
-						sql = "insert into orderr(order_id,receiver_id,product_id,seller_id,receiver_name,"
-								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2) "
-								+ " values(?,?,?,?,?,?,?,?,?)";
-						pstmt = con.prepareStatement(sql);
-						pstmt.setInt(1, order_id);
-						pstmt.setString(2, dto.getId());
-						pstmt.setInt(3, dto.getProduct_id());
-						pstmt.setString(4, dto.getSeller_id());
-						pstmt.setString(5, dto.getName());
-						pstmt.setString(6, dto.getPhone_number());
-						pstmt.setInt(7, dto.getPost_number());
-						pstmt.setString(8, dto.getAddress());
-						pstmt.setString(9, dto.getAddress2());
-						
-						pstmt.executeUpdate();
-						System.out.println("DAO : orderr 테이블 주문번호, 주문자/판매자 계정, 상품번호 등록 완료");
-						
+						// 배송정보 저장
 						dto.setReceiver_name(dto.getName());
 						dto.setReceiver_addr1(dto.getAddress());
 						dto.setReceiver_addr2(dto.getAddress2());
@@ -122,23 +98,7 @@ public class OrderDAO {
 						dto.setReceiver_post(dto.getPost_number());
 						System.out.println("DAO : 배송정보 가져오기 완료");
 						
-//						// 배송지정보 자동저장
-//						sql = "select * from orderr where order_id=?";
-//						pstmt = con.prepareStatement(sql);
-//						pstmt.setInt(1, dto.getOrder_id());
-//						// sql 실행
-//						rs = pstmt.executeQuery();
-//						// 데이터 처리
-//						if(rs.next()) {
-//							dto.setReceiver_name(rs.getString("receiver_name"));
-//							dto.setReceiver_addr1(rs.getString("receiver_addr1"));
-//							dto.setReceiver_addr2(rs.getString("receiver_addr2"));
-//							dto.setReceiver_post(rs.getInt("receiver_post"));
-//							dto.setReceiver_phone(rs.getString("receiver_phone"));
-//						} //if
-//						System.out.println("DAO : 배송정보 가져오기 완료");
-						
-						
+						System.out.println("DAO : orderWrite 끝");
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -152,46 +112,50 @@ public class OrderDAO {
 				// addOrder(dto) - 결제성공시 주문 저장
 				public OrderDTO addOrder(OrderDTO dto) {
 					System.out.println("DAO : addOrder 시작");
+					int order_id = 0; //주문번호
 					try {
 						con = getCon();
-						
-//						// 판매자 아이디 가져오기
-//						sql = "select * from product where product_id=?";
-//						pstmt = con.prepareStatement(sql);
-//						pstmt.setInt(1, dto.getProduct_id());
-//						// sql 실행
-//						rs = pstmt.executeQuery();
-//						// 데이터 처리
-//						if(rs.next()) {
-//							dto.setSeller_id(rs.getString("user_id"));
-////							dto.setPrice(rs.getInt("price"));
-////							dto.setTitle(rs.getString("title"));
-////							dto.setFee(rs.getInt("fee"));
-////							dto.setCharge(rs.getInt("charge"));
-////							dto.setProduct_image(rs.getString("product_image"));
-//						} //if
-//						System.out.println("DAO : 판매자 아이디 가져오기 완료");
-//						
-						
-						// 주문번호에 주문정보 저장하기
-						sql = "update orderr set paid_amount=?,receiver_name=?,receiver_phone=?,receiver_addr1=?, "
-								+ " receiver_addr2=?,receiver_post=?,order_status=?,order_date=now() "
-								+ " where order_id=?";
+						// 주문번호 계산하기
+						sql = "select max(order_id) from orderr";
 						pstmt = con.prepareStatement(sql);
-						pstmt.setString(1, dto.getPaid_amount());
-						pstmt.setString(2, dto.getReceiver_name());
-						pstmt.setString(3, dto.getReceiver_phone());
-						pstmt.setString(4, dto.getReceiver_addr1());
-						pstmt.setString(5, dto.getReceiver_addr2());
-						pstmt.setInt(6, dto.getReceiver_post());
-						pstmt.setString(7, "주문 확인");
-//						pstmt.setString(8, dto.getId());
-//						pstmt.setString(9, dto.getSeller_id());
-//						pstmt.setString(8, dto.getOrder_date());
-						pstmt.setInt(8, dto.getOrder_id());
+						rs = pstmt.executeQuery();
+						if(rs.next()){
+							order_id = rs.getInt(1)+1;
+						}
+						dto.setOrder_id(order_id);
+						System.out.println("order_id= "+order_id);
+//						// 판매자 아이디 가져오기
+						sql = "select * from product where product_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, dto.getProduct_id());
+						// sql 실행
+						rs = pstmt.executeQuery();
+						// 데이터 처리
+						if(rs.next()) {
+							dto.setSeller_id(rs.getString("user_id"));
+						} //if
+						System.out.println("DAO : 판매자 아이디 가져오기 완료");
+//						
+						// 주문 번호 등록
+						sql = "insert into orderr(order_id,receiver_id,product_id,seller_id,receiver_name,"
+								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2,order_status) "
+								+ " values(?,?,?,?,?,?,?,?,?,?)";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, order_id);
+						pstmt.setString(2, dto.getId());
+						pstmt.setInt(3, dto.getProduct_id());
+						pstmt.setString(4, dto.getSeller_id());
+						pstmt.setString(5, dto.getReceiver_name());
+						pstmt.setString(6, dto.getReceiver_phone());
+						pstmt.setInt(7, dto.getReceiver_post());
+						pstmt.setString(8, dto.getReceiver_addr1());
+						pstmt.setString(9, dto.getReceiver_addr2());
+						pstmt.setString(10, "주문 확인");
 						
 						pstmt.executeUpdate();
+						System.out.println("DAO : orderr 테이블 주문 등록 완료");
 						System.out.println(" DAO : 해당 order_id에 주문정보 저장완료 ");	
+						System.out.println(" DAO : addOrder 끝");
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -208,6 +172,7 @@ public class OrderDAO {
 				public OrderDTO AddrChange(OrderDTO dto) {
 					try {
 						getCon();
+
 						// 3. sql & pstmt
 						sql = "update orderr set receiver_name=?, receiver_phone=?, receiver_addr1=?, receiver_addr2=?, "
 								+ "receiver_post=? where order_id=?";
@@ -263,7 +228,6 @@ public class OrderDAO {
 				// 데이터 처리
 				if(rs.next()) {
 					dto.setOrder_id(dto.getOrder_id());
-					
 					dto.setPaid_amount(rs.getString("paid_amount"));
 					dto.setReceiver_name(rs.getString("receiver_name"));
 					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
@@ -275,6 +239,7 @@ public class OrderDAO {
 					dto.setSeller_id(rs.getString("seller_id"));
 					dto.setTracking_number(rs.getInt("tracking_number"));
 					dto.setOrder_date(rs.getDate("order_date"));
+					dto.setPayment(rs.getString("payment"));
 				}// if
 				
 				// 상품정보 가져오기
@@ -287,7 +252,7 @@ public class OrderDAO {
 				
 				// 데이터 처리
 				if(rs.next()) {
-					dto.setProduct_id(rs.getInt("product_id"));
+//					dto.setProduct_id(rs.getInt("product_id"));
 					dto.setProduct_image(rs.getString("product_image"));
 					dto.setTitle(rs.getString("title"));
 					dto.setPrice(rs.getInt("price"));
