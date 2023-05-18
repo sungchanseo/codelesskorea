@@ -46,6 +46,37 @@ function kakaoLogout() {
 		}
 	  });
 	}; //스크롤 내리면 회색, 올리면 투명
+	
+    function getUnread() {
+    	$.ajax({
+    		type: "POST",
+    		url: "./ChatUnreadAction.ch",
+    		data: {
+    			userID: encodeURIComponent('${id}'),
+    		},
+    		success: function(result) {
+    			if(result >= 1) {
+    				showUnread(result);
+    			} else {
+    				showUnread('');
+    			}
+    		}
+    	});
+    }
+    function getInfiniteUnread() {
+    	setInterval(function() {
+    		getUnread();
+    	}, 5000);
+    }
+    function showUnread(result) {
+    	$('#notif').html(result);
+    }
+    if('${id}' != "") {
+	    $(document).ready(function() {
+	    	getUnread();
+	    	getInfiniteUnread();
+	    });    	
+    }
   
 </script>
 <!-- 
@@ -98,7 +129,7 @@ style="  background-color: transparent !important;box-shadow: none !important;" 
 		   <a class="dropdown-item" href="./MypagePurchaseList.my">구매목록</a>
 		   <a class="dropdown-item" href="./UserQNAList.qn"> 1:1 문의 </a>
 		   <a class="dropdown-item" href="./LikeList.my"> 찜목록 </a>
-		   <a class="dropdown-item" href="./ChatBox.ch"> 채팅목록 </a>
+		   <a class="dropdown-item" href="./ChatBox.ch"> 채팅목록 <span id="notif" style="color: red;"></span></a>
 		  </c:if>
 		  
 		  <c:if test="${id=='admin' || id=='admin@gmail.com' }">
