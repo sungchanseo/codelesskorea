@@ -103,7 +103,7 @@
 
 
 <!-- 목록없음 문구 기능 추가 -->
-<div style="text-align:center;">
+<div style="text-align:center; overflow-y: auto; height: 520px; ">
     <c:choose>
         <c:when test="${empty requestScope.saleList}">
             <p class="fade-in">

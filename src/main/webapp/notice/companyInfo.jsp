@@ -25,15 +25,15 @@
  <!--   사이드바 -->
   
  <div class="col-md-10">
- <div id="right">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">CODELESS를 이용해주신 여러분 감사합니다.</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 <div style="float:right; padding:0 30px 30px 30px;" >
 <img src="./images/103693_131764_5019.png"style="height:480px;" ><br>
-<div style="font-size:30px; text-align:center; color:black;">CEO 강진석</div> 
+<div style="font-family: 'TheJamsil5Bold'; font-size:30px; text-align:center; color:black;">CEO 강진석</div> 
 </div>
-<p style="font-size:20px; word-break:break-all; word: ">
-<i style="font-size:45px;">CODELESS는 국내 최초로 무선 이어폰을 전문으로<br> 다루는 업체입니다.</i>
+<p style=" font-family: 'TheJamsil5Bold'; font-size:20px; word-break:break-all; word: ">
+<i style="font-family: 'TheJamsil5Bold'; font-size:45px;">CODELESS는 국내 최초로 무선 이어폰을 전문으로<br> 다루는 업체입니다.</i>
  <br>
  CODELESS는 탁월한 서비스와 혁신적인 솔루션을 제공하고 있습니다. 
 

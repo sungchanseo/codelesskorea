@@ -20,14 +20,13 @@ public class SearchBoxAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		if(id != null) {
-			ModelDAO dao = new ModelDAO();
-			JSONArray modelList = dao.getModelList();
-			JSONArray colorList = dao.getColorList();
-			
-			request.setAttribute("modelList", modelList);
-			request.setAttribute("colorList", colorList);	
-		}
+		ModelDAO dao = new ModelDAO();
+		JSONArray modelList = dao.getModelList();
+		JSONArray colorList = dao.getColorList();
+		
+		request.setAttribute("modelList", modelList);
+		request.setAttribute("colorList", colorList);	
+		
 		return null;
 	}
 

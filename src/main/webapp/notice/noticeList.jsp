@@ -9,11 +9,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../head.jsp"%>
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>CODE LESS - 공지사항</title>
-<%@ include file="../head.jsp"%>
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav삽입 -->
@@ -29,7 +29,7 @@
  <!--   사이드바 -->
   
  <div class="col-12 col-md-10 col-lg-10">
- <div id="right">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 

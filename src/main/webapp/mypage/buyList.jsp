@@ -103,7 +103,7 @@
 <hr style="border: 0;height: 3px; background-color: black;">
 
 <!-- 목록없음 문구 기능 추가 -->
-<div style="text-align:center;">
+<div style="text-align:center; overflow-y: auto; height: 520px; ">
     <c:choose>
         <c:when test="${empty requestScope.buyList}">
             <p class="fade-in">
@@ -113,6 +113,7 @@
             </p>
         </c:when>
         <c:otherwise>
+          <div style="overflow-y: auto;">
 		  <table class="table" id="nttable">
 		   <thead style="background-color: #F6F6F6;">
 		   <tr>
@@ -152,7 +153,8 @@
 		   </tr>
 			</c:forEach>
 			</tbody>
-		</table>
+		 </table>
+		</div>
 		
        </c:otherwise>
     </c:choose>
