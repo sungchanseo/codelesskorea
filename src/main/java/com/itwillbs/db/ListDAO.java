@@ -41,122 +41,116 @@ public class ListDAO {
 	}
 	
 	// 구매목록 조회 - dao.getBuyList()
-	public List<ListDTO> getBuyList(String id){
-		List<ListDTO> buyList = new ArrayList<ListDTO>();
-		
-		try {
-			// 1.2. 디비연결
-			con = getCon();
-			// 3. sql & pstmt
-			sql = "select * from mypage WHERE buyer_id=?";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리
-			// DB정보(rs) -> DTO -> list
-			while (rs.next()) {
-				ListDTO dto = new ListDTO();
-				
-				dto.setProduct_id(rs.getInt("product_id"));
-				dto.setUser_id(rs.getInt("user_id"));
-				dto.setLike_id(rs.getInt("like_id"));
-				dto.setOrder_status(rs.getInt("order_status"));
-				dto.setOrder_id(rs.getInt("order_id"));
-				dto.setId(rs.getString("id"));
-				dto.setTitle(rs.getString("title"));
-				dto.setPrice(rs.getInt("price"));
-				dto.setBuyer_id(rs.getString("buyer_id"));
-				dto.setSeller_id(rs.getString("seller_id"));
-				dto.setOrder_date(rs.getDate("order_date"));
-				
-				// 상품별 링크 정보 설정
-				// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
-			    String productId = rs.getString("product_id");
-			    String productLink = "./productContent.pr?product_id=" + productId;
-			    dto.setProductLink(productLink);
-			    
-			    // 주문서별 링크 정보 설정
-			    String orderId = rs.getString("order_id");
-			    String orderLink = "/orderContent.pr/?order_id=" + orderId;
-			    dto.setOrderLink(orderLink);
-			    
-								
-				buyList.add(dto);
-				System.out.println(" ListDAO : 구매목록 조회성공! "+ dto);
-				
-			    
-			} // while
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return buyList;
+	public List<ListDTO> getBuyList(String id) {
+	    List<ListDTO> getBuyList = new ArrayList<>();
+
+	    try {
+	        // 1.2. 디비연결
+	        con = getCon();
+	        // 3. sql & pstmt
+	        sql = "SELECT p.product_id, p.user_id, o.order_status, o.order_id, p.title, p.price, o.receiver_id, o.order_date, o.seller_id "
+	                + "FROM product AS p "
+	                + "LEFT JOIN orderr AS o ON p.product_id = o.product_id "
+	                + "WHERE o.receiver_id = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        // 4. sql 실행
+	        rs = pstmt.executeQuery();
+	        // 5. 데이터 처리
+	        // DB정보(rs) -> DTO -> list
+	        while (rs.next()) {
+	            ListDTO dto = new ListDTO();
+
+	            dto.setProduct_id(rs.getInt("product_id"));
+	            dto.setUser_id(rs.getString("user_id"));
+	            dto.setSeller_id(rs.getString("seller_id"));
+	            dto.setOrder_status(rs.getInt("order_status"));
+	            dto.setOrder_id(rs.getInt("order_id"));
+	            dto.setTitle(rs.getString("title"));
+	            dto.setPrice(rs.getInt("price"));
+	            dto.setBuyer_id(rs.getString("user_id"));
+	            dto.setOrder_date(rs.getDate("order_date"));
+
+	            // 상품별 링크 정보 설정
+	            // 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
+	            String productId = rs.getString("product_id");
+	            String productLink = "/productContent.pr/" + productId;
+	            dto.setProductLink(productLink);
+
+	            // 주문서번호별 링크 정보 설정
+	            // 현재는 하나의 페이지로 통일했으나 주문서번호별 링크로 수정해야 합니다
+	            String orderId = rs.getString("order_id");
+	            String orderLink = "/orderContent.pr/" + orderId;
+	            dto.setOrderLink(orderLink);
+
+	            getBuyList.add(dto);
+	            System.out.println("ListDAO: 판매목록 조회 성공! " + dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+
+	    return getBuyList;
 	}
 	// 구매목록 조회 - dao.getBuyList()
 	
-	// 판매목록 조회 - dao.getSaleList()
-		public List<ListDTO> getSaleList(String id){
-			List<ListDTO> SaleList = new ArrayList<ListDTO>();
-			
-			try {
-				// 1.2. 디비연결
-				con = getCon();
-				// 3. sql & pstmt
-				sql = "select * from mypage WHERE seller_id=?";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				// 4. sql 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				// DB정보(rs) -> DTO -> list
-				while (rs.next()) {
-					ListDTO dto = new ListDTO();
-					
-					dto.setProduct_id(rs.getInt("product_id"));
-					dto.setUser_id(rs.getInt("user_id"));
-					dto.setLike_id(rs.getInt("like_id"));
-					dto.setOrder_status(rs.getInt("order_status"));
-					dto.setOrder_id(rs.getInt("order_id"));
-					dto.setId(rs.getString("id"));
-					dto.setTitle(rs.getString("title"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setBuyer_id(rs.getString("buyer_id"));
-					dto.setSeller_id(rs.getString("seller_id"));
-					dto.setOrder_date(rs.getDate("order_date"));
-					
-					// 상품별 링크 정보 설정
-					// 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
-				    String productId = rs.getString("product_id");
-				    String productLink = "/productContent.pr/" + productId;
-				    dto.setProductLink(productLink);
-				    
-				    // 주문서번호별 링크 정보 설정
-//				    현재는 하나의 페이지로 통일했으나 주문서번호별 링크로 수정해야 합니다
-				    String orderId = rs.getString("order_id");
-				    String orderLink = "/orderContent.pr/" + orderId;
-				    dto.setOrderLink(orderLink);
-				    
-									
-				    SaleList.add(dto);
-					System.out.println(" ListDAO : 판매목록 조회성공! "+ dto);
-					
-				    
-				} // while
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
-			}
-			
-			return SaleList;
-		}
+	
+	// 판매목록 조회 - dao.SaleList()s
+	public List<ListDTO> getSaleList(String id) {
+	    List<ListDTO> saleList = new ArrayList<>();
+
+	    try {
+	        // 1.2. 디비연결
+	        con = getCon();
+	        // 3. sql & pstmt
+	        sql = "SELECT p.product_id, p.user_id, o.order_status, o.order_id, p.title, p.price, o.receiver_id, o.order_date "
+	                + "FROM product AS p "
+	                + "LEFT JOIN orderr AS o ON p.product_id = o.product_id "
+	                + "WHERE p.user_id = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        // 4. sql 실행
+	        rs = pstmt.executeQuery();
+	        // 5. 데이터 처리
+	        // DB정보(rs) -> DTO -> list
+	        while (rs.next()) {
+	            ListDTO dto = new ListDTO();
+
+	            dto.setProduct_id(rs.getInt("product_id"));
+	            dto.setUser_id(rs.getString("user_id"));
+	            dto.setSeller_id(rs.getString("user_id"));
+	            dto.setOrder_status(rs.getInt("order_status"));
+	            dto.setOrder_id(rs.getInt("order_id"));
+	            dto.setTitle(rs.getString("title"));
+	            dto.setPrice(rs.getInt("price"));
+	            dto.setBuyer_id(rs.getString("receiver_id"));
+	            dto.setOrder_date(rs.getDate("order_date"));
+
+	            // 상품별 링크 정보 설정
+	            // 현재는 product_id 값을 받아 해당 페이지로 이동하게 설정해두었고 이후 적절한 컬럼으로 수정하면 됩니다
+	            String productId = rs.getString("product_id");
+	            String productLink = "/productContent.pr/" + productId;
+	            dto.setProductLink(productLink);
+
+	            // 주문서번호별 링크 정보 설정
+	            // 현재는 하나의 페이지로 통일했으나 주문서번호별 링크로 수정해야 합니다
+	            String orderId = rs.getString("order_id");
+	            String orderLink = "/orderContent.pr/" + orderId;
+	            dto.setOrderLink(orderLink);
+
+	            saleList.add(dto);
+	            System.out.println("ListDAO: 판매목록 조회 성공! " + dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+
+	    return saleList;
+	}
 		// 판매목록 조회 - dao.SaleList()
 	
 

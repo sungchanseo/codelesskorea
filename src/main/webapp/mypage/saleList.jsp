@@ -130,8 +130,18 @@
 		   <tr>
 		     <td width="500px;" style="text-align: center;"><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		     <td width="70px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
-		     <td width="70px;" style="text-align: center;">${dto.buyer_id}</td>
-		     <td width="300px;" style="text-align: center;"><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
+		     <td width="120px;" style="text-align: center;">${dto.buyer_id}</td>
+		     <td width="300px;" style="text-align: center;"><a href="./ProductContent.pr?product_id=${dto.product_id }"> 
+		     
+		     <c:choose>
+		        <c:when test="${dto.order_id ne 0}">
+		            <!-- 값이 0이 아닌 경우에만 표시 -->
+		            <p>${dto.order_id}</p>
+		        </c:when>
+       				 <c:otherwise>
+            <!-- 값이 0인 경우에는 아무것도 표시하지 않음 -->
+       			 </c:otherwise>
+   			 </c:choose></a></td>
 		     <td width="220px;" style="text-align: center;">${dto.order_date}</td>
 		     <td width="240px;" style="text-align: center;">
 				  <c:choose>
@@ -144,9 +154,9 @@
 				    <c:when test="${dto.order_status == 3}">
 				      <c:out value="발송" />
 				    </c:when>
-				    <c:otherwise>
+				    <c:when test="${dto.order_status == 4}">
 				      <c:out value="주문확정" />
-				    </c:otherwise>
+				    </c:when>
 				  </c:choose>
 			</td>
 		   </tr>

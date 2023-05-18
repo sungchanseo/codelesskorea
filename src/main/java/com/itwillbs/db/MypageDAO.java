@@ -405,6 +405,7 @@ public class MypageDAO {
 				// 5. 데이터 처리
 				// DB정보(rs) -> DTO -> list
 				while (rs.next()) {
+
 					ProductDTO product= new ProductDTO();
 					product.setProduct_id(rs.getInt("product_id"));
 		            product.setTitle(rs.getString("title"));
@@ -426,6 +427,7 @@ public class MypageDAO {
 		            product.setBrand(rs.getInt("brand"));
 		            product.setColor(rs.getInt("color"));
 		            getAdminList.add(product);
+
 				} // while
 				
 			} catch (Exception e) {
@@ -528,6 +530,7 @@ public class MypageDAO {
 		
 		// DB정보(rs) -> DTO -> list
 		while (rs.next()) {
+
 			ProductDTO product= new ProductDTO();
 			product.setProduct_id(rs.getInt("product_id"));
             product.setTitle(rs.getString("title"));
@@ -549,6 +552,7 @@ public class MypageDAO {
             product.setBrand(rs.getInt("brand"));
             product.setColor(rs.getInt("color"));
             getAdminList.add(product);
+
 		}
 		
 		System.out.println(" DAO : 상품관리 조회성공! ");
@@ -566,26 +570,6 @@ public class MypageDAO {
 		//검색처리 끝
 		///////////////////////////////////////////////////////////////////////////////
 
-		
-		
-//		// 관리자 - 상품관리 리스트 카운트
-//		public int getAdminListCount() {
-//		    int count = 0;
-//		    try {
-//		        con = getCon();
-//		        sql = "SELECT COUNT(*) FROM MYPAGE";
-//		        pstmt = con.prepareStatement(sql);
-//		        rs = pstmt.executeQuery();
-//		        if(rs.next()) {
-//		            count = rs.getInt(1);
-//		        }
-//		    } catch (Exception e) {
-//		        e.printStackTrace();
-//		    } finally {
-//		        closeDB();
-//		    }
-//		    return count;
-//		}
 
 
 		public int mypageDelete(int product_id) {
