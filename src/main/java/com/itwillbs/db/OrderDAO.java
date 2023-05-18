@@ -100,7 +100,7 @@ public class OrderDAO {
 						// 주문 번호 등록
 						sql = "insert into orderr(order_id,receiver_id,product_id,seller_id,receiver_name,"
 								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2) "
-								+ " values(?, ?, ?, ?,?,?,?,?,?)";
+								+ " values(?,?,?,?,?,?,?,?,?)";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setInt(1, order_id);
 						pstmt.setString(2, dto.getId());
@@ -115,21 +115,28 @@ public class OrderDAO {
 						pstmt.executeUpdate();
 						System.out.println("DAO : orderr 테이블 주문번호, 주문자/판매자 계정, 상품번호 등록 완료");
 						
-						// 배송지정보 자동저장
-						sql = "select * from orderr where order_id=?";
-						pstmt = con.prepareStatement(sql);
-						pstmt.setInt(1, dto.getOrder_id());
-						// sql 실행
-						rs = pstmt.executeQuery();
-						// 데이터 처리
-						if(rs.next()) {
-							dto.setReceiver_name(rs.getString("receiver_name"));
-							dto.setReceiver_addr1(rs.getString("receiver_addr1"));
-							dto.setReceiver_addr2(rs.getString("receiver_addr2"));
-							dto.setReceiver_post(rs.getInt("receiver_post"));
-							dto.setReceiver_phone(rs.getString("receiver_phone"));
-						} //if
+						dto.setReceiver_name(dto.getName());
+						dto.setReceiver_addr1(dto.getAddress());
+						dto.setReceiver_addr2(dto.getAddress2());
+						dto.setReceiver_phone(dto.getPhone_number());
+						dto.setReceiver_post(dto.getPost_number());
 						System.out.println("DAO : 배송정보 가져오기 완료");
+						
+//						// 배송지정보 자동저장
+//						sql = "select * from orderr where order_id=?";
+//						pstmt = con.prepareStatement(sql);
+//						pstmt.setInt(1, dto.getOrder_id());
+//						// sql 실행
+//						rs = pstmt.executeQuery();
+//						// 데이터 처리
+//						if(rs.next()) {
+//							dto.setReceiver_name(rs.getString("receiver_name"));
+//							dto.setReceiver_addr1(rs.getString("receiver_addr1"));
+//							dto.setReceiver_addr2(rs.getString("receiver_addr2"));
+//							dto.setReceiver_post(rs.getInt("receiver_post"));
+//							dto.setReceiver_phone(rs.getString("receiver_phone"));
+//						} //if
+//						System.out.println("DAO : 배송정보 가져오기 완료");
 						
 						
 					} catch (Exception e) {
