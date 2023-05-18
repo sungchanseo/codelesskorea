@@ -4,8 +4,8 @@
 <html>
 <head>
 	<title>CodeLess</title>
-	<jsp:include page="../head.jsp"></jsp:include>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
 <!-- 	<script src="./js/chat.js"></script> -->
 	<style type="text/css">	
 		#boxTable *{
@@ -134,7 +134,7 @@
 
 </head>
 <body>
-	<jsp:include page="../nav.jsp"/>
+<%@ include file="../nav.jsp"%><!-- nav삽입 -->
     <div class="col-sm-8" style="margin:auto;">
  	<div id="right" style="margin-left: 150px; width: 100%;">
         <table class="table" style="margin: 0 auto;">

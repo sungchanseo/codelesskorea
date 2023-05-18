@@ -38,8 +38,9 @@
 		  <c:if test="${id!='admin' && id!='admin@gmail.com' }">
 		  <h4> 마이페이지</h4>
 		   <hr style="border: 0;height: 3px; background-color: white;">
-		  <h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5>
-		  <h5 id="sale"> 판매목록 <small>▼</small></h5>
+		   <ul>
+		  <li><h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5></li>
+		  <li><h5 id="sale"> 판매목록 <small>▼</small></h5></li>
 			<ul id="sDrop">
 				<li onclick="location.href='./MypageSalesList.my'" style="cursor: pointer; color: #ffffff;"
 				onmouseover="this.style.color='#ffba5a'" 
@@ -52,9 +53,9 @@
 				상품 등록
 				</li>
 			</ul>
-		  <h5 onclick="location.href='./MypagePurchaseList.my'"> 구매목록</h5>
-		  <h5 onclick="location.href='./LikeList.my'"> 찜목록</h5>
-		  <h5 id="qna"> 1:1문의 <small>▼</small></h5>
+		  <li><h5 onclick="location.href='./MypagePurchaseList.my'"> 구매목록</h5></li>
+		  <li><h5 onclick="location.href='./LikeList.my'"> 찜목록</h5></li>
+		  <li><h5 id="qna"> 1:1문의 <small>▼</small></h5></li>
 		    <ul id="qDrop">
 		    	<li onclick="location.href='./UserQNAList.qn'" style="cursor: pointer; color: #ffffff;"
 				onmouseover="this.style.color='#ffba5a'" 
@@ -68,16 +69,20 @@
 		  		</li>
 		    </ul>
 		 
-		  <h5 onclick="location.href='./ChatBox.ch'"> 채팅목록  </h5>
+		  <li><h5 onclick="location.href='./ChatBox.ch'"> 채팅목록  </h5></li>
+		  </ul>
 		  </c:if>
 		  
 		  <c:if test="${id=='admin' || id=='admin@gmail.com' }">
 		  <h4> 관리자페이지</h4>
 		  <hr style="border: 0;height: 1px; background-color: black;">
-		  <h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5>
-		  <h5 onclick="location.href='./MemberList.me'"> 회원관리</h5>
-		  <h5 onclick="location.href='AdminProductList.my'"> 상품관리  </h5>
-		  <h5 onclick="location.href='./AdminQNAList.qn'"> 1:1문의관리</h5>
+		  <ul>
+		  <li><h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5></li>
+		  <li><h5 onclick="location.href='./MemberList.me'"> 회원관리</h5></li>
+		  <li><h5 onclick="location.href='AdminProductList.my'"> 회원관리</h5></li>
+		  <li><h5 onclick="location.href='./AdminQNAList.qn'"> 1:1문의관리</h5></li>
+		  </ul>
 		  </c:if>
+		  
 		  </div>
 		  </div>

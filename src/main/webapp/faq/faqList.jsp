@@ -51,7 +51,7 @@
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;">
+		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;"  placeholder="검색어를 입력해주세요">
 		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
@@ -60,7 +60,7 @@
 <!-- 카테고리 기능 -->
 <form action="./FaqList.fa" method="post">
 <p id="category_search">
-<button onclick="./FaqList.fa" class="btn btn-secondary" style="color:black;" >전체</button>
+<button onclick="./FaqList.fa" class="btn btn-secondary" style="color:black;"  >전체</button>
 <button name="category" value="이용정책" class="btn btn-secondary" style="color:black;">이용정책</button>
 <button name="category" value="구매" class="btn btn-secondary" style="color:black;">구매</button>
 <button name="category" value="판매" class="btn btn-secondary" style="color:black;">판매</button>

@@ -46,6 +46,8 @@ function kakaoLogout() {
 		}
 	  });
 	}; //스크롤 내리면 회색, 올리면 투명
+	
+
   
 </script>
 <!-- 
