@@ -138,8 +138,8 @@ public class OrderDAO {
 //						
 						// 주문 번호 등록
 						sql = "insert into orderr(order_id,receiver_id,product_id,seller_id,receiver_name,"
-								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2,order_status) "
-								+ " values(?,?,?,?,?,?,?,?,?,?)";
+								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2,order_status,order_date) "
+								+ " values(?,?,?,?,?,?,?,?,?,?,now())";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setInt(1, order_id);
 						pstmt.setString(2, dto.getId());
@@ -252,7 +252,6 @@ public class OrderDAO {
 				
 				// 데이터 처리
 				if(rs.next()) {
-//					dto.setProduct_id(rs.getInt("product_id"));
 					dto.setProduct_image(rs.getString("product_image"));
 					dto.setTitle(rs.getString("title"));
 					dto.setPrice(rs.getInt("price"));
@@ -311,13 +310,18 @@ public class OrderDAO {
 				
 				if(rs.next()) {
 					dto.setOrder_id(dto.getOrder_id());
-					dto.setOrder_status(rs.getString("order_status"));
-					dto.setPaid_amount(dto.getPaid_amount());
+					dto.setPaid_amount(rs.getString("paid_amount"));
 					dto.setReceiver_name(rs.getString("receiver_name"));
 					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
 					dto.setReceiver_addr2(rs.getString("receiver_addr2"));
 					dto.setReceiver_post(rs.getInt("receiver_post"));
 					dto.setReceiver_phone(rs.getString("receiver_phone"));
+					dto.setOrder_status(rs.getString("order_status"));
+					dto.setReceiver_id(rs.getString("receiver_id"));
+					dto.setSeller_id(rs.getString("seller_id"));
+					dto.setTracking_number(rs.getInt("tracking_number"));
+					dto.setOrder_date(rs.getDate("order_date"));
+					dto.setPayment(rs.getString("payment"));
 				}// if
 				System.out.println("DAO : 주문상태 DTO 추가 완료");
 				
