@@ -99,7 +99,7 @@ style="  background-color: transparent !important;box-shadow: none !important;" 
       </a>
       <div class="dropdown-menu">
            <a class="dropdown-item" href="./NoticeList.no">공지사항 </a>
-		   <a class="dropdown-item" href="./FaqList.fa">자주하는질문</a>
+		   <a class="dropdown-item" href="./FaqList.fa">자주묻는질문</a>
 		   <a class="dropdown-item" href="./UserQNAList.qn">1:1문의</a>
       </div>
    	  </li>

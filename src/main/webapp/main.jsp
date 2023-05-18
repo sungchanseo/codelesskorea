@@ -326,9 +326,9 @@ $('document').ready(function() {
 		<img src="images/airpot.jpg" alt="your-image" style="max-width: 400px;max-height: 300px">
 			</div>
 			<div class="col-md-6 col-lg-8"data-aos="fade-up">
-			<p style="font-size: 20px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
-			<br>
-			<br>
+			<p style="font-size: 20px;"><br><br>"코드리스(CODELESS)"는 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">짝을 잃어버린 무선이어폰을 다시 잇는 소중한 공간</span>입니다.
+			<br>잃어버린 사람들만의 이야기를 만들어가며, 서로를 돕고 응원하는 경험을 해보세요.<br>
+			코드리스와 함께라면 음악과 추억을 계속해서 나눌 수 있어요.</p>
 			<button type="button" onclick="location.href='./ProductWrite.pr';" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
 		</div>
 		</div>
@@ -355,7 +355,7 @@ $('document').ready(function() {
   <p>브랜드, 모델, 색상, 짝 등</p>
   <p>원하는 옵션을 선택하여</p>
   <p> 매칭을 시작하세요!</p>
-  <p>(로그인후 이용가능)</p>
+  <p>(로그인 후 이용가능)</p>
 </div>
             
           </div>
@@ -365,7 +365,7 @@ $('document').ready(function() {
                       <div class="image-with-text text-center">
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185572.png" alt="your-image">
   <h2>주문서작성</h2>
-  <p>원하는 상품을 선택후, 주문서를 작성하세요(택배거래만 해당)</p>
+  <p>원하는 상품을 선택 후, <br>주문서를 작성하세요<br>(택배거래만 해당)</p>
 </div>
             
           </div>
@@ -389,7 +389,7 @@ $('document').ready(function() {
   <img src="https://cdn-icons-png.flaticon.com/128/4185/4185445.png" alt="your-image">
   <h2>거래완료</h2>
   <p>구매자가 물건을 수령한 뒤에</p>
-  <p>거래완료할 수 있어 보다 안전합니다</p>
+  <p>거래완료할 수 있어 <br>보다 안전합니다</p>
   <p></p>
 </div>
           </div>
