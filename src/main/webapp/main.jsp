@@ -6,6 +6,13 @@
 <head>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <%@ include file="../head.jsp"%>
+<script>
+  (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+
+  ChannelIO('boot', {
+    "pluginKey": "482195be-003f-4845-a69f-7e3702ca7231"
+  });
+</script>
 <script type="text/javascript">
 $('document').ready(function() {
 	//지역 변수생성
@@ -297,7 +304,7 @@ $('document').ready(function() {
 							</div>
 						</div>
 						<br>
-						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="checkData();">
+						<input type="button" value="검색하기" class="btn btn-primary text-white" style="width: 500px; margin:auto; margin-top: 50px;" onclick="checkData();" id="matbutton">
 					</div>
 				</form>
 			</div>
@@ -345,6 +352,7 @@ $('document').ready(function() {
   <p>브랜드, 모델, 색상, 짝 등</p>
   <p>원하는 옵션을 선택하여</p>
   <p> 매칭을 시작하세요!</p>
+  <p>(로그인후 이용가능)</p>
 </div>
             
           </div>

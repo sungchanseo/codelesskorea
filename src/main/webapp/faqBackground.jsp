@@ -5,7 +5,7 @@
     <div class="col-md-6 text-left">
             <h1 id="login" style="font-family: 'TheJamsil5Bold';margin-top: 120px;color: white;">자주 묻는 질문</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="Main.me">Main으로</a></li>
+              <li><a href=""></a></li>
             </ul>
           </div>
 </div>

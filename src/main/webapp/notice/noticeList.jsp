@@ -63,7 +63,7 @@
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="form-control" style="width:30%; display:inline;">
+		<input type="text" name="search" class="form-control" style="width:30%; display:inline;" placeholder="검색어를 입력해주세요">
 		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="35px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
@@ -89,7 +89,7 @@
 <div style= "float: right;">
 
 <!-- 관리자만 글작성할 수 있게 해주세요 -->
-<c:if test="${id.equals('admin@gmail.com') }">
+<c:if test="${id.equals('admin') }">
 <button type="button" class="btn btn-primary" onclick="location.href='./NoticeWrite.no'">글작성</button>
 </c:if>
 <button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
