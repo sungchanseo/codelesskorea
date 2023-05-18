@@ -6,12 +6,54 @@
 	<title>CodeLess</title>
 	<jsp:include page="../head.jsp"></jsp:include>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
+
+	<!-- 목록없음 문구에 적용되는 스타일 -->
+		<style>
+    .custom-style {
+        border: none;
+        background: none;
+        font-size: 1.2em;
+        transition: transform 0.3s ease-in-out;
+        border: none;
+        outline: none;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInAnimation 1s ease-in forwards;
+    }
+
+    .custom-style i {
+        font-size: 1.5em;
+        color: #00cc44;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .custom-style:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+        			
+		</style>
+
 <!-- 	<script src="./js/chat.js"></script> -->
-	<style type="text/css">	
-		#boxTable *{
-			font-family: 'TheJamsil5Bold' !important;
-/* 			display: block; */
+	<style type="text/css">
+		#boxTable * {
+		    font-family: 'TheJamsil5Bold', !important;
+		    /* display: block; */
 		}
+
 		.chatNameM { font-size: 1em; color: #f6df66;}
 		.chatContentM { font-size: 1.3em; color: #3e3d43;}
 		.chatNameY { font-size: 1.3em; color: #6589f6;}
@@ -31,8 +73,6 @@
 			margin-left: 30px;
  			padding: 0.2em 0.7em; 
 			position: absolute;
-			
-		
 		}
 		.chatbox {position: relative;}
 	</style>
@@ -71,7 +111,9 @@
 	    		},
 	    		success: function(data) {
 	    			if(data == "") {
-	    				$('#boxTable').html('<span class="chatContentY">받은메세지가 없습니다.</span>');
+	    				$('#boxTable').addClass('custom-style').html(
+	    					    	'<i class="fas fa-paper-plane"></i>   받은 메세지가 없습니다!<br>'
+	    				);
 	    				return;
 	    			}
 	    			$('#boxTable').html('');
@@ -135,24 +177,17 @@
 </head>
 <body>
 	<jsp:include page="../nav.jsp"/>
-    <div class="col-sm-8" style="margin:auto;">
- 	<div id="right" style="margin-left: 150px; width: 100%;">
-        <table class="table" style="margin: 0 auto;">
-            <thead>
-                <tr>
-                    <th><span class="chatContentY">주고받은 메시지 목록</span><br></th>
-                </tr>
-            </thead>
-            <div style="overflow-y: auto; width: 100%; max-height: 450px;">
-                <table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd; margin: 0 auto;">
-                    <tbody id="boxTable">
-                    </tbody>
-                </table>
-            </div>
-        </table>
-    </div>
-    </div>
-    </div>
+	<div class=row style="margin-left: 100px;"> 
+	<jsp:include page="../mySide.jsp"/>
+	
+ 	<div class="col-md-10">
+ 	<div id="right" style="width: 80%">
+ 	<h1 style="font-family: 'TheJamsil5Bold';">채 팅 목 록</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
+
+
+    <div id="boxTable" style="text-align: center;">
+
     
 	<%
 //         String messageContent = null;
@@ -211,6 +246,11 @@
         </script>
 
 	</c:if>
+	</div>
+    </div>
+    </div>
+    </div>
+    </div>
     <jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
