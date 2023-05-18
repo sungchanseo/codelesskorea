@@ -37,7 +37,7 @@
 		  
 		  <c:if test="${id!='admin' && id!='admin@gmail.com' }">
 		  <h4> 마이페이지</h4>
-		  <hr style="border: 0;height: 1px; background-color: black;">
+		   <hr style="border: 0;height: 3px; background-color: white;">
 		  <h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5>
 		  <h5 id="sale"> 판매목록 <small>▼</small></h5>
 			<ul id="sDrop">

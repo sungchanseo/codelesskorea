@@ -13,7 +13,7 @@
     <div class="form-group" id="log-form">
      <div style="text-align: center;"><a class="navbar-brand" style="font-size: 40px;"><span>비밀번호 찾기</span></a></div>
      
-      <input type="email" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;">
+      <input type="text" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;">
 	 
       <input type="text" class="form-control" placeholder="등록하신 연락처 정보를 '-'를 포함하여 입력해주세요." name="phone_number">
 

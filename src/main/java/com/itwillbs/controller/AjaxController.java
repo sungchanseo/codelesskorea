@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.action.member.AjaxAction;
 import com.itwillbs.action.member.AjaxBlockedAction;
+import com.itwillbs.action.member.AjaxEmail;
 import com.itwillbs.action.member.AjaxNickAction;
 import com.itwillbs.action.mypage.AjaxLikedAction;
 import com.itwillbs.action.mypage.AjaxProductDelAction;
@@ -130,6 +131,17 @@ public class AjaxController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
+		}
+		else if(command.equals("/AjaxEmail.aj")) {
+			System.out.println("/AjaxEmail.aj");
+			action = new AjaxEmail();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 

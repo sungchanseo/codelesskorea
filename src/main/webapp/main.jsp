@@ -477,18 +477,19 @@ $('document').ready(function() {
     
 
 
-    <section class="section bg-image overlay" style="background-color: FFFFCC;">
+    <section class="section bg-image overlay" style="background-image: url(images/background-6556414_1920.jpg)">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 상품을 등록해보세요!</h2>
+              <h2 class="text-white"  style="font-family:'TheJamsil5';">지금 바로 매칭을 시작해보세요!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="./ProductWrite.pr" class="btn btn-outline-white-primary py-3 text-white px-5">상품 올리기</a>
+              <a href="#match" class="btn btn-outline-white-primary py-3 text-white px-5">매칭하러 가기</a>
             </div>
           </div>
         </div>
-      </section> 
+      </section> <!-- 섹션4 끝  -->
+
 
 	<%@include file="../footer.jsp"%>
 

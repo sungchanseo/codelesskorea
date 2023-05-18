@@ -17,10 +17,9 @@ public class MemberDTO {
 	private int post_number;
 	private String address2;
 	private String email;
+	
+	
 
-	
-	
-	
 	public String getEmail() {
 		return email;
 	}
@@ -29,7 +28,8 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+
 	public int getPost_number() {
 		return post_number;
 	}

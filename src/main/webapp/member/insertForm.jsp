@@ -24,6 +24,42 @@
 	
 	$(document).ready(function () {
 		
+		$('#email').keyup(function(){
+
+			  if(!$('#email').val().includes('@') && !$('#email').val() == ""){
+				  $('#emsg').css('color','red');
+				  $('#emsg').text("이메일 형식으로 입력해주세요.");  
+				  $('#submit').attr('disabled','disabled'); 
+				  return;
+			  }//이메일형식으로 입력하지않을 시 제어 
+			  $.ajax({
+				  url : "./AjaxEmail.aj",
+				  data: {"email": $('#email').val()},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes" && !$('#email').val() == ""){
+					
+					  $('#emsg').css('color','green');
+					  $('#emsg').text("사용가능한 이메일입니다.");
+					  $('#submit').removeAttr('disabled');
+					  return;
+					  }else if ( result=="no" && !$('#email').val() == ""){
+					 
+					  $('#emsg').css('color','red');
+					  $('#emsg').text("이미 존재하는 이메일입니다.");  
+					  $('#submit').attr('disabled','disabled');
+					  return;
+					  }
+				  }//success 
+			  });// ajax
+			  if($('#email').val() == ""){
+				  $('#emsg').css('color','red');
+				  $('#emsg').text("이메일을 입력해주세요.");  
+				  $('#submit').attr('disabled','disabled'); 
+				  return;
+			  }
+		  }); // 이메일 중복확인 
+		
 		$('#id').keyup(function(){
 
 			 /*  if(!$('#id').val().includes('@') && !$('#id').val() == ""){
@@ -233,6 +269,10 @@
 					 <span id="nickmsg"></span>
 					 <br> 
 					 
+			    이메일 <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요.">
+					 <span id="emsg"></span>
+					 <br>		 
+					 
 				
 				연락처 <input type="text" class="form-control"
 					name="phone_number" placeholder="010-0000-0000 형태로 입력해주세요." id="phone_number" maxlength="13">
@@ -254,7 +294,8 @@
 						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."></td>
 					<tr>
 				</table>
-				<br> 프로필사진 <input type="file" name="user_image">
+				<br> 프로필사진 <br>
+				       <input type="file" name="user_image">
 				 <br><br>
 				 
 				 
