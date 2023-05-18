@@ -222,8 +222,10 @@
 	</script>
 
 </head>
-	<jsp:include page="../nav.jsp"/>
 <body>
+	<jsp:include page="../nav.jsp"/>
+	<div class=row style="margin-left: 100px;"> 
+	<jsp:include page="../mySide.jsp"/>
 <!--  	<div class="col-sm-8" style="margin:auto;"> -->
 <!-- 	<div class="container bootstrap snippet"> -->
 <!-- 		<div class="row"> -->
@@ -236,8 +238,12 @@
 						<div class="clearfix"></div>
 <!-- 					</div> -->
 <!--                     <div id="chat" class="panel-collapse collapse in"> -->
-<div class="col-sm-8" style="margin:auto;">
- <div id="right" style="margin-left: 150px; width: 80%;">
+
+	<div class="col-md-10">
+ 	<div id="right" style="width: 80%">
+ 	<h1 style="font-family: 'TheJamsil5Bold';">채 팅 목 록</h1>
+	<hr style="border: 0;height: 3px; background-color: black;">
+
 					<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto;">
 					</div>
 <!-- 					<div class="portlet-footer"> -->
@@ -337,6 +343,7 @@
 	        });
 	    });
     </script>
+    </div>
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

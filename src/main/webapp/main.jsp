@@ -320,6 +320,9 @@ $('document').ready(function() {
 			</div>
 			<div class="col-md-6 col-lg-8"data-aos="fade-up">
 			<p style="font-size: 20px;">불필요한 중개업체를 거치지 않고 바로 판매자와 구매자가 <span style="box-shadow: inset 0 -10px 0 #F9F19D;">직접 거래할 수 있습니다</span>. 이를 통해 거래 과정에서 발생할 수 있는 문제를 최소화하고, 더욱 합리적인 가격으로 제품을 구매할 수 있습니다.</p>
+			<br>
+			<br>
+			<button type="button" onclick="location.href='./ProductWrite.pr';" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
 		</div>
 		</div>
 	</div>

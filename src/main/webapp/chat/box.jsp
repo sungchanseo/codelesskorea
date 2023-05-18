@@ -14,6 +14,7 @@
 		<style>
     .custom-style {
         border: none;
+        padding: 20%;
         background: none;
         font-size: 1.2em;
         transition: transform 0.3s ease-in-out;
