@@ -13,6 +13,7 @@ import com.itwillbs.db.ListDTO;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.MypageDAO;
+import com.itwillbs.db.ProductDTO;
 
 public class AdminProductListAction implements Action {
 
@@ -75,21 +76,23 @@ public class AdminProductListAction implements Action {
 		
 		// 페이징 처리*****************************
 		// 한 페이지에서 보여줄 글의 개수 설정
-		int pageSize = 20;
+		int pageSize = 12;
 		// 현 페이지의 페이지값을 확인
 
-
-//		// BoardDAO 객체 생성
-//		MypageDAO mdao = new MypageDAO();
-		// 글 개수 체크하는 메서드, 정보 가져오는 메서드
-		// getBoardCount(), getBoardList()
-
 		String pageNum = request.getParameter("pageNum");
+		int startRow;
+		int endRow;
+		
 		if(pageNum == null)	pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;
-		int endRow = currentPage*pageSize+1;
-
+		
+		if(search != null) {
+			startRow = (currentPage-1)*pageSize+1;
+			endRow = currentPage*pageSize+1;
+		}else {
+			startRow = (currentPage-1)*pageSize;
+			endRow = currentPage*pageSize+1;
+		}
 //		List<ListDTO> adminsCProductList = mdao.getAdminList(startRow, pageSize);
 		
 		//////////////////////////////////////////////////////////
@@ -98,11 +101,13 @@ public class AdminProductListAction implements Action {
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
 		
-		List<ListDTO> adminList = null;
+		List<ProductDTO> adminList = null;
 		if(search != null) {
+			
 			//검색어가 있는 경우
 			adminList = mdao.getAdminList(startRow, pageSize, search, category); 
 		}else {
+			
 			//검색어가 없는 경우
 			adminList = mdao.getAdminList(startRow, pageSize);
 		}
@@ -111,6 +116,7 @@ public class AdminProductListAction implements Action {
 		int pageBlock;
 		int startPage;
 		int endPage;
+		
 		
 		if(count !=0) {
 			pageCount = count/pageSize + (count%pageSize == 0?0:1);
