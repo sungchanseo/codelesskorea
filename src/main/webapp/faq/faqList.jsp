@@ -113,7 +113,7 @@
 <div style= "float: right;">
 
 <!-- Faq 글쓰기는 관리자만 가능  -->
-<c:if test="${id.equals('admin@gmail.com') }">
+<c:if test="${id.equals('admin') }">
 <button type="button" class="btn btn-primary" onclick="location.href='./FaqWrite.fa'">글쓰기</button>
 </c:if>
 <button type="button" class="btn btn-secondary" onclick="location.href='./Main.me'">메인으로</button>
