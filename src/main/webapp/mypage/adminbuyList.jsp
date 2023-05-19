@@ -33,7 +33,8 @@ span {
 
 	<%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 	<br>
-
+	<br>
+	<br>
 <h4 style="font-family: 'TheJamsil5Bold';" align="center">회원 :<span> ${requestScope.id}</span> 의 구매목록</h4>
 <hr style="border: 0;height: 3px; background-color: gray;" width="95%";>
 
@@ -58,8 +59,17 @@ span {
 		      <td><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		      <td>${dto.price }</td>
 		      <td>${dto.seller_id }</td>
-		      <td>${dto.buyer_id }</td>
-		      <td>${dto.order_id }</td>
+		      <td>${requestScope.id}</td>
+		      <td>	<c:choose>
+			    <c:when test="${dto.order_id ne 0}">
+			        <!-- 값이 0이 아닌 경우에만 표시 -->
+			        <p><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">${dto.order_id}</a></p>
+			    </c:when>
+			    <c:otherwise>
+			        <p>-</p>
+			    </c:otherwise>
+			</c:choose>
+            <!-- 값이 0인 경우에는 아무것도 표시하지 않음 --></td>
 		      <td>${dto.order_date }</td>
 		      <td>${dto.order_status }</td>
 

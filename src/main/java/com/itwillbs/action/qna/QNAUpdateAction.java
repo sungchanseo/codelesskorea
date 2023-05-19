@@ -34,14 +34,23 @@ public class QNAUpdateAction implements Action{
 		}
 		
 		
-		// 차단 사용자 세션제어
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
 		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id);
-		boolean blocked = dto.getBlocked();
+		MemberDTO mdto = dao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
 		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+	
+		
 		
 		//2.전달되는 파라미터 정보저장 
 		int bno = Integer.parseInt(request.getParameter("bno"));

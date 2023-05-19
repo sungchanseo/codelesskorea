@@ -201,7 +201,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border: 1px solid #ddd;
+/*   border: 1px solid #ddd; */
 }
 
 
@@ -291,13 +291,13 @@
   
   
 	.like-btn {
-		  border: none;
+/* 		  border: 1px solid;
 		  background: none;
 		  cursor: pointer;
 		  font-size: 1.2em;
 		  transition: transform 0.3s ease-in-out;
-		  border: none; /* 버튼 주변의 테두리 제거 */
-  		  outline: none; /* 포커스 상자 제거 */
+		  /* border: none; /* 버튼 주변의 테두리 제거 */ */
+  		/*   outline: none; /* 포커스 상자 제거 */ */ */
   		  
 	}
 		
@@ -347,11 +347,12 @@
 
  <!-- 사이드바 -->
  <div class="row" style="margin-left: 100px;">
+ <!-- 사이드바 -->
 <%@include file="../mySide.jsp" %>
  <!--   사이드바 -->
  
 <div class="col-md-10">
- <div id="right">
+ <div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px 20px 20px 20px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius:5px; height: 800px;">
 <h1 style="font-family:'TheJamsil5Bold';" align=left  >${product.title}</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 <div class="product-table">
@@ -377,16 +378,16 @@
 			<div class="dots-container"></div>
 		</div>
 		</th>
-		<th rowspan="2">
-		   	<table>
+		<th rowspan="2" >
+		   	<table >
 		     
 				<tr style="text-align: center; font-size: 20px; ">        
-					<td style="text-align: left; font-size: 30px;  padding-left: 40px;">
+					<td style="text-align: left; font-size: 30px;  padding-left: 40px;color: black;">
 						# ${brandName} # ${modelName} # ${colorName} # ${product.parts}
 					</td>
 				</tr> 
 				<tr>
-					<td style="text-align: left; font-size: 30px;  padding-left: 40px;" ><fmt:formatNumber> ${product.price} </fmt:formatNumber>원</td>
+					<td style="text-align: left; font-size: 30px;  padding-left: 40px;color: black;" ><fmt:formatNumber> ${product.price} </fmt:formatNumber>원</td>
 				</tr>
 				<tr>
 				    <td style="text-align: left;  padding-left: 40px;">상품 등급 : ${product.grade == 1 ? 'A' : product.grade == 2 ? 'B' : product.grade == 3 ? 'C' : ''} 급 </td>
@@ -394,13 +395,30 @@
 				<tr>
 				  <td style="text-align: left;  padding-left: 40px;">거래 지역 : ${product.city}</td>
 				</tr>
-	
+		<tr>
+	    <th style="text-align: left;padding-left: 40px;">
+	     <!-- 찜 버튼 -->
+	<%-- 		<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
+			</button> --%>
+			
+			<!-- 찜수 -->
+			
+			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-heart"></i> 찜수 ${product.like_count }</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-eye"></i>조회수 ${product.read_count}</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-comment"></i> 채팅수 ${product.chat_count}</span>
+			
+	    </th>
+	</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<div style="text-align: center; margin-top: 10px; ">
 							<c:if test="${ sessionScope.id != product.user_id }">
+							<button class="like-btn btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
+				 			 <i class="fa fa-heart"></i><span >찜${product.like_count }</span>
+							</button>
 							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
+								<hr style="border: 0;height: 3px; background-color: lightgray;">
 							</c:if>
 					    </div>
 					</td>
@@ -409,21 +427,20 @@
 		</th>
 	</tr>
 	<tr>
-	    <th style="text-align: center;">
+<%-- 	    <th style="text-align: center;">
 	     <!-- 찜 버튼 -->
 			<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
-				  <i class="fa fa-heart"></i>
 			</button>
+			
 			<!-- 찜수 -->
 			
-			<span style="font-size: 0.8em; color: gray;"> 찜수 ${product.like_count }
-			<button  class="like-btn eye-btn" ><i class="fa fa-eye"></i></button> &nbsp 조회수 ${product.read_count}
-			<button  class="like-btn comment-btn" ><i class="fa fa-comment"></i></button> &nbsp 채팅수 ${product.chat_count}
-			</span>
-	    </th>
+			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-heart"></i> 찜수 ${product.like_count }</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-eye"></i>조회수 ${product.read_count}</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-comment"></i> 채팅수 ${product.chat_count}</span>
+			
+	    </th> --%>
 	</tr>
-	<tr>
-	</tr>
+
 	<c:if test="${ sessionScope.id eq 'admin@gmail.com' or product.user_id eq sessionScope.id }">
 <table>
 	<tr>
@@ -456,10 +473,10 @@
 
 
 <!-- 		<tr> -->
-<table>
+<table style="margin-top: 40px;">
 	<tr style="text-align: left;">
 	
-		<td style="text-align: left; padding-left: 1.7%; font-size: 1.5em;" colspan="4">${product.content}
+		<td style="text-align: left; padding-left: 1.7%; font-size: 1.3em;" colspan="4">${product.content}
 	</tr>
 	<tr><td colspan="4">&nbsp</td></tr>
 	<tr>

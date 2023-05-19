@@ -25,14 +25,22 @@ public class UserQNAcontentAction implements Action{
 			return forward;
 		}
 		
-		// 차단 사용자 세션제어
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
 		MemberDAO dao = new MemberDAO();
 		MemberDTO mdto = dao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
 		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+
 		
 		request.setCharacterEncoding("UTF-8");
 		// 1. 전달받은 데이터 저장(bno, pageNum)

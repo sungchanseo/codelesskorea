@@ -132,14 +132,14 @@ font-weight: bold !important;
 
 <!-- 검색창기능 -->
 <br>
-<div id="admin_search" align="center">
+<div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./MemberList.me" method="post">
-		<select name="category">
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">아이디</option>
 			<option value="content">전화번호</option>
 		</select>
-		<input type="text" name="search" class="input_box" style="height:40px; width:50%;">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <br>
@@ -200,27 +200,27 @@ font-weight: bold !important;
 	   	</c:forEach>
 	</tbody>
 </table>
-	</div></div>
 
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 0px;">
 			  	<c:if test="${startPage > pageBlock }"> 
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 				</c:if>
 			   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${i }"><span>${i }</span></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${i }&category=${category }&search=${search }"><span>${i }</span></a></li>
 				</c:forEach>
 			    <c:if test="${endPage<pageCount }">
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock}&category=${category }&search=${search } "><span>다음</span></a></li>
 				</c:if>
 			  </ul>
-			 
+			 <br>
 	  		</div>
-	<br>
-
+	
+	
+<br>
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
-
+</div>
 </div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

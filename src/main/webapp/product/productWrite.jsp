@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
+<%@page import="com.itwillbs.commons.JSForward"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +19,22 @@
 
 <%@include file="../nav.jsp" %>
 <%@ include file="../background.jsp"%> <!-- END 배경 -->
+
+<%
+//세션에서 아이디 받아옴
+String id = (String)session.getAttribute("id");
+MemberDAO mdao = new MemberDAO();
+MemberDTO mdto = mdao.getMember(id);
+if(mdto == null) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+}
+boolean blocked = mdto.getBlocked();
+//차단사용자 세션제어
+if(blocked == true) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberInfo.my");
+}
+%>
+
 <script type="text/javascript">
 
 function addr() {
@@ -102,6 +121,7 @@ function toggleAddressField() {
   }//script끝
 
 </script>
+
 
  <!-- 사이드바 -->
 <div class="row" style="margin-left: 100px;">

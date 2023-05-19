@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.commons.JSForward"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -148,13 +151,13 @@
 	    			'</span>' +
 // 	    			'</h5>' +
 	    			'</td>' + 
-	    			'<td class="chatbox">' +
+	    			'<td class="chatbox" style="width: 1000px;">' +
 // 	    			'<h5>' + 
 	    			'<br>' +
 	    			'<span class="chatContentM">' +
 	    			chatContent +
 	    			'</span>' +
-	    			'<br>' +
+
 // 	    			'<span class="label label-info">' + 
 // 	    			unread + 
 // 	    			'</span>' +
@@ -177,6 +180,20 @@
 
 </head>
 <body>
+<%
+String id = (String)session.getAttribute("id");
+MemberDAO mdao = new MemberDAO();
+MemberDTO mdto = mdao.getMember(id);
+if(mdto == null) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+}
+boolean blocked = mdto.getBlocked();
+//차단사용자 세션제어
+if(blocked == true) {
+	JSForward.alertAndBack(response, "잘못된 접근입니다!");
+}
+%>
+
 	<jsp:include page="../nav.jsp"/>
 	<div class=row style="margin-left: 100px;"> 
 	<jsp:include page="../mySide.jsp"/>

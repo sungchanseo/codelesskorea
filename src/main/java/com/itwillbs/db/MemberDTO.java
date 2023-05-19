@@ -17,8 +17,18 @@ public class MemberDTO {
 	private int post_number;
 	private String address2;
 	private String email;
+	private Boolean withdrawal;
 	
-	
+
+	public Boolean getWithdrawal() {
+		return withdrawal;
+	}
+
+
+	public void setWithdrawal(Boolean withdrawal) {
+		this.withdrawal = withdrawal;
+	}
+
 
 	public String getEmail() {
 		return email;

@@ -38,14 +38,30 @@ public class MemberListAction implements Action {
 			return forward;
 		}
 
-		//차단사용자 세션제어
-//		MemberDAO qdao = new MemberDAO();
-//		MemberDTO qdto = qdao.getMember(id);
-//		boolean blocked = qdto.getBlocked();
-//		if(blocked == true) {
-//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//			return forward;
-//		}
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
+		
+		//탈퇴회원 세션제어
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		
+		boolean withdrawal = mdto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		
 		// 회원정보 목록 - MemberDAO : getMemberList()
@@ -76,7 +92,7 @@ public class MemberListAction implements Action {
 		
 		// 페이징 처리*****************************
 		// 한 페이지에서 보여줄 글의 개수 설정
-		int pageSize = 10;
+		int pageSize = 7;
 		// 현 페이지의 페이지값을 확인
 
 		

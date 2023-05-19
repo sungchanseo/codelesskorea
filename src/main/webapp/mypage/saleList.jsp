@@ -116,7 +116,7 @@
 		  <table class="table" id="nttable">
 		   <thead style="background-color: #F6F6F6;">
 		   <tr>
-		     <th style="text-align: center;">상품명</th>
+		     <th style="text-align: center;">제목</th>
 		     <th style="text-align: center;">가격</th>
 		     <th style="text-align: center;">구매자</th>
 		     <th style="text-align: center;">주문서번호</th>
@@ -128,21 +128,21 @@
 		   <c:forEach var="dto" items="${requestScope.saleList }">
 		<!-- rs <- DTO <- List -->
 		   <tr>
-		     <td width="620px;" style="text-align: center;">
+		     <td width="600px;" style="text-align: center;">
 		     <a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
-		     <td width="70px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
-		     <td width="70px;" style="text-align: center;">${dto.buyer_id}</td>
+		     <td width="120px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
+		     <td width="140px;" style="text-align: center;">${dto.buyer_id}</td>
 		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">
 		     
-		     <c:choose>
-		        <c:when test="${dto.order_id ne 0}">
-		            <!-- 값이 0이 아닌 경우에만 표시 -->
-		            <p>${dto.order_id}</p>
-		        </c:when>
-       				 <c:otherwise>
-            <!-- 값이 0인 경우에는 아무것도 표시하지 않음 -->
-       			 </c:otherwise>
-   			 </c:choose></a></td>
+			<c:choose>
+			    <c:when test="${dto.order_id ne 0}">
+			        <!-- 값이 0이 아닌 경우에만 표시 -->
+			        <p>${dto.order_id}</p>
+			    </c:when>
+			    <c:otherwise>
+			        <p>-</p>
+			    </c:otherwise>
+			</c:choose></a></td>
 		     <td width="220px;" style="text-align: center;">${dto.order_date}</td>
    		     <td width="220px;" style="text-align: center;">${dto.order_status}</td>
 		   </tr>

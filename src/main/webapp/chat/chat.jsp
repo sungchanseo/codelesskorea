@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.commons.JSForward"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
 <%@page import="com.itwillbs.db.ChatDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder" %>
@@ -5,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CODE LESS</title>
 	<jsp:include page="../head.jsp"/>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<style type="text/css">	
 		#chatList *{
 			font-family: 'TheJamsil5Bold' !important;
@@ -92,12 +95,24 @@
 	</style>
 <!-- 	<script src="./js/chat.js"></script> -->
 	<script type="text/javascript">
+	function chkValue() {
+        var tmp = $('#chatContent').val().replace(/\s|　/gi, '');
+        if(tmp == ''){
+        	$('#chatContent').val('');
+           return false; // 공백일 때
+        }else {
+            return true; // 공백이 아닐 때
+        }
+    }
     function autoClosingAlert(selector, delay) {
     	var alert = $(selector)//.alert();
     	alert.show();
     	window.setTimeout(function() { alert.hide() }, delay);
     }
     function submitFunction() {
+    	if(!chkValue()) {
+    		return false;
+    	}
     	var fromID = '${id}'
     	var toID = '${param.toID}'
     	var chatContent = $('#chatContent').val();
@@ -226,6 +241,7 @@
 	<jsp:include page="../nav.jsp"/>
 	<div class=row style="margin-left: 100px;"> 
 	<jsp:include page="../mySide.jsp"/>
+
 <!--  	<div class="col-sm-8" style="margin:auto;"> -->
 <!-- 	<div class="container bootstrap snippet"> -->
 <!-- 		<div class="row"> -->
@@ -243,13 +259,17 @@
  	<div id="right" style="width: 80%">
  	<h1 style="font-family: 'TheJamsil5Bold';">채 팅 목 록</h1>
 	<hr style="border: 0;height: 3px; background-color: black;">
-
 					<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto;">
 					</div>
 <!-- 					<div class="portlet-footer"> -->
 <!-- 						<div class="row" style="height: 90px;"> -->
 <!-- 							<div class="form-group col-xs-10"> -->
-								<textarea style="width: 500px; height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요." maxlength="100"></textarea>
+							<div class="form-group" style="display: flex; align-items: center; justify-content: center;">
+							    <textarea style="width:70%; align-items: center;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요." maxlength="100"></textarea>
+							    <div style="padding: 20px;">
+							    	<button type="button" class="btn btn-default" id="send" onclick="submitFunction();">전송</button>
+						    	</div>
+							</div>
 							    <span id="successMessage" style="display: none;">
 						        <strong>메시지 전송에 성공했습니다.</strong></span>
 						<!--     </div> -->
@@ -261,8 +281,8 @@
 						        </span>
 <!-- 							</div> -->
 <!-- 							<div class="form-group col-xs-2"> -->
-								<button type="button" class="btn btn-default pull-right" id="send" onclick="submitFunction();">전송</button>
 								<input type="hidden" id="count" value="200">
+								<!-- 버튼있던자리 -->
 							<div class="clearfix"></div>
 <!-- 							</div> -->
 <!-- 						</div> -->

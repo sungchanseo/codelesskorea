@@ -9,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ChatDAO;
 import com.itwillbs.db.ChatDTO;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 //import user.UserDAO;
 
@@ -37,6 +40,32 @@ public class ChatBoxAction implements Action {
 			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
 			response.sendRedirect("./Main.me");
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.getMember(userID);
+		if(dto == null){
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = dto.getBlocked();
+		ActionForward forward = new ActionForward();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+
+		}
+		
+		//탈퇴회원 세션제어
+		boolean withdrawal = dto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
 	   
 //		String userID = request.getParameter("id");
 		if(userID == null || userID.equals("")) {

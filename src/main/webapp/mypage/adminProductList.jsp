@@ -94,32 +94,32 @@ $(document).on("click", ".del-btn", function() {
 <%@ include file="../mySide.jsp"%> <!-- 사이드바 -->
 
 <!-- 관리자페이지의 [상품관리]탭을 누르면 판매 상태여부에 관계 없이 모든 거래 리스트를 볼 수 있다. -->
-<!-- 최신순으로 모든 상품의 리스트가 한 페이지 20개씩 출력됨 -->
+<!-- 최신순으로 모든 상품의 리스트가 한 페이지 8개씩 출력됨 -->
 <!-- 리스트로 출력되는 내용은 상품번호, 상품명, 판매가, 판매자, 구매자, 등록일시, 판매 상태(판매중, 판매완료) -->
 <!-- 상품 링크를 클릭하면 해당 상품 페이지로 이동할 수 있음 -->
 
  	 <div class="col-md-10">
  <div id="right" style="width: 80%">
- <h1 style="font-family: 'TheJamsil5Bold';">상 품 관 리</h1>
+ <h1 style="font-family: 'TheJamsil5Bold';">상 품 목 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
 <!-- 검색창기능 -->
 <br>
-<div id="admin_search" align="center">
+<div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./AdminProductList.my" method="post">
-		<select name="category">
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
-		<input type="text" name="search" class="input_box" style="height:40px; width:50%;">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <br>
 <!-- 검색창기능 -->	
 	  
 	  
-	  <table id=nttable class="table" style= "width: 100%" ; align="center";  >
+	  <table id="nttable" class="table" style= "width: 100%" ; align="center";  >
    <thead style="background-color: #F6F6F6;">
 		<tr>
 			<th>상품번호</th>
@@ -140,18 +140,17 @@ $(document).on("click", ".del-btn", function() {
 <%-- 				<td>${dto.product_id}</td> --%>
 				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span>${dto.title}</span></a></td>
 				<td>${dto.price}</td>
-				<td>${dto.user_id}</td>
+				<td>${dto.seller_id}</td>
 <!-- 				<td>구매자</td> -->
-				<td>${dto.reg_date}</td>
-				<td>
-<%-- 					<c:set var="status" value="${dto.order_status}" /> --%>
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${status == 1}">주문확인</c:when> --%>
-<%-- 						<c:when test="${status == 2}">주문수락</c:when> --%>
-<%-- 						<c:when test="${status == 3}">발송</c:when> --%>
-<%-- 						<c:when test="${status == 4}">구매확정</c:when> --%>
-<%-- 						<c:otherwise>알 수 없음</c:otherwise> --%>
-<%-- 					</c:choose> --%>
+				<td>${dto.order_date}</td>
+				<td><c:choose>
+			    <c:when test="${empty dto.order_status}">
+			        <p>-</p>
+			    </c:when>
+			    <c:otherwise>
+			       <p>${dto.order_status}</p>
+			    </c:otherwise>
+				</c:choose>
 				</td>
 				
 				<td>
@@ -163,25 +162,23 @@ $(document).on("click", ".del-btn", function() {
 		</c:forEach>
 	</tbody>
 </table>
-	</div>	</div>
-
 			<div class="container" style="margin: auto;">
 			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">
-		  	<c:if test="${startPage > pageBlock }"> 
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
+		  	<c:if test="${startPage > pageBlock }"> /
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 			</c:if>
 		   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${i }"><span>${i }</span></a></li>
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${i }&category=${category }&search=${search }"><span>${i }</span></a></li>
 			</c:forEach>
 		    <c:if test="${endPage<pageCount }">
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage+pageBlock}&category=${category }&search=${search } "><span>다음</span></a></li>
 			</c:if>
 		  </ul>
   		</div>
 <br>
-
 </div>
-
+</div>
+</div>
 <br>
  <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

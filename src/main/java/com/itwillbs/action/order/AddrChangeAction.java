@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -34,6 +36,24 @@ public class AddrChangeAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		
+		
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		// 전달정보(파라메터) 저장(DTO)
 		OrderDAO dao = new OrderDAO();

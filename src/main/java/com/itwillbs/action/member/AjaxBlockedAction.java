@@ -17,6 +17,8 @@ public class AjaxBlockedAction implements Action {
 		 String id = request.getParameter("id");
 		 boolean blocked = Boolean.parseBoolean(request.getParameter("blocked"));
 		
+		 
+		 
 		System.out.println(id);
 		System.out.println(blocked);
 		

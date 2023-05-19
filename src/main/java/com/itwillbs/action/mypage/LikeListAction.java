@@ -43,14 +43,28 @@ public class LikeListAction implements Action {
 		}
 		
 		
-//		// 차단 사용자 세션제어
-//		MemberDAO dao = new MemberDAO();
-//		MemberDTO dto = dao.getMember(id);
-//		boolean blocked = dto.getBlocked();
-//		if(blocked == true) {
-//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//			return forward;
-//		}
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		
+		boolean withdrawal = mdto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
+		}
+
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 				
 

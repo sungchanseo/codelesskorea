@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.ProductDAO;
 
 public class ProductDeleteAction implements Action {
@@ -19,6 +21,7 @@ public class ProductDeleteAction implements Action {
 		int productId =Integer.parseInt(request.getParameter("product_id"));
 		HttpSession session =  request.getSession();
 		
+		
 		// 세션정보 제어(로그인)
 		String id = (String)session.getAttribute("id");
 		ActionForward forward = new ActionForward();
@@ -27,6 +30,23 @@ public class ProductDeleteAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
 		
 		// 2. DAO를 이용하여 product 테이블에서 해당 상품을 삭제
 		ProductDAO dao = new ProductDAO();

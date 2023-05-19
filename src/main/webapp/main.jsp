@@ -127,6 +127,10 @@ $('document').ready(function() {
 	}
 	
 	function checkData() {
+		if('${id}' == "") {
+			alert("로그인을 해주세요");
+			return false;
+		}
 		const eleArr = ['#brand', '#model', '#color', '#parts','#trade'];
 		var condition = 0;
 		var str = "?";
@@ -163,6 +167,7 @@ $('document').ready(function() {
 	function openModal(str) {
 	  document.getElementById("mainModal").style.display = "block";
 	  $('#mainModal').append(
+	  
 	    '<div class="modal-content">' +
 	    '<span class="close" onclick="closeModal()">&times;</span>' +
 	    '<iframe src="./ProductList.pr' + str + '"></iframe>' +
@@ -504,12 +509,15 @@ $('document').ready(function() {
 
 	<%@include file="../footer.jsp"%>
 
+
+
 <div id="mainModal" class="modal">
 <!--   <div class="modal-content"> -->
 <!--     <span class="close" onclick="closeModal()">&times;</span> -->
 <!--     <iframe src="./ProductList.pr"></iframe> -->
 <!--   </div> -->
 </div>
+
 
 <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
 <script src="js/jquery-migrate-3.0.1.min.js"></script>

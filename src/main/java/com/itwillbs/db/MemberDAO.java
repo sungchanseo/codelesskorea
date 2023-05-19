@@ -74,6 +74,7 @@ public class MemberDAO {
 					dto.setBirth_date(rs.getString("birth_date"));
 					dto.setEmail(rs.getString("email"));
 					dto.setBlocked(rs.getBoolean("blocked"));
+					dto.setWithdrawal(rs.getBoolean("withdrawal"));
 				}// if
 				
 				System.out.println(" DAO : 회원정보 저장완료! ");
@@ -90,42 +91,50 @@ public class MemberDAO {
 
 		//id,pw,name,nickname,tel,address,photo,regdate	
 		
-		// 회원정보 수정 - memberUpdate(dto)
-		public int memberUpdate(MemberDTO dto) {
-			int result = -1; // -1   0    1
-			
-			try {
-				
-				// 1.2. 디비연결
-				con = getCon();
-				sql = "update user set name=?, nickname=?, phone_number=?, address=?,user_image=?,address2=? where id=?";
 
-				// 3. sql 작성&pstmt 객체
-				pstmt = con.prepareStatement(sql);
-						// ??? - 이름, 연락처,  닉네임(중복불가), 사진(선택사항), 주소 수정
-				pstmt.setString(1, dto.getName());
-				pstmt.setString(2, dto.getNickname());
-				pstmt.setString(3, dto.getPhone_number());
-				pstmt.setString(4, dto.getAddress());
-				pstmt.setString(5, dto.getUser_image());
-				pstmt.setString(6, dto.getAddress2());
-				pstmt.setString(7, dto.getId());
-						// 4. sql 실행(update)
-				result = pstmt.executeUpdate();
-						
-				
-				System.out.println(" DAO : 회원 정보수정 완료 ("+result+")");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
-			}
-			
-			return result;
+		public int memberUpdate(MemberDTO dto) {
+		    int result = -1; // -1: 오류, 0: 수정 실패, 1: 수정 성공
+		    
+		    try {
+		        // 1. 디비 연결
+		        con = getCon();
+		        
+		        // 2. 기존 회원 정보 조회
+		        sql = "SELECT * FROM user WHERE id=?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, dto.getId());
+		        rs = pstmt.executeQuery();
+		        
+		        if (rs.next()) { 
+		            if (dto.getId().equals(rs.getString("id"))) {
+		                // 3. 회원 정보 업데이트
+		                sql = "UPDATE user SET name=?, nickname=?, phone_number=?, address=?, user_image=?, address2=?, post_number=? WHERE id=?";
+		                pstmt = con.prepareStatement(sql);
+		                
+		                // 이름, 닉네임, 연락처, 주소, 사용자 이미지, 주소2, 우편번호 수정
+		                pstmt.setString(1, dto.getName());
+		                pstmt.setString(2, dto.getNickname());
+		                pstmt.setString(3, dto.getPhone_number());
+		                pstmt.setString(4, dto.getAddress());
+		                pstmt.setString(5, dto.getUser_image() == null ? rs.getString("user_image") : dto.getUser_image());
+		                pstmt.setString(6, dto.getAddress2());
+		                pstmt.setInt(7, dto.getPost_number());
+		                pstmt.setString(8, dto.getId());
+		                
+		                // 4. 회원 정보 업데이트 실행
+		                result = pstmt.executeUpdate();
+		                
+		                System.out.println("DAO: 회원 정보 수정 완료 (" + result + ")");
+		            }
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        closeDB();
+		    }
+		    
+		    return result;
 		}
-		// 회원정보 수정 - memberUpdate(dto)
-		
 		
 		// 회원정보 삭제 - deleteMember(id,pw)
 		public int deleteMember(String id,String password) {
@@ -146,7 +155,7 @@ public class MemberDAO {
 					if(password.equals(rs.getString("password"))) {
 						// 삭제 처리 
 						// 3. sql 작성
-						sql = "delete from USER where id=?";
+						sql = "UPDATE user SET withdrawal = true WHERE id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, id);
 						// 4. sql 실행

@@ -189,8 +189,7 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15" readonly >
-							<input type="button" value="우편번호찾기" onclick="addr();" readonly></td>
+						<td><input type="text" name="post_number" id="zipcode" size="15" value="${dto.post_number }" readonly ></td>
 					</tr>
 					<tr>
 						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}" readonly></td>

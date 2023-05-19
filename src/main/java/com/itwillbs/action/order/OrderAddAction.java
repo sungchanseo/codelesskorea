@@ -28,6 +28,22 @@ public class OrderAddAction implements Action {
 			JSForward jsf = new JSForward();
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
+    
+    /*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		// dto 생성, 결제정보 저장
 		OrderDTO dto = new OrderDTO();
@@ -66,3 +82,4 @@ public class OrderAddAction implements Action {
 	
 
 }
+

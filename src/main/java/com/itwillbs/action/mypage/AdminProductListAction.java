@@ -27,7 +27,7 @@ public class AdminProductListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		System.out.println("M: AdminProductListAciton_execute();");
-/*		
+		
 		if(id == null) {
 			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
 			return forward;
@@ -39,19 +39,19 @@ public class AdminProductListAction implements Action {
 			return forward;
 		}
 		
-				
-
-
-		// 차단 사용자 세션제어
-		// 차단 사용자 세션제어
-*/		// 차단 사용자 세션제어
-//		MemberDAO dao = new MemberDAO();
-//		MemberDTO dto = dao.getMember(id);
-//		boolean blocked = dto.getBlocked();
-//		if(blocked == true) {
-//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//			return forward;
-//		}
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.getMember(id);
+		boolean blocked = dto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
 		//////////////////////////////////////////////////////////
 		//검색로직 
 		String category= request.getParameter("category");
@@ -76,7 +76,7 @@ public class AdminProductListAction implements Action {
 		
 		// 페이징 처리*****************************
 		// 한 페이지에서 보여줄 글의 개수 설정
-		int pageSize = 12;
+		int pageSize = 8;
 		// 현 페이지의 페이지값을 확인
 
 		String pageNum = request.getParameter("pageNum");
@@ -101,7 +101,7 @@ public class AdminProductListAction implements Action {
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
 		
-		List<ProductDTO> adminList = null;
+		List<ListDTO> adminList = null;
 		if(search != null) {
 			
 			//검색어가 있는 경우

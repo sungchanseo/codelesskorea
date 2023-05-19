@@ -69,9 +69,7 @@
 					</label>
 					<br>
 				    <label>글 내용<br>
-				    <textarea name="content"  placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control">
-				   
-				    </textarea>
+				    <textarea name="content"  placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control"></textarea>
 					</label>
 					<br>
 					<label>첨부 이미지

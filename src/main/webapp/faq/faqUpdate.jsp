@@ -18,7 +18,7 @@
  <!--   사이드바 -->
 
  <div class="col-md-10">
- <div id="right">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">자주묻는 질문 수정</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
  

@@ -37,6 +37,7 @@ public class NoticeWriteAction implements Action{
 			return forward;
 		}
 		
+		
 		//notice_image 업로드
 		String realpath = request.getRealPath("/upload");
 		System.out.println("realpath: "+realpath);

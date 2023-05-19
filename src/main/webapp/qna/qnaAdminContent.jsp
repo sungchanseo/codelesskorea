@@ -159,7 +159,7 @@ th:nth-of-type(3), td:nth-of-type(4) {
 
 
 fieldset {
-  margin-bottom: 130px; !important;
+  margin-bottom: 200px; !important;
 }
 
 </style>
@@ -169,13 +169,16 @@ fieldset {
 
 <body>
 <%@ include file="../nav.jsp"%>
+
 <div class=row style="margin-left: 100px;">	
+	
+	
 	<%@ include file="../mySide.jsp"%>	 <!--   사이드바 -->
 	
 	
 
 <div class="col-md-10">
- <div id="right" style="width: 80%">
+ <div id="right" style="max-height: 100%; margin-bottom: 400px;">
  <h1 style="font-family: 'TheJamsil5Bold';">1:1문의 상세보기</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -188,7 +191,7 @@ fieldset {
 
 
 
-<fieldset style="margin: auto; ">
+<fieldset style="margin: auto; margin-bottom: 100px; ">
 <table border="1"  style="margin: auto;" >
   <tr>
 <c:if test="${qdto.re_Lev < 1}">
@@ -232,11 +235,7 @@ fieldset {
             <c:if test="${qdto.productId ne 0}">
     <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
 		</c:if>
-    
-    
     </td>
-
-    
   </tr>
   
   
@@ -260,10 +259,11 @@ fieldset {
     </c:otherwise>
   </c:choose>
 	</c:if>
+	</div>
 
 </fieldset>
 
-<div style="padding-bottom: 50px;"></div>
+<div style="margin-bottom: 100px;"></div>
 </div>	
 </div>
 

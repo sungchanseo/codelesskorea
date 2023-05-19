@@ -9,6 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.ProductDAO;
 import com.itwillbs.db.ProductDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -31,7 +34,24 @@ public class ProductWriteAction implements Action {
 			return forward;
 		}
 		
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		// 한글처리
+		
 		request.setCharacterEncoding("UTF-8");
 		// 파일업로드 + 상품정보(파라메터)
 		// 업로드 폴더(가상경로)

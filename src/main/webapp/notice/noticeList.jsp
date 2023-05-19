@@ -57,7 +57,7 @@
 <!-- 검색창기능 -->
 <div class="table" id="nttable">
 	<form action="./NoticeList.no" method="post">
-		<select name="category" class="form-control" style="width:80px; display:inline;">
+		<select name="category" class="form-control" style="width:120px; display:inline;">
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
