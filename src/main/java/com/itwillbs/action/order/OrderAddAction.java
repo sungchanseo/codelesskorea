@@ -19,7 +19,6 @@ public class OrderAddAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : OrderAddAction_execute()");
 
-		
 		// 세션정보 가져오기
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
@@ -29,7 +28,6 @@ public class OrderAddAction implements Action {
 			JSForward jsf = new JSForward();
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
-		
 		
 		// dto 생성, 결제정보 저장
 		OrderDTO dto = new OrderDTO();
@@ -45,20 +43,14 @@ public class OrderAddAction implements Action {
 		System.out.println(Integer.parseInt(request.getParameter("receiver_post")));
 		dto.setPayment(request.getParameter("payment"));
 		System.out.println("dto : "+dto);
-		// 아래는 결제정보, 일단은 넘어오는지 확인만 함.
-//		dto.setImp_uid(request.getParameter("imp_uid"));
-//		dto.setMerchant_uid(request.getParameter("merchant_uid"));
-//		dto.setPaid_amount(request.getParameter("paid_amount"));
-//		dto.setApply_num(request.getParameter("apply_num"));
-//		
+		
 		// MemberDAO 객체 생성 
 		OrderDAO dao = new OrderDAO();
-	
+		// 주문 내용 저장
 		dao.addOrder(dto);
 		// 주문서 출력 메서드 getOrderContent()
 		dto = dao.getOrderContent(dto);
 		int order_id = dto.getOrder_id();
-		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		System.out.println("id: "+id +" / product_id: " +product_id);

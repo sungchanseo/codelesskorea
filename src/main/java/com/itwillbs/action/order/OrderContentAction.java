@@ -34,14 +34,11 @@ public class OrderContentAction implements Action {
 		dto.setId(id);
 		dto.setOrder_id(Integer.parseInt(request.getParameter("order_id")));
 		dto.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
-			
 		// MemberDAO 객체 생성 - 주문정보 조회 메서드 getOrderContent()
 		OrderDAO dao = new OrderDAO();
 		dto = dao.getOrderContent(dto);
-		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
-		
 		// 페이지 forward 이동(jsp) + 정보 출력
 		ActionForward forward = new ActionForward();
 		forward.setPath("./order/orderContent.jsp");

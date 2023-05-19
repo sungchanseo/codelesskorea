@@ -1,6 +1,6 @@
 package com.itwillbs.db;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 주문정보를 저장하는 객체
@@ -12,7 +12,7 @@ public class OrderDTO {
 	// order 테이블 (select)
 	private int order_id; // 주문번호
 //	private int product_id; // 상품번호
-	private Date order_date; //날짜
+	private Timestamp order_date; //날짜
 	private String payment; // 결제수단 
 	private int user_id; // 회원번호
 //	private int post_number; //우편번호
@@ -26,10 +26,7 @@ public class OrderDTO {
 	private int is_accept; // 구매여부
 	private int tracking_number; //운송장번호
 	private String order_status; //주문 상태
-	private String imp_uid; // 고유 id
-	private String merchant_uid; // 상점 거래 id
 	private String paid_amount; // 결제 금액
-	private String apply_num; // 카드 승인번호
 	
 	// product 테이블
 	private int product_id; // 상품번호
@@ -48,9 +45,15 @@ public class OrderDTO {
 	private int post_number; // 구매자 주소
 	private String email; // 구매자 이메일
 	
+
 	
 	
-	
+	public Timestamp getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Timestamp order_date) {
+		this.order_date = order_date;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -75,29 +78,11 @@ public class OrderDTO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public String getImp_uid() {
-		return imp_uid;
-	}
-	public void setImp_uid(String imp_uid) {
-		this.imp_uid = imp_uid;
-	}
-	public String getMerchant_uid() {
-		return merchant_uid;
-	}
-	public void setMerchant_uid(String merchant_uid) {
-		this.merchant_uid = merchant_uid;
-	}
 	public String getPaid_amount() {
 		return paid_amount;
 	}
 	public void setPaid_amount(String paid_amount) {
 		this.paid_amount = paid_amount;
-	}
-	public String getApply_num() {
-		return apply_num;
-	}
-	public void setApply_num(String apply_num) {
-		this.apply_num = apply_num;
 	}
 	public int getOrder_id() {
 		return order_id;
@@ -105,12 +90,7 @@ public class OrderDTO {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public Date getOrder_date() {
-		return order_date;
-	}
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
-	}
+
 	public String getPayment() {
 		return payment;
 	}
@@ -243,12 +223,11 @@ public class OrderDTO {
 				+ user_id + ", receiver_name=" + receiver_name + ", receiver_phone=" + receiver_phone
 				+ ", receiver_addr1=" + receiver_addr1 + ", receiver_addr2=" + receiver_addr2 + ", receiver_post="
 				+ receiver_post + ", receiver_id=" + receiver_id + ", seller_id=" + seller_id + ", is_accept="
-				+ is_accept + ", tracking_number=" + tracking_number + ", order_status=" + order_status + ", imp_uid="
-				+ imp_uid + ", merchant_uid=" + merchant_uid + ", paid_amount=" + paid_amount + ", apply_num="
-				+ apply_num + ", product_id=" + product_id + ", title=" + title + ", price=" + price + ", fee=" + fee
-				+ ", charge=" + charge + ", product_image=" + product_image + ", id=" + id + ", name=" + name
-				+ ", phone_number=" + phone_number + ", address=" + address + ", address2=" + address2
-				+ ", post_number=" + post_number + ", email=" + email + "]";
+				+ is_accept + ", tracking_number=" + tracking_number + ", order_status=" + order_status
+				+ ", paid_amount=" + paid_amount + ", product_id=" + product_id + ", title=" + title + ", price="
+				+ price + ", fee=" + fee + ", charge=" + charge + ", product_image=" + product_image + ", id=" + id
+				+ ", name=" + name + ", phone_number=" + phone_number + ", address=" + address + ", address2="
+				+ address2 + ", post_number=" + post_number + ", email=" + email + "]";
 	}
 
 
