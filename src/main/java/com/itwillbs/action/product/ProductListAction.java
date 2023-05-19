@@ -50,12 +50,8 @@ public class ProductListAction implements Action {
 		 // productList에서 랜덤으로 3개의 상품을 선택하여 새 리스트에 저장
 		 //List<ProductDTO> randomProductList = new ArrayList<>();
 
-		int listSize = productList.size();
-		for (int i = 3; i < listSize; i++) {
-			// int randomIndex = random.nextInt(listSize - i); // 선택할 수 있는 인덱스 범위를 줄임
-			// ProductDTO randomProduct = productList.remove(randomIndex); // 선택된 상품을 productList에서 삭제(중복 방지 처리)
-			// productList.add(randomProduct);
-			productList.remove(i);
+		while (productList.size() > 3) {
+			productList.remove(productList.size()-1);
 		}
 
 		// request 객체에 저장
