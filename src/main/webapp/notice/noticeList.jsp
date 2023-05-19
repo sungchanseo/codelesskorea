@@ -9,17 +9,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <%@ include file="../head.jsp"%>
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
 <meta charset="UTF-8">
 <title>CODE LESS - 공지사항</title>
 </head>
 <body>
 <%@ include file="../nav.jsp"%><!-- nav삽입 -->
-<%@ include file="../background.jsp"%> <!-- END 배경 -->
-
-
 
 
   <div class="row" style="margin-left: 100px;">

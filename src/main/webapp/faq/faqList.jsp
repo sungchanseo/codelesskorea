@@ -28,7 +28,6 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%>
-<%@include file="../faqBackground.jsp" %>
 
 
 

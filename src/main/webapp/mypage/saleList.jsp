@@ -128,10 +128,11 @@
 		   <c:forEach var="dto" items="${requestScope.saleList }">
 		<!-- rs <- DTO <- List -->
 		   <tr>
-		     <td width="500px;" style="text-align: center;"><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
+		     <td width="620px;" style="text-align: center;">
+		     <a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		     <td width="70px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
-		     <td width="120px;" style="text-align: center;">${dto.buyer_id}</td>
-		     <td width="300px;" style="text-align: center;"><a href="./ProductContent.pr?product_id=${dto.product_id }"> 
+		     <td width="70px;" style="text-align: center;">${dto.buyer_id}</td>
+		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?order_id=${dto.order_id }"> 
 		     
 		     <c:choose>
 		        <c:when test="${dto.order_id ne 0}">
@@ -143,22 +144,7 @@
        			 </c:otherwise>
    			 </c:choose></a></td>
 		     <td width="220px;" style="text-align: center;">${dto.order_date}</td>
-		     <td width="240px;" style="text-align: center;">
-				  <c:choose>
-				    <c:when test="${dto.order_status == 1}">
-				      <c:out value="주문확인" />
-				    </c:when>
-				    <c:when test="${dto.order_status == 2}">
-				      <c:out value="주문수락" />
-				    </c:when>
-				    <c:when test="${dto.order_status == 3}">
-				      <c:out value="발송" />
-				    </c:when>
-				    <c:when test="${dto.order_status == 4}">
-				      <c:out value="주문확정" />
-				    </c:when>
-				  </c:choose>
-			</td>
+   		     <td width="220px;" style="text-align: center;">${dto.order_status}</td>
 		   </tr>
 			</c:forEach>
 			</tbody>

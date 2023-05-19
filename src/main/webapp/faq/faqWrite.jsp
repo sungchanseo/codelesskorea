@@ -29,7 +29,6 @@ $(document).ready(function () {
 </head>
 <body>
 <%@include file="../nav.jsp" %>
-<%@include file="../faqBackground.jsp" %>
 
   <div class="row" style="margin-left: 100px;">
  <!-- 사이드바 -->
