@@ -184,6 +184,9 @@
 String id = (String)session.getAttribute("id");
 MemberDAO mdao = new MemberDAO();
 MemberDTO mdto = mdao.getMember(id);
+if(mdto == null) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+}
 boolean blocked = mdto.getBlocked();
 //차단사용자 세션제어
 if(blocked == true) {

@@ -39,6 +39,9 @@ public class ProductUpdateProAction  implements Action {
 		 */
 		MemberDAO mdao = new MemberDAO();
 		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");

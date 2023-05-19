@@ -18,22 +18,7 @@ public class AjaxEmail implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(" M : AjaxEmail_execute ");
 
-		/*
-		 *  차단 사용자 세션제어 시작
-		 */
-		HttpSession session = request.getSession();
-		String userid = (String) session.getAttribute("id");
-		ActionForward forward = new ActionForward();
-		MemberDAO mdao = new MemberDAO();
-		MemberDTO mdto = mdao.getMember(userid);
-		boolean blocked = mdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
-		/*
-		 *  차단 사용자 세션제어 끝
-		 */
+
 		
 		
 		 response.setContentType("text/html; charset=UTF-8");

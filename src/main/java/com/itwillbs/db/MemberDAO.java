@@ -74,6 +74,7 @@ public class MemberDAO {
 					dto.setBirth_date(rs.getString("birth_date"));
 					dto.setEmail(rs.getString("email"));
 					dto.setBlocked(rs.getBoolean("blocked"));
+					dto.setWithdrawal(rs.getBoolean("withdrawal"));
 				}// if
 				
 				System.out.println(" DAO : 회원정보 저장완료! ");
@@ -154,7 +155,7 @@ public class MemberDAO {
 					if(password.equals(rs.getString("password"))) {
 						// 삭제 처리 
 						// 3. sql 작성
-						sql = "delete from USER where id=?";
+						sql = "UPDATE user SET withdrawal = true WHERE id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, id);
 						// 4. sql 실행

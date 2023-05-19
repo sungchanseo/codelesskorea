@@ -48,6 +48,17 @@ public class MemberListAction implements Action {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
+		
+		//탈퇴회원 세션제어
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
+		
+		boolean withdrawal = mdto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
+		}
 		/*
 		 *  차단 사용자 세션제어 끝
 		 */

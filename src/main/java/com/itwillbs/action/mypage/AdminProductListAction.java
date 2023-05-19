@@ -101,7 +101,7 @@ public class AdminProductListAction implements Action {
 		//////////////////////////////////////////////////////////
 		//페이징처리2/
 		
-		List<ProductDTO> adminList = null;
+		List<ListDTO> adminList = null;
 		if(search != null) {
 			
 			//검색어가 있는 경우

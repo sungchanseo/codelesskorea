@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
 import com.itwillbs.db.MemberDTO;
 import com.mysql.cj.Session;
@@ -27,7 +28,19 @@ public class MemberLoginAction implements Action{
 		MemberDTO dto = new MemberDTO();
 		dto.setId(request.getParameter("id"));
 		dto.setPassword(request.getParameter("password"));
+		String id = (String)request.getParameter("id");
+		//탈퇴회원 세션제어
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		
+		boolean withdrawal = mdto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "탈퇴된 회원 입니다!");
+			return null;
+		}
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
 		// 로그인체크 메서드 호출 => 결과확인
