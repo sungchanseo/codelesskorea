@@ -143,16 +143,7 @@ $(document).on("click", ".del-btn", function() {
 				<td>${dto.user_id}</td>
 <!-- 				<td>구매자</td> -->
 				<td>${dto.reg_date}</td>
-				<td>
-<%-- 					<c:set var="status" value="${dto.order_status}" /> --%>
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${status == 1}">주문확인</c:when> --%>
-<%-- 						<c:when test="${status == 2}">주문수락</c:when> --%>
-<%-- 						<c:when test="${status == 3}">발송</c:when> --%>
-<%-- 						<c:when test="${status == 4}">구매확정</c:when> --%>
-<%-- 						<c:otherwise>알 수 없음</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-				</td>
+				<td>${dto.order_status}</td>
 				
 				<td>
 				  <button class="del-btn" data-product-id="${dto.product_id}" >

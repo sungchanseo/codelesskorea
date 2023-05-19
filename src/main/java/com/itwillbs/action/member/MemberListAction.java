@@ -38,14 +38,19 @@ public class MemberListAction implements Action {
 			return forward;
 		}
 
-		//차단사용자 세션제어
-//		MemberDAO qdao = new MemberDAO();
-//		MemberDTO qdto = qdao.getMember(id);
-//		boolean blocked = qdto.getBlocked();
-//		if(blocked == true) {
-//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//			return forward;
-//		}
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		
 		// 회원정보 목록 - MemberDAO : getMemberList()

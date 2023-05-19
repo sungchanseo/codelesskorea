@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.FaqDAO;
 import com.itwillbs.db.FaqDTO;
 /**
@@ -38,6 +40,20 @@ public class FaqProUpdateAction implements Action {
 			return forward;
 		}
 		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 	    String pageNum = request.getParameter("pageNum");
 		String faq_id = request.getParameter("faq_id");

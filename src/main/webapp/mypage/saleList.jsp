@@ -134,15 +134,15 @@
 		     <td width="70px;" style="text-align: center;">${dto.buyer_id}</td>
 		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">
 		     
-		     <c:choose>
-		        <c:when test="${dto.order_id ne 0}">
-		            <!-- 값이 0이 아닌 경우에만 표시 -->
-		            <p>${dto.order_id}</p>
-		        </c:when>
-       				 <c:otherwise>
-            <!-- 값이 0인 경우에는 아무것도 표시하지 않음 -->
-       			 </c:otherwise>
-   			 </c:choose></a></td>
+			<c:choose>
+			    <c:when test="${dto.order_id ne 0}">
+			        <!-- 값이 0이 아닌 경우에만 표시 -->
+			        <p>${dto.order_id}</p>
+			    </c:when>
+			    <c:otherwise>
+			        <p>-</p>
+			    </c:otherwise>
+			</c:choose></a></td>
 		     <td width="220px;" style="text-align: center;">${dto.order_date}</td>
    		     <td width="220px;" style="text-align: center;">${dto.order_status}</td>
 		   </tr>

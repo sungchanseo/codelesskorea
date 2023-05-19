@@ -213,10 +213,11 @@ font-weight: bold !important;
 				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
 				</c:if>
 			  </ul>
-			 
+			 <br>
 	  		</div>
-	<br>
-
+	
+	
+<br>
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
 

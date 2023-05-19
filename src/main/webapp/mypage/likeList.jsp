@@ -184,8 +184,8 @@
 <div style="text-align:center;">
     <c:choose>
         <c:when test="${empty requestScope.LikeList}">
-            <p class="fade-in"><button class="like-btn" onclick="location.href='./ProductList.pr'">
-                                <i class="fa fa-heart"></i>   찜목록이 없습니다!<br> (클릭시 매칭리스트로 이동합니다)
+            <p class="fade-in"><button class="like-btn">
+                                <i class="fa fa-heart"></i>   찜목록이 없습니다!
                             </button></p>
         </c:when>
         <c:otherwise>

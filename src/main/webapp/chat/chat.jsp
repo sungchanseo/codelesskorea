@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.commons.JSForward"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
 <%@page import="com.itwillbs.db.ChatDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder" %>
@@ -226,6 +229,7 @@
 	<jsp:include page="../nav.jsp"/>
 	<div class=row style="margin-left: 100px;"> 
 	<jsp:include page="../mySide.jsp"/>
+
 <!--  	<div class="col-sm-8" style="margin:auto;"> -->
 <!-- 	<div class="container bootstrap snippet"> -->
 <!-- 		<div class="row"> -->

@@ -20,6 +20,7 @@ public class IdFindAction implements Action {
 		
 		System.out.println(" M : IdFindAction_execute() 호출 ");
 		
+
 		
 		request.setCharacterEncoding("UTF-8");
 		ActionForward forward = new ActionForward();

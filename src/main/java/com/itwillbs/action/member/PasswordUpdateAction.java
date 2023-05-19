@@ -32,14 +32,19 @@ public class PasswordUpdateAction implements Action {
 			return forward;
 		}
 		
-		// 전달된 정보 저장
-		MemberDAO qdao = new MemberDAO();
-		MemberDTO qdto = qdao.getMember(id);
-		boolean blocked = qdto.getBlocked();
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
 		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 
 		// 기존의 회원정보를 가져오기 (DB)
 		MemberDAO dao = new MemberDAO();

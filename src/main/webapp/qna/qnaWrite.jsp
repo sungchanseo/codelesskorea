@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.commons.JSForward"%>
 <%@page import="com.itwillbs.db.MemberDTO"%>
 <%@page import="com.itwillbs.db.MemberDAO"%>
 <%@page import="com.itwillbs.db.QnADTO"%>
@@ -15,6 +16,7 @@
 
 <script type="text/javascript">
 
+
 		$('textarea').keyup(function(){
 
 			var tmpLength = 700 - $(this).val().length;
@@ -29,9 +31,6 @@
 		});
 		
 </script>
-
-
-
 </head>
 <body>
 
@@ -40,7 +39,11 @@ String id = (String)session.getAttribute("id");
 MemberDAO mdao = new MemberDAO();
 MemberDTO mdto = mdao.getMember(id);
 String nickname = mdto.getNickname();
-// int product_id = Integer.parseInt(request.getParameter("product_id"));
+boolean blocked = mdto.getBlocked();
+//차단사용자 세션제어
+if(blocked == true) {
+	JSForward.alertAndBack(response, "잘못된 접근입니다!");
+}
 %>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <div class="row" style="margin-left: 100px;">

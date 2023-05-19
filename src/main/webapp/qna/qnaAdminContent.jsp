@@ -188,7 +188,7 @@ fieldset {
 
 
 
-<fieldset style="margin: auto; ">
+<fieldset style="margin: auto; margin-bottom: 100px; ">
 <table border="1"  style="margin: auto;" >
   <tr>
 <c:if test="${qdto.re_Lev < 1}">
@@ -232,11 +232,7 @@ fieldset {
             <c:if test="${qdto.productId ne 0}">
     <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
 		</c:if>
-    
-    
     </td>
-
-    
   </tr>
   
   
@@ -263,7 +259,7 @@ fieldset {
 
 </fieldset>
 
-<div style="padding-bottom: 50px;"></div>
+<div style="margin-bottom: 100px;"></div>
 </div>	
 </div>
 

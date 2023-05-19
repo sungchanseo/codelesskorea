@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ChatDAO;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 public class ChatUnreadAction implements Action {
 //	private static final long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public class ChatUnreadAction implements Action {
 			response.getWriter().write(new ChatDAO().getAllUnreadChat(userID) + "");
 		}
 		
-		return null;
+		
 		
 //		String userID = request.getParameter("id");
 //		if(userID == null || userID.equals("")) {
@@ -43,7 +46,8 @@ public class ChatUnreadAction implements Action {
 //			response.getWriter().write(new ChatDAO().getAllUnreadChat(userID) + "");
 //		}
 //		return null;
+		return null;
 	}
 	
-
+	
 }
