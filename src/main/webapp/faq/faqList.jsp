@@ -38,7 +38,7 @@
  <!--   사이드바 -->
   
  <div class="col-md-10">
- <div id="right">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">자 주 묻 는 질 문</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -46,7 +46,7 @@
 <!-- 검색창기능 -->
 <div id="table_search" class="button" style="margin-bottom:10px;">
 	<form action="./FaqList.fa" method="post">
-		<select name="selecter" class="form-control" style="height:40px; width:80px; display:inline;" >
+		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
