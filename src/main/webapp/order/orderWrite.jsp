@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -196,12 +197,10 @@
 <body>
 <jsp:include page="../nav.jsp"/>
 <!-- nav 삽입 --> 
-<div class="row">
-<jsp:include page="../mySide.jsp"/>
-<div class="col-sm-10">
- <div id="right" style="width: 100%; color: black; margin-bottom: 700px;" >
- <h1 style="font-family: 'TheJamsil5Bold';">주 문 서</h1>
-<hr style="border: 0;height: 3px; background-color: black;">
+
+ <div id="right" style="height: 1600px; border: 3px solid #909090; border-color: #FFBA5A; padding: 60px 60px 60px 60px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius: 7px;margin-left: 400px;">
+ <h1 style="font-family: 'TheJamsil5Bold';">주문/결제</h1>
+<hr style="border: 0;height: 3px; background-color: #AEAEAE;">
 <!-- 	<h1>주문서</h1> -->
 <!-- 	<div class="orderWrite"> -->
 	<fieldset>
@@ -210,9 +209,9 @@
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="fee" value="${dto.fee}">
 		<div style="display: flex; align-items: center;">
-<%-- 			<img src="${dto.product_image}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;"> --%>
+ 		
 			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
-			<table>
+			<table class="table table-borderless">
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">상품명</span></td>
 					<td style="text-align: right;"><span style="color: black;">${dto.title}</span></td>
@@ -230,10 +229,11 @@
 					<td style="text-align: right;"><span style="color: black;">${dto.fee}원</span></td>
 				</tr>
 			</table>
+			</div>
 	</fieldset>
-	
+	<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
 <!--     <div class="tracking"> -->
-<fieldset>
+<fieldset style="margin-bottom: 20px; margin-top: 30px;">
 	<legend>배송 정보</legend>
 	<form action="./AddrChangeAction.or" method="post">
 		<input type="hidden" id="order_id" name="order_id" value="${dto.order_id}">
@@ -241,56 +241,78 @@
 		<input type="hidden" id="product_id" name="product_id" value="${dto.product_id}">
 		<input type="hidden" id="email" name="email" value="${dto.email}">
 		
-		<table>
-			<tr>
-				<td style="text-align: justify; "><label for="receiver_name"><span style="color: black; margin-right: 20px;">이름</span></label></td>
-				<td style="text-align: justify;">
-					<input type="text" id="receiver_name" name="receiver_name" value="${dto.name}" placeholder="이름을 입력해주세요">
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: justify; "><label for="receiver_phone"><span style="color: black; margin-right: 20px;">전화번호</span></label></td>
-				<td style="text-align: justify;">
-					<input type="text" id="receiver_phone" name="receiver_phone" value="${dto.phone_number}" placeholder="전화번호를 입력해주세요">
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: justify; "><label for="receiver_addr"><span style="color: black; margin-right: 20px;">주소</span></label></td>
-				<td style="text-align: justify;">
-					<input type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.post_number}" readonly>
-					<input type="button" value="우편번호찾기" onclick="addr();">
-					<br>
-					<input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.address}" size="35" onclick="addr();">
-					<br>
-					<input type="text" name="receiver_addr2" id="receiver_addr2" value="${dto.address2}" size="35" placeholder="상세주소를 입력해주세요.">
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align: right;" colspan="2">
-					<input type="submit" value="변경하기">
-				</td>
-			</tr>
+		
+		<span style="color: black;">이름</span>
+		<table style="margin-bottom: 20px;">
+		 <tr>
+		 <td>
+		 <input type="text" id="receiver_name" name="receiver_name" value="${dto.name}" placeholder="이름을 입력해주세요"class="form-control"size="35"   >
+		 <td>
+		 </tr>
 		</table>
+		
+		<span style="color: black;">연락처</span>
+		<table  style="margin-bottom: 20px;">
+		 <tr>
+		 <td>
+	     <input type="text" id="receiver_phone" name="receiver_phone" value="${dto.phone_number}" placeholder="전화번호를 입력해주세요"class="form-control"size="35"   >
+	     <td>
+		 </tr>
+		</table>
+			
+		<span style="color: black;">주소</span>
+		<table>
+				    <tr>
+						<td><input class="form-control" type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.post_number}" readonly></td>
+						<td><input type="button" value="우편번호찾기" onclick="addr();"  class="btn btn-outline-secondary btn-sm"></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.address}" size="35" onclick="addr();" class="form-control" ></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="receiver_addr2" id="receiver_addr2" value="${dto.address2}" size="35" placeholder="상세주소를 입력해주세요." class="form-control"  ></td>
+					
+					</tr>
+					</table>
+					<input type="submit" class="btn btn-secondary" value="정보변경" style="margin-top: 10px;">
+	
 	</form>
 </fieldset>
-
-	<hr>
+	<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
 <!-- 	<div class="payInfo"> -->
 	<fieldset>
-	<legend>결제정보</legend>
+	<legend>결제금액</legend>
 		<table>
 		<tr>
-			<td style="color: black;">총 금액: ${dto.price + dto.fee} 원</td>
+		  <td style="text-align: left;">가격</td>
+		  <td style="text-align: right ;">${dto.price}원</td>
+		</tr>
+		<tr>
+		  <td style="text-align: left;">배송비</td>
+		  	<td style="text-align: right ;">${dto.charge}원</td>
+		</tr>
+		<tr>
+		  <td style="text-align: left;">수수료</td>
+		 	<td style="text-align: right;">${dto.fee}원</td>
+		</tr>
+		<tr style="color: black; font-size: 25px;">
+			<td style="text-align: left;">총 결제금액</td>
+			<td style="padding-left: 500px;" >${dto.price + dto.fee} 원</td>
 		</tr>
 	</table>
+
+	</fieldset>
+		<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
+	<fieldset style="">
+	<legend>결제수단</legend>
+		
 		<input type="hidden" id="amount" name="amount" value="${dto.price+dto.fee }">
 		<!-- 카드결제 선택시 일반 카드결제 / 카카오페이 선택시 카카오페이 간편결제 -->
-		결제수단 : 
-		<input type="radio" class="pm" name = "payment" value="카드결제" checked="checked"> 카드결제  
-		<input type="radio" class="pm" name = "payment"  value="카카오페이"> 카카오페이
+		<label><input type="radio" class="pm" name = "payment" value="카드결제" checked="checked" > <span style="color: black;">카드결제</span></label>  <br>
+		<label><input type="radio" class="pm" name = "payment"  value="카카오페이" >  <span style="color: black;">카카오페이</span> </label>
 	</fieldset>
 
-	<hr>
+<hr style="border: 0;height: 1.5px; background-color: gray;">
 		 <fieldset>
     <legend>약관동의</legend>
     <div class="payAgreement">
@@ -482,10 +504,11 @@
 
 
  	<br>
- 	<button type="submit" class="btn btn-secondary" id="pay_btn" onclick="requestPay()">결제하기</button>
+
+ 	<button type="submit" class="btn btn-primary" id="pay_btn" onclick="requestPay()" style="width: 100%;">결제하기</button>
+
 </div>
-</div>
-</div>
+
 	<jsp:include page="../footer.jsp"/>
 </body>
 </html>
