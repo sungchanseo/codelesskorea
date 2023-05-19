@@ -133,7 +133,7 @@
 		     <a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		     <td width="70px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
 		     <td width="70px;" style="text-align: center;">${dto.seller_id}</td>
-		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?order_id=${dto.order_id }">${dto.order_id }</a></td>
+		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">${dto.order_id }</a></td>
 		     <td width="220px;" style="text-align: center;">${dto.order_date}</td>
 		     <td width="220px;" style="text-align: center;">${dto.order_status}</td>
 		   </tr>
