@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -74,8 +76,8 @@ public class TrackingNumberAction implements Action {
 		JSForward jsf = new JSForward();
 		jsf.alertAndMove(response, "운송장정보 등록완료", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
 		System.out.println("M : 운송장 변경 완료");
-		return null;
 		
+		return null;
 		
 	}
 

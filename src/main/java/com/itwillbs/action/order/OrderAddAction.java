@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -68,6 +70,7 @@ public class OrderAddAction implements Action {
 		// 주문서 출력 메서드 getOrderContent()
 		dto = dao.getOrderContent(dto);
 		int order_id = dto.getOrder_id();
+		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		System.out.println("id: "+id +" / product_id: " +product_id);
