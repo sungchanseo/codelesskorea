@@ -127,6 +127,10 @@ $('document').ready(function() {
 	}
 	
 	function checkData() {
+		if('${id}' == "") {
+			alert("로그인을 해주세요");
+			return false;
+		}
 		const eleArr = ['#brand', '#model', '#color', '#parts','#trade'];
 		var condition = 0;
 		var str = "?";
