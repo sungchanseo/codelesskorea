@@ -401,8 +401,8 @@
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<div style="text-align: center; margin-top: 10px; ">
-							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 							<c:if test="${ sessionScope.id != product.user_id }">
+							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
 							</c:if>
 					    </div>
