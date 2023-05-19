@@ -39,11 +39,21 @@ public class ChatAction implements Action {
 		 */
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMember(userID);
+		if(dto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = dto.getBlocked();
 		ActionForward forward = new ActionForward();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 
+		}
+		
+		//탈퇴회원 세션제어
+		boolean withdrawal = dto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
 		}
 		/*
 		 *  차단 사용자 세션제어 끝

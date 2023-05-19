@@ -31,6 +31,8 @@ public class MemberInfoAction implements Action {
 		}
 		
 		
+		
+		
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMember(id);

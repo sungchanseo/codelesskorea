@@ -56,7 +56,7 @@ span {
 		   <tr>
 		      <td><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		      <td>${dto.price }</td>
-		      <td>${dto.seller_id }</td>
+		      <td>${requestScope.id}</td>
 		      <td>${dto.buyer_id }</td>
 		      <td style="text-align: center;"><c:choose>
 			    <c:when test="${dto.order_id ne 0}">

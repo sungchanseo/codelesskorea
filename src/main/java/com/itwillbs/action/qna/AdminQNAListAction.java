@@ -42,6 +42,9 @@ public class AdminQNAListAction implements Action{
 		 */
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMember(id);
+		if(dto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = dto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");

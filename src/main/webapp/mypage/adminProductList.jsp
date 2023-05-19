@@ -143,7 +143,15 @@ $(document).on("click", ".del-btn", function() {
 				<td>${dto.seller_id}</td>
 <!-- 				<td>구매자</td> -->
 				<td>${dto.order_date}</td>
-				<td>${dto.order_status}</td>
+				<td><c:choose>
+			    <c:when test="${empty dto.order_status}">
+			        <p>-</p>
+			    </c:when>
+			    <c:otherwise>
+			       <p>${dto.order_status}</p>
+			    </c:otherwise>
+				</c:choose>
+				</td>
 				
 				<td>
 				  <button class="del-btn" data-product-id="${dto.product_id}" >
