@@ -120,6 +120,7 @@
         	    	var receiver_addr1 = $('#receiver_addr1').val();
         	    	var receiver_addr2 = $('#receiver_addr2').val();
         	    	var receiver_post = $('#receiver_post').val();
+        	    	var payment = $('.pm:checked').val();
         	    	
                 	// form 태그 JS에서 생성해서 파라미터 전달
 					const form = document.createElement('form');       			// form 태그 생성 
@@ -160,23 +161,17 @@
                     receiver_post_objs.setAttribute('value', receiver_post);          
                     form.appendChild(receiver_post_objs);
                     
-                    var merchant_uid_objs = document.createElement('input');           
-                    merchant_uid_objs.setAttribute('type', 'hidden');                 
-                    merchant_uid_objs.setAttribute('name', 'merchant_uid');          
-                    merchant_uid_objs.setAttribute('value', rsp.merchant_uid);        
-                    form.appendChild(merchant_uid_objs);
+                    var payment_objs = document.createElement('input');              
+                    payment_objs.setAttribute('type', 'hidden');                                 
+                    payment_objs.setAttribute('name', 'payment');                
+                    payment_objs.setAttribute('value', payment);          
+                    form.appendChild(payment_objs);
                     
                     var paid_amount_objs = document.createElement('input');       
                     paid_amount_objs.setAttribute('type', 'hidden');               
                     paid_amount_objs.setAttribute('name', 'paid_amount');          
                     paid_amount_objs.setAttribute('value', rsp.paid_amount);        
                     form.appendChild(paid_amount_objs);
-                    
-                    var apply_num_objs = document.createElement('input');       
-                    apply_num_objs.setAttribute('type', 'hidden');             
-                    apply_num_objs.setAttribute('name', 'apply_num');          
-                    apply_num_objs.setAttribute('value', rsp.apply_num);      
-                    form.appendChild(apply_num_objs);
                     
                     form.setAttribute('method', 'post');                     
                     form.setAttribute('action', './OrderAddAction.or');      
@@ -215,7 +210,8 @@
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="fee" value="${dto.fee}">
 		<div style="display: flex; align-items: center;">
-			<img src="${dto.product_image}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
+<%-- 			<img src="${dto.product_image}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;"> --%>
+			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
 			<table>
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">상품명</span></td>
@@ -483,8 +479,7 @@
   </script>
 	
 	 
-		
-<!-- 	  </div> -->
+
 
  	<br>
  	<button type="submit" class="btn btn-secondary" id="pay_btn" onclick="requestPay()">결제하기</button>

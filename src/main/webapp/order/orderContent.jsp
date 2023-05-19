@@ -17,23 +17,28 @@
 	<script>
 	$(function(){
 		var id = $('#id').val();
+		var receiver_id = $('#receiver_id').val();
 		var seller_id = $('#seller_id').val();
 		var order_status = $('#order_status').val();
 		console.log(id);
 		console.log(seller_id);
 		console.log(order_status);
 		
-		// 구매자에게만 보이는 버튼
-		if(order_status != "주문 확인"){
+		// 구매자에게만 보이는 주문취소 버튼
+		if(order_status != "주문 확인" || id != receiver_id){
 			$("#accept_0").hide();
 		}
+		// 구매자에게만 보이는 주문확정 버튼
 		if(id == seller_id || order_status == "주문 확인" || order_status == "주문 확정"){
 			$("#accept_3").hide();
 		}
-		// 판매자에게만 보이는 버튼
+		// 판매자에게만 보이는 운송장번호 수정버튼
 		if(id != seller_id){
-			$("#accept_1").hide();
 			$("#tracking").hide();
+		}
+		// 판매자에게만 보이는 주문수락 버튼
+		if(id != seller_id || order_status != "주문 확인"){
+		$("#accept_1").hide();
 		}
 		
 		$(function (){
@@ -63,6 +68,14 @@
 	});
 
 	 </script>
+	 <style>
+	 input::-webkit-inner-spin-button {
+	  appearance: none;
+	  -moz-appearance: none;
+	  -webkit-appearance: none;
+	}
+	 
+	 </style>
 <meta charset="UTF-8">
 <title>주문서 보기</title>
 </head>
@@ -96,7 +109,7 @@
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="fee" value="${dto.fee}">
 		<div style="display: flex; align-items: center;" >
-			<img src="${dto.product_image}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
+			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음"  width="150px" style="display: block; margin-right: 10px;">
 			<table>
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">상품명</span></td>
@@ -142,6 +155,11 @@
 					<td style="text-align: right;"><span style="color: black;"> ${dto.receiver_addr1 } , ${dto.receiver_addr2 } </span></td>
 				</tr>
 			</table>
+				<form action="./TrackingNumberAction.or" method="post" accept-charset="utf-8">
+				<input type="hidden" id="order_id" name="order_id" value="${dto.order_id }">
+				운송장번호 : <input type="text" id="tracking_number" name="tracking_number" pattern="[0-9]*" value="${dto.tracking_number }" placeholder="운송장번호를 숫자로만 입력해주세요">
+				<input type="submit" id="tracking" value="수정하기">
+		</form>
 	</fieldset>
 		</div>
 	<fieldset>

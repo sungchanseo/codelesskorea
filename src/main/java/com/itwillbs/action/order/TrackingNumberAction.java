@@ -19,10 +19,10 @@ public class TrackingNumberAction implements Action {
 		System.out.println(" M : TrackingNumberAction_execute() 호출");
 		
 		// 한글처리(인코딩)
-				request.setCharacterEncoding("UTF-8");
-				System.out.println(" M : 한글처리 완료");
-				System.out.println(request.getParameter("order_id"));
-				System.out.println(request.getParameter("tracking_number"));
+		request.setCharacterEncoding("UTF-8");
+		System.out.println(" M : 한글처리 완료");
+		System.out.println(request.getParameter("order_id"));
+		System.out.println(request.getParameter("tracking_number"));
 				
 		// 세션정보 제어
 		HttpSession session = request.getSession();
@@ -41,9 +41,6 @@ public class TrackingNumberAction implements Action {
 		dto.setTracking_number(tracking_number);
 		dto.setOrder_id(Integer.parseInt(request.getParameter("order_id")));
 		dto.setId(id);
-		
-//		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
-	
 		System.out.println(" M : "+dto);
 		// DAO - 배송지 변경 메서드 호출 
 		 dto = dao.trackingNumber(dto);
