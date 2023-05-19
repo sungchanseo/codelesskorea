@@ -38,7 +38,7 @@
 		     <td>${dto.title }</td>
 		   </tr> 
 		   <tr>
-		     <td style="text-align: center;">내용</td>
+		     <td style="text-align: center;" style="white-space:pre;">내용</td>
 		     <td>${dto.content }</td>
 		   </tr> 
 		</table>

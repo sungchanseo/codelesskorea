@@ -35,7 +35,7 @@
 		   </tr> 
 		   <tr>
 		     <td style="width:80px;">내용</td>
-		     <td colspan="4">${dto.content }</td>
+		     <td colspan="4" style="white-space:pre;">${dto.content }</td>
 		   </tr> 
 		   <c:choose>
 			 <c:when test="${!empty dto.notice_image  }">
