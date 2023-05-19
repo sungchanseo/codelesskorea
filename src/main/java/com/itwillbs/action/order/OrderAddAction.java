@@ -42,6 +42,7 @@ public class OrderAddAction implements Action {
 		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
 		System.out.println(Integer.parseInt(request.getParameter("receiver_post")));
 		dto.setPayment(request.getParameter("payment"));
+		dto.setPaid_amount(request.getParameter("paid_amount"));
 		System.out.println("dto : "+dto);
 		
 		// MemberDAO 객체 생성 
