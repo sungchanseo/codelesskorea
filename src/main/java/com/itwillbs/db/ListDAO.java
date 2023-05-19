@@ -64,7 +64,7 @@ public class ListDAO {
 	            dto.setProduct_id(rs.getInt("product_id"));
 	            dto.setUser_id(rs.getString("user_id"));
 	            dto.setSeller_id(rs.getString("seller_id"));
-	            dto.setOrder_status(rs.getInt("order_status"));
+	            dto.setOrder_status(rs.getString("order_status"));
 	            dto.setOrder_id(rs.getInt("order_id"));
 	            dto.setTitle(rs.getString("title"));
 	            dto.setPrice(rs.getInt("price"));
@@ -121,7 +121,7 @@ public class ListDAO {
 	            dto.setProduct_id(rs.getInt("product_id"));
 	            dto.setUser_id(rs.getString("user_id"));
 	            dto.setSeller_id(rs.getString("user_id"));
-	            dto.setOrder_status(rs.getInt("order_status"));
+	            dto.setOrder_status(rs.getString("order_status"));
 	            dto.setOrder_id(rs.getInt("order_id"));
 	            dto.setTitle(rs.getString("title"));
 	            dto.setPrice(rs.getInt("price"));

@@ -7,7 +7,7 @@ public class ListDTO {
 	private int product_id;
 	private String user_id;
 	private int like_id;
-	private int order_status;
+	private String order_status;
 	private int order_id;
 	private String id;
 	private String title;
@@ -21,13 +21,13 @@ public class ListDTO {
 	private String orderLink;
 	
 	
+	
 	public int getProduct_id() {
 		return product_id;
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-
 	public String getUser_id() {
 		return user_id;
 	}
@@ -40,10 +40,10 @@ public class ListDTO {
 	public void setLike_id(int like_id) {
 		this.like_id = like_id;
 	}
-	public int getOrder_status() {
+	public String getOrder_status() {
 		return order_status;
 	}
-	public void setOrder_status(int order_status) {
+	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
 	}
 	public int getOrder_id() {
@@ -76,18 +76,17 @@ public class ListDTO {
 	public void setSeller_id(String seller_id) {
 		this.seller_id = seller_id;
 	}
-	public Date getOrder_date() {
-		return order_date;
-	}
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
-	}
-	
 	public String getBuyer_id() {
 		return buyer_id;
 	}
 	public void setBuyer_id(String buyer_id) {
 		this.buyer_id = buyer_id;
+	}
+	public Date getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
 	}
 	public String getProductLink() {
 		return productLink;
@@ -102,15 +101,14 @@ public class ListDTO {
 		this.orderLink = orderLink;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "ListDTO [product_id=" + product_id + ", user_id=" + user_id + ", like_id=" + like_id + ", order_status="
 				+ order_status + ", order_id=" + order_id + ", id=" + id + ", title=" + title + ", price=" + price
 				+ ", seller_id=" + seller_id + ", buyer_id=" + buyer_id + ", order_date=" + order_date
 				+ ", productLink=" + productLink + ", orderLink=" + orderLink + "]";
-	}
-	
-	
+	}	
 	
 	
 }

@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>CODELESS - 자주묻는 질문 수정</title>
 <%@include file="../head.jsp" %>
 </head>
 <body>
 <%@include file="../nav.jsp" %>
-<%@include file="../faqBackground.jsp" %>
 
    <div class="row" style="margin-left: 100px;">
  <!-- 사이드바 -->
