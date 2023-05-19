@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-	<head>
 <!-- Bootstrap 5 CSS -->
 <link rel="stylesheet" href="path/to/bootstrap.min.css">
 
@@ -300,7 +299,7 @@
   		  
 	}
 		
-	.like-btn i {
+	.like-btn i, .eye-btn i, .comment-btn i {
 		  font-size: 1.5em;
 		  color: #999;
 		  transition: color 0.3s ease-in-out;
@@ -316,13 +315,26 @@
 		
 		.like-btn:hover i {
 		  color: #ff6969;
-	}
+		}
+	
+		.eye-btn:hover i {
+		  color: lightblue;
+		}
+	
+		.comment-btn:hover i {
+		  color: orange;
+		}
+	
 	
 	.sale-message {
       display: none;
       font-weight: bold;
       color: red;
     }
+	
+	form { 
+	display : inline; margin:0px
+	}
 	
 </style>
 
@@ -336,152 +348,158 @@
  
 <div class="col-sm-8" style="margin-left: 10px;">
  <div id="right" style=" border: 0; margin-left: 10px; width: 93%;">
- <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
+<h1 style="font-family:'TheJamsil5Bold';" align=center  >${product.title}</h1>
 <hr style="border: 0; height: 3px; background-color: black; width: 93%;">
-<h1 style="font-family:'TheJamsil5Bold';" align="center">${product.title}	</h1>
-
+<table style="width: 1000px; border-collapse: collapse; text-align: right;">
+	<tr>
+		<td>
+			<a href="./MypageQNAInsert.qn?product_id=${product.product_id}">신고하기</a>
+		</td>
+	</tr>
+</table>
 <div class="product-table">
  <div class="product-info" >
-  <div class="product-info">
-  
-<table style="width: 1000px; border-collapse: collapse; ">
+  <div>
+          
+<table style=" border-collapse: collapse; ">
 	<tr>   
-	<td> No.</td>
-    <td> ${product.product_id}</td>
-    </tr>
-  <tr>
-    <th style="display: flex; justify-content: center; align-items: center;">
-    <div class="image-slider" >
-	  <div class="image-container">
-	    <img src="./upload/product/${product.product_image.split(',')[0]}" alt="이미지 없음" width="300px" align="middle">
-	    <img src="./upload/product/${product.product_image.split(',')[1]}" alt="이미지 없음" width="300px" align="middle">
-	     <img src="./upload/product/${product.product_image.split(',')[2]}" alt="이미지 없음" width="300px" align="middle">
-	     <img src="./upload/product/${product.product_image.split(',')[3]}" alt="이미지 없음" width="300px" align="middle">
-	     <img src="./upload/product/${product.product_image.split(',')[4]}" alt="이미지 없음" width="300px" align="middle">
-	</div>
-	  <div class="prev-btn">&lt;</div>
-	  <div class="next-btn">&gt;</div>
-	  <div class="dots-container"></div>
-	</div>
-    </th>
-    <th rowspan="2" style="border-left: 1px solid lightgray;" >
-    <table>
-      <tr>
-        <td style="text-align: center;">등록일</td>
-        <td style="text-align: center;">${product.reg_date}</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">가격</td>
-        <td style="text-align: center;">${product.price}원</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">지역 </td>
-        <td style="text-align: center;">${product.city}</td>
-      </tr>
-            <tr>
-        <td style="text-align: center;">등급</td>
-        <td style="text-align: center;">${product.grade}등급</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">조회수   </td>
-        <td style="text-align: center;">${product.read_count}</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">채팅수   </td>
-        <td style="text-align: center;">${product.chat_count}</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">판매자 </td>
-        <td style="text-align: center;">${product.user_id}</td>
-      </tr>
-       <tr>
-        <td style="text-align: center;">브랜드</td>
-        <td style="text-align: center;">${sessionScope.brandName}</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">모델</td>
-        <td style="text-align: center;">${sessionScope.modelName}</td>
-      </tr>
-       <tr>
-        <td style="text-align: center;">색상</td>
-        <td style="text-align: center;">${sessionScope.colorName}</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">부품</td>
-        <td style="text-align: center;">${product.parts}</td>
-      </tr>
-
-      <tr>
-        <td style="text-align: center;">배송비</td>
-        <td style="text-align: center;">${product.charge}원</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">수수료</td>
-        <td style="text-align: center;">${product.fee}원</td>
-      </tr>
-	  <tr>
-	    <td style="text-align: center;">배송방법</td>
-		<td style="text-align: center;">${product.method == 1 ? '직거래' : product.method == 2 ? '택배' : ''}</td>
-	  </tr>
-    </table>
-    </th>
-  </tr>
-  
-  
-  <tr>
-    <th style="text-align: center;">
-     <!-- 찜 버튼 -->
-	<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
-		  <i class="fa fa-heart"></i>
-	</button>
-	<!-- 찜수 -->
-	<span style="font-size: 0.8em; color: gray;">찜수: ${product.like_count }</span>
-    </th>
-  </tr>
-
-      <tr> 
-      <td></td>
-  	  </tr>
-  <tr>
-    <td colspan="2" style="text-align: center;">
-  	${product.content}
-    </td>
-  </tr>
-  <tr>
-<c:choose>
-  <c:when test="${product.product_status == 1}">
-    <!-- 상품이 판매 완료된 경우 -->
-    <p>판매완료된 상품입니다</p>
-  </c:when>
-  <c:otherwise>
-    <!-- 판매 중인 경우 -->
-    <td colspan="2" style="text-align: center;">
-      <div style="text-align: center; margin-top: 10px;">
-        <a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
-        <a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary sale-elements">신고</a>
-        <c:if test="${ sessionScope.id != product.user_id }">
-          <a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-primary sale-elements">채팅하기</a>
+	   <td style="text-align: center;"> No. ${product.product_id}</td>
+	</tr>
+	<tr>
+		<th style="display: flex; justify-content: center; align-items: center;">
+			<div class="image-slider" >
+				<div class="image-container">
+					<img src="./upload/product/${product.product_image.split(',')[0]}" alt="이미지 없음" width="300px" align="middle">
+					<img src="./upload/product/${product.product_image.split(',')[1]}" alt="이미지 없음" width="300px" align="middle">
+					<img src="./upload/product/${product.product_image.split(',')[2]}" alt="이미지 없음" width="300px" align="middle">
+					<img src="./upload/product/${product.product_image.split(',')[3]}" alt="이미지 없음" width="300px" align="middle">
+					<img src="./upload/product/${product.product_image.split(',')[4]}" alt="이미지 없음" width="300px" align="middle">
+				</div>
+			<div class="prev-btn">&lt;</div>
+			<div class="next-btn">&gt;</div>
+			<div class="dots-container"></div>
+		</div>
+		</th>
+		<th rowspan="2">
+		   	<table>
+		     
+				<tr style="text-align: center; font-size: 20px; ">        
+					<td style="text-align: left; font-size: 30px;  padding-left: 40px;">
+						# ${brandName} # ${modelName} # ${colorName} # ${product.parts}
+					</td>
+				</tr> 
+				<tr>
+					<td style="text-align: left; font-size: 30px;  padding-left: 40px;" >${product.price} 원</td>
+				</tr>
+				<tr>
+				    <td style="text-align: left;  padding-left: 40px;">상품 등급 : ${product.grade == 1 ? 'A' : product.grade == 2 ? 'B' : product.grade == 3 ? 'C' : ''} 급 </td>
+				</tr>
+				<tr>
+				  <td style="text-align: left;  padding-left: 40px;">거래 지역 : ${product.city}</td>
+				</tr>
+	
+				<tr>
+					<td colspan="2" style="text-align: center;">
+						<div style="text-align: center; margin-top: 10px; ">
+							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
+							<c:if test="${ sessionScope.id != product.user_id }">
+								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
+							</c:if>
+					    </div>
+					</td>
+				</tr>
+			</table>
+		</th>
+	</tr>
+	<tr>
+	    <th style="text-align: center;">
+	     <!-- 찜 버튼 -->
+			<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
+				  <i class="fa fa-heart"></i>
+			</button>
+			<!-- 찜수 -->
+			
+			<span style="font-size: 0.8em; color: gray;"> 찜수 ${product.like_count }
+			<button  class="like-btn eye-btn" ><i class="fa fa-eye"></i></button> &nbsp 조회수 ${product.read_count}
+			<button  class="like-btn comment-btn" ><i class="fa fa-comment"></i></button> &nbsp 채팅수 ${product.chat_count}
+			</span>
+	    </th>
+	</tr>
+	<tr>
+	</tr>
+	<c:if test="${ sessionScope.id eq 'admin@gmail.com' or product.user_id eq sessionScope.id }">
+<table>
+	<tr>
+	<c:choose>
+	  <c:when test="${product.product_status == 1}">
+	    <!-- 상품이 판매 완료된 경우 -->
+	    <p>판매완료된 상품입니다</p>
+	  </c:when>
+	  <c:otherwise>
+	    <!-- 판매 중인 경우 -->
+		<td style="text-align: left;"> 
+		</td>
+		<td  style="text-align: right; border-top: 1px solid lightgray; padding-top: 20px;  padding-right: 30px;">
+		<a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary btn-sm sale-elements">상품글 수정</a>
+		<form method="post" action="./ProductDeleteAction.pr" onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
+			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
+			<button type="submit" class="btn btn-secondary btn-sm sale-elements" >상품글 삭제</button>
+		</form>
+		<form method="post" action="ProductSoldAction.pr" class="sale-elements" onsubmit="if(!confirm('상품을 판매 완료 처리하시겠습니까?')) return false;" >
+			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
+			<button type="submit" class="btn btn-secondary btn-sm sale-elements">판매완료</button>
+		</form>
+		</td>
+			</c:otherwise>
+		</c:choose>
+	</tr>
+</table>	
         </c:if>
-      </div>
-    </td>
-    <tr style="text-align: right;">
-      <td colspan="2" style="text-align: center;">
-    <c:if test="${ sessionScope.id eq 'admin@gmail.com' or product.user_id eq sessionScope.id }">
-      <a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary sale-elements">상품글 수정</a>
-      <form method="post" action="./ProductDeleteAction.pr" onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;" style="display: inline-block;">
-        <input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
-        <button type="submit" class="btn btn-secondary sale-elements">상품글 삭제</button>
-      </form>
-      <form method="post" action="ProductSoldAction.pr" class="sale-elements" onsubmit="if(!confirm('상품을 판매 완료 처리하시겠습니까?')) return false;" style="display: inline-block;">
-        <input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
-        <button type="submit" class="btn btn-secondary sale-elements">판매완료</button>
-      </form>
-    </c:if>
-  </td>
-  </c:otherwise>
-</c:choose>
-</tr>
-  
+
+
+<!-- 		<tr> -->
+<table>
+	<tr style="text-align: left;">
+	
+		<td style="text-align: left; padding-left: 1.7%; font-size: 1.5em;" colspan="4">${product.content}
+	</tr>
+	<tr><td colspan="4">&nbsp</td></tr>
+	<tr>
+		<td style="text-align: left; padding-left: 1.5%; font-size: 0.9em;">
+			# 등록일 : ${product.reg_date}
+		</td>
+		<td style="text-align: left; padding-left: 1.5%; font-size:0.9em;">
+			# 판매자 : ${product.user_id}
+		</td>
+		<td style="text-align: left; padding-left: 1.5%; font-size:0.9em;">
+			# 거래 방식 : ${product.charge == 0 ? '계좌 거래' : product.charge == 1 ? '안전 결제' : ''}
+		</td>
+		<td style="text-align: left; padding-left: 1.5%; font-size:0.9em;">
+			# 배송비 : ${product.fee}원
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: left; padding-left: 1.5%; font-size:0.9em;">
+			# 배송방법 : ${product.method == 1 ? '직거래' : product.method == 2 ? '택배' : ''}
+		</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+	<c:choose>
+	  <c:when test="${product.product_status == 1}">
+	    <!-- 상품이 판매 완료된 경우 -->
+	    <p>판매완료된 상품입니다</p>
+	  </c:when>
+	  <c:otherwise>
+	    <!-- 판매 중인 경우 -->
+	
+	    <tr style="text-align: right;">
+	      <td colspan="2" style="text-align: center;"></td>
+	   </tr>
+	  </c:otherwise>
+	</c:choose>
 </table>
 
 </div>
@@ -489,7 +507,7 @@
 </div>
 </div>
 <div>
-</div>					
+</div>
 <div style= "text-align: center; margin-top: 5px;">
 
 </div>

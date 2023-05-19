@@ -1,11 +1,7 @@
 package com.itwillbs.action.product;
 
-import java.net.URLEncoder;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
@@ -43,11 +39,10 @@ public ActionForward execute(HttpServletRequest request, HttpServletResponse res
 	System.out.println("모델 이름: " + modelName);
 	System.out.println("컬러 이름: " + colorName);
 	
-	// 액션 페이지에서 세션에 데이터 저장
-	HttpSession session = request.getSession();
-	session.setAttribute("brandName", brandName);
-	session.setAttribute("modelName", modelName);
-	session.setAttribute("colorName", colorName);
+	// 액션 페이지에서 리퀘스트에 데이터 저장
+	request.setAttribute("brandName", brandName);
+	request.setAttribute("modelName", modelName);
+	request.setAttribute("colorName", colorName);
 	
 	// 페이지 이동
 	ActionForward forward = new ActionForward();

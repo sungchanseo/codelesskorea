@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
-import com.itwillbs.db.MypageDAO;
 import com.itwillbs.db.ProductDAO;
 import com.itwillbs.db.ProductDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -86,8 +85,6 @@ public class ProductWriteAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		// 상품등록 메서드
 		dao.productWrite(dto);
-		
-
 		
 		// 페이지 이동
 		

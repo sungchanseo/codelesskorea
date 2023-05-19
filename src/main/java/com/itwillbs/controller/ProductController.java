@@ -95,7 +95,14 @@ public class ProductController extends HttpServlet{
 		}else if(command.equals("/ProductUpdate.pr")) {
 			System.out.println(" C : ProductUpdate.pr 호출");
 			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
-
+			
+			action = new SearchBoxAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			action = new ProductUpdateAction();
 			try {
 				forward = action.execute(request, response);

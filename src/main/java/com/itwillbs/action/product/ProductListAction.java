@@ -33,7 +33,8 @@ public class ProductListAction implements Action {
 				" and model= "+model +
 				" and color= "+color +
 				" and parts= '"+parts + "'" +
-				" and method= "+method;
+				" and method= "+ method +
+				" and product_status= 0";
 		if(method == 1) {
 			sql += " and city like '"+sido1+ " " + gugun1 + "%'";
 		}
