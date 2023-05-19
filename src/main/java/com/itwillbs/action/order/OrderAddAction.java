@@ -70,6 +70,7 @@ public class OrderAddAction implements Action {
 		// 주문서 출력 메서드 getOrderContent()
 		dto = dao.getOrderContent(dto);
 		int order_id = dto.getOrder_id();
+		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		System.out.println("id: "+id +" / product_id: " +product_id);

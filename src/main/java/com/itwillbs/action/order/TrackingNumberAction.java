@@ -76,8 +76,8 @@ public class TrackingNumberAction implements Action {
 		JSForward jsf = new JSForward();
 		jsf.alertAndMove(response, "운송장정보 등록완료", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
 		System.out.println("M : 운송장 변경 완료");
-		return null;
 		
+		return null;
 		
 	}
 
