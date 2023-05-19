@@ -159,7 +159,7 @@ th:nth-of-type(3), td:nth-of-type(4) {
 
 
 fieldset {
-  margin-bottom: 130px; !important;
+  margin-bottom: 200px; !important;
 }
 
 </style>
@@ -169,13 +169,16 @@ fieldset {
 
 <body>
 <%@ include file="../nav.jsp"%>
+
 <div class=row style="margin-left: 100px;">	
+	
+	
 	<%@ include file="../mySide.jsp"%>	 <!--   사이드바 -->
 	
 	
 
 <div class="col-md-10">
- <div id="right" style="width: 80%">
+ <div id="right" style="max-height: 100%; margin-bottom: 400px;">
  <h1 style="font-family: 'TheJamsil5Bold';">1:1문의 상세보기</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -256,6 +259,7 @@ fieldset {
     </c:otherwise>
   </c:choose>
 	</c:if>
+	</div>
 
 </fieldset>
 

@@ -35,7 +35,7 @@
 		   </tr> 
 		   <tr>
 		     <td>내용</td>
-		     <td colspan="4">${dto.content }</td>
+		     <td colspan="4"><div style="white-space:pre;">${dto.content }</div></td>
 		   </tr> 
 			 <td>이미지</td>   
    			<td colspan="4"><img src="./upload/${dto.notice_image }" height="400px"/></td>
