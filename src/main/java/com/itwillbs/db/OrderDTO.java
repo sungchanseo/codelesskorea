@@ -27,6 +27,7 @@ public class OrderDTO {
 	private int tracking_number; //운송장번호
 	private String order_status; //주문 상태
 	private String paid_amount; // 결제 금액
+	private String delivery_company;
 	
 	// product 테이블
 	private int product_id; // 상품번호
@@ -48,6 +49,12 @@ public class OrderDTO {
 
 	
 	
+	public String getDelivery_company() {
+		return delivery_company;
+	}
+	public void setDelivery_company(String delivery_company) {
+		this.delivery_company = delivery_company;
+	}
 	public Timestamp getOrder_date() {
 		return order_date;
 	}
@@ -224,11 +231,13 @@ public class OrderDTO {
 				+ ", receiver_addr1=" + receiver_addr1 + ", receiver_addr2=" + receiver_addr2 + ", receiver_post="
 				+ receiver_post + ", receiver_id=" + receiver_id + ", seller_id=" + seller_id + ", is_accept="
 				+ is_accept + ", tracking_number=" + tracking_number + ", order_status=" + order_status
-				+ ", paid_amount=" + paid_amount + ", product_id=" + product_id + ", title=" + title + ", price="
-				+ price + ", fee=" + fee + ", charge=" + charge + ", product_image=" + product_image + ", id=" + id
-				+ ", name=" + name + ", phone_number=" + phone_number + ", address=" + address + ", address2="
-				+ address2 + ", post_number=" + post_number + ", email=" + email + "]";
+				+ ", paid_amount=" + paid_amount + ", delivery_company=" + delivery_company + ", product_id="
+				+ product_id + ", title=" + title + ", price=" + price + ", fee=" + fee + ", charge=" + charge
+				+ ", product_image=" + product_image + ", id=" + id + ", name=" + name + ", phone_number="
+				+ phone_number + ", address=" + address + ", address2=" + address2 + ", post_number=" + post_number
+				+ ", email=" + email + "]";
 	}
+
 
 
 	

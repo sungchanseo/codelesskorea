@@ -137,8 +137,8 @@ public class OrderDAO {
 						
 						// 주문 번호 등록
 						sql = "insert into orderr(order_id,receiver_id,product_id,seller_id,receiver_name,"
-								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2,order_status,payment,order_date) "
-								+ " values(?,?,?,?,?,?,?,?,?,?,?,now())";
+								+ " receiver_phone,receiver_post,receiver_addr1,receiver_addr2,order_status,payment,paid_amount,order_date) "
+								+ " values(?,?,?,?,?,?,?,?,?,?,?,?,now())";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setInt(1, order_id);
 						pstmt.setString(2, dto.getId());
@@ -151,6 +151,7 @@ public class OrderDAO {
 						pstmt.setString(9, dto.getReceiver_addr2());
 						pstmt.setString(10, "주문 확인");
 						pstmt.setString(11, dto.getPayment());
+						pstmt.setString(12, dto.getPaid_amount());
 						
 						pstmt.executeUpdate();
 						System.out.println(" DAO : 해당 order_id에 주문정보 저장완료 ");	
@@ -229,7 +230,9 @@ public class OrderDAO {
 					dto.setTracking_number(rs.getInt("tracking_number"));
 					dto.setOrder_date(rs.getTimestamp("order_date"));
 					dto.setPayment(rs.getString("payment"));
+					dto.setDelivery_company(rs.getString("delivery_company"));
 				}// if
+				System.out.println("DAO : order_id에서 값 가져옴 dto - "+dto);
 				
 				// 상품정보 가져오기
 				sql = "select * from product where product_id=?";
@@ -244,6 +247,7 @@ public class OrderDAO {
 					dto.setPrice(rs.getInt("price"));
 					dto.setFee(rs.getInt("fee"));
 				}// if
+				System.out.println("DAO : getOrderContent 후 dto - "+dto);
 				System.out.println("DAO : 주문 정보 가져오기 완료");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -320,35 +324,40 @@ public class OrderDAO {
 			try {
 				con = getCon();
 				// 주문 수락여부 추가
-				sql = "update orderr set tracking_number=?, order_status=? where order_id=?";
+				sql = "update orderr set tracking_number=?, order_status=?, delivery_company=? "
+						+ " where order_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, dto.getTracking_number());					
 				pstmt.setString(2, "발송");
-				pstmt.setInt(3, dto.getOrder_id());
+				pstmt.setString(3, dto.getDelivery_company());
+				pstmt.setInt(4, dto.getOrder_id());
 				pstmt.executeUpdate();
 				System.out.println("DAO : 운송장 변경/등록, DB 저장 완료");
-				// sql & pstmt
-				sql = "select * from orderr where order_id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, dto.getOrder_id());
-				// sql 실행
-				rs = pstmt.executeQuery();
-				// 데이터 처리
-				if(rs.next()) {
-					dto.setOrder_id(dto.getOrder_id());
-					dto.setReceiver_name(rs.getString("receiver_name"));
-					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
-					dto.setReceiver_addr2(rs.getString("receiver_addr2"));
-					dto.setReceiver_post(rs.getInt("receiver_post"));
-					dto.setReceiver_phone(rs.getString("receiver_phone"));
-					dto.setOrder_status(rs.getString("order_status"));
-					dto.setReceiver_id(rs.getString("receiver_id"));
-					dto.setSeller_id(rs.getString("seller_id"));
-					dto.setTracking_number(rs.getInt("tracking_number"));
-					dto.setOrder_date(rs.getTimestamp("order_date"));
-					dto.setPayment(rs.getString("payment"));
-				}// if
-				System.out.println("DAO : 주문상태 DTO 추가 완료");
+				
+				
+//				// sql & pstmt
+//				sql = "select * from orderr where order_id=?";
+//				pstmt = con.prepareStatement(sql);
+//				pstmt.setInt(1, dto.getOrder_id());
+//				// sql 실행
+//				rs = pstmt.executeQuery();
+//				// 데이터 처리
+//				if(rs.next()) {
+//					dto.setOrder_id(dto.getOrder_id());
+//					dto.setReceiver_name(rs.getString("receiver_name"));
+//					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
+//					dto.setReceiver_addr2(rs.getString("receiver_addr2"));
+//					dto.setReceiver_post(rs.getInt("receiver_post"));
+//					dto.setReceiver_phone(rs.getString("receiver_phone"));
+//					dto.setOrder_status(rs.getString("order_status"));
+//					dto.setReceiver_id(rs.getString("receiver_id"));
+//					dto.setSeller_id(rs.getString("seller_id"));
+//					dto.setTracking_number(rs.getInt("tracking_number"));
+//					dto.setOrder_date(rs.getTimestamp("order_date"));
+//					dto.setPayment(rs.getString("payment"));
+//					dto.setDelivery_company(rs.getString("delivery_company"));
+//				}// if
+//				System.out.println("DAO : 운송장정보 저장 후 DTO 추가 완료"+dto);
 				
 		}catch (Exception e) {
 			// TODO Auto-generated catch block

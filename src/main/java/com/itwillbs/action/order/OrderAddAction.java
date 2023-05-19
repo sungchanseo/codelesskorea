@@ -10,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
-import com.itwillbs.db.MemberDAO;
-import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -30,8 +28,8 @@ public class OrderAddAction implements Action {
 			JSForward jsf = new JSForward();
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
-		
-		/*
+    
+    /*
 		 *  차단 사용자 세션제어 시작
 		 */
 		MemberDAO mdao = new MemberDAO();
@@ -60,6 +58,7 @@ public class OrderAddAction implements Action {
 		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
 		System.out.println(Integer.parseInt(request.getParameter("receiver_post")));
 		dto.setPayment(request.getParameter("payment"));
+		dto.setPaid_amount(request.getParameter("paid_amount"));
 		System.out.println("dto : "+dto);
 		
 		// MemberDAO 객체 생성 
@@ -83,3 +82,4 @@ public class OrderAddAction implements Action {
 	
 
 }
+
