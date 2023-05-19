@@ -51,7 +51,7 @@ $(document).ready(function () {
     <textarea name="content" id="content" placeholder="공지사항 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control"></textarea>
 	</label>
 	<br>
-	<label>첨부 이미지 (이미지 화일만 업로드 가능합니다)
+	<label>첨부 이미지 (이미지 파일만 업로드 가능합니다)
     <input type="file" name="notice_image" class="form-control" accept="image/*" class="form-control">
 	</label>
 	

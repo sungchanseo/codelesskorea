@@ -32,7 +32,7 @@ public class FaqProUpdateAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
-		if(id == null || !id.equals("admin@gmail.com")) {
+		if(id == null || !id.equals("admin")) {
 			forward.setPath("./FaqList.fa");
 			forward.setRedirect(true);
 			return forward;
