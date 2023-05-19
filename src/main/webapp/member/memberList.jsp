@@ -132,14 +132,14 @@ font-weight: bold !important;
 
 <!-- 검색창기능 -->
 <br>
-<div id="admin_search" align="center">
+<div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./MemberList.me" method="post">
-		<select name="category">
+		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">아이디</option>
 			<option value="content">전화번호</option>
 		</select>
-		<input type="text" name="search" class="input_box" style="height:40px; width:50%;">
-		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="15px">
+		<input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;">
+		<input type="image" src="./images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
 	</form>
 </div>
 <br>
@@ -200,7 +200,6 @@ font-weight: bold !important;
 	   	</c:forEach>
 	</tbody>
 </table>
-	</div></div>
 
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 0px;">

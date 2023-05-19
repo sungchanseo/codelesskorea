@@ -19,7 +19,7 @@
  <!--   사이드바 -->
  
  <div class="col-md-10">
- <div id="right">
+ <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold'; font-size:25px ;">${dto.title }</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
