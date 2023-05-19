@@ -36,7 +36,7 @@
     <textarea name="content"  cols="110px;" rows="10px;" class="form-control">${dto.content }</textarea>
 	</label>
 	<br>
-	<label>첨부 이미지 (이미지 화일만 업로드 가능합니다)
+	<label>첨부 이미지 (이미지 파일만 업로드 가능합니다)
     <input type="file" name="notice_image" class="form-control" accept="image/*">
 	</label>
 	<br>
