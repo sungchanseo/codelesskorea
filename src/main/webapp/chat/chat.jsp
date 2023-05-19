@@ -95,12 +95,24 @@
 	</style>
 <!-- 	<script src="./js/chat.js"></script> -->
 	<script type="text/javascript">
+	function chkValue() {
+        var tmp = $('#chatContent').val().replace(/\s|　/gi, '');
+        if(tmp == ''){
+        	$('#chatContent').val('');
+           return false; // 공백일 때
+        }else {
+            return true; // 공백이 아닐 때
+        }
+    }
     function autoClosingAlert(selector, delay) {
     	var alert = $(selector)//.alert();
     	alert.show();
     	window.setTimeout(function() { alert.hide() }, delay);
     }
     function submitFunction() {
+    	if(!chkValue()) {
+    		return false;
+    	}
     	var fromID = '${id}'
     	var toID = '${param.toID}'
     	var chatContent = $('#chatContent').val();
