@@ -18,7 +18,7 @@
   
  <!--   사이드바 -->
   
- <div class="col-md-10">
+ <div class="col-md-10" style="margin-bottom:40px;">
  <div id="right" style="width: 80%">
  <h1 style="font-family: 'TheJamsil5Bold';">${dto.title }</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
@@ -34,13 +34,24 @@
 		     <td>${dto.count }</td>
 		   </tr> 
 		   <tr>
-		     <td>내용</td>
+		     <td style="width:80px;">내용</td>
 		     <td colspan="4">${dto.content }</td>
 		   </tr> 
-			 <td>이미지</td>   
-   			<td colspan="4"><img src="./upload/${dto.notice_image }" height="400px"/></td>
-   			
-		</table>
+		   <c:choose>
+			 <c:when test="${!empty dto.notice_image  }">
+				<tr>
+			 		<td>이미지</td>   
+   					<td colspan="4"><img src="./upload/${dto.notice_image }" width="600px"/>
+		   		</tr>
+			</c:when>
+			<c:otherwise>
+				<tr>
+			 		<td>이미지</td>   
+   					<td colspan="4">첨부된 이미지가 없습니다.</td>
+		   		</tr>
+			</c:otherwise>
+			</c:choose>
+	</table>
 
 <div style= "float: right; margin-top: 80px;">
 

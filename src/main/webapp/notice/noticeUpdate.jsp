@@ -28,12 +28,12 @@
    	<input type="hidden" name="notice_id" value="${dto.notice_id }">
 	<input type="hidden" name="pageNum" value="${pageNum }">
 	<br>
-    <label>글제목<br>
-    <input type="text" name="title" value="${dto.title }" class="form-control" size="110">
+    <label style="width:100%;">글제목<br>
+    <input type="text" name="title" value="${dto.title }" class="form-control" maxlength="40">
 	</label>
 	<br>
-    <label>글 내용<br>
-    <textarea name="content"  cols="110px;" rows="10px;" class="form-control">${dto.content }</textarea>
+    <label style="width:100%;">글 내용<br>
+    <textarea name="content"  cols="110px;" rows="10px;" class="form-control" maxlength="400">${dto.content }</textarea>
 	</label>
 	<br>
 	<label>첨부 이미지 (이미지 파일만 업로드 가능합니다)
