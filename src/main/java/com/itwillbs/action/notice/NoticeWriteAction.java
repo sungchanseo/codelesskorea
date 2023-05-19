@@ -51,8 +51,6 @@ public class NoticeWriteAction implements Action{
 				);
 		System.out.println("파일업로드성공");
 		
-		//한글인코딩
-
 		
 		//noticeDTO객체에 전달받은 공지사항 내용을 전달받아 초기화
 		NoticeDTO dto = new NoticeDTO();
