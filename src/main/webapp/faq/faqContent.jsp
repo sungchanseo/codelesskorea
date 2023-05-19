@@ -45,7 +45,7 @@
 		
 <div style= "float: right; margin-top: 80px;">
 
-<c:if test="${id.equals('admin@gmail.com') }">
+<c:if test="${id.equals('admin') }">
 <a href="./FaqProUpdateAction.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 수정</a>
 <a href="./FaqDelete.fa?faq_id=${dto.faq_id }&pageNum=${pageNum}" class="btn btn-primary">게시글 삭제</a>
 </c:if>
