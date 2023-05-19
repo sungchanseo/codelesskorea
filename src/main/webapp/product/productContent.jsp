@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
@@ -149,6 +150,7 @@
 	      // 판매완료 메시지를 보여줍니다.
 	      $('.sale-message').show();
 	    }
+		
 </script>
 
 <style>
@@ -341,22 +343,17 @@
 </head>
 <body style="overflow: auto;">
 <%@include file="../nav.jsp" %>
+<%@ include file="../background.jsp"%> <!-- END 배경 -->
+
  <!-- 사이드바 -->
  <div class="row" style="margin-left: 100px;">
 <%@include file="../mySide.jsp" %>
  <!--   사이드바 -->
  
-<div class="col-sm-8" style="margin-left: 10px;">
- <div id="right" style=" border: 0; margin-left: 10px; width: 93%;">
-<h1 style="font-family:'TheJamsil5Bold';" align=center  >${product.title}</h1>
-<hr style="border: 0; height: 3px; background-color: black; width: 93%;">
-<table style="width: 1000px; border-collapse: collapse; text-align: right;">
-	<tr>
-		<td>
-			<a href="./MypageQNAInsert.qn?product_id=${product.product_id}">신고하기</a>
-		</td>
-	</tr>
-</table>
+<div class="col-md-10">
+ <div id="right">
+<h1 style="font-family:'TheJamsil5Bold';" align=left  >${product.title}</h1>
+<hr style="border: 0;height: 3px; background-color: black;">
 <div class="product-table">
  <div class="product-info" >
   <div>
@@ -389,7 +386,7 @@
 					</td>
 				</tr> 
 				<tr>
-					<td style="text-align: left; font-size: 30px;  padding-left: 40px;" >${product.price} 원</td>
+					<td style="text-align: left; font-size: 30px;  padding-left: 40px;" ><fmt:formatNumber> ${product.price} </fmt:formatNumber>원</td>
 				</tr>
 				<tr>
 				    <td style="text-align: left;  padding-left: 40px;">상품 등급 : ${product.grade == 1 ? 'A' : product.grade == 2 ? 'B' : product.grade == 3 ? 'C' : ''} 급 </td>
@@ -401,8 +398,8 @@
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<div style="text-align: center; margin-top: 10px; ">
-							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 							<c:if test="${ sessionScope.id != product.user_id }">
+							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
 							</c:if>
 					    </div>
@@ -449,6 +446,7 @@
 			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
 			<button type="submit" class="btn btn-secondary btn-sm sale-elements">판매완료</button>
 		</form>
+			<a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary"> 신고하기 </a>
 		</td>
 			</c:otherwise>
 		</c:choose>

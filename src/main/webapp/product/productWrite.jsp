@@ -15,6 +15,7 @@
 <body>
 
 <%@include file="../nav.jsp" %>
+<%@ include file="../background.jsp"%> <!-- END 배경 -->
 <script type="text/javascript">
 
 function addr() {
@@ -103,14 +104,13 @@ function toggleAddressField() {
 </script>
 
  <!-- 사이드바 -->
-
 <div class="row" style="margin-left: 100px;">
 <%@include file="../mySide.jsp" %>
-  
+
  <!--   사이드바 -->
  
-<div class="col-sm-8" style="margin-left:0px;">
- <div class="container" id="right" style="margin-left: 0px; width: 100%;">
+<div class="col-md-10">
+ <div id="right">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 등 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 

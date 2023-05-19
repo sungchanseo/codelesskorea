@@ -15,6 +15,7 @@
 <body>
 
 <%@include file="../nav.jsp" %>
+<%@ include file="../background.jsp"%> <!-- END 배경 -->
 <script type="text/javascript">
 
 function addr() {
@@ -78,6 +79,52 @@ $('document').ready(function() {
 		});
 	 });
 
+	//업데이트 선택값 받기
+	 $('#brand').val(${product.brand});
+		if($('#brand').val() == "1"){
+			$('#model option').remove();
+			$('#color option').remove();
+			$('#model').append("<option value=''>모델</option>");
+			$('#color').append("<option value=''>색상</option>");
+			$.each(modelList,function(idx, obj){
+				console.log(obj.model_id);
+				console.log(obj.model);
+				if(obj.model_id>5) return false;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected apple
+		}else if($('#brand').val() == "2"){
+			// Init selectBox
+			$('#model option').remove();
+			$('#color option').remove();
+			$('#model').append("<option value=''>모델</option>");
+			$('#color').append("<option value=''>색상</option>");
+			// add values
+			$.each(modelList,function(idx, obj){
+				if(obj.model_id<6) return true;
+				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+			}); // selected samsung
+		}
+	 $('#model').val(${product.model});
+		$('#color option').remove();
+		$('#color').append("<option value=''>모델</option>");
+		 var color = "";
+		$.each(modelList,function(idx, obj){
+// 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
+			if(obj.model_id == $('#model').val()) {
+				color = obj.color;
+				return false;
+			}
+		}); // get Colors by Model
+		var colorArr = color.split("/");
+		$.each(colorList,function(idx, obj){
+			$.each(colorArr, function(idx, colorEle){
+				if(obj.color_id == colorEle) {
+					$('#color').append("<option value='"+obj.color_id+"'>"+obj.color+"</option>");
+				}
+			});
+		});
+	 $('#color').val(${product.color});
+	
 });
 
 function toggleAddressField() {
@@ -104,13 +151,13 @@ function toggleAddressField() {
 
  <!-- 사이드바 -->
 
-<div class="row" style="margin-left: 100px;">
+<div class="row" style="margin-left: 100px; ">
 <%@include file="../mySide.jsp" %>
   
  <!--   사이드바 -->
  
-<div class="col-sm-8" style="margin-left: 0px;">
- <div class="container" id="right" style="margin-left: 0px; width: 100%;">
+ <div class="col-md-10">
+ <div id="right">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 수 정</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
@@ -139,13 +186,12 @@ function toggleAddressField() {
 		<select name="color" id="color" required style="width: 122px;">
 			<option value="">색상</option>
 		</select>
-		
 		<select name="parts" id="parts" required style="width: 122px;">
 			<option value="">부품</option>
-			<option value="left">좌</option>
-			<option value="right">우</option>
-			<option value="body">본체</option>
-		</select>
+				<option value="left" ${product.parts == "left" ? "selected" : ""}>좌</option>
+				<option value="right" ${product.parts == "right" ? "selected" : ""}>우</option>
+				<option value="body" ${product.parts == "body" ? "selected" : ""}>본체</option>
+			</select>
    <br>
    <label for="content"></label>
    <textarea name="content" placeholder="글 내용을 작성하세요"  rows="4" cols="50">${product.content}</textarea>
