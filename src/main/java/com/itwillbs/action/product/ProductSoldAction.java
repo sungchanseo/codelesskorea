@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.ProductDAO;
 
 public class ProductSoldAction implements Action {
@@ -27,6 +29,19 @@ public class ProductSoldAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		// 2. DAO를 이용하여 product 테이블에서 해당 상품을 판매완료 처리
 		ProductDAO dao = new ProductDAO();

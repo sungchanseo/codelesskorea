@@ -9,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ChatDAO;
 import com.itwillbs.db.ChatDTO;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 public class ChatListAction implements Action {
 //	private static final long serialVersionUID = 1L;
@@ -32,6 +35,21 @@ public class ChatListAction implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.getMember(id);
+		boolean blocked = dto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
         // 전달된 정보 저장
         String fromID = id;
         String toID = request.getParameter("toID");

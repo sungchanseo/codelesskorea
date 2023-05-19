@@ -7,9 +7,13 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.ProductDAO;
 import com.itwillbs.db.ProductDTO;
 
@@ -17,7 +21,31 @@ public class ProductListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
+		// 로그인 세션제어
+		HttpSession session =  request.getSession();
+		String id = (String)session.getAttribute("id");
+		ActionForward forward = new ActionForward();
+		if(id == null ) {
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(true);
+			return forward;
+		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
+		
 		System.out.println("P : ProductListAction_execute() 호출");
 		int brand = Integer.parseInt(request.getParameter("brand"));
 		int model = Integer.parseInt(request.getParameter("model"));
@@ -64,7 +92,7 @@ public class ProductListAction implements Action {
 		System.out.println(productList.size());
 		System.out.println("");
 		// 연결된 view에 출력(./product/productList.jsp)
-		ActionForward forward = new ActionForward();
+		forward = new ActionForward();
 		forward.setPath("./product/productList.jsp");
 		forward.setRedirect(false);
 		System.out.println(forward);

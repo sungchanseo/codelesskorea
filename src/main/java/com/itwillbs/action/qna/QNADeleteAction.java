@@ -36,14 +36,19 @@ public class QNADeleteAction implements Action{
 			return forward;
 		}
 		
-		// 차단 사용자 세션제어
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
 		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id);
-		boolean blocked = dto.getBlocked();
+		MemberDTO mdto = dao.getMember(id);
+		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
-			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
-			return forward;
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+	
 		
 		
 		//BoardDAO객체생성 deleteBoard

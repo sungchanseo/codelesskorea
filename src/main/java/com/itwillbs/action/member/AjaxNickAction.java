@@ -4,10 +4,13 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 public class AjaxNickAction implements Action {
 

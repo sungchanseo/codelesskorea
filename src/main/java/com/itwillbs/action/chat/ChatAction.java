@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ChatDAO;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 public class ChatAction implements Action {
 
@@ -30,6 +33,22 @@ public class ChatAction implements Action {
         if(request.getParameter("toID") != null){
      	  toID = (String) request.getParameter("toID");
         }
+
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.getMember(userID);
+		boolean blocked = dto.getBlocked();
+		ActionForward forward = new ActionForward();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
+		
 //        System.out.println("id : " + userID +  "/ toID : " + request.getParameter("toID"));
         if(userID == null) {
      	  session.setAttribute("messageType", "오류 메시지");
@@ -64,7 +83,7 @@ public class ChatAction implements Action {
 //			return forward;
 //		}
 
-         ActionForward forward = new ActionForward();
+         forward = new ActionForward();
          forward.setPath("./chat/chat.jsp");
          forward.setRedirect(false);
          return forward;

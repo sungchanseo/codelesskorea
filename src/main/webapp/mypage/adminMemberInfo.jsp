@@ -123,7 +123,7 @@
 			<div class="form-group" id="log-form" style="width: 400px;" >
 
 			<h2 style="margin-top: 10px; font-size: 24px;">
-			    <b>회원 <span style="color: #FFB609;">${id }</span> 정보 보기</b>
+			    <b>회원 <span style="color: #FFB609;">${param.id }</span> 정보 보기</b>
 			</h2>
 		<div style="text-align: center; background-color: white;">
 		  <c:choose>
@@ -179,7 +179,7 @@
 			 	주소
 				<table>
 					<tr>
-						<td><input type="text" name="zipcode" id="zipcode" size="15" readonly >
+						<td><input type="text" name="post_number" id="zipcode" size="15" value="${dto.post_number }" readonly>
 						
 					</tr>
 					<tr>

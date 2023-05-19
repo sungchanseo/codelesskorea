@@ -332,19 +332,31 @@ public class MypageDAO {
 			try {
 				//1.2. 디비연결
 				con = getCon();
+				sql = "select * from qna where bno=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, qdto.getBno());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){ 
+					if(qdto.getBno()==rs.getInt("bno")){
 				sql = "update qna set title=?,content=?,image=? where bno=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, qdto.getTitle());
 				pstmt.setString(2, qdto.getContent());
-				pstmt.setString(3, qdto.getImage());
+				if(qdto.getImage()==null) {
+					pstmt.setString(3, rs.getString("image"));
+				}else {
+					pstmt.setString(3, qdto.getImage());
+				}
 				pstmt.setInt(4, qdto.getBno());
-						
 				// 4. sql 실행
 				result = pstmt.executeUpdate();
 				//result = 1;					
 				
 				System.out.println(" DAO : 글 수정완료! ("+result+")");
-				
+					}
+				}	
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -355,6 +367,48 @@ public class MypageDAO {
 			
 			return result;
 		}
+		
+		//updateNotice() 공지글 수정하는 메소드 시작
+		public int updateNotice(NoticeDTO dto) {
+			int result = -1;
+			try {
+				con = getCon();
+				sql = "select * from notice where notice_id=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, dto.getNotice_id());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){ 
+					if(dto.getNotice_id()==rs.getInt("notice_id")){
+					
+						sql = "update notice set title=?, content=?, notice_image=? where notice_id=?";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setString(1, dto.getTitle());
+						pstmt.setString(2, dto.getContent());
+						if(dto.getNotice_image()==null) {
+							pstmt.setString(3, rs.getString("notice_image"));
+						}else {
+							pstmt.setString(3, dto.getNotice_image());
+						}
+						pstmt.setInt(4, dto.getNotice_id());
+						
+						result = pstmt.executeUpdate();
+						System.out.println("게시글 업데이트 성공!");
+					}
+				}
+				
+			} catch (Exception e) {
+				result= 0;
+				e.printStackTrace();
+			} finally {
+				result =-1;
+				closeDB();
+			}
+			
+			return result;
+		}//updateNotice() 공지글 수정하는 메소드 시작
 		
 		
 		// 마이페이지 - QNA 수정 updateQNA(QnADTO qdto)
@@ -368,12 +422,12 @@ public class MypageDAO {
 		        ResultSet rs = pstmt.executeQuery();
 		        if(rs.next()) {
 		            int re_ref = rs.getInt("re_ref");
-		            sql = "UPDATE QNA SET isanswered=false WHERE bno=?";
+		            sql = "UPDATE qna SET isanswered=false WHERE bno=?";
 		            pstmt = con.prepareStatement(sql);
 		            pstmt.setInt(1, re_ref);
 		            result = pstmt.executeUpdate();
 		        }
-		        sql = "DELETE FROM QNA WHERE re_ref=? OR bno=?";
+		        sql = "DELETE FROM qna WHERE re_ref=? OR bno=?";
 		        pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, bno);
 		        pstmt.setInt(2, bno);

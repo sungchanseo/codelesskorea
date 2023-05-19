@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 import com.itwillbs.commons.JSForward;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.OrderDAO;
 import com.itwillbs.db.OrderDTO;
 
@@ -27,6 +29,19 @@ public class OrderWriteAction implements Action {
 			JSForward jsf = new JSForward();
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		OrderDAO dao = new OrderDAO();

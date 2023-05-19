@@ -76,6 +76,7 @@ public class ChatController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}else if(command.equals("/ChatUnreadAction.ch")) {
 			System.out.println(" C : ChatUnreadAction.ch 호출");
 			System.out.println(" C : DB사용 O, 페이지 이동O (패턴3)");

@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.FaqDAO;
 import com.itwillbs.db.FaqDTO;
 import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.NoticeDAO;
 import com.itwillbs.db.NoticeDTO;
 
@@ -24,7 +26,22 @@ public class FaqListAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
-		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		// 세션정보 가져오기
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return forward;
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		//////////////////////////////////////////////////////////
 		//검색로직 
 		String category= request.getParameter("category");

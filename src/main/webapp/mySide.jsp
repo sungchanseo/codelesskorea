@@ -79,7 +79,7 @@
 		  <ul>
 		  <li><h5 onclick="location.href='./MemberInfo.my'"> 내정보보기</h5></li>
 		  <li><h5 onclick="location.href='./MemberList.me'"> 회원관리</h5></li>
-		  <li><h5 onclick="location.href='AdminProductList.my'"> 회원관리</h5></li>
+		  <li><h5 onclick="location.href='AdminProductList.my'"> 상품관리</h5></li>
 		  <li><h5 onclick="location.href='./AdminQNAList.qn'"> 1:1문의관리</h5></li>
 		  </ul>
 		  </c:if>

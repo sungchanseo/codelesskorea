@@ -27,6 +27,8 @@ public class MypageQNABoardInsertAction implements Action{
 				HttpSession session = request.getSession();
 				String id = (String)session.getAttribute("id");
 				
+				
+				
 				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 				String uploadPath = request.getServletContext().getRealPath("/upload");
 				File uploadDir = new File(uploadPath);
@@ -51,16 +53,19 @@ public class MypageQNABoardInsertAction implements Action{
 				        		   );
 				
 				 System.out.println("안녕하세요!");
-
-				
-				// 차단 사용자 세션제어
-				MemberDAO dao = new MemberDAO();
-				MemberDTO mdto = dao.getMember(id);
-				boolean blocked = mdto.getBlocked();
-				if(blocked == true) {
-					JSForward.alertAndBack(response, "잘못된 접근입니다!");
-					return forward;
-				}
+				 
+					/*
+					 *  차단 사용자 세션제어 시작
+					 */
+					MemberDAO dao = new MemberDAO();
+					MemberDTO mdto = dao.getMember(id);
+					boolean blocked = mdto.getBlocked();
+					if(blocked == true) {
+						JSForward.alertAndBack(response, "잘못된 접근입니다!");
+					}
+					/*
+					 *  차단 사용자 세션제어 끝
+					 */
 				
 				if(id == null ) {
 					JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");

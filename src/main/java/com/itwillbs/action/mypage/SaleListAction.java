@@ -8,8 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
+import com.itwillbs.commons.JSForward;
 import com.itwillbs.db.ListDAO;
 import com.itwillbs.db.ListDTO;
+import com.itwillbs.db.MemberDAO;
+import com.itwillbs.db.MemberDTO;
 
 public class SaleListAction implements Action{
 
@@ -28,6 +31,19 @@ public class SaleListAction implements Action{
 			forward.setRedirect(true);
 			return forward;
 		}
+		
+		/*
+		 *  차단 사용자 세션제어 시작
+		 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(id);
+		boolean blocked = mdto.getBlocked();
+		if(blocked == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+		}
+		/*
+		 *  차단 사용자 세션제어 끝
+		 */
 		
 		// 목록 - DAO : getSaleList()
 		ListDAO dao = new ListDAO();

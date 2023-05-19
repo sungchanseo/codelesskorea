@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.commons.JSForward"%>
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +10,17 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../head.jsp"%>
-
+<%
+//세션에서 아이디 받아옴
+String id = (String)session.getAttribute("id");
+MemberDAO mdao = new MemberDAO();
+MemberDTO mdto = mdao.getMember(id);
+boolean blocked = mdto.getBlocked();
+//차단사용자 세션제어
+if(blocked == true) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberInfo.my");
+}
+%>
 <script type="text/javascript">
 
 

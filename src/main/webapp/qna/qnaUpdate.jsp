@@ -39,13 +39,13 @@
 					<br>
 				    <label>글 내용<br>
 				    <textarea name="content" cols="110px;" rows="10px;" class="form-control">
-				     ${qdto.content}
+${qdto.content}
 				    </textarea>
 					</label>
 					<br>
 					<label>첨부 이미지
 				    <input type="file" name="image" class="form-control">
-					</label>
+					</label> 
 					 <div style= "float: right; margin-top: 30px;">	
 				  <input type="submit" value="글 수정하기" class="btn btn-primary">
 				  <input type="button" value="수정취소" class="btn btn-secondary" onclick="location.href='./AdminQNAList.qn'">

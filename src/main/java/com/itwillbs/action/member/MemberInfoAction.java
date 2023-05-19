@@ -21,6 +21,7 @@ public class MemberInfoAction implements Action {
 		String id = (String)session.getAttribute("id");
 		
 		ActionForward forward = new ActionForward();
+
 		
 		if(id == null) {
 			System.out.println("ID 정보가 없습니다.");
@@ -33,7 +34,6 @@ public class MemberInfoAction implements Action {
 		// MemberDAO 객체 생성 - 회원정보 조회 메서드 getMember()
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMember(id);
-		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		
