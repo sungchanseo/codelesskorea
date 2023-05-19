@@ -97,7 +97,7 @@
           </div>
           <div class="product-details" style="margin-top: 10px;">
 
-            <a href="./ProductContent.pr?product_id=${product.product_id}" style="font-size: 20px;">${product.title}</a><br>
+            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank" style="font-size: 20px;">${product.title}</a><br>
 
             <b>가격:</b> ${product.price} 원<br>
     
