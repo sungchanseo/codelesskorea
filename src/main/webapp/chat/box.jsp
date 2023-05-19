@@ -151,13 +151,13 @@
 	    			'</span>' +
 // 	    			'</h5>' +
 	    			'</td>' + 
-	    			'<td class="chatbox">' +
+	    			'<td class="chatbox" style="width: 1000px;">' +
 // 	    			'<h5>' + 
 	    			'<br>' +
 	    			'<span class="chatContentM">' +
 	    			chatContent +
 	    			'</span>' +
-	    			'<br>' +
+
 // 	    			'<span class="label label-info">' + 
 // 	    			unread + 
 // 	    			'</span>' +

@@ -107,7 +107,7 @@ $(document).on("click", ".del-btn", function() {
 <br>
 <div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./AdminProductList.my" method="post">
-		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>

@@ -116,7 +116,7 @@
 		  <table class="table" id="nttable">
 		   <thead style="background-color: #F6F6F6;">
 		   <tr>
-		     <th style="text-align: center;">상품명</th>
+		     <th style="text-align: center;">제목</th>
 		     <th style="text-align: center;">가격</th>
 		     <th style="text-align: center;">구매자</th>
 		     <th style="text-align: center;">주문서번호</th>
@@ -128,10 +128,10 @@
 		   <c:forEach var="dto" items="${requestScope.saleList }">
 		<!-- rs <- DTO <- List -->
 		   <tr>
-		     <td width="620px;" style="text-align: center;">
+		     <td width="600px;" style="text-align: center;">
 		     <a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
-		     <td width="70px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
-		     <td width="70px;" style="text-align: center;">${dto.buyer_id}</td>
+		     <td width="120px;" style="text-align: center;"><fmt:formatNumber value="${dto.price}" pattern="#,###"/></td>
+		     <td width="140px;" style="text-align: center;">${dto.buyer_id}</td>
 		     <td width="220px;" style="text-align: center;"><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">
 		     
 			<c:choose>

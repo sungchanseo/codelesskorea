@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CODE LESS</title>
 	<jsp:include page="../head.jsp"/>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<style type="text/css">	
 		#chatList *{
 			font-family: 'TheJamsil5Bold' !important;
@@ -259,13 +259,17 @@
  	<div id="right" style="width: 80%">
  	<h1 style="font-family: 'TheJamsil5Bold';">채 팅 목 록</h1>
 	<hr style="border: 0;height: 3px; background-color: black;">
-
 					<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto;">
 					</div>
 <!-- 					<div class="portlet-footer"> -->
 <!-- 						<div class="row" style="height: 90px;"> -->
 <!-- 							<div class="form-group col-xs-10"> -->
-								<textarea style="width: 500px; height: 80px;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요." maxlength="100"></textarea>
+							<div class="form-group" style="display: flex; align-items: center; justify-content: center;">
+							    <textarea style="width:70%; align-items: center;" id="chatContent" class="form-control" placeholder="메시지를 입력하세요." maxlength="100"></textarea>
+							    <div style="padding: 20px;">
+							    	<button type="button" class="btn btn-default" id="send" onclick="submitFunction();">전송</button>
+						    	</div>
+							</div>
 							    <span id="successMessage" style="display: none;">
 						        <strong>메시지 전송에 성공했습니다.</strong></span>
 						<!--     </div> -->
@@ -277,8 +281,8 @@
 						        </span>
 <!-- 							</div> -->
 <!-- 							<div class="form-group col-xs-2"> -->
-								<button type="button" class="btn btn-default pull-right" id="send" onclick="submitFunction();">전송</button>
 								<input type="hidden" id="count" value="200">
+								<!-- 버튼있던자리 -->
 							<div class="clearfix"></div>
 <!-- 							</div> -->
 <!-- 						</div> -->
