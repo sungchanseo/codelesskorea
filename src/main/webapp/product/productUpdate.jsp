@@ -126,21 +126,21 @@ function toggleAddressField() {
    <label for="title"></label>
     <input type="text" value="${product.title }" name="title" style="width: 406px;">
 	<br>
-		<select name="brand" id="brand" required>			
+		<select name="brand" id="brand" required style="width: 122px;">			
 			<option value="">브랜드</option>
 			<option value="1">애플</option>
 			<option value="2">삼성</option>
 		</select>
 		
-		<select name="model" id="model" required>	
+		<select name="model" id="model" required style="width: 122px;">	
 			<option value="">모델</option>
 		</select>
 		
-		<select name="color" id="color" required>
+		<select name="color" id="color" required style="width: 122px;">
 			<option value="">색상</option>
 		</select>
 		
-		<select name="parts" id="parts" required>
+		<select name="parts" id="parts" required style="width: 122px;">
 			<option value="">부품</option>
 			<option value="left">좌</option>
 			<option value="right">우</option>

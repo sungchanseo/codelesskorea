@@ -52,7 +52,7 @@ public class ProductUpdateProAction  implements Action {
 		dto.setGrade(Integer.parseInt(multi.getParameter("grade")));
 		String address1 = multi.getParameter("address1");
 		String address2	= multi.getParameter("address2");
-		String city = address1 + address2;
+		String city = address1 + " " + address2;
 		dto.setCity(city);
 		dto.setMethod(Integer.parseInt(multi.getParameter("method")));
 		dto.setCharge(Integer.parseInt(multi.getParameter("charge")));
