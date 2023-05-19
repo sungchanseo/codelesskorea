@@ -134,7 +134,7 @@ font-weight: bold !important;
 <br>
 <div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./MemberList.me" method="post">
-		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">아이디</option>
 			<option value="content">전화번호</option>
 		</select>
