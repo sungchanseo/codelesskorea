@@ -107,7 +107,7 @@ $(document).on("click", ".del-btn", function() {
 <br>
 <div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./AdminProductList.my" method="post">
-		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">제목</option>
 			<option value="content">내용</option>
 		</select>
@@ -140,9 +140,9 @@ $(document).on("click", ".del-btn", function() {
 <%-- 				<td>${dto.product_id}</td> --%>
 				<td><a href="./ProductContent.pr?product_id=${dto.product_id}"><span>${dto.title}</span></a></td>
 				<td>${dto.price}</td>
-				<td>${dto.user_id}</td>
+				<td>${dto.seller_id}</td>
 <!-- 				<td>구매자</td> -->
-				<td>${dto.reg_date}</td>
+				<td>${dto.order_date}</td>
 				<td>${dto.order_status}</td>
 				
 				<td>
@@ -156,14 +156,14 @@ $(document).on("click", ".del-btn", function() {
 </table>
 			<div class="container" style="margin: auto;">
 			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">
-		  	<c:if test="${startPage > pageBlock }"> 
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
+		  	<c:if test="${startPage > pageBlock }"> /
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 			</c:if>
 		   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${i }"><span>${i }</span></a></li>
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${i }&category=${category }&search=${search }"><span>${i }</span></a></li>
 			</c:forEach>
 		    <c:if test="${endPage<pageCount }">
-			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage+pageBlock}&category=${category }&search=${search } "><span>다음</span></a></li>
 			</c:if>
 		  </ul>
   		</div>
