@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.db.MemberDTO"%>
+<%@page import="com.itwillbs.db.MemberDAO"%>
+<%@page import="com.itwillbs.commons.JSForward"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -81,6 +84,9 @@
 </style>
 </head>
 <body style="margin: 10px; padding: 10px;background-color: transparent !important;box-shadow: none !important;">
+
+
+
   <div class="loading-overlay hidden">
     <img src="./upload/product/loading.gif" width="1000" height="800" >
   </div>
@@ -93,14 +99,14 @@
       <c:forEach var="product" items="${requestScope.productList}" varStatus="status">
         <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;display: flex; flex-direction: column;justify-content: center;">
           <div class="product-image">
-            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">
+            <a href="./ProductContent.pr?product_id=${product.product_id}" onclick="window.parent.location.href = this.href; return false;">
             <img src="./upload/product/${product.product_image.split(',')[0] }" onerror="this.src='https://via.placeholder.com/250x250?text=No Image :('" alt="${product.title}" style="max-width: 250px;">
             </a>
           </div>
           <div class="product-details" style="margin-top: 10px;">
 
-            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank" style="font-size: 20px;color:#FFB300">${product.title}</a><br>
-
+            <a href="./ProductContent.pr?product_id=${product.product_id}" onclick="window.parent.location.href = this.href; return false;">${product.title}</a>
+			<br>
             <b>가격:</b><fmt:formatNumber> ${product.price}</fmt:formatNumber> 원<br>
     
           <b><i class="fa fa-heart" style="color:#ff6969;"></i></b> ${product.like_count}
