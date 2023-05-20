@@ -89,11 +89,11 @@ public class ProductController extends HttpServlet{
 			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
 			
 //			action = new SearchBoxAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+//			try {
+//				action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			
 			action = new ProductUpdateAction();
 			try {

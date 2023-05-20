@@ -117,7 +117,7 @@ function toggleAddressField() {
 	  var addressFields = document.getElementById("addressFields");
 	  var deliveryMessage = document.getElementById("deliveryMessage");
 
-	  if (methodSelect.value === "2") { // 택배를 선택한 경우
+	  if (methodSelect.value === "" || methodSelect.value === "1") { //없거나 직거래를 선택한 경우
 	    addressFields.style.display = "none";
 	    deliveryMessage.style.display = "block";
 	  } else {
@@ -148,6 +148,11 @@ function toggleAddressField() {
 	  var price = document.getElementById('price');
 	  inputOnlyNumberFormat(price);
   }
+  
+  //페이지 로드시 주소창 안 보이게 하는 함수
+  window.addEventListener("DOMContentLoaded", function() {
+	    toggleAddressField();
+	  });
   
 </script>
 
@@ -271,7 +276,7 @@ function toggleAddressField() {
 </div>
 
 
-<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
+<p id="deliveryMessage" style="display: none; color: red;">(택배만 가능합니다.)</p>
 <hr>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 수정</button>
 	</form>

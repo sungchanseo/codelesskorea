@@ -117,14 +117,14 @@ function toggleAddressField() {
 	  var addressFields = document.getElementById("addressFields");
 	  var deliveryMessage = document.getElementById("deliveryMessage");
 
-	  if (methodSelect.value === "2") { // 택배를 선택한 경우
-	    addressFields.style.display = "none";
-	    deliveryMessage.style.display = "block";
-	  } else {
-	    addressFields.style.display = "block";
-	    deliveryMessage.style.display = "none";
-	  }
-	}
+	  if (methodSelect.value === "" || methodSelect.value === "1" ) { // 직거래를 선택한 경우 또는 기본값인 경우
+		    addressFields.style.display = "none";
+		    deliveryMessage.style.display = "block";
+		  } else {
+		    addressFields.style.display = "block";
+		    deliveryMessage.style.display = "none";
+		  }
+		}
 
   function comma(str) {
       str = String(str);
@@ -148,6 +148,11 @@ function toggleAddressField() {
 	  var price = document.getElementById('price');
 	  inputOnlyNumberFormat(price);
   }
+  
+  //페이지 로드시 주소창 안 보이게 하는 함수
+  window.addEventListener("DOMContentLoaded", function() {
+	    toggleAddressField();
+	  });
   
 </script>
 
@@ -224,13 +229,13 @@ function toggleAddressField() {
     <br>
     <label for="method" style="padding-left: 5px; padding-right:10px;">거래방식</label>
 		<select name="method" id="method" onchange="toggleAddressField()"  class="form-control"  style="width: 400px">
-		  <option value="">거래방식을 선택하세요</option>
+		  <option value="" selected>거래방식을 선택하세요</option>
 		  <option value="1">직거래</option>
 		  <option value="2">택배</option>
 		</select>
 		<hr>
 		<i class="fa fa-exclamation-triangle"></i> 주소를 입력해주세요
-		
+		<br>
 		<div id="addressFields"  style="display: inline-block; width:400px; ">
 		  <label for="address" style="text-align: left;"></label>
 			<div style="display: flex; align-items: center; width: 400px;">
@@ -251,7 +256,7 @@ function toggleAddressField() {
 		    <input type="radio" name="fee" id="not_free" value="3000" required>
 		    <label for="not_free" style="padding-left: 5px; " > 배송비 미포함</label>
 		</div>
-<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
+<p id="deliveryMessage" style="display: none; color: red;">(택배만 가능합니다.)</p>
 <hr>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
 	</form>

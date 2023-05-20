@@ -23,33 +23,37 @@
 			const images = imageContainer.querySelectorAll('img');
 			const dots = [];
 
-			//이미지마다 점 생성
+			// 이미지마다 점 생성
 			for (let i = 0; i < images.length; i++) {
 			  const dot = document.createElement('div');
 			  dot.classList.add('dot');
 			  dotsContainer.appendChild(dot);
 			  dots.push(dot);
+
+			  if (images[i].src.includes(",")) {
+			    dot.style.display = 'none'; // 이미지가 없는 경우 점 숨김
+			  }
 			}
 
 			let currentImageIndex = 0;
 
 			function showImage(index) {
-			// 모든 이미지를 숨기고 모든 점을 비활성화
+			  // 모든 이미지를 숨기고 모든 점을 비활성화
 			  for (let i = 0; i < images.length; i++) {
 			    images[i].style.display = 'none';
 			    dots[i].classList.remove('active');
 			  }
-			//선택한 이미지 보이기 및 해당하는 점 활성화
+			  // 선택한 이미지 보이기 및 해당하는 점 활성화
 			  images[index].style.display = 'block';
 			  dots[index].classList.add('active');
 			  currentImageIndex = index;
 			}
 
-			//초기에 첫번째 이미지와 점 활성화
+			// 초기에 첫 번째 이미지와 점 활성화
 			showImage(0);
 			dots[0].classList.add('active');
 
-			//점 클릭 시 해당하는 이미지 보이기
+			// 점 클릭 시 해당하는 이미지 보이기
 			for (let i = 0; i < dots.length; i++) {
 			  dots[i].addEventListener('click', function () {
 			    showImage(i);
@@ -151,28 +155,33 @@
 	      $('.sale-message').show();
 	    }
 		
+		
+		
 </script>
 
 <style>
 
 .image-slider {
+  width: 300px;
+  height: 350px;
   position: relative;
-  width: 400px;
-  height: 280px;
+  overflow: hidden;
 }
 
 .image-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.slider-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .prev-btn,
@@ -203,9 +212,6 @@
   padding: 20px;
 /*   border: 1px solid #ddd; */
 }
-
-
-
 
 .dots-container {
   position: absolute;
@@ -238,21 +244,6 @@
 .product-container {
   height: 500px; /* 원하는 높이 값으로 설정 */
   overflow: auto;
-}
-
-
-.image-slider {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.image-container {
-  display: flex;
-}
-
-.image-container img {
-  margin-right: 10px;
 }
 
 .prev-btn,
@@ -288,18 +279,6 @@
     text-align: right;
     font-weight: bold;
   }
-  
-  
-	.like-btn {
-/* 		  border: 1px solid;
-		  background: none;
-		  cursor: pointer;
-		  font-size: 1.2em;
-		  transition: transform 0.3s ease-in-out;
-		  /* border: none; /* 버튼 주변의 테두리 제거 */ */
-  		/*   outline: none; /* 포커스 상자 제거 */ */ */
-  		  
-	}
 		
 	.like-btn i, .eye-btn i, .comment-btn i {
 		  font-size: 1.5em;
@@ -370,20 +349,20 @@
 	   <td style="text-align: center;"> No. ${product.product_id}</td>
 	</tr>
 	<tr>
-		<th style="display: flex; justify-content: center; align-items: center;">
-			<div class="image-slider" >
-				<div class="image-container">
-					<img src="./upload/product/${product.product_image.split(',')[0]}" alt="이미지 없음" width="300px" align="middle">
-					<img src="./upload/product/${product.product_image.split(',')[1]}" alt="이미지 없음" width="300px" align="middle">
-					<img src="./upload/product/${product.product_image.split(',')[2]}" alt="이미지 없음" width="300px" align="middle">
-					<img src="./upload/product/${product.product_image.split(',')[3]}" alt="이미지 없음" width="300px" align="middle">
-					<img src="./upload/product/${product.product_image.split(',')[4]}" alt="이미지 없음" width="300px" align="middle">
-				</div>
-			<div class="prev-btn">&lt;</div>
-			<div class="next-btn">&gt;</div>
-			<div class="dots-container"></div>
-		</div>
-		</th>
+  <th style="display: flex; justify-content: center; align-items: center;">
+    <div class="image-slider">
+      <div class="image-container">
+        <img src="./upload/product/${product.product_image.split(',')[0]}"  class="slider-image" align="middle">
+        <img src="./upload/product/${product.product_image.split(',')[1]}"  class="slider-image" align="middle">
+        <img src="./upload/product/${product.product_image.split(',')[2]}"  class="slider-image" align="middle">
+        <img src="./upload/product/${product.product_image.split(',')[3]}"  class="slider-image" align="middle">
+        <img src="./upload/product/${product.product_image.split(',')[4]}"  class="slider-image" align="middle">
+      </div>
+      <div class="prev-btn">&lt;</div>
+      <div class="next-btn">&gt;</div>
+      <div class="dots-container"></div>
+    </div>
+  </th>
 		<th rowspan="2" >
 		   	<table >
 		     
@@ -404,9 +383,9 @@
 		<tr>
 	    <th style="text-align: left;padding-left: 40px;">
 
-			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 찜수 <i class="fa fa-heart"></i>  ${product.like_count }</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 조회수 <i class="fa fa-eye"></i>  ${product.read_count}</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 채팅수 <i class="fa fa-comment"></i>  ${product.chat_count}</span>
+			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 찜수 <i class="fa fa-heart" style="color:#ff6969"></i>  ${product.like_count }</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 조회수 <i class="fa fa-eye" style="color:lightblue"></i>  ${product.read_count}</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 채팅수 <i class="fa fa-comment" style="color:orange"></i>  ${product.chat_count}</span>
 			
 	    </th>
 	</tr>
