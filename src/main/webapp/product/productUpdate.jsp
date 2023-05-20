@@ -112,20 +112,6 @@ $('document').ready(function() {
 
 });
 
-function toggleAddressField() {
-	  var methodSelect = document.getElementById("method");
-	  var addressFields = document.getElementById("addressFields");
-	  var deliveryMessage = document.getElementById("deliveryMessage");
-
-	  if (methodSelect.value === "" || methodSelect.value === "1") { //없거나 직거래를 선택한 경우
-	    addressFields.style.display = "none";
-	    deliveryMessage.style.display = "block";
-	  } else {
-	    addressFields.style.display = "block";
-	    deliveryMessage.style.display = "none";
-	  }
-	}
-
   function comma(str) {
       str = String(str);
       return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -148,7 +134,32 @@ function toggleAddressField() {
 	  var price = document.getElementById('price');
 	  inputOnlyNumberFormat(price);
   }
-  
+
+  function toggleAddressField() {
+	  var methodSelect = document.getElementById("method");
+	  var addressFields = document.getElementById("addressFields");
+	  var deliveryMessage = document.getElementById("deliveryMessage");
+	  var address1Input = document.querySelector('input[name="address1"]');
+	  var address2Input = document.querySelector('input[name="address2"]');
+
+	  if ( methodSelect.value === "") {
+		    addressFields.style.display = "none";
+		    deliveryMessage.style.display = "block";
+	  }
+	  else if (methodSelect.value === "2") {
+	    // 택배를 선택한 경우 또는 기본값인 경우
+	    addressFields.style.display = "none";
+	    deliveryMessage.style.display = "block";
+
+// 	    address1, address2 값을 공백으로 설정
+	    address1Input.value = " ";
+	    address2Input.value = " ";
+	  } else {
+	    addressFields.style.display = "block";
+	    deliveryMessage.style.display = "none";
+	  }
+	}
+
   //페이지 로드시 주소창 안 보이게 하는 함수
   window.addEventListener("DOMContentLoaded", function() {
 	    toggleAddressField();
@@ -182,7 +193,7 @@ function toggleAddressField() {
 	<label style="margin-top: 10px; margin-right: 10px;">No. </label>
 	<input type="text" value="${product.product_id }" name="product_id" class="form-control" style="width: 70px;" readonly>
 	<label for="title"></label>
-    <input type="text" value="${product.title }" name="title" class="form-control" style="width:418px" maxlength="40" required>
+    <input type="text" value="${product.title }" name="title" class="form-control" style="width:384px" maxlength="40" required>
 	</div>
 	<i class="fa fa-exclamation-triangle"></i> 브랜드, 모델, 색상을 선택해주세요
 	<br>
@@ -255,12 +266,12 @@ function toggleAddressField() {
 	
 <div id="addressFields"  style="display: inline-block; width:400px; ">
   <label for="address" style="text-align: left;"></label>
-    현재 주소 : ${product.city}<br>
+    현재 주소 : ${product.city eq '   ' ? '전국' : product.city}<br>
 	<div style="display: flex; align-items: center; width: 400px;">
-		<input type="text" name="address1" placeholder="수정하실 주소를 입력해주세요" id="address1"  class="form-control" size="45" onclick="addr();">
+		<input type="text" name="address1" placeholder="주소를 입력해주세요"  id="address1" class="form-control" size="45" onclick="addr();" required>
 		<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
 	</div>
-	<input type="text" name="address2" id="address2" size="45" placeholder="수정하실 상세주소를 입력해주세요."  class="form-control">
+	<input type="text" name="address2" id="address2" size="45" placeholder="수정하실 상세주소를 입력해주세요."  class="form-control" required>
   
       <label style="padding-right: 10px;">결제방식</label>
     <input type="radio" name="charge" id="account" value="${product.charge}"checked="${product.charge==0}"  required>
@@ -276,7 +287,7 @@ function toggleAddressField() {
 </div>
 
 
-<p id="deliveryMessage" style="display: none; color: red;">(택배만 가능합니다.)</p>
+<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
 <hr>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 수정</button>
 	</form>

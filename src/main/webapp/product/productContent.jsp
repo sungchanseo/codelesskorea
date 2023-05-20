@@ -30,8 +30,10 @@
 			  dotsContainer.appendChild(dot);
 			  dots.push(dot);
 
-			  if (images[i].src.includes(",")) {
-			    dot.style.display = 'none'; // 이미지가 없는 경우 점 숨김
+			  if (images[i].src.includes("null")) {
+				  dot.style.display = 'none'; // 이미지가 없는 경우 점 숨김
+				  images[i].remove(); // 이미지 태그 제거
+				  dot.remove(); // 점 요소 제거
 			  }
 			}
 
@@ -64,15 +66,27 @@
 			const prevBtn = document.querySelector('.prev-btn');
 			const nextBtn = document.querySelector('.next-btn');
 
-			prevBtn.addEventListener('click', function () {
-			  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-			  showImage(currentImageIndex);
-			});
+			prevBtn.addEventListener('click', function() {
+				  let prevIndex = (currentImageIndex - 1 + images.length) % images.length;
 
-			nextBtn.addEventListener('click', function () {
-			  currentImageIndex = (currentImageIndex + 1) % images.length;
-			  showImage(currentImageIndex);
-			});
+				  while (images[prevIndex].src.includes("null")) {
+				    prevIndex = (prevIndex - 1 + images.length) % images.length;
+				  }
+
+				  currentImageIndex = prevIndex;
+				  showImage(currentImageIndex);
+				});
+
+			nextBtn.addEventListener('click', function() {
+				  let nextIndex = (currentImageIndex + 1) % images.length;
+
+				  while (images[nextIndex].src.includes("null")) {
+				    nextIndex = (nextIndex + 1) % images.length;
+				  }
+
+				  currentImageIndex = nextIndex;
+				  showImage(currentImageIndex);
+				});
 			
 			  // 사용자 식별자를 얻어오는 로직이 필요합니다. 예시로 'userId' 변수에 사용자 식별자를 할당합니다.
 
@@ -155,7 +169,15 @@
 	      $('.sale-message').show();
 	    }
 		
-		
+        window.addEventListener('DOMContentLoaded', adjustHeight);
+
+        function adjustHeight() {
+            var outerDiv = document.getElementById('right');
+            var innerDiv = document.getElementById('innerDiv');
+            outerDiv.style.height = innerDiv.offsetHeight + 'px';
+        }
+
+        window.addEventListener('resize', adjustHeight);
 		
 </script>
 
@@ -320,7 +342,7 @@
 </style>
 
 </head>
-<body style="overflow: auto;">
+<body style="overflow-x: hidden;">
 <%@include file="../nav.jsp" %>
 
  <!-- 사이드바 -->
@@ -329,9 +351,9 @@
 <%@include file="../mySide.jsp" %>
  <!--   사이드바 -->
  
-<div class="col-md-10">
- <div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px 20px 20px 20px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius:5px; height: 1000px;">
-	<div style="text-align:center; overflow-y: auto; height: 800px; ">
+<div class="col-md-10" style="width: 80%;">
+<div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px;  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4); border-radius: 5px; max-height: 1000px; ">
+    <div id="innerDiv" style="text-align: center; overflow-y: auto; max-height: 1000px;">
 <h1 style="font-family:'TheJamsil5Bold';" align=left  >${product.title}</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 <div class="product-table">
@@ -378,7 +400,7 @@
 				    <td style="text-align: left;  padding-left: 40px;">상품 등급 : ${product.grade == 1 ? 'A' : product.grade == 2 ? 'B' : product.grade == 3 ? 'C' : ''} 급 </td>
 				</tr>
 				<tr>
-				  <td style="text-align: left;  padding-left: 40px;">거래 지역 : ${product.city}</td>
+				 	 <td style="text-align: left; padding-left: 40px;">거래 지역 : ${product.city eq '   ' ? '전국' : product.city}</td>
 				</tr>
 		<tr>
 	    <th style="text-align: left;padding-left: 40px;">
@@ -478,9 +500,6 @@
 	  <c:otherwise>
 	    <!-- 판매 중인 경우 -->
 	
-	    <tr style="text-align: right;">
-	      <td colspan="2" style="text-align: center;"></td>
-	   </tr>
 	  </c:otherwise>
 	</c:choose>
 </table>
@@ -488,10 +507,9 @@
 				</div>
 			</div> 
 		</div>
+		 <div style="margin-bottom: 10px;"></div> 
 	</div>
 <div>
-</div>
-<div style= "text-align: center; margin-top: 5px;">
 </div>
 </div>
 </div>
