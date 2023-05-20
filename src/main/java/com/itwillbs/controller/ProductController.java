@@ -88,7 +88,7 @@ public class ProductController extends HttpServlet{
 			System.out.println(" C : ProductUpdate.pr 호출");
 			System.out.println(" C : DB사용 O, view이동&출력 (패턴3)");
 			
-			action = new SearchBoxAction();
+//			action = new SearchBoxAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

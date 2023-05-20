@@ -18,7 +18,6 @@
 <body>
 
 <%@include file="../nav.jsp" %>
-<%@ include file="../background.jsp"%> <!-- END 배경 -->
 
 <%
 //세션에서 아이디 받아옴
@@ -114,25 +113,42 @@ $('document').ready(function() {
 });
 
 function toggleAddressField() {
-    var methodSelect = document.getElementById("method");
-    var address1Input = document.getElementById("address1");
-    var address2Input = document.getElementById("address2");
-    var deliveryMessage = document.getElementById("deliveryMessage");
-    var postalCodeBtn = document.getElementById("postalCodeBtn");
+	  var methodSelect = document.getElementById("method");
+	  var addressFields = document.getElementById("addressFields");
+	  var deliveryMessage = document.getElementById("deliveryMessage");
 
-    if (methodSelect.value === "2") { // 택배를 선택한 경우
-      address1Input.style.display = "none";
-      address2Input.style.display = "none";
-      deliveryMessage.style.display = "block";
-      postalCodeBtn.style.display = "none";
-    } else {
-      address1Input.style.display = "block";
-      address2Input.style.display = "block";
-      deliveryMessage.style.display = "none";
-      postalCodeBtn.style.display = "block";
-    }
-  }//script끝
+	  if (methodSelect.value === "2") { // 택배를 선택한 경우
+	    addressFields.style.display = "none";
+	    deliveryMessage.style.display = "block";
+	  } else {
+	    addressFields.style.display = "block";
+	    deliveryMessage.style.display = "none";
+	  }
+	}
 
+  function comma(str) {
+      str = String(str);
+      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  }
+  function uncomma(str) {
+      str = String(str);
+      return str.replace(/[^\d]+/g, '');
+  }
+  function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
+  }
+  function inputOnlyNumberFormat(obj) {
+      obj.value = onlynumber(uncomma(obj.value));
+  }
+  function onlynumber(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
+  function changeNumber() {
+	  var price = document.getElementById('price');
+	  inputOnlyNumberFormat(price);
+  }
+  
 </script>
 
 
@@ -144,10 +160,11 @@ function toggleAddressField() {
  
 <div class="col-md-10">
  <div id="right">
+ <div style="text-align:left; overflow-y: auto; height: 800px; ">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 등 록</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
-<form action="./ProductWriteAction.pr" method="post" enctype="multipart/form-data">
+<form action="./ProductWriteAction.pr" method="post" enctype="multipart/form-data" onsubmit="return changeNumber()">
 	<input type="hidden" name="user_id" value="${sessionScope.id}"> <!-- user_id를 hidden으로 전송 -->
   <!-- user_id를 hidden으로 전송 -->
   
@@ -156,7 +173,7 @@ function toggleAddressField() {
     <span id="seller">${sessionScope.id} 님</span>
 	<br>
     <label for="title"></label>
-    <input type="text" placeholder="글 제목을 입력하세요" name="title" id="title" style="width: 490px;" required>
+    <input type="text" placeholder="글 제목을 입력하세요" name="title" id="title" style="width: 490px;" maxlength="40" required>
 	<br>
 	 <label for="brand"></label>
 		<select name="brand" id="brand" required style="width: 122px;">			
@@ -179,7 +196,7 @@ function toggleAddressField() {
 		</select>
 	<br>
     <label for="content"></label>
-    <textarea name="content" placeholder="글 내용을 작성하세요" id="content" rows="4" cols="50"></textarea>
+    <textarea name="content" placeholder="글 내용을 작성하세요" id="content" rows="4" cols="50" maxlength="400"></textarea>
 <hr>
  <table>
   <tr>
@@ -194,49 +211,52 @@ function toggleAddressField() {
 </table>
 <hr>
       <label for="price"> </label>
-      <input type="number" name="price" placeholder="가격을 입력해주세요" id="price" required>
+      <input type="text" name="price" placeholder="가격을 입력해주세요" id="price" required onkeyup="inputNumberFormat(this);">
 
-    <label for="grade"> 등급: </label>
+    <label for="grade" style="padding-left: 5px; padding-right:10px;"> 등급: </label>
       <select name="grade" id="grade">
         <option value="1">상</option>
         <option value="2">중</option>
         <option value="3">하</option>
       </select>
-
-    <label for="method">거래방법</label>
+    <br>
+    <label for="method" style="padding-left: 5px; padding-right:10px;">거래방식</label>
 		<select name="method" id="method" onchange="toggleAddressField()">
-		  <option value="">거래방법을 선택하세요</option>
+		  <option value="">거래방식을 선택하세요</option>
 		  <option value="1">직거래</option>
 		  <option value="2">택배</option>
 		</select>
 	<br>
-	<label for="address"></label>
-	<input type="text" name="address1" placeholder="주소를 입력해주세요" id="address1" size="45" onclick="addr();">
+<div id="addressFields">
+
+  <label for="address"></label>
+		<input type="text" name="address1" placeholder="주소를 입력해주세요" id="address1" size="45" onclick="addr();" style="display: inline-block;">
 	<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
-	<input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요.">
-	<p id="deliveryMessage" style="display: none;  color: red;">(직거래만 가능합니다.)</p>
-	<hr>
-    <label>결제방식</label>
-        <input type="radio" name="charge" id="account" value="0" required>
-        <label for="account">계좌거래</label>
-        <input type="radio" name="charge" id="payment" value="1" required>
-        <label for="payment">안전결제</label>
+	<input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요." style="display: inline-block;">
+  <hr>
+      <label style="padding-right: 10px;">결제방식</label>
+    <input type="radio" name="charge" id="account" value="0" required>
+    <label for="account" style="padding-left: 5px; padding-right:10px;"> 계좌거래 </label>
+    <input type="radio" name="charge" id="payment" value="1" required>
+    <label for="payment" style="padding: 5px;">안전결제 </label>
 	<br>
-    <label>배송비</label>
-        <input type="radio" name="fee" id="free" value="0" required>
-        <label for="free">배송비 포함</label>
-        <input type="radio" name="fee" id="not_free" value="3000" required>
-        <label for="not_free">배송비 미포함</label>
-        <div style="text-align: right; margin-top: 10px;">
-  <div style="text-align: center; margin-top: 10px;">
-  	</div>
-  	  <hr>
-      </div>
-		<button type="submit" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
+    <label style="padding-right: 24.2px;">배송비</label>
+    <input type="radio" name="fee" id="free" value="0" required>
+    <label for="free" style="padding-left: 5px; padding-right:10px;">배송비 포함</label>
+    <input type="radio" name="fee" id="not_free" value="3000" required>
+    <label for="not_free" style="padding-left: 5px; " >배송비 미포함</label>
+</div>
+<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
+<hr>
+
+      
+  	  	<button type="submit" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
 	</form>
+		<div></div>
+	</div>
 </div>
 </div>
-</div>
+
 <script src="js/main.js"></script>
 <%@include file="../footer.jsp" %>
 </body>
