@@ -46,8 +46,21 @@ function addr() {
 }; //우편주소창부르기
 
 $('document').ready(function() {
-	const modelList = JSON.parse('${modelList}');
-	const colorList = JSON.parse('${colorList}');
+	var modelList;
+	var colorList
+	$.ajax({
+		type: "GET",
+		url: "./GetModelList.pr",
+		contentType : "application/json;charset=UTF-8",
+		success: function(data) {
+			modelList = data[0];
+			colorList = data[1];
+			console.log(data);
+		},
+		error: function(data) {
+			alert("정보를 받아올 수 없습니다.");
+		}
+	});
 	 $('#brand').change(function () {
 		if($('#brand').val() == "1"){
 			$('#model option').remove();

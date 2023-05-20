@@ -1,16 +1,14 @@
 package com.itwillbs.action.product;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
-import com.itwillbs.commons.JSForward;
-import com.itwillbs.db.MemberDAO;
-import com.itwillbs.db.MemberDTO;
 import com.itwillbs.db.ModelDAO;
 
 public class SearchBoxAction implements Action {
@@ -20,25 +18,24 @@ public class SearchBoxAction implements Action {
 
 		System.out.println(" M : SearchBoxAction_execute");
 		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		
-		// 로그인 세션제어
-		ActionForward forward = new ActionForward();
-		if(id == null ) {
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			return forward;
-		}
-		
 		ModelDAO dao = new ModelDAO();
 		JSONArray modelList = dao.getModelList();
 		JSONArray colorList = dao.getColorList();
+		JSONArray arr = new JSONArray();
+		arr.add( modelList);
+		arr.add(colorList);
+
+		String str = arr.toJSONString();
+		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		out.print(str);
+		out.flush();
+		System.out.println(str);
 		
-		request.setAttribute("modelList", modelList);
-		request.setAttribute("colorList", colorList);	
+//		session.setAttribute("modelList", modelList);
+//		session.setAttribute("colorList", colorList);	
 		
 		return null;
 	}
-
 }

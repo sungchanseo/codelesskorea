@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.action.order.AddrChangeAction;
-import com.itwillbs.action.order.OrderWriteAction;
 import com.itwillbs.action.product.ProductContentAction;
 import com.itwillbs.action.product.ProductDeleteAction;
 import com.itwillbs.action.product.ProductListAction;
@@ -63,13 +62,6 @@ public class ProductController extends HttpServlet{
 			System.out.println(" C : /ProductWrite.pr 실행");
 			System.out.println(" C : DB사용 X, view페이지로 이동O (패턴1)");
 
-			action = new SearchBoxAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			forward = new ActionForward();
 			forward.setPath("./product/productWrite.jsp");
 			forward.setRedirect(false);
@@ -138,37 +130,23 @@ public class ProductController extends HttpServlet{
 				e.printStackTrace();
 			}
 
-		}
-		//주문하기
-		//주문하기
-		else if (command.equals("/OrderContent.pr")) {
-			//임시 이동 코드
-			forward = new ActionForward();
-			forward.setPath("./order/orderContent.jsp");
-			forward.setRedirect(false);
-		}
-		else if (command.equals("/OrderWrite.pr")) {
-			System.out.println("C : ./OrderWrite.pr 호출");
-			
-			// OrderWriteAction() 객체 생성
-			action = new OrderWriteAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			forward = new ActionForward();
-			forward.setPath("./order/orderWrite.jsp");
-			forward.setRedirect(false);
-		}
-		
-		else if (command.equals("/AddrChangeAction.pr")) {
+		}else if (command.equals("/AddrChangeAction.pr")) {
 			System.out.println("C : ./AddrChangeAction.pr 호출");
 			
 			// AddrChangeAction() 객체 생성
 			action = new AddrChangeAction();
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/GetModelList.pr")) {
+			System.out.println("C : ./GetModelList.pr 호출");
+				
+			// AddrChangeAction() 객체 생성
+			action = new SearchBoxAction();
+			try {
+				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
