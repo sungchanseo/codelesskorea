@@ -343,7 +343,6 @@
 </head>
 <body style="overflow: auto;">
 <%@include file="../nav.jsp" %>
-<%@ include file="../background.jsp"%> <!-- END 배경 -->
 
  <!-- 사이드바 -->
  <div class="row" style="margin-left: 100px;">
@@ -353,12 +352,19 @@
  
 <div class="col-md-10">
  <div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px 20px 20px 20px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius:5px; height: 1000px;">
+	<div style="text-align:center; overflow-y: auto; height: 800px; ">
 <h1 style="font-family:'TheJamsil5Bold';" align=left  >${product.title}</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 <div class="product-table">
  <div class="product-info" >
   <div>
-          
+          <table>
+	<tr>
+		<td  style= " margin-left:0px padding-right: 35px;">
+			<a href="./MypageQNAInsert.qn?product_id=${product.product_id}"> <i class="fa fa-exclamation-triangle"></i> 신고하기 </a>
+		</td>
+	</tr>
+</table>
 <table style=" border-collapse: collapse; ">
 	<tr>   
 	   <td style="text-align: center;"> No. ${product.product_id}</td>
@@ -403,9 +409,9 @@
 			
 			<!-- 찜수 -->
 			
-			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-heart"></i> 찜수 ${product.like_count }</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-eye"></i>조회수 ${product.read_count}</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-comment"></i> 채팅수 ${product.chat_count}</span>
+			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 찜수 <i class="fa fa-heart"></i>  ${product.like_count }</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 조회수 <i class="fa fa-eye"></i>  ${product.read_count}</span>
+			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 채팅수 <i class="fa fa-comment"></i>  ${product.chat_count}</span>
 			
 	    </th>
 	</tr>
@@ -463,7 +469,7 @@
 			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
 			<button type="submit" class="btn btn-secondary btn-sm sale-elements">판매완료</button>
 		</form>
-			<a href="./MypageQNAInsert.qn?product_id=${product.product_id}" class="btn btn-primary"> 신고하기 </a>
+			
 		</td>
 			</c:otherwise>
 		</c:choose>
@@ -472,10 +478,10 @@
         </c:if>
 
 
+
 <!-- 		<tr> -->
 <table style="margin-top: 40px;">
 	<tr style="text-align: left;">
-	
 		<td style="text-align: left; padding-left: 1.7%; font-size: 1.3em;" colspan="4">${product.content}
 	</tr>
 	<tr><td colspan="4">&nbsp</td></tr>
@@ -528,6 +534,7 @@
 </div>
 </div>
 </div>	
+</div>
 <%@include file="../footer.jsp" %>
 </body>
 </html>
