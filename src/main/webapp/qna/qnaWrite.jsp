@@ -98,8 +98,8 @@ if(blocked == true) {
 				    <textarea name="content"  cols="110px;" rows="10px;" class="form-control" maxlength="700">
 ■ 주문관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 		      
-*주문자 성함 : 
-*주문 번호 : 
+*주문자 아이디 : ${sessionScope.id}
+*상품 번호 : ${param.product_id}
 *문의 내용 : 
 
 
