@@ -90,10 +90,10 @@ if(blocked == true) {
     <div class="form-group" id="log-form">
      <div style="text-align: center;"><a class="navbar-brand" style="font-size: 40px;"><span>비밀번호 변경하기</span></a></div>
      
-      <input type="password" class="form-control"  placeholder="현재 비밀번호를 입력해주세요" name="password" style="margin-bottom: 10px;" >
+      <input type="password" class="form-control"  placeholder="현재 비밀번호를 입력해주세요" name="password" style="margin-bottom: 10px;" maxlength="40" >
 	 
-      <input type="password" class="form-control" placeholder="새 비밀번호를 입력해주세요" name="newpassword" id="newpassword" style="margin-bottom: 10px;" >
-      <input type="password" class="form-control" placeholder="새 비밀번호를  한번더 입력해주세요" name="newpassword2" id="newpassword2" style="margin-bottom: 10px;" >
+      <input type="password" class="form-control" placeholder="새 비밀번호를 입력해주세요" name="newpassword" id="newpassword" style="margin-bottom: 10px;" maxlength="40" >
+      <input type="password" class="form-control" placeholder="새 비밀번호를  한번더 입력해주세요" name="newpassword2" id="newpassword2" style="margin-bottom: 10px;" maxlength="40" >
 	<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 	<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 					 <br>

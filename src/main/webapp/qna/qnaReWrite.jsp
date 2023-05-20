@@ -65,11 +65,11 @@
 		    <input type="hidden" name="qna_category" value="<%=qna_category%>">
 			  작성자(닉네임) : <b><%=nickname %></b> <input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
 		          <label>글제목
-				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110">
+				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110"  maxlength="100">
 					</label>
 					<br>
 				    <label>글 내용<br>
-				    <textarea name="content"  placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control"></textarea>
+				    <textarea name="content"  placeholder="답변글을 작성해주세요." cols="110px;" rows="10px;" class="form-control" maxlength="700"></textarea>
 					</label>
 					<br>
 					<label>첨부 이미지

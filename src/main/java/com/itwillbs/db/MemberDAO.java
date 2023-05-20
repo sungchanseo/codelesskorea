@@ -206,6 +206,7 @@ public class MemberDAO {
 		            dto.setEmail(rs.getString("email"));
 		            dto.setBirth_date(rs.getString("birth_date"));
 		            dto.setBlocked(rs.getBoolean("blocked"));
+		            dto.setWithdrawal(rs.getBoolean("withdrawal"));
 
 		            memberList.add(dto);                
 		        }// while
@@ -263,6 +264,7 @@ public class MemberDAO {
         dto.setRegdate(rs.getDate("regdate"));
         dto.setBirth_date(rs.getString("birth_date"));
         dto.setBlocked(rs.getBoolean("blocked"));
+        dto.setWithdrawal(rs.getBoolean("withdrawal"));
 		
 		memberList.add(dto);
 		}

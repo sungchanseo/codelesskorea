@@ -182,17 +182,25 @@ font-weight: bold !important;
 		      <td>${dto.regdate }</td>
 <%-- 		      <td>${dto.birth_date }</td> --%>
 <td>
-  <label class="checkbox-container">
-    <input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" style="transform: scale(1.5); margin-right: 5px" data-user-id="${dto.id}"
-    <c:if test="${dto.blocked}">checked</c:if>>
-    <span class="checkmark"></span>
-  </label>
-  <c:if test="${dto.blocked}">
-    <span style="color:red"> 차단 <i class="fas fa-ban"></i> </span>
-  </c:if>
-  <c:if test="${!dto.blocked}">
-    <span style="color:green">정상 <i class="far fa-check-circle"></i></span>
-  </c:if>
+<c:if test="${!dto.withdrawal}">
+    <label class="checkbox-container">
+        <input type="checkbox" name="blocked" id="blocked" class="block-btn" value="false" style="transform: scale(1.5); margin-right: 5px" data-user-id="${dto.id}"
+        <c:if test="${dto.blocked}">checked</c:if>
+        >
+        <span class="checkmark"></span>
+    </label>
+</c:if>
+<c:if test="${dto.withdrawal}" >
+    <span  style="margin: 0 20px; font-size: 13px" >탈퇴</span>
+</c:if>
+<c:if test="${!dto.withdrawal}">
+    <c:if test="${dto.blocked}">
+        <span style="color:red"> 차단 <i class="fas fa-ban"></i> </span>
+    </c:if>
+    <c:if test="${!dto.blocked}">
+        <span style="color:green">정상 <i class="far fa-check-circle"></i></span>
+    </c:if>
+</c:if>
 </td>
 <td><button type="button" name="adminbuyList" value="${dto.id}" class="round-btn yellow"><i class="fas fa-shopping-cart"></i></button></td>
 <td><button type="button" name="adminsaleList" value="${dto.id}" class="round-btn green"><i class="fas fa-shopping-bag"></i></button></td>
@@ -215,13 +223,13 @@ font-weight: bold !important;
 			  </ul>
 			 <br>
 	  		</div>
-	
-	
+			</div>
+	</div>
 <br>
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
 </div>
-</div>
+
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>
 </html>
