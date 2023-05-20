@@ -422,7 +422,7 @@
 							<button class="like-btn btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
 				 			 <i class="fa fa-heart"></i><span >찜${product.like_count }</span>
 							</button>
-							<a href="./OrderWrite.pr?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
+							<a href="./OrderWrite.or?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
 								<hr style="border: 0;height: 3px; background-color: lightgray;">
 							</c:if>
