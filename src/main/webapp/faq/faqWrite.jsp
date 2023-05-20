@@ -42,22 +42,21 @@ $(document).ready(function () {
 <hr style="border: 0;height: 3px; background-color: black;">
 
   <form action="./FaqWriteAction.fa" method="post">
-
-   	<label>카테고리
- 	<select name="category" class="form-control">
+   	<label>카테고리<br>
+ 	<select name="category" class="form-control" style="width:120x; display:inline;">
   		<option value="이용정책">이용정책</option>
   		<option value="구매">구매</option>
   		<option value="판매">판매</option>
   		<option value="신고">신고</option>
   		<option value="기타">기타</option>
-  	</select><br>
+  	</select>
 	</label>
-    <label>글제목
-    <input type="text" name="title" placeholder="글제목을 입력하세요" class="form-control" size="110">
+    <label style="width:100%;">글제목<br>
+    <input type="text" name="title" placeholder="글제목을 입력하세요" class="form-control" maxlength="40">
 	</label>
 	<br>
-    <label>글 내용<br>
-    <textarea name="content" placeholder="글 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control"></textarea>
+    <label style="width:100%; display:inline;">글 내용<br>
+    <textarea name="content" placeholder="글 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control" maxlength="400"></textarea>
 	</label>
 	<br>
 	

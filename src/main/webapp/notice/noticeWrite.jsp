@@ -43,12 +43,12 @@ $(document).ready(function () {
 
   <form action="./NoticeWriteAction.no" id="fr" method="post" enctype="multipart/form-data">
   
-    <label>글제목
-    <input type="text" id="title" name="title" placeholder="글제목을 입력하세요" class="form-control" size="110">
+    <label style="width:100%;">글제목
+    <input type="text" id="title" name="title" placeholder="글제목을 입력하세요" class="form-control" maxlength="40">
 	</label>
 	<br>
-    <label>글내용<br>
-    <textarea name="content" id="content" placeholder="공지사항 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control"></textarea>
+    <label style="width:100%;">글내용<br>
+    <textarea name="content" id="content" placeholder="공지사항 내용을 작성하세요" cols="110px;" rows="10px;" class="form-control" maxlength="400"></textarea>
 	</label>
 	<br>
 	<label>첨부 이미지 (이미지 파일만 업로드 가능합니다)

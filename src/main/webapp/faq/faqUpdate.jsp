@@ -28,19 +28,19 @@
    	<input type="hidden" name="faq_id" value="${dto.faq_id }">
 	<br>
 	카테고리 
-	<select name="category" class="form-control">
+	<select name="category" class="form-control" style="width:120px;">
   		<option value="이용정책">이용정책</option>
   		<option value="구매">구매</option>
   		<option value="판매">판매</option>
   		<option value="신고">신고</option>
   		<option value="기타">기타</option>
-  	</select><br>
-    <label>글제목<br>
-    <input type="text" name="title" value="${dto.title }" class="form-control" size="110">
+  	</select>
+    <label style="width:100%;">글제목<br>
+    <input type="text" name="title" value="${dto.title }" class="form-control" maxlength="40"> 
 	</label>
 	<br>
-    <label>글내용<br>
-    <textarea name="content"  cols="110px;" rows="10px;" class="form-control">${dto.content }</textarea>
+    <label style="width:100%;">글내용<br>
+    <textarea name="content"  cols="110px;" rows="10px;" class="form-control"maxlength="400">${dto.content }</textarea>
 	</label>
 	<br>
 	
