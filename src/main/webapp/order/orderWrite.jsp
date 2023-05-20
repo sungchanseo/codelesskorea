@@ -182,7 +182,7 @@
                 	}else{
                 	// 결제 실패시 로직
                 	var msg = '결제 실패';
-                	msg += '에러내용 : ' + rsp.error_msg;
+                	msg += ' : ' + rsp.error_msg;
                 	alert(msg);
                     console.log(rsp);
                 } //else
@@ -202,7 +202,7 @@
  <h1 style="font-family: 'TheJamsil5Bold';">주문/결제</h1>
 <hr style="border: 0;height: 3px; background-color: #AEAEAE;">
 <!-- 	<h1>주문서</h1> -->
-<!-- 	<div class="orderWrite"> -->
+	<div class="orderWrite" style="margin: 15px; ">
 	<fieldset>
 		<legend>상품 정보</legend>
 		<input type="hidden" id="title" name="title" value="${dto.title}">
@@ -213,109 +213,120 @@
 			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음" width="150px" style="display: block; margin-right: 10px;">
 			<table class="table table-borderless">
 				<tr>
-					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">상품명</span></td>
-					<td style="text-align: right;"><span style="color: black;">${dto.title}</span></td>
+					<td style="text-align: left;"><span style="color: black; margin-right: 20px;"></span></td>
+					<td style="text-align: right;"><span style="color: black; font-size: 25px;">${dto.title}</span></td>
 				</tr>
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">가격</span></td>
-					<td style="text-align: right;"><span style="color: black;">${dto.price}원</span></td>
+					<td style="text-align: right;"><span style="color: black;"><span class="formattedPrice">${dto.price}</span>원</span></td>
 				</tr>
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">배송비</span></td>
-					<td style="text-align: right;"><span style="color: black;">${dto.charge}원</span></td>
-				</tr>
-				<tr>
-					<td style="text-align: left;"><span style="color: black; margin-right: 20px;">수수료</span></td>
-					<td style="text-align: right;"><span style="color: black;">${dto.fee}원</span></td>
+					<td style="text-align: right;"><span style="color: black;"><span class="formattedPrice">${dto.fee}</span>원</span></td>
 				</tr>
 			</table>
 			</div>
 	</fieldset>
+	</div>
 	<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
-<!--     <div class="tracking"> -->
-<fieldset style="margin-bottom: 20px; margin-top: 30px;">
+    <div class="tracking" style="margin: 15px;">
+	<fieldset style="margin-bottom: 20px; margin-top: 30px;">
 	<legend>배송 정보</legend>
-	<form action="./AddrChangeAction.or" method="post">
-		<input type="hidden" id="order_id" name="order_id" value="${dto.order_id}">
-		<input type="hidden" id="id" name="id" value="${dto.id}">
-		<input type="hidden" id="product_id" name="product_id" value="${dto.product_id}">
-		<input type="hidden" id="email" name="email" value="${dto.email}">
-		
-		
-		<span style="color: black;">이름</span>
-		<table style="margin-bottom: 20px;">
-		 <tr>
-		 <td>
-		 <input type="text" id="receiver_name" name="receiver_name" value="${dto.name}" placeholder="이름을 입력해주세요"class="form-control"size="35"   >
-		 <td>
-		 </tr>
-		</table>
-		
-		<span style="color: black;">연락처</span>
-		<table  style="margin-bottom: 20px;">
-		 <tr>
-		 <td>
-	     <input type="text" id="receiver_phone" name="receiver_phone" value="${dto.phone_number}" placeholder="전화번호를 입력해주세요"class="form-control"size="35"   >
-	     <td>
-		 </tr>
-		</table>
+		<form action="./AddrChangeAction.or" method="post">
+			<input type="hidden" id="order_id" name="order_id" value="${dto.order_id}">
+			<input type="hidden" id="id" name="id" value="${dto.id}">
+			<input type="hidden" id="product_id" name="product_id" value="${dto.product_id}">
+			<input type="hidden" id="email" name="email" value="${dto.email}">
 			
-		<span style="color: black;">주소</span>
-		<table>
-				    <tr>
-						<td><input class="form-control" type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.post_number}" readonly></td>
-						<td><input type="button" value="우편번호찾기" onclick="addr();"  class="btn btn-outline-secondary btn-sm"></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.address}" size="35" onclick="addr();" class="form-control" ></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="receiver_addr2" id="receiver_addr2" value="${dto.address2}" size="35" placeholder="상세주소를 입력해주세요." class="form-control"  ></td>
-					
-					</tr>
-					</table>
-					<input type="submit" class="btn btn-secondary" value="정보변경" style="margin-top: 10px;">
-	
-	</form>
-</fieldset>
+			<span style="color: black;">이름</span>
+			<table style="margin-bottom: 20px;">
+			 <tr>
+			 <td>
+			 <input type="text" maxlength="10" id="receiver_name" name="receiver_name" value="${dto.name}" placeholder="이름을 입력해주세요"class="form-control"size="35"   >
+			 <td>
+			 </tr>
+			</table>
+			
+			<span style="color: black;">연락처</span>
+			<table  style="margin-bottom: 20px;">
+			 <tr>
+			 <td>
+		     <input type="text" id="receiver_phone" name="receiver_phone" value="${dto.phone_number}" placeholder="전화번호를 입력해주세요"class="form-control"size="35"   oninput="checkInputLength(this, 13)" >
+		     <td>
+			 </tr>
+			</table>
+			<script>
+				// 숫자 입력수 제한 함수
+				function checkInputLength(inputElement, maxLength) {
+				  if (inputElement.value.length > maxLength) {
+				    inputElement.value = inputElement.value.slice(0, maxLength);
+				  }
+				}
+			</script>
+			<span style="color: black;">주소</span>
+			<table>
+					    <tr>
+							<td><input class="form-control" type="text" name="receiver_post" id="receiver_post" size="15" value="${dto.post_number}" readonly></td>
+							<td><input type="button" value="우편번호찾기" onclick="addr();"  class="btn btn-outline-secondary btn-sm"></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="receiver_addr1" id="receiver_addr1" value="${dto.address}" size="35" onclick="addr();" class="form-control" ></td>
+						</tr>
+						<tr>
+							<td><input type="text" maxlength="30" name="receiver_addr2" id="receiver_addr2" value="${dto.address2}" size="35" placeholder="상세주소를 입력해주세요." class="form-control"  ></td>
+						
+						</tr>
+						</table>
+	<!-- 					<input type="submit" class="btn btn-secondary" value="정보변경" style="margin-top: 10px;"> -->
+		</form>
+	</fieldset>
+	</div>
+
 	<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
-<!-- 	<div class="payInfo"> -->
+	<div class="payInfo" style="margin: 15px;">
 	<fieldset>
 	<legend>결제금액</legend>
 		<table>
 		<tr>
 		  <td style="text-align: left;">가격</td>
-		  <td style="text-align: right ;">${dto.price}원</td>
+		  <td style="text-align: right ;"><span class="formattedPrice">${dto.price}</span>원</td>
 		</tr>
 		<tr>
 		  <td style="text-align: left;">배송비</td>
-		  	<td style="text-align: right ;">${dto.charge}원</td>
-		</tr>
-		<tr>
-		  <td style="text-align: left;">수수료</td>
-		 	<td style="text-align: right;">${dto.fee}원</td>
+		 	<td style="text-align: right;"><span class="formattedPrice">${dto.fee}</span>원</td>
 		</tr>
 		<tr style="color: black; font-size: 25px;">
 			<td style="text-align: left;">총 결제금액</td>
-			<td style="padding-left: 500px;" >${dto.price + dto.fee} 원</td>
+			<td style="padding-left: 500px;" ><span class="formattedPrice">${dto.price + dto.fee}</span>원</td>
 		</tr>
 	</table>
-
 	</fieldset>
+	</div>
 		<hr style="border: 0;height: 1.5px; background-color: #AEAEAE;">
-	<fieldset style="">
+	<div class="paym" style="margin: 20px;">
+	<fieldset>
 	<legend>결제수단</legend>
-		
 		<input type="hidden" id="amount" name="amount" value="${dto.price+dto.fee }">
 		<!-- 카드결제 선택시 일반 카드결제 / 카카오페이 선택시 카카오페이 간편결제 -->
 		<label><input type="radio" class="pm" name = "payment" value="카드결제" checked="checked" > <span style="color: black;">카드결제</span></label>  <br>
 		<label><input type="radio" class="pm" name = "payment"  value="카카오페이" >  <span style="color: black;">카카오페이</span> </label>
 	</fieldset>
-
+	</div>
+		<script>
+			// 숫자 금액 형식(#,###)으로 변경, fmt 사용시 오류가 나서 이 방법 사용함.
+		    var priceElements = document.getElementsByClassName("formattedPrice");
+		    for (var i = 0; i < priceElements.length; i++) {
+		        var priceElement = priceElements[i];
+		        var price = parseFloat(priceElement.textContent.replace(/,/g, ""));
+		        var formattedPrice = price.toLocaleString("en-US");
+		        priceElement.textContent = formattedPrice;
+		    }
+		</script>
 <hr style="border: 0;height: 1.5px; background-color: gray;">
+
+    <div class="payAgreement" style="margin: 15px;" >
 		 <fieldset>
     <legend>약관동의</legend>
-    <div class="payAgreement">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="check-all">
         <label class="form-check-label" for="check-all">
@@ -343,8 +354,8 @@
            <a href="#" class="show-details" data-toggle="modal" data-target="#agreement3Modal">(자세히)</a>
         </label>
       </div>
-    </div>
   </fieldset>
+    </div>
 
   <!-- 약관 내용을 보여주기 위한 모달(Modal) -->
   <div class="modal fade" id="agreement1Modal" tabindex="-1" role="dialog" aria-labelledby="agreement1ModalLabel" aria-hidden="true">
@@ -499,16 +510,11 @@
       }
     });
   </script>
-	
-	 
-
 
  	<br>
-
  	<button type="submit" class="btn btn-primary" id="pay_btn" onclick="requestPay()" style="width: 100%;">결제하기</button>
 
 </div>
-
 	<jsp:include page="../footer.jsp"/>
 </body>
 </html>

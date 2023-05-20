@@ -30,12 +30,15 @@ public class OrderAddAction implements Action {
 			JSForward jsf = new JSForward();
 			jsf.alertAndMove(response, "로그인이 필요합니다", "./MemberLogin.me");
 		}
-		
-		/*
+    
+    /*
 		 *  차단 사용자 세션제어 시작
 		 */
 		MemberDAO mdao = new MemberDAO();
 		MemberDTO mdto = mdao.getMember(id);
+		if(mdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = mdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
@@ -57,6 +60,7 @@ public class OrderAddAction implements Action {
 		dto.setReceiver_post(Integer.parseInt(request.getParameter("receiver_post")));
 		System.out.println(Integer.parseInt(request.getParameter("receiver_post")));
 		dto.setPayment(request.getParameter("payment"));
+		dto.setPaid_amount(request.getParameter("paid_amount"));
 		System.out.println("dto : "+dto);
 		
 		// MemberDAO 객체 생성 
@@ -66,6 +70,7 @@ public class OrderAddAction implements Action {
 		// 주문서 출력 메서드 getOrderContent()
 		dto = dao.getOrderContent(dto);
 		int order_id = dto.getOrder_id();
+		
 		// 회원정보 저장(request 영역)
 		request.setAttribute("dto", dto);
 		System.out.println("id: "+id +" / product_id: " +product_id);
@@ -80,3 +85,4 @@ public class OrderAddAction implements Action {
 	
 
 }
+

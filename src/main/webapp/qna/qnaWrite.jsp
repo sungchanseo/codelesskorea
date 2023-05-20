@@ -38,12 +38,16 @@
 String id = (String)session.getAttribute("id");
 MemberDAO mdao = new MemberDAO();
 MemberDTO mdto = mdao.getMember(id);
+if(mdto == null) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+}
 String nickname = mdto.getNickname();
 boolean blocked = mdto.getBlocked();
 //차단사용자 세션제어
 if(blocked == true) {
 	JSForward.alertAndBack(response, "잘못된 접근입니다!");
 }
+
 %>
 <%@ include file="../nav.jsp"%><!-- nav 삽입 -->
 <div class="row" style="margin-left: 100px;">
@@ -72,12 +76,8 @@ if(blocked == true) {
 			<!-- 		회원정보, 상품, 신고, 결제, 기타 -->
 			<select name="qna_category">
 			    <c:choose>
-			        <c:when test="${param.product_id ne 0}">
+			        <c:when test="${param.product_id ne null}">
 			            <option value="신고" selected>신고</option>
-			            <option value="회원정보">회원정보</option>
-			            <option value="상품">상품</option>
-			            <option value="결제">결제</option>
-			            <option value="기타">기타</option>
 			        </c:when>
 			        <c:otherwise>
 			            <option value="회원정보">회원정보</option>

@@ -82,25 +82,27 @@
   <div class="loading-overlay hidden">
     <img src="./upload/product/loading.gif" width="1000" height="800" >
   </div>
+
+  
   
   <div style="text-align: center;">
     <h2>매칭 리스트</h2>
-    <div class="product-list-wrapper" style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div class="product-list-wrapper" style="justify-content: center;display: flex; flex-direction: row;">
       <c:forEach var="product" items="${requestScope.productList}" varStatus="status">
-        <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;">
+        <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;display: flex; flex-direction: column;justify-content: center;">
           <div class="product-image">
             <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">
             <img src="./upload/product/${product.product_image.split(',')[0] }" onerror="this.src='https://via.placeholder.com/250x250?text=No Image :('" alt="${product.title}" style="max-width: 250px;">
             </a>
           </div>
           <div class="product-details" style="margin-top: 10px;">
-          	<p><b>등록일:</b> ${product.reg_date}</p>
-            <p><a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank">${product.title}</a></p>
-            <p><b>상품번호:</b> ${product.product_id}</p>
-            <p><b>가격:</b> ${product.price} 원</p>
-            <p><b>조회수:</b> ${product.read_count}</p>
-            <p><b>찜수:</b> ${product.like_count}</p>
-            <p><b>채팅수:</b> ${product.chat_count}</p>
+
+            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank" style="font-size: 20px;">${product.title}</a><br>
+
+            <b>가격:</b> ${product.price} 원<br>
+    
+          <b>찜수:</b> ${product.like_count}
+       
           </div>
         </div>
       </c:forEach>

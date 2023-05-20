@@ -134,7 +134,7 @@ font-weight: bold !important;
 <br>
 <div id="admin_search" class="button" style="margin-bottom:10px;">
 	<form action="./MemberList.me" method="post">
-		<select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
+		<select name="category" class="form-control" style="height:40px; width:120px; display:inline;" >
 			<option value="title">아이디</option>
 			<option value="content">전화번호</option>
 		</select>
@@ -204,13 +204,13 @@ font-weight: bold !important;
 		<div class="container" style="margin: auto;">
 				  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 0px;">
 			  	<c:if test="${startPage > pageBlock }"> 
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 				</c:if>
 			   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${i }"><span>${i }</span></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${i }&category=${category }&search=${search }"><span>${i }</span></a></li>
 				</c:forEach>
 			    <c:if test="${endPage<pageCount }">
-				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock} "><span>다음</span></a></li>
+				<li class="page-item"><a class="page-link" href="./MemberList.me?pageNum=${startPage+pageBlock}&category=${category }&search=${search } "><span>다음</span></a></li>
 				</c:if>
 			  </ul>
 			 <br>
@@ -220,7 +220,7 @@ font-weight: bold !important;
 <br>
 <!--     <h2><a href="./Main.me">메인 페이지로</a></h2> -->
 
-
+</div>
 </div>
 <%@ include file="../footer.jsp"%> <!-- footer 삽입 -->
 </body>

@@ -59,9 +59,9 @@ span {
 		      <td><a href="./ProductContent.pr?product_id=${dto.product_id }">${dto.title }</a></td>
 		      <td>${dto.price }</td>
 		      <td>${dto.seller_id }</td>
-		      <td>${dto.buyer_id }</td>
+		      <td>${requestScope.id}</td>
 		      <td>	<c:choose>
-			    <c:when test="${dto.order_id ne 0}">s
+			    <c:when test="${dto.order_id ne 0}">
 			        <!-- 값이 0이 아닌 경우에만 표시 -->
 			        <p><a href="./OrderContent.or?product_id=${dto.product_id }&order_id=${dto.order_id }">${dto.order_id}</a></p>
 			    </c:when>

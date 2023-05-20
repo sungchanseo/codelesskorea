@@ -151,13 +151,13 @@
 	    			'</span>' +
 // 	    			'</h5>' +
 	    			'</td>' + 
-	    			'<td class="chatbox">' +
+	    			'<td class="chatbox" style="width: 1000px;">' +
 // 	    			'<h5>' + 
 	    			'<br>' +
 	    			'<span class="chatContentM">' +
 	    			chatContent +
 	    			'</span>' +
-	    			'<br>' +
+
 // 	    			'<span class="label label-info">' + 
 // 	    			unread + 
 // 	    			'</span>' +
@@ -184,6 +184,9 @@
 String id = (String)session.getAttribute("id");
 MemberDAO mdao = new MemberDAO();
 MemberDTO mdto = mdao.getMember(id);
+if(mdto == null) {
+	JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+}
 boolean blocked = mdto.getBlocked();
 //차단사용자 세션제어
 if(blocked == true) {

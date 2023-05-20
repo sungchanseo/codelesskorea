@@ -34,10 +34,19 @@ public class MemberUpdateProAction implements Action {
 		// 전달된 정보 저장
 		MemberDAO qdao = new MemberDAO();
 		MemberDTO qdto = qdao.getMember(id);
+		if(qdto == null) {
+			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
+		}
 		boolean blocked = qdto.getBlocked();
 		if(blocked == true) {
 			JSForward.alertAndBack(response, "잘못된 접근입니다!");
 			return forward;
+		}
+		
+		boolean withdrawal = qdto.getWithdrawal();
+		if(withdrawal == true) {
+			JSForward.alertAndBack(response, "잘못된 접근입니다!");
+			return null;
 		}
 
 		// 한글처리

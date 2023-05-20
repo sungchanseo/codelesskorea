@@ -38,9 +38,7 @@
 					</label>
 					<br>
 				    <label>글 내용<br>
-				    <textarea name="content" cols="110px;" rows="10px;" class="form-control">
-${qdto.content}
-				    </textarea>
+				    <textarea name="content" cols="110px;" rows="10px;" class="form-control">${qdto.content}</textarea>
 					</label>
 					<br>
 					<label>첨부 이미지
