@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매칭된 리스트</title>
+<title>CODELESS</title>
 <%@ include file="../head.jsp"%>
 <style>
 
@@ -77,6 +77,7 @@
   .hidden {
     display: none;
   }
+ 
 </style>
 </head>
 <body style="margin: 10px; padding: 10px;background-color: transparent !important;box-shadow: none !important;">
@@ -102,7 +103,7 @@
 
             <b>가격:</b><fmt:formatNumber> ${product.price}</fmt:formatNumber> 원<br>
     
-          <b>찜수:</b> ${product.like_count}
+          <b><i class="fa fa-heart" style="color:#ff6969;"></i></b> ${product.like_count}
        
           </div>
         </div>
