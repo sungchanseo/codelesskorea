@@ -192,54 +192,55 @@ fieldset {
 
 
 <fieldset style="margin: auto; margin-bottom: 100px; ">
-<table border="1"  style="margin: auto;" >
+<table border="1" style="margin: auto;">
   <tr>
-<c:if test="${qdto.re_Lev < 1}">
-  <th>답변상태</th>
-  <td>
-    <c:choose>
-      <c:when test="${qdto.is_answered}">
-        <span style="color: green;">답변완료</span>
-      </c:when>
-      <c:otherwise>
-        <span style="color: red;">답변대기</span>
-      </c:otherwise>
-    </c:choose>
-  </td>
-</c:if>
-<c:if test="${qdto.re_Lev < 1}">
-    <th>카테고리</th>
-    <td>${qdto.qnaCategory}</td>
-</c:if>
+    <c:if test="${qdto.re_Lev < 1}">
+      <th style="text-align: center;">답변상태</th>
+      <td>
+        <c:choose>
+          <c:when test="${qdto.is_answered}">
+            <span style="color: green;">답변완료</span>
+          </c:when>
+          <c:otherwise>
+            <span style="color: red;">답변대기</span>
+          </c:otherwise>
+        </c:choose>
+      </td>
+    </c:if>
+    <c:if test="${qdto.re_Lev < 1}">
+      <th style="text-align: center; width: 70px;">카테고리</th>
+      <td style="width: 270px;">${qdto.qnaCategory}</td>
+    </c:if>
   </tr>
   <tr>
-    <th>작성자</th>
+    <th style="text-align: center;">작성자</th>
     <td>${qdto.nickname}</td>
-    <th>작성일</th>
-    <td>${qdto.regdate}</td>
+    <th style="text-align: center; width: 70px;">작성일</th>
+    <td style="width: 270px;">${qdto.regdate}</td>
   </tr>
   <tr>
-    <th>제목</th>
+    <th style="text-align: center;">제목</th>
     <td colspan="5">${qdto.title}</td>
   </tr>
-<c:if test="${not empty qdto.image}">
+  <c:if test="${not empty qdto.image}">
+    <tr>
+      <th style="text-align: center;">이미지</th>
+      <td colspan="3">
+        <img src="./upload/${qdto.image}" alt="사진" style="max-width: 200px; max-height: 200px; cursor: pointer;" onclick="openModal()">
+      </td>
+    </tr>
+  </c:if>
   <tr>
-    <th>이미지</th>
-							<td colspan="3">	<img src="./upload/${qdto.image}" alt="사진"
-									style="max-width: 200px; max-height: 200px; cursor: pointer;"
-									onclick="openModal()"> </td>
-	</tr>
-</c:if>
-    <th>내용</th>
-    <td colspan="5"><textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea>
-            <c:if test="${qdto.productId ne 0}">
-    <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
-		</c:if>
+    <th style="text-align: center;">내용</th>
+    <td colspan="5">
+      <textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea>
+      <c:if test="${qdto.productId ne 0}">
+        <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
+      </c:if>
     </td>
   </tr>
-  
-  
-  </table>
+</table>
+
  
   
 	<div style= "float: right; margin-top: 30px;">
