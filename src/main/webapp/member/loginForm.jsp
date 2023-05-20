@@ -83,12 +83,12 @@ function kakaoLogin() {
  <div class="container" id="login-con">
   <form action="./MemberLoginAction.me" id="fr" method="post"> 
     <div class="form-group" id="log-form">
-     <div style="text-align: center;"><a class="navbar-brand" href="./Main.me" style="font-size: 40px;"><span>CODELESS</span></a></div>
+     <div style="text-align: center;"><a class="navbar-brand" style="font-size: 40px;"><span>CODELESS</span></a></div>
      
-      <input type="text" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;" id="id">
+      <input type="text" class="form-control"  placeholder="아이디를 입력해주세요." name="id" style="margin-bottom: 10px;" id="id"maxlength="40">
       <!-- 실행 편의를 위해 email타입을 text로 바꿈 -->
 	 
-      <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." name="password" id="password">
+      <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." name="password" id="password"maxlength="40">
 
       <button type="submit" class="btn btn-primary btn-block" style="margin-top: 30px;" >로그인</button>
      

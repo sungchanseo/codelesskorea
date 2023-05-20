@@ -260,7 +260,7 @@ $('document').ready(function() {
 </section>
 <!-- END section -->
 
-<section class="section pb-0">
+<section class="section pb-0" id="match">
 	<div class="container">
 		<div class="row check-availabilty" id="next">
 			<div class="block-32" data-aos="fade-up" data-aos-offset="-200" style="background-color:#FAFAFA; box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);border: 5px solid;border-color: #FFBA5A; ">
@@ -524,7 +524,7 @@ $('document').ready(function() {
 
 
 
-<div id="mainModal" class="modal">
+<div id="mainModal" class="modal" style=" backdrop-filter: blur(1rem);">
 <!--   <div class="modal-content"> -->
 <!--     <span class="close" onclick="closeModal()">&times;</span> -->
 <!--     <iframe src="./ProductList.pr"></iframe> -->

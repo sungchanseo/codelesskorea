@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
      pageEncoding="UTF-8"%> 
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@
   }
 </style>
 </head>
-<body style="margin: 10px; padding: 10px; max-width: 900px;">
+<body style="margin: 10px; padding: 10px;background-color: transparent !important;box-shadow: none !important;">
   <div class="loading-overlay hidden">
     <img src="./upload/product/loading.gif" width="1000" height="800" >
   </div>
@@ -86,7 +87,7 @@
   
   
   <div style="text-align: center;">
-    <h2>매칭 리스트</h2>
+    <h2 style="text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;color: #5A564F;">매칭 리스트</h2>
     <div class="product-list-wrapper" style="justify-content: center;display: flex; flex-direction: row;">
       <c:forEach var="product" items="${requestScope.productList}" varStatus="status">
         <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;display: flex; flex-direction: column;justify-content: center;">
@@ -97,9 +98,9 @@
           </div>
           <div class="product-details" style="margin-top: 10px;">
 
-            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank" style="font-size: 20px;">${product.title}</a><br>
+            <a href="./ProductContent.pr?product_id=${product.product_id}" target="_blank" style="font-size: 20px;color:#FFB300">${product.title}</a><br>
 
-            <b>가격:</b> ${product.price} 원<br>
+            <b>가격:</b><fmt:formatNumber> ${product.price}</fmt:formatNumber> 원<br>
     
           <b>찜수:</b> ${product.like_count}
        

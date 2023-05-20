@@ -240,7 +240,7 @@
 				   아이디 
 				   <c:if test="${empty param.id }">
 				   <input type="text" class="form-control" id="id"
-					placeholder="아이디를 입력해주세요." name="id">
+					placeholder="아이디를 입력해주세요." name="id"maxlength="40">
 					</c:if> <!-- 간편로그인이 아닌 경우 -->
 				   
 				   <c:if test="${!empty param.id }">
@@ -250,11 +250,11 @@
 				<span id="idmsg"></span>
 				<br>	 				
 				비밀번호 <input type="password" class="form-control" id="password"
-					placeholder="비밀번호를 입력해주세요." name="password">
+					placeholder="비밀번호를 입력해주세요." name="password" maxlength="40">
 					 <br> 
 				
 				비밀번호 확인 <input type="password" class="form-control"
-					placeholder="비밀번호를 한번 더 입력해주세요." id="password2">
+					placeholder="비밀번호를 한번 더 입력해주세요." id="password2" maxlength="40">
 					 <br>
 					 <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 					 <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
@@ -262,12 +262,12 @@
 				이름 <input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="20">
 					 <br>
 				
-				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요.">
+				닉네임 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요."maxlength="40">
 					 
 					 <span id="nickmsg"></span>
 					 <br> 
 					 
-			    이메일 <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요.">
+			    이메일 <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요."maxlength="40">
 					 <span id="emsg"></span>
 					 <br>		 
 					 
@@ -286,14 +286,14 @@
 							<input type="button" value="우편번호찾기" onclick="addr();"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="address" id="address" size="45" onclick="addr();"></td>
+						<td><input type="text" name="address" id="address" size="45" onclick="addr();"maxlength="200"></td>
 					<tr>
 					<tr>
-						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."></td>
+						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."maxlength="45"></td>
 					<tr>
 				</table>
 				<br> 프로필사진 <br>
-				       <input type="file" name="user_image">
+				       <input type="file" name="user_image"maxlength="1000">
 				 <br><br>
 				 
 				 
