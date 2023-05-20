@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
-  <div class="col-12 col-md-2 col-lg-2">
+  <div class="col-md-2">
  <div class="container" id="left">
   <br>
   <h4> 공지게시판</h4>

@@ -352,7 +352,7 @@
  <!--   사이드바 -->
  
 <div class="col-md-10">
- <div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px 20px 20px 20px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius:5px; height: 800px;">
+ <div id="right" style="border: 3px solid #909090; border-color: #FFBA5A; padding: 20px 20px 20px 20px;	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4);border-radius:5px; height: 1000px;">
 <h1 style="font-family:'TheJamsil5Bold';" align=left  >${product.title}</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 <div class="product-table">

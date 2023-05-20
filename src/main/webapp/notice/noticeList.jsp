@@ -26,8 +26,8 @@
   
  <!--   사이드바 -->
   
- <div class="col-12 col-md-10 col-lg-10">
- <div id="right" style="width: 80%">
+ <div class="col-md-8">
+ <div id="right">
  <h1 style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 
