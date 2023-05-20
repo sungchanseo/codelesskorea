@@ -27,19 +27,6 @@ public class FaqUpdateAction implements Action{
 		String id = (String) session.getAttribute("id");
 		System.out.println("현재 계정 : "+id);
 		
-		/*
-		 *  차단 사용자 세션제어 시작
-		 */
-		MemberDAO mdao = new MemberDAO();
-		MemberDTO mdto = mdao.getMember(id);
-		boolean blocked = mdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
-		/*
-		 *  차단 사용자 세션제어 끝
-		 */
 		
 		
 		if(id == null || !id.equals("admin")) {

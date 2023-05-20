@@ -34,21 +34,7 @@ public class FaqWriteAction implements Action{
 			forward.setPath("./FaqList.fa");
 			forward.setRedirect(true);
 			return forward;
-		}
-		
-		/*
-		 *  차단 사용자 세션제어 시작
-		 */
-		MemberDAO mdao = new MemberDAO();
-		MemberDTO mdto = mdao.getMember(id);
-		boolean blocked = mdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
-		/*
-		 *  차단 사용자 세션제어 끝
-		 */
+		}	
 		
 		
 		//FaqDTO객체에 전달받은 FAQ 내용을 전달받아 초기화

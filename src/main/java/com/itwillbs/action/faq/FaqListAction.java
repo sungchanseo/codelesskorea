@@ -26,22 +26,7 @@ public class FaqListAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
-		/*
-		 *  차단 사용자 세션제어 시작
-		 */
-		// 세션정보 가져오기
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		MemberDAO mdao = new MemberDAO();
-		MemberDTO mdto = mdao.getMember(id);
-		boolean blocked = mdto.getBlocked();
-		if(blocked == true) {
-			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-			return forward;
-		}
-		/*
-		 *  차단 사용자 세션제어 끝
-		 */
+
 		//////////////////////////////////////////////////////////
 		//검색로직 
 		String category= request.getParameter("category");
