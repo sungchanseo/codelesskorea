@@ -20,7 +20,6 @@ import com.itwillbs.action.member.MemberUpdateAction;
 import com.itwillbs.action.member.MemberUpdateProAction;
 import com.itwillbs.action.member.PasswordUpdateAction;
 import com.itwillbs.action.member.PwFindAction;
-import com.itwillbs.action.product.SearchBoxAction;
 import com.itwillbs.commons.Action;
 import com.itwillbs.commons.ActionForward;
 
@@ -59,14 +58,6 @@ public class MemberController extends HttpServlet{
 		if(command.equals("/Main.me")) {
 		System.out.println(" C : Main.me 호출");
 		System.out.println(" C : DB사용 X, 페이지 이동O (패턴1)");
-		
-		action = new SearchBoxAction();
-		try {
-			action.execute(request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		forward = new ActionForward();
 		forward.setPath("./main.jsp");
