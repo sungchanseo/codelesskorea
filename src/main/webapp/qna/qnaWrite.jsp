@@ -95,7 +95,7 @@ if(blocked == true) {
 					</label>
 					<br>
 				    <label>글 내용<br>
-				    <textarea name="content"  cols="110px;" rows="10px;" class="form-control">
+				    <textarea name="content"  cols="110px;" rows="10px;" class="form-control" maxlength="700">
 ■ 주문관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 		      
 *주문자 성함 : 

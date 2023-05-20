@@ -34,11 +34,11 @@
 				<input type="hidden" name="pageNum" value="${pageNum }">
 				   작성자 : ${qdto.nickname} <input type="hidden" name="nickname" required value="${qdto.nickname}" readonly="readonly"><br>
 		          <label>글제목
-				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110">
+				    <input type="text" name="title" value="답변 입니다." readonly class="form-control" size="110" maxlength="100">
 					</label>
 					<br>
 				    <label>글 내용<br>
-				    <textarea name="content" cols="110px;" rows="10px;" class="form-control">${qdto.content}</textarea>
+				    <textarea name="content" cols="110px;" rows="10px;" class="form-control" maxlength="700">${qdto.content}</textarea>
 					</label>
 					<br>
 					<label>첨부 이미지

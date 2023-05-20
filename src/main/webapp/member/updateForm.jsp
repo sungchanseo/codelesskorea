@@ -161,21 +161,21 @@
 				
 
 				아이디 <input type="email" class="form-control" id="id"
-					value=${requestScope.dto.id } name="id" readonly> <br> 
+					value=${requestScope.dto.id } name="id" readonly maxlength="40"> <br> 
 					
 				
-				이름 <input type="text" class="form-control" name="name" id="name"  value="${dto.name }">
+				이름 <input type="text" class="form-control" name="name" id="name"  value="${dto.name }" maxlength="20">
 				<br>
-				이메일 <input type="text" class="form-control" name="email" id="name"  value="${dto.email }" readonly>
+				이메일 <input type="text" class="form-control" name="email" id="name"  value="${dto.email }" readonly maxlength="40">
 				
 				닉네임 <input type="text" class="form-control" name="nickname" id="nickname"
-						value="${dto.nickname }">	
+						value="${dto.nickname }" maxlength="40">	
 				<span id="nickmsg"></span>
 					 <br> 
 				
 				연락처 <input type="text" class="form-control"
 					name="phone_number" placeholder="010-0000-0000 형태로 입력해주세요." id="phone_number"
-					value="${dto.phone_number }">
+					value="${dto.phone_number }" maxlength="13">
 					 <br> 
 				
 				생년월일 <input type="date" class="form-control"
@@ -190,11 +190,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}"></td>
+						<td><input type="text" name="address" id="address" size="45" onclick="addr();" value="${dto.address}" maxlength="200"></td>
 					<tr>
 					<tr>
 						<td><input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요."
-						value="${dto.address2}"> </td>
+						value="${dto.address2}" maxlength="45"></td>
 					<tr>
 				</table>
 				

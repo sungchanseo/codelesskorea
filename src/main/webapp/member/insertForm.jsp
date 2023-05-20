@@ -240,7 +240,7 @@
 				   아이디 
 				   <c:if test="${empty param.id }">
 				   <input type="text" class="form-control" id="id"
-					placeholder="아이디를 입력해주세요." name="id"maxlength="40">
+					placeholder="아이디를 입력해주세요." name="id" maxlength="40">
 					</c:if> <!-- 간편로그인이 아닌 경우 -->
 				   
 				   <c:if test="${!empty param.id }">
