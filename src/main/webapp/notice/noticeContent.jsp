@@ -34,7 +34,7 @@
 		     <td>${dto.count }</td>
 		   </tr> 
 		   <tr>
-		     <td style="width:80px;">내용</td>
+		     <td style="width:100px;">내용</td>
 		     <td colspan="4" style="white-space:pre;">${dto.content }</td>
 		   </tr> 
 		   <c:choose>
