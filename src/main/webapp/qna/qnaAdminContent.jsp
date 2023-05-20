@@ -234,13 +234,15 @@ fieldset {
     <th style="text-align: center;">내용</th>
     <td colspan="5">
       <textarea cols="60" rows="15" readonly="readonly" style="border: none;">${qdto.content}</textarea>
+
       <c:if test="${qdto.productId ne 0}">
         <a href="./ProductContent.pr?product_id=${qdto.productId}" style="color: red">신고된 상품링크로 가기 상품번호 : ${qdto.productId}번</a>
       </c:if>
     </td>
   </tr>
 </table>
-
+      	<span style="font-size: 14px; color: #FFBF00;"><i class="fa fa-exclamation-triangle"></i> 사이트 이용관련(주문,취소,배송 등) 각종궁금하신 사항은 
+		[고객센터] - [자주하는질문] 으로 들어가시면 자세하게 답변이 남겨져있으니 참고 바랍니다.</span><br>
  
   
 	<div style= "float: right; margin-top: 30px;">

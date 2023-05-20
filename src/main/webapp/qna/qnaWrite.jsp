@@ -13,26 +13,61 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 
-<script type="text/javascript">
+  function toggleTextArea(selectElement) {
+    var category = selectElement.value;
+    var contentTextarea = document.getElementById('contentTextarea');
+    var orderRelatedTemplate = `■ 상품관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 
+    	주문자 아이디 : ${sessionScope.id}
+    	상품 번호 : ${param.product_id}
+    	문의 내용 :`;
+	var reportRelatedTemplate = `■ 신고관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 
-		$('textarea').keyup(function(){
+    	주문자 아이디 : ${sessionScope.id}
+    	상품 번호 : ${param.product_id}
+    	문의 내용 :`;
+    var checkRelatedTemplate = `■ 결제관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
 
-			var tmpLength = 700 - $(this).val().length;
-			$('h3').html(tmpLength);
-			
-			if( tmpLength < 0 ){
-				$('h3').css('color','red');
-			}  		
-			else{
-				$('h3').css('color','black');
-			}
-		});
-		
+    	주문자 아이디 : ${sessionScope.id}
+    	상품 번호 : ${param.product_id}
+    	문의 내용 :`;
+
+    	
+    switch (category) {
+      case '회원정보':
+    	  contentTextarea.value = '';
+          contentTextarea.placeholder = '회원정보에 관한 문의 내용을 작성해 주세요.';
+        break;
+      case '상품':
+        contentTextarea.value = orderRelatedTemplate;
+        break;
+      case '신고':
+        contentTextarea.value = reportRelatedTemplate;
+        break;
+      case '결제':
+        contentTextarea.value = checkRelatedTemplate;
+        break;
+      case '기타':
+        contentTextarea.value = '기타 문의 내용을 작성해 주세요.';
+        break;
+      default:
+        contentTextarea.value = '';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+	    var categorySelect = document.getElementsByName('qna_category')[0];
+	    toggleTextArea(categorySelect);
+	  });
+  
 </script>
+
 </head>
 <body>
+
+
 
 <%
 String id = (String)session.getAttribute("id");
@@ -66,56 +101,47 @@ if(blocked == true) {
 
 
 
-		<fieldset>	
-		   <form action="./MypageQNAInsertAction.qn" method="post" enctype="multipart/form-data">
-		   <input type="hidden" name="id" value="${sessionScope.id}"><br>
-			<c:if test="${not empty param.product_id}"> 
-			    <input type="hidden" name="product_id" value="${param.product_id}">
-			</c:if>
-		   <input type="hidden" name="isanswered"" value="${qdto.is_answered}">
-			<!-- 		회원정보, 상품, 신고, 결제, 기타 -->
-			<select name="qna_category">
-			    <c:choose>
-			        <c:when test="${param.product_id ne null}">
-			            <option value="신고" selected>신고</option>
-			        </c:when>
-			        <c:otherwise>
-			            <option value="회원정보">회원정보</option>
-			            <option value="상품">상품</option>
-			            <option value="신고">신고</option>
-			            <option value="결제">결제</option>
-			            <option value="기타">기타</option>
-			        </c:otherwise>
-			    </c:choose>
-			</select>
-		   	  작성자(닉네임) : <%=nickname %><input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
-	          <label>글제목
-				    <input type="text" name="title" placeholder="제목을 입력해 주세요."class="form-control" size="110" required="required">
-				    
-					</label>
-					<br>
-				    <label>글 내용<br>
-				    <textarea name="content"  cols="110px;" rows="10px;" class="form-control" maxlength="700">
-■ 주문관련 문의시 하단양식을 꼭 작성해 주세요 ■ 
-		      
-*주문자 아이디 : ${sessionScope.id}
-*상품 번호 : ${param.product_id}
-*문의 내용 : 
-
-
-* 사이트 이용관련(주문,취소,배송 등) 각종궁금하신 사항은 
-[고객센터] - [자주하는질문] 으로 들어가시면 자세하게 답변이 남겨져있으니 참고 바랍니다.
-				    </textarea>
-		<c:if test="${param.product_id ne null}">
-    <a href="./ProductContent.pr?product_id=${param.product_id}" style="color: red">신고된 상품링크로 가기 상품번호 : ${param.product_id}번</a>
-		</c:if>
-					</label>
-					<br>
-					<label>첨부 이미지
-				    <input type="file" name="image" class="form-control">
-					</label>
-		   <div style= "float: right; margin-top: 30px;">	
-				<input type="submit" value="글쓰기" class="btn btn-primary">
+	<fieldset>
+  <form action="./MypageQNAInsertAction.qn" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="${sessionScope.id}"><br>
+    <c:if test="${not empty param.product_id}">
+      <input type="hidden" name="product_id" value="${param.product_id}">
+    </c:if>
+    <input type="hidden" name="isanswered" value="${qdto.is_answered}">
+    <select name="qna_category" onchange="toggleTextArea(this)">
+      <c:choose>
+        <c:when test="${param.product_id ne null}">
+          <option value="신고" selected>신고</option>
+        </c:when>
+        <c:otherwise>
+          <option value="회원정보" selected>회원정보</option>
+          <option value="상품">상품</option>
+          <option value="신고">신고</option>
+          <option value="결제">결제</option>
+          <option value="기타">기타</option>
+        </c:otherwise>
+      </c:choose>
+    </select>
+    작성자(닉네임) : <%=nickname %><input type="hidden" name="nickname" value="<%=nickname %>" readonly><br>
+    <label>글제목
+      <input type="text" name="title" placeholder="제목을 입력해 주세요." class="form-control" size="110" required="required">
+    </label>
+    <br>
+    <label>글 내용<br>
+      <textarea name="content" id="contentTextarea" cols="110px;" rows="10px;" class="form-control" maxlength="700"></textarea>
+    </label>
+    
+		<span style="font-size: 14px; color: #FFBF00;"><i class="fa fa-exclamation-triangle"></i> 사이트 이용관련(주문,취소,배송 등) 각종궁금하신 사항은 
+		[고객센터] - [자주하는질문] 으로 들어가시면 자세하게 답변이 남겨져있으니 참고 바랍니다.</span><br>
+    <c:if test="${param.product_id ne null}">
+      <a href="./ProductContent.pr?product_id=${param.product_id}" style="color: red">신고된 상품링크로 가기 상품번호 : ${param.product_id}번</a>
+    </c:if>
+    <br>
+    <label>첨부 이미지
+      <input type="file" name="image" class="form-control">
+    </label>
+    <div style="float: right; margin-top: 30px;">
+      <input type="submit" value="글쓰기" class="btn btn-primary">
 			</div>	
 		   </form>		
 		</fieldset>

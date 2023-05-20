@@ -145,7 +145,7 @@ $(document).on("click", ".del-btn", function() {
 				<td>${dto.order_date}</td>
 				<td><c:choose>
 			    <c:when test="${empty dto.order_status}">
-			        <p>-</p>
+			        <p>     -</p>
 			    </c:when>
 			    <c:otherwise>
 			       <p>${dto.order_status}</p>
@@ -164,7 +164,7 @@ $(document).on("click", ".del-btn", function() {
 </table>
 			<div class="container" style="margin: auto;">
 			  <ul class="pagination justify-content-center" id="pagination" style="margin-top: 50px;">
-		  	<c:if test="${startPage > pageBlock }"> /
+		  	<c:if test="${startPage > pageBlock }">
 			<li class="page-item"><a class="page-link" href="./AdminProductList.my?pageNum=${startPage-pageBlock}&category=${category }&search=${search } "><sapn>이전</sapn></a></li>
 			</c:if>
 		   <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
