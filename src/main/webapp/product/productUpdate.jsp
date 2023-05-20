@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 수정</title>
+<title>CODELESS</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편api -->
 <%@include file="../head.jsp" %>
@@ -163,46 +163,55 @@ function toggleAddressField() {
   <div style="text-align:left; overflow-y: auto; height: 800px; ">
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 수 정</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
-
+	
 	<form action="./ProductUpdateProAction.pr" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="user_id" value="${product.user_id}"> <!-- user_id를 hidden으로 전송 -->
   <!-- user_id를 hidden으로 전송 -->
-
+  
 	<label for="seller"></label>
     <span id="seller">${sessionScope.id} 님</span>
 	<br>
-	<label for="productNo">No.</label>
-	<input type="text" value="${ product.product_id }"name="product_id" style="width: 50px;" readonly>
-   <label for="title"></label>
-    <input type="text" value="${product.title }" name="title" style="width: 406px;"  maxlength="40">
+
+	
+	<div style="display: flex;">
+	<label style="margin-top: 10px; margin-right: 10px;">No. </label>
+	<input type="text" value="${product.product_id }" name="product_id" class="form-control" style="width: 70px;" readonly>
+	<label for="title"></label>
+    <input type="text" value="${product.title }" name="title" class="form-control" style="width:418px" maxlength="40" required>
+	</div>
+	<i class="fa fa-exclamation-triangle"></i> 브랜드, 모델, 색상을 선택해주세요
 	<br>
-		<select name="brand" id="brand" required style="width: 122px;">			
+	
+	<div style="display: inline-block;">
+		<div style="display: flex;">
+		<select name="brand" id="brand" style="width: 122px;" class="form-control" required>			
 			<option value="">브랜드</option>
-			<option value="1">애플</option>
-			<option value="2">삼성</option>
 		</select>
-		
-		<select name="model" id="model" required style="width: 122px;">	
+		<select name="model" id="model" style="width: 122px;" class="form-control" required>	
 			<option value="">모델</option>
 		</select>
 		
-		<select name="color" id="color" required style="width: 122px;">
+		<select name="color" id="color" style="width: 122px;" class="form-control" required>
 			<option value="">색상</option>
 		</select>
-		<select name="parts" id="parts" required style="width: 122px;">
+		<select name="parts" id="parts" style="width: 122px;" class="form-control" required>
 			<option value="">부품</option>
 				<option value="left" ${product.parts == "left" ? "selected" : ""}>좌</option>
-				<option value="right" ${product.parts == "right" ? "selected" : ""}>우</option>
+				<option value="right"${product.parts == "right" ? "selected" : ""}>우</option>
 				<option value="body" ${product.parts == "body" ? "selected" : ""}>본체</option>
 			</select>
+		</div>
+	</div>
    <br>
    <label for="content"></label>
-   <textarea name="content" placeholder="글 내용을 작성하세요"  rows="4" cols="50"  maxlength="400">${product.content}</textarea>
+   <textarea name="content" placeholder="글 내용을 작성하세요"  rows="4" cols="50"  style="width: 488px;"  maxlength="400" class="form-control"  required>${product.content}</textarea>
    <br>
 	<table>
 	  <tr>
 	    <td class="file-input">
-	    <hr>업로드한 이미지<br>
+	    <hr>
+	   <i class="fa fa-exclamation-triangle"></i> 상품 이미지 3개 이상 첨부해주세요
+	    <br>
 	    <img src="./upload/product/${product.product_image.split(',')[0]}" alt="이미지 없음" width="40px">
 	    <img src="./upload/product/${product.product_image.split(',')[1]}" alt="이미지 없음" width="40px">
 	    <img src="./upload/product/${product.product_image.split(',')[2]}" alt="이미지 없음" width="40px">
@@ -220,56 +229,56 @@ function toggleAddressField() {
 	      <hr>
 
       <label for="price"></label>
-       <input type="text" name="price" placeholder="가격을 입력해주세요" value="${product.price}" id="price" required onkeyup="inputNumberFormat(this);">
+       <input type="text" name="price" placeholder="가격을 입력해주세요" class="form-control" style="width: 400px" value="${product.price}" id="price" onkeyup="inputNumberFormat(this);" required>
 
-    <label for="grade">등급 </label>
-      <select name="grade">
+    <label for="grade" style="padding-left: 5px; padding-right:10px;">등급 </label>
+      <select name="grade" required class="form-control" style="width: 400px">
 						<option value="1">상</option>
 						<option value="2">중</option>
 						<option value="3">하</option>
 				</select>
 		
-  <label for="method">거래방법 </label>
-		<select name="method" id="method" onchange="toggleAddressField()">
-		  <option value="">거래방법을 선택하세요</option>
+  <label for="method" style="padding-left: 5px; padding-right:10px;"> 거래방식 </label>
+		<select name="method" id="method" onchange="toggleAddressField()" class="form-control" required style="width: 400px">
+		  <option value="">거래방식을 선택하세요</option>
 		  <option value="1" ${product.method == 1 ? "selected" : ""}>직거래</option>
 		  <option value="2" ${product.method == 2 ? "selected" : ""}>택배</option>
 		</select>
-			<br>
-<div id="addressFields">
-
-  <label for="address"></label>
-  주소 : ${product.city}<br>
-	<input type="text" name="address1" placeholder="주소를 입력해주세요" id="address1" size="45" onclick="addr();" style="display: inline-block;" required>
-	<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
-	<input type="text" name="address2" id="address2" size="45" placeholder="상세주소를 입력해주세요." style="display: inline-block;" required>
-  <hr>
+	<hr>
+		<i class="fa fa-exclamation-triangle"></i> 주소를 입력해주세요
+	<br>
+	
+<div id="addressFields"  style="display: inline-block; width:400px; ">
+  <label for="address" style="text-align: left;"></label>
+    현재 주소 : ${product.city}<br>
+	<div style="display: flex; align-items: center; width: 400px;">
+		<input type="text" name="address1" placeholder="수정하실 주소를 입력해주세요" id="address1"  class="form-control" size="45" onclick="addr();">
+		<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
+	</div>
+	<input type="text" name="address2" id="address2" size="45" placeholder="수정하실 상세주소를 입력해주세요."  class="form-control">
+  
       <label style="padding-right: 10px;">결제방식</label>
-    <input type="radio" name="charge" value="${product.charge}"checked="${product.charge==0}" required/>
+    <input type="radio" name="charge" id="account" value="${product.charge}"checked="${product.charge==0}"  required>
     <label for="account" style="padding-left: 5px; padding-right:10px;"> 계좌거래 </label>
-    <input type="radio" name="charge" id="payment" value="1" checked="${product.charge==1}"  required/>
-    <label for="payment" style="padding: 5px;">안전결제 </label>
+    <input type="radio" name="charge" id="payment" value="1" required>
+    <label for="payment" style="padding: 5px;"> 안전결제 </label>
 	<br>
     <label style="padding-right: 24.2px;">배송비</label>
-        <input type="radio" name="fee" value="${product.fee}" checked="${product.fee == 0}" required/>
-        <label for="fee">배송비 포함</label>
-        <input type="radio" name="fee" value="3000"checked="${product.fee != 0}" required/>
-    <label for="not_free" style="padding-left: 5px; " >배송비 미포함</label>
+    <input type="radio" name="fee" id="free" value="${product.fee}" checked="${product.fee == 0}"  required>
+    <label for="free" style="padding-left: 5px; padding-right:10px;"> 배송비 포함 </label>
+    <input type="radio" name="fee" id="not_free" value="3000" required>
+    <label for="not_free" style="padding-left: 5px; " > 배송비 미포함</label>
 </div>
+
+
 <p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
 <hr>
-		
-	
-		<div style="text-align: right; margin-top: 10px;">
-  <div style="text-align: center; margin-top: 10px;">
-	</div>
-	  <hr>
-	</div>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 수정</button>
 	</form>
-</div>
-</div>
-</div>
+	</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script src="js/main.js"></script>
 <%@include file="../footer.jsp" %>

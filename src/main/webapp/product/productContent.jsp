@@ -12,7 +12,7 @@
 <script src="path/to/bootstrap.min.js"></script>
 <head>
 	<meta charset="UTF-8">
-	<title>상품 보기</title>
+	<title>CODELESS</title>
 
 <%@include file="../head.jsp" %>
 <script type="text/javascript">
@@ -403,12 +403,7 @@
 				</tr>
 		<tr>
 	    <th style="text-align: left;padding-left: 40px;">
-	     <!-- 찜 버튼 -->
-	<%-- 		<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
-			</button> --%>
-			
-			<!-- 찜수 -->
-			
+
 			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 찜수 <i class="fa fa-heart"></i>  ${product.like_count }</span>
 			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 조회수 <i class="fa fa-eye"></i>  ${product.read_count}</span>
 			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"> 채팅수 <i class="fa fa-comment"></i>  ${product.chat_count}</span>
@@ -420,7 +415,7 @@
 						<div style="text-align: center; margin-top: 10px; ">
 							<c:if test="${ sessionScope.id != product.user_id }">
 							<button class="like-btn btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
-				 			 <i class="fa fa-heart"></i><span >찜${product.like_count }</span>
+				 			 <i class="fa fa-heart"></i><span > 찜 </span>
 							</button>
 							<a href="./OrderWrite.or?product_id=${product.product_id}" class="btn btn-primary sale-elements">구매하기</a>
 								<a href="./ChatToSeller.ch?toID=${product.user_id}" class="btn btn-secondary sale-elements">채팅하기</a>
@@ -433,18 +428,6 @@
 		</th>
 	</tr>
 	<tr>
-<%-- 	    <th style="text-align: center;">
-	     <!-- 찜 버튼 -->
-			<button class="like-btn" data-product-id="${product.product_id}" data-user-id="${sessionScope.id }">
-			</button>
-			
-			<!-- 찜수 -->
-			
-			 <span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-heart"></i> 찜수 ${product.like_count }</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-eye"></i>조회수 ${product.read_count}</span>
-			<span style="font-size: 1.0em; color: gray; margin-right: 14px;"><i class="fa fa-comment"></i> 채팅수 ${product.chat_count}</span>
-			
-	    </th> --%>
 	</tr>
 
 	<c:if test="${ sessionScope.id eq 'admin@gmail.com' or product.user_id eq sessionScope.id }">
@@ -455,36 +438,36 @@
 	    <!-- 상품이 판매 완료된 경우 -->
 	    <p>판매완료된 상품입니다</p>
 	  </c:when>
-	  <c:otherwise>
-	    <!-- 판매 중인 경우 -->
-		<td style="text-align: left;"> 
-		</td>
-		<td  style="text-align: right; border-top: 1px solid lightgray; padding-top: 20px;  padding-right: 30px;">
-		<a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary btn-sm sale-elements">상품글 수정</a>
-		<form method="post" action="./ProductDeleteAction.pr" onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
-			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
-			<button type="submit" class="btn btn-secondary btn-sm sale-elements" >상품글 삭제</button>
-		</form>
-		<form method="post" action="ProductSoldAction.pr" class="sale-elements" onsubmit="if(!confirm('상품을 판매 완료 처리하시겠습니까?')) return false;" >
-			<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
-			<button type="submit" class="btn btn-secondary btn-sm sale-elements">판매완료</button>
-		</form>
-			
-		</td>
+		  <c:otherwise>
+		    <!-- 판매 중인 경우 -->
+			<td style="text-align: left;"> 
+			</td>
+			<td colspan="2" style="text-align: center;">
+			<div style="text-align: center; margin-top: 10px; ">
+				<a href="./ProductUpdate.pr?product_id=${product.product_id}" class="btn btn-secondary btn-sm sale-elements">상품글 수정</a>
+					<form method="post" action="./ProductDeleteAction.pr" onsubmit="if(!confirm('상품을 삭제하시겠습니까?')) return false;">
+						<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
+						<button type="submit" class="btn btn-secondary btn-sm sale-elements" >상품글 삭제</button>
+					</form>
+					<form method="post" action="ProductSoldAction.pr" class="sale-elements" onsubmit="if(!confirm('상품을 판매 완료 처리하시겠습니까?')) return false;" >
+						<input type="hidden" name="product_id" value="${product.product_id}" class="btn btn-primary">
+						<button type="submit" class="btn btn-secondary btn-sm sale-elements">판매완료</button>
+						<hr style="border: 0;height: 3px; background-color: lightgray;">
+					</form>
+				</div>
+			</td >
 			</c:otherwise>
 		</c:choose>
 	</tr>
 </table>	
         </c:if>
-
-
-
+</table>
 <!-- 		<tr> -->
 <table style="margin-top: 40px;">
 	<tr style="text-align: left;">
 		<td style="text-align: left; padding-left: 1.7%; font-size: 1.3em;" colspan="4">${product.content}
 	</tr>
-	<tr><td colspan="4">&nbsp</td></tr>
+	<tr><td colspan="4"></td></tr>
 	<tr>
 		<td style="text-align: left; padding-left: 1.5%; font-size: 0.9em;">
 			# 등록일 : ${product.reg_date}
@@ -523,18 +506,18 @@
 	</c:choose>
 </table>
 
-</div>
-</div> 
-</div>
-</div>
+				</div>
+			</div> 
+		</div>
+	</div>
 <div>
 </div>
 <div style= "text-align: center; margin-top: 5px;">
-
+</div>
 </div>
 </div>
 </div>	
-</div>
+
 <%@include file="../footer.jsp" %>
 </body>
 </html>
