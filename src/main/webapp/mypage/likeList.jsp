@@ -196,7 +196,7 @@
                     </c:if>
                     <td style="border: none; vertical-align: top; padding: 10px;">
                         <a href="./ProductContent.pr?product_id=${dto.product_id}">
-                            <img src="${dto.product_image}" width="250px" height="200px">
+                            <img src="./upload/product/${dto.product_image}" width="250px" height="200px">
                             <br>
                             <a href="./ProductContent.pr?product_id=${dto.product_id}">${dto.title}</a> 
                             <!-- 찜 버튼 -->
