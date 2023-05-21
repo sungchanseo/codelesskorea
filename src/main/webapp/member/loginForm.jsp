@@ -90,17 +90,17 @@ function kakaoLogin() {
 	 
       <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." name="password" id="password"maxlength="40">
 
-      <button type="submit" class="btn btn-primary btn-block" style="margin-top: 30px;" >로그인</button>
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top: 30px; " >로그인</button>
      
-      <button type="button" class="btn btn-dark btn-block" style="margin-top: 15px;" onclick="location.href='./MemberJoin.me'" >
+      <button type="button" class="btn btn-dark btn-block" style="margin-top: 15px; " onclick="location.href='./MemberJoin.me'" >
       회원가입</button>
    	  
    	  <a href="javascript:void(0)">
-      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" 
+      <img onclick="kakaoLogin();" src="images/Asset 6.png" 
       width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
       </a><!-- 카카오 로그인 버튼!-->
-  
-  
+    
+
        <hr>        
       <span onclick="location.href='./IdFind.me'" style="margin-left:85px; cursor:pointer;" >아이디 찾기</span>  |
       

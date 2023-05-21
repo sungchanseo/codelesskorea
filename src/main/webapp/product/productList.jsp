@@ -48,7 +48,7 @@
 
   .product-details {
     flex: 1;
-    padding: 20px;
+    padding: 10px;
     text-align: left;
   }
 
@@ -92,7 +92,7 @@
   </div>
 
   
-  
+   
   <div style="text-align: center;">
     <h2 style="text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;color: #5A564F;">매칭 리스트</h2>
     <div class="product-list-wrapper" style="justify-content: center;display: flex; flex-direction: row;">
@@ -100,7 +100,7 @@
         <div class="product-wrapper" style="margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 420px;display: flex; flex-direction: column;justify-content: center;">
           <div class="product-image">
             <a href="./ProductContent.pr?product_id=${product.product_id}" onclick="window.parent.location.href = this.href; return false;">
-            <img src="./upload/product/${product.product_image.split(',')[0] }" onerror="this.src='https://via.placeholder.com/250x250?text=No Image :('" alt="${product.title}" style="max-width: 250px;">
+            <img src="./upload/product/${product.product_image.split(',')[0] }" onerror="this.src='https://via.placeholder.com/250x250?text=No Image :('" alt="${product.title}" style="max-width: 250px;max-height: 250px;">
             </a>
           </div>
           <div class="product-details" style="margin-top: 10px;">
