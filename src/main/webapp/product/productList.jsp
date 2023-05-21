@@ -92,7 +92,7 @@
   </div>
 
   
-  
+   
   <div style="text-align: center;">
     <h2 style="text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;color: #5A564F;">매칭 리스트</h2>
     <div class="product-list-wrapper" style="justify-content: center;display: flex; flex-direction: row;">

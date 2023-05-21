@@ -99,7 +99,7 @@ function kakaoLogin() {
       <img onclick="kakaoLogin();" src="images/Asset 6.png" 
       width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
       </a><!-- 카카오 로그인 버튼!-->
-  
+    
 
        <hr>        
       <span onclick="location.href='./IdFind.me'" style="margin-left:85px; cursor:pointer;" >아이디 찾기</span>  |
