@@ -108,7 +108,7 @@ public class MemberDAO {
 		        if (rs.next()) { 
 		            if (dto.getId().equals(rs.getString("id"))) {
 		                // 3. 회원 정보 업데이트
-		                sql = "UPDATE user SET name=?, nickname=?, phone_number=?, address=?, user_image=?, address2=?, post_number=? WHERE id=?";
+		                sql = "UPDATE user SET name=?, nickname=?, phone_number=?, address=?, user_image=?, address2=?, post_number=?,birth_date=? WHERE id=?";
 		                pstmt = con.prepareStatement(sql);
 		                
 		                // 이름, 닉네임, 연락처, 주소, 사용자 이미지, 주소2, 우편번호 수정
@@ -119,7 +119,8 @@ public class MemberDAO {
 		                pstmt.setString(5, dto.getUser_image() == null ? rs.getString("user_image") : dto.getUser_image());
 		                pstmt.setString(6, dto.getAddress2());
 		                pstmt.setInt(7, dto.getPost_number());
-		                pstmt.setString(8, dto.getId());
+		                pstmt.setString(8, dto.getBirth_date());
+		                pstmt.setString(9, dto.getId());
 		                
 		                // 4. 회원 정보 업데이트 실행
 		                result = pstmt.executeUpdate();
