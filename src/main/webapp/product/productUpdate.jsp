@@ -203,7 +203,7 @@ function inputColorOption(modelList, colorList) {
  <h1 style="font-family: 'TheJamsil5Bold';">상 품 수 정</h1>
 <hr style="border: 0;height: 3px; background-color: black;">
 	
-	<form action="./ProductUpdateProAction.pr" method="post" enctype="multipart/form-data">
+	<form action="./ProductUpdateProAction.pr" method="post" enctype="multipart/form-data" onsubmit="return changeNumber()">
 		<input type="hidden" name="user_id" value="${product.user_id}"> <!-- user_id를 hidden으로 전송 -->
   <!-- user_id를 hidden으로 전송 -->
   
