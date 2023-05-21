@@ -36,8 +36,8 @@
 			$("#accept_3").hide();
 		}
 		// 구매자에게만 보이는 운송장 정보
-		// 구매자가 아니거나, 발송, 주문 확정 상태가 아니면 감춤
-		if(order_status != "발송" || order_status != "주문 확정" || id != receiver_id){
+		// 구매자가 아니거나, 발송, 구매확정 아니면 감춤
+		if(order_status == "주문 확인" || order_status == "주문 취소" || order_status == "주문 수락"||  id != receiver_id){
 			$(".receiverTraking").hide();
 		}
 		// 판매자에게만 보이는 운송장번호 등록 정보
