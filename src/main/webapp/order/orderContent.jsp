@@ -25,29 +25,35 @@
 		console.log(seller_id);
 		console.log(order_status);
 		
-		// 구매자에게만 보이는 주문취소 버튼
-		if(order_status != "주문 확인" || id != receiver_id){
+		// 구매자가 '주문 확인 상태'일 때만 보이는 보이는 '주문 취소' 버튼
+		// 구매자가 아니거나, 주문 확인 상태가 아닐때에는 버튼을 감춤
+		if(order_status != "주문 확인" || id != receiver_id ){
 			$("#accept_0").hide();
 		}
 		// 구매자에게만 보이는 주문확정 버튼
+		// 구매자가 아니거나, 주문확인, 주문확정, 주문 취소 상태일때에는 버튼을 감춤 
 		if(id != receiver_id || order_status == "주문 확인" || order_status == "주문 확정" || order_status == "주문 취소" ){
 			$("#accept_3").hide();
 		}
 		// 구매자에게만 보이는 운송장 정보
-		if(order_status != "발송" || id != receiver_id){
+		// 구매자가 아니거나, 발송, 주문 확정 상태가 아니면 감춤
+		if(order_status != "발송" || order_status != "주문 확정" || id != receiver_id){
 			$(".receiverTraking").hide();
 		}
-		// 판매자에게만 보이는 운송장번호 등록버튼
-		if(id != seller_id || order_status == "주문 확인"){
+		// 판매자에게만 보이는 운송장번호 등록 정보
+		// 판매자가 아니거나, 주문확인, 주문취소 상태에서는 정보를 감춤
+		if(id != seller_id || order_status == "주문 확인" || order_status == "주문 취소"){
 			$(".sellerTraking").hide();
 		}
 		// 판매자가 운송장정보를 등록하기 이전에는 등록하기, 등록한 후에는 수정하기 버튼
+		// 발송, 주문확정 상태에서는 등록하기 버튼을 감춤
 		if(id != seller_id || order_status == "발송" || order_status == "주문 확정"){
 			$("#tracking1").hide();
 		}else{
 			$("#tracking2").hide();
 		}
 		// 판매자에게만 보이는 주문수락 버튼
+		// 판매자가 아니거나 주문확인 상태가 아닐때에는 버튼을 감춤
 		if(id != seller_id || order_status != "주문 확인"){
 		$("#accept_1").hide();
 		}
@@ -95,7 +101,7 @@
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="fee" value="${dto.fee}">
 		<div style="display: flex; align-items: center;" >
-			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음"  width="150px" style="display: block; margin-right: 10px;">
+			<img src="./upload/product/${dto.product_image.split(',')[0]}" alt="이미지 없음"  width="150px" style="display: block; margin-right: 10px; max-height: 200px; max-width: 150px;">
 			<table >
 				<tr>
 					<td style="text-align: left;"><span style="color: black; margin-right: 20px; margin-left: 20px;"></span></td>
@@ -211,8 +217,8 @@
 		<input type="hidden" id="id" name="id" value="${dto.id }">
 		<input type="hidden" id="order_id" name="order_id" value="${dto.order_id }">
 		<input type="hidden" id="product_id" name="product_id" value="${dto.product_id }">
-		<button class="btn btn-secondary" style="margin-left: 165px; width: 50px;" type="submit" id="accept_0" name="is_accept" value="0" onclick="if(!confirm('주문을 취소하시겠습니까?')){return false;}">주문 취소</button>
-		<button class="btn btn-secondary" style="margin-left: 165px;" type="submit" id="accept_1" name="is_accept" value="1" onclick="if(!confirm('주문을 수락하시겠습니까?')){return false;}">주문 수락</button>
+		<button class="btn btn-secondary" style="margin-left: 165px; width: 250px;" type="submit" id="accept_0" name="is_accept" value="0" onclick="if(!confirm('주문을 취소하시겠습니까?')){return false;}">주문 취소</button>
+		<button class="btn btn-secondary" style="margin-left: 165px; width: 250px;" type="submit" id="accept_1" name="is_accept" value="1" onclick="if(!confirm('주문을 수락하시겠습니까?')){return false;}">주문 수락</button>
 		<button class="btn btn-secondary" style="margin-left: 165px; width: 250px;" type="submit" id="accept_3" name="is_accept" value="3" onclick="if(!confirm('주문을 확정하시겠습니까?')){return false;}">주문 확정</button>
 		</form>
 		</div>
