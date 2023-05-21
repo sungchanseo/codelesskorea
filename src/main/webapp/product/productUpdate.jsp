@@ -46,7 +46,7 @@ function addr() {
 
 $('document').ready(function() {
 	var modelList;
-	var colorList
+	var colorList;
 	$.ajax({
 		type: "GET",
 		url: "./GetModelList.pr",
@@ -55,63 +55,78 @@ $('document').ready(function() {
 			modelList = data[0];
 			colorList = data[1];
 			console.log(data);
+			
+			$('#brand').val(${product.brand}); //저장된 브랜드로 설정
+			console.log($('#brand').val);
+			inputModelOption(modelList); // 모델 옵션 삽입
+			$('#model').val(${product.model}); // 저장된 모델로 설정
+			console.log($('#model').val);
+			inputColorOption(modelList, colorList); // 색상 옵션 삽입
+			$('#color').val(${product.color}); // 저장된 색상으로 설정
+			console.log($('#color').val);
 		},
 		error: function(data) {
 			alert("정보를 받아올 수 없습니다.");
 		}
 	});
 	 $('#brand').change(function () {
-		if($('#brand').val() == "1"){
-			$('#model option').remove();
-			$('#color option').remove();
-			$('#model').append("<option value=''>모델</option>");
-			$('#color').append("<option value=''>색상</option>");
-			$.each(modelList,function(idx, obj){
-				console.log(obj.model_id);
-				console.log(obj.model);
-				if(obj.model_id>5) return false;
-				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
-			}); // selected apple
-		}else if($('#brand').val() == "2"){
-			// Init selectBox
-			$('#model option').remove();
-			$('#color option').remove();
-			$('#model').append("<option value=''>모델</option>");
-			$('#color').append("<option value=''>색상</option>");
-			// add values
-			$.each(modelList,function(idx, obj){
-				if(obj.model_id<6) return true;
-				$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
-			}); // selected samsung
-		}else{
-			$('#model option').remove();
-			$('#model').append("<option value=''>모델</option>");
-		}//미선택시
+		 inputModelOption(modelList);
 	});//특정 브랜드 선택시 모델옵션 변경
 	
 	 $('#model').change(function() {
-		$('#color option').remove();
-		$('#color').append("<option value=''>모델</option>");
-		 var color = "";
-		$.each(modelList,function(idx, obj){
-// 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
-			if(obj.model_id == $('#model').val()) {
-				color = obj.color;
-				return false;
-			}
-		}); // get Colors by Model
-		var colorArr = color.split("/");
-		$.each(colorList,function(idx, obj){
-			$.each(colorArr, function(idx, colorEle){
-				if(obj.color_id == colorEle) {
-					$('#color').append("<option value='"+obj.color_id+"'>"+obj.color+"</option>");
-				}
-			});
-		});
+		 inputColorOption(modelList, colorList);
 	 });
 
 });
 
+function inputModelOption(modelList) {
+	if($('#brand').val() == "1"){
+		$('#model option').remove();
+		$('#color option').remove();
+		$('#model').append("<option value=''>모델</option>");
+		$('#color').append("<option value=''>색상</option>");
+		$.each(modelList,function(idx, obj){
+//				console.log(obj.model_id);
+//				console.log(obj.model);
+			if(obj.model_id>5) return false;
+			$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+		}); // selected apple
+	}else if($('#brand').val() == "2"){
+		// Init selectBox
+		$('#model option').remove();
+		$('#color option').remove();
+		$('#model').append("<option value=''>모델</option>");
+		$('#color').append("<option value=''>색상</option>");
+		// add values
+		$.each(modelList,function(idx, obj){
+			if(obj.model_id<6) return true;
+			$('#model').append("<option value='"+obj.model_id+"'>"+ obj.model + "</option>");
+		}); // selected samsung
+	}else{
+		$('#model option').remove();
+		$('#model').append("<option value=''>모델</option>");
+	}//미선택시
+}
+function inputColorOption(modelList, colorList) {
+	$('#color option').remove();
+	$('#color').append("<option value=''>색상</option>");
+	 var color = "";
+	$.each(modelList,function(idx, obj){
+//			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
+		if(obj.model_id == $('#model').val()) {
+			color = obj.color;
+			return false;
+		}
+	}); // get Colors by Model
+	var colorArr = color.split("/");
+	$.each(colorList,function(idx, obj){
+		$.each(colorArr, function(idx, colorEle){
+			if(obj.color_id == colorEle) {
+				$('#color').append("<option value='"+obj.color_id+"'>"+obj.color+"</option>");
+			}
+		});
+	});
+}
   function comma(str) {
       str = String(str);
       return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -202,6 +217,9 @@ $('document').ready(function() {
 		<div style="display: flex;">
 		<select name="brand" id="brand" style="width: 122px;" class="form-control" required>			
 			<option value="">브랜드</option>
+			<option value="1">애플</option>
+		    <option value="2">삼성</option>
+			
 		</select>
 		<select name="model" id="model" style="width: 122px;" class="form-control" required>	
 			<option value="">모델</option>
