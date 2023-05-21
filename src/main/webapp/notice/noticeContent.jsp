@@ -25,28 +25,30 @@
 
 <%-- 이미지 이름 ${dto.notice_image } --%>
 <%-- 이미지 저장 경로 ${realpath }  --%>
-	<table class="table" id="nttable">
+	<table class="table" id="nttable" style="table-layout:fixed">
 		   <tr>
-		     <td>NO. ${dto.notice_id }</td>
-		     <td>작성일</td>
-		     <td>${dto.date }</td>
-		     <td>조회수</td>
-		     <td>${dto.count }</td>
+		     <td style="text-align:center;">NO. ${dto.notice_id }</td>
+		     <td style="text-align:center;">작성일</td>
+		     <td style="text-align:center;">${dto.date }</td>
+		     <td style="text-align:center;">조회수</td>
+		     <td style="text-align:center;">${dto.count }</td>
 		   </tr> 
 		   <tr>
-		     <td style="width:100px;">내용</td>
-		     <td colspan="4" style="white-space:pre;">${dto.content }</td>
+		     <td style="text-align:center;"><br>내용</td>
+		     <td colspan="4" style="white-space:pre-line; word-break:break-all;">
+		     ${dto.content }<br>
+		     </td>
 		   </tr> 
 		   <c:choose>
 			 <c:when test="${!empty dto.notice_image  }">
 				<tr>
-			 		<td>이미지</td>   
-   					<td colspan="4"><img src="./upload/${dto.notice_image }" width="600px"/>
+			 		<td style="text-align:center;">이미지</td>   
+   					<td colspan="4"><img src="./upload/${dto.notice_image }"/>
 		   		</tr>
 			</c:when>
 			<c:otherwise>
 				<tr>
-			 		<td>이미지</td>   
+			 		<td style="text-align:center;">이미지</td>   
    					<td colspan="4">첨부된 이미지가 없습니다.</td>
 		   		</tr>
 			</c:otherwise>
