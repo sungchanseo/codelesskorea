@@ -150,6 +150,7 @@ function inputColorOption(modelList, colorList) {
 	  inputOnlyNumberFormat(price);
   }
 
+
   function toggleAddressField() {
 	  var methodSelect = document.getElementById("method");
 	  var addressFields = document.getElementById("addressFields");
@@ -158,20 +159,27 @@ function inputColorOption(modelList, colorList) {
 	  var address2Input = document.querySelector('input[name="address2"]');
 
 	  if ( methodSelect.value === "") {
+		  //기본값인 경우
 		    addressFields.style.display = "none";
 		    deliveryMessage.style.display = "block";
+		    payDelFields.style.display = "none";
+		    address1Input.value = "";
+		    address2Input.value = "";
 	  }
 	  else if (methodSelect.value === "2") {
-	    // 택배를 선택한 경우 또는 기본값인 경우
+	    // 택배를 선택한 경우 
 	    addressFields.style.display = "none";
 	    deliveryMessage.style.display = "block";
-
+	    payDelFields.style.display = "block";
 // 	    address1, address2 값을 공백으로 설정
 	    address1Input.value = " ";
 	    address2Input.value = " ";
 	  } else {
 	    addressFields.style.display = "block";
 	    deliveryMessage.style.display = "none";
+	    payDelFields.style.display = "none";
+	    address1Input.value = "";
+	    address2Input.value = "";
 	  }
 	}
 
@@ -278,11 +286,11 @@ function inputColorOption(modelList, colorList) {
 		  <option value="1" ${product.method == 1 ? "selected" : ""}>직거래</option>
 		  <option value="2" ${product.method == 2 ? "selected" : ""}>택배</option>
 		</select>
-	<hr>
-		<i class="fa fa-exclamation-triangle"></i> 주소를 입력해주세요
-	<br>
-	
+
 <div id="addressFields"  style="display: inline-block; width:400px; ">
+	<hr>
+	<i class="fa fa-exclamation-triangle"></i> 주소를 입력해주세요
+	<br>
   <label for="address" style="text-align: left;"></label>
     현재 주소 : ${product.city eq '   ' ? '전국' : product.city}<br>
 	<div style="display: flex; align-items: center; width: 400px;">
@@ -290,8 +298,9 @@ function inputColorOption(modelList, colorList) {
 		<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
 	</div>
 	<input type="text" name="address2" id="address2" size="45" placeholder="수정하실 상세주소를 입력해주세요."  class="form-control" required>
-  
-      <label style="padding-right: 10px;">결제방식</label>
+  </div>
+  <div id="payDelFields"  style="display: inline-block; width:400px; " >
+    <label style="padding-right: 10px;">결제방식</label>
     <input type="radio" name="charge" id="account" value="${product.charge}"checked="${product.charge==0}"  required>
     <label for="account" style="padding-left: 5px; padding-right:10px;"> 계좌거래 </label>
     <input type="radio" name="charge" id="payment" value="1" required>
@@ -303,9 +312,7 @@ function inputColorOption(modelList, colorList) {
     <input type="radio" name="fee" id="not_free" value="3000" required>
     <label for="not_free" style="padding-left: 5px; " > 배송비 미포함</label>
 </div>
-
-
-<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
+<p id="deliveryMessage" style="display: none; color: red;">(직거래 시에는 주소 입력이 필요합니다.)</p>
 <hr>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 수정</button>
 	</form>

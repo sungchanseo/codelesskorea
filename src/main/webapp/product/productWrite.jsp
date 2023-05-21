@@ -91,7 +91,7 @@ $('document').ready(function() {
 	
 	 $('#model').change(function() {
 		$('#color option').remove();
-		$('#color').append("<option value=''>모델</option>");
+		$('#color').append("<option value=''>색상</option>");
 		 var color = "";
 		$.each(modelList,function(idx, obj){
 // 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
@@ -144,20 +144,27 @@ $('document').ready(function() {
 	  var address2Input = document.querySelector('input[name="address2"]');
 
 	  if ( methodSelect.value === "") {
+		  //기본값인 경우
 		    addressFields.style.display = "none";
 		    deliveryMessage.style.display = "block";
+		    payDelFields.style.display = "none";
+		    address1Input.value = "";
+		    address2Input.value = "";
 	  }
 	  else if (methodSelect.value === "2") {
-	    // 택배를 선택한 경우 또는 기본값인 경우
+	    // 택배를 선택한 경우 
 	    addressFields.style.display = "none";
 	    deliveryMessage.style.display = "block";
-
+	    payDelFields.style.display = "block";
 // 	    address1, address2 값을 공백으로 설정
 	    address1Input.value = " ";
 	    address2Input.value = " ";
 	  } else {
 	    addressFields.style.display = "block";
 	    deliveryMessage.style.display = "none";
+	    payDelFields.style.display = "none";
+	    address1Input.value = "";
+	    address2Input.value = "";
 	  }
 	}
 
@@ -245,30 +252,33 @@ $('document').ready(function() {
 		  <option value="1">직거래</option>
 		  <option value="2">택배</option>
 		</select>
+
+
+<div id="addressFields"  style="display: inline-block; width:400px; " >
 		<hr>
-		<i class="fa fa-exclamation-triangle"></i> 주소를 입력해주세요
+		<i class="fa fa-exclamation-triangle"></i> 직거래할 주소를 입력해주세요
 		<br>
-		<div id="addressFields"  style="display: inline-block; width:400px; " >
 		  <label for="address" style="text-align: left;"></label>
 			<div style="display: flex; align-items: center; width: 400px;">
 				<input type="text" name="address1" placeholder="주소를 입력해주세요"  id="address1" class="form-control" size="45" onclick="addr();" required>
 				<input type="button" value="우편번호 찾기" onclick="addr();" id="postalCodeBtn" >
 			</div>
 			<input type="text" name="address2" size="45" placeholder="상세주소를 입력해주세요."  id="address2" class="form-control" required>
-		  
-		      <label style="padding-right: 10px;">결제방식</label>
-		    <input type="radio" name="charge" value="0" checked required>
-		    <label for="account" style="padding-left: 5px; padding-right:10px;"> 계좌거래 </label>
-		    <input type="radio" name="charge" value="1" required >
-		    <label for="payment" style="padding: 5px;"> 안전결제 </label>
-			<br>
-		    <label style="padding-right: 24.2px;">배송비</label>
-		    <input type="radio" name="fee" value="0" checked required>
-		    <label for="free" style="padding-left: 5px; padding-right:10px;"> 배송비 포함 </label>
-		    <input type="radio" name="fee" value="3000"  required>
-		    <label for="not_free" style="padding-left: 5px; " > 배송비 미포함</label>
 		</div>
-<p id="deliveryMessage" style="display: none; color: red;">(직거래만 가능합니다.)</p>
+		<div id="payDelFields"  style="display: inline-block; width:400px; " >  
+			    <label  style="padding-right: 10px;">결제방식</label>
+			    <input type="radio" name="charge" value="0" checked required>
+			    <label for="account" style="padding-left: 5px; padding-right:10px;"> 계좌거래 </label>
+			    <input type="radio" name="charge" value="1" required >
+			    <label for="payment" style="padding: 5px;"> 안전결제 </label>
+				<br>
+			    <label style="padding-right: 24.2px;">배송비</label>
+			    <input type="radio" name="fee" value="0" checked required>
+			    <label for="free" style="padding-left: 5px; padding-right:10px;"> 배송비 포함 </label>
+			    <input type="radio" name="fee" value="3000"  required>
+			    <label for="not_free" style="padding-left: 5px; " > 배송비 미포함</label>
+		</div>
+<p id="deliveryMessage" style="display: none; color: red;"><i class="fa fa-exclamation-triangle"></i> (직거래 시에는 주소 입력이 필요합니다.)</p>
 <hr>
   <button type="submit" class="btn btn-primary" style="display: inline-block;">상품 등록</button>
 	</form>

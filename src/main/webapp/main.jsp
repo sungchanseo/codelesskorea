@@ -103,7 +103,7 @@ $('document').ready(function() {
 	
 	 $('#model').change(function() {
 		$('#color option').remove();
-		$('#color').append("<option value=''>모델명을 선택하세요</option>");
+		$('#color').append("<option value=''>색상을 선택하세요</option>");
 		 var color = "";
 		$.each(modelList,function(idx, obj){
 // 			alert("color : " + obj.color+ "/ model id : " + obj.model_id + "/ model val : " + $('#model').val());
