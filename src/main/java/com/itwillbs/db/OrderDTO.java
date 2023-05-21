@@ -24,7 +24,7 @@ public class OrderDTO {
 	private String receiver_id; // 받는사람 
 	private String seller_id; // 판매자 아이
 	private int is_accept; // 구매여부
-	private int tracking_number; //운송장번호
+	private long tracking_number; //운송장번호
 	private String order_status; //주문 상태
 	private String paid_amount; // 결제 금액
 	private String delivery_company;
@@ -164,10 +164,10 @@ public class OrderDTO {
 	public void setIs_accept(int is_accept) {
 		this.is_accept = is_accept;
 	}
-	public int getTracking_number() {
+	public long getTracking_number() {
 		return tracking_number;
 	}
-	public void setTracking_number(int tracking_number) {
+	public void setTracking_number(long tracking_number) {
 		this.tracking_number = tracking_number;
 	}
 	public int getProduct_id() {
