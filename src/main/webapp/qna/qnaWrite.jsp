@@ -50,7 +50,8 @@
         contentTextarea.value = checkRelatedTemplate;
         break;
       case '기타':
-        contentTextarea.value = '기타 문의 내용을 작성해 주세요.';
+    	  contentTextarea.value = '';
+          contentTextarea.placeholder = '기타 문의 내용을 작성해 주세요.';
         break;
       default:
         contentTextarea.value = '';
