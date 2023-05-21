@@ -37,26 +37,11 @@ public class TrackingNumberAction implements Action {
 			return forward;
 		}
     
-//		/*
-//		 *  차단 사용자 세션제어 시작
-//		 */
-//		MemberDAO mdao = new MemberDAO();
-//		MemberDTO mdto = mdao.getMember(id);
-//		if(mdto == null) {
-//			JSForward.alertAndMove(response, "잘못된 접근입니다!", "./MemberLogin.me");
-//		}
-//		boolean blocked = mdto.getBlocked();
-//		if(blocked == true) {
-//			JSForward.alertAndBack(response, "잘못된 접근입니다!");
-//		}
-//		/*
-//		 *  차단 사용자 세션제어 끝
-//		 */
     
 		// 전달정보(파라메터) 저장(DTO)
 		int order_id = Integer.parseInt(request.getParameter("order_id"));
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
-		int tracking_number = Integer.parseInt(request.getParameter("tracking_number"));
+		long tracking_number = Long.parseLong(request.getParameter("tracking_number"));
 		String delivery_company = request.getParameter("delivery_company");
 		
 		System.out.println("tracking_number : " +tracking_number);

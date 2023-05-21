@@ -227,7 +227,7 @@ public class OrderDAO {
 					dto.setOrder_status(rs.getString("order_status"));
 					dto.setReceiver_id(rs.getString("receiver_id"));
 					dto.setSeller_id(rs.getString("seller_id"));
-					dto.setTracking_number(rs.getInt("tracking_number"));
+					dto.setTracking_number(rs.getLong("tracking_number"));
 					dto.setOrder_date(rs.getTimestamp("order_date"));
 					dto.setPayment(rs.getString("payment"));
 					dto.setDelivery_company(rs.getString("delivery_company"));
@@ -304,7 +304,7 @@ public class OrderDAO {
 					dto.setOrder_status(rs.getString("order_status"));
 					dto.setReceiver_id(rs.getString("receiver_id"));
 					dto.setSeller_id(rs.getString("seller_id"));
-					dto.setTracking_number(rs.getInt("tracking_number"));
+					dto.setTracking_number(rs.getLong("tracking_number"));
 					dto.setOrder_date(rs.getTimestamp("order_date"));
 					dto.setPayment(rs.getString("payment"));
 				}// if
@@ -327,7 +327,7 @@ public class OrderDAO {
 				sql = "update orderr set tracking_number=?, order_status=?, delivery_company=? "
 						+ " where order_id=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, dto.getTracking_number());					
+				pstmt.setLong(1, dto.getTracking_number());					
 				pstmt.setString(2, "발송");
 				pstmt.setString(3, dto.getDelivery_company());
 				pstmt.setInt(4, dto.getOrder_id());
@@ -336,27 +336,27 @@ public class OrderDAO {
 				
 				
 //				// sql & pstmt
-//				sql = "select * from orderr where order_id=?";
-//				pstmt = con.prepareStatement(sql);
-//				pstmt.setInt(1, dto.getOrder_id());
-//				// sql 실행
-//				rs = pstmt.executeQuery();
-//				// 데이터 처리
-//				if(rs.next()) {
-//					dto.setOrder_id(dto.getOrder_id());
-//					dto.setReceiver_name(rs.getString("receiver_name"));
-//					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
-//					dto.setReceiver_addr2(rs.getString("receiver_addr2"));
-//					dto.setReceiver_post(rs.getInt("receiver_post"));
-//					dto.setReceiver_phone(rs.getString("receiver_phone"));
-//					dto.setOrder_status(rs.getString("order_status"));
-//					dto.setReceiver_id(rs.getString("receiver_id"));
-//					dto.setSeller_id(rs.getString("seller_id"));
-//					dto.setTracking_number(rs.getInt("tracking_number"));
-//					dto.setOrder_date(rs.getTimestamp("order_date"));
-//					dto.setPayment(rs.getString("payment"));
-//					dto.setDelivery_company(rs.getString("delivery_company"));
-//				}// if
+				sql = "select * from orderr where order_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, dto.getOrder_id());
+				// sql 실행
+				rs = pstmt.executeQuery();
+				// 데이터 처리
+				if(rs.next()) {
+					dto.setOrder_id(dto.getOrder_id());
+					dto.setReceiver_name(rs.getString("receiver_name"));
+					dto.setReceiver_addr1(rs.getString("receiver_addr1"));
+					dto.setReceiver_addr2(rs.getString("receiver_addr2"));
+					dto.setReceiver_post(rs.getInt("receiver_post"));
+					dto.setReceiver_phone(rs.getString("receiver_phone"));
+					dto.setOrder_status(rs.getString("order_status"));
+					dto.setReceiver_id(rs.getString("receiver_id"));
+					dto.setSeller_id(rs.getString("seller_id"));
+					dto.setTracking_number(rs.getLong("tracking_number"));
+					dto.setOrder_date(rs.getTimestamp("order_date"));
+					dto.setPayment(rs.getString("payment"));
+					dto.setDelivery_company(rs.getString("delivery_company"));
+				}// if
 //				System.out.println("DAO : 운송장정보 저장 후 DTO 추가 완료"+dto);
 				
 		}catch (Exception e) {
