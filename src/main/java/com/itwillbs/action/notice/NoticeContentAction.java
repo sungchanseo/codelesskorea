@@ -30,7 +30,12 @@ public class NoticeContentAction implements Action{
 		NoticeDTO dto = dao.getNoticeContent(notice_id);
 		
 		//글정보를 불러왔으니 조회수를 증가시켜야겠지 메소드 호출
-		dao.updateReadCount(notice_id);
+		//그런데 같은 사람이면 조회증가하지 않아야겠지 로직
+		HttpSession session = request.getSession();
+		if (session.getAttribute(notice_id) == null) {
+			    dao.updateReadCount(notice_id);
+		}
+		session.setAttribute(notice_id, true);
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("pageNum", pageNum);

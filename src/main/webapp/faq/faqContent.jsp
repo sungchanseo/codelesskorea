@@ -39,7 +39,7 @@
 		   </tr> 
 		   <tr>
 		     <td style="text-align: center;">내용</td>
-		     <td style="white-space:pre;">${dto.content }</td>
+		     <td style="white-space:pre-line; word-break:break-all;">${dto.content }</td>
 		   </tr> 
 		</table>
 		
