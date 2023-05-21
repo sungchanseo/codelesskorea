@@ -37,7 +37,7 @@
 		}
 		// 구매자에게만 보이는 운송장 정보
 		// 구매자가 아니거나, 발송, 구매확정 아니면 감춤
-		if(order_status == "주문 확인" || order_status == "주문 취소" || order_status == "주문 수락"||  id != receiver_id){
+		if(order_status == "주문 확인" || order_status == "주문 취소" ||  id != receiver_id){
 			$(".receiverTraking").hide();
 		}
 		// 판매자에게만 보이는 운송장번호 등록 정보
@@ -175,9 +175,29 @@
 				<div class="receiverTraking">
 				<table>
 				<tr>
-					<td style="text-align: left;"><span style="color: black; margin-right: 290px;">운송장정보</span></td>
-					<td style="text-align: cemter; padding-right:15px;"><span style="color: black;">[ ${dto.delivery_company } ]</span></td>
-					<td style="text-align: right; "><span style="color: black;">${dto.tracking_number }</span></td>
+					<td style="text-align: left;"><span style="color: black; margin-right: 300px;">운송장정보</span></td>
+					<c:choose>
+					<c:when test="${dto.order_status eq '주문 수락'}">
+					<td style="text-align: cemter; padding-left: 50px; padding-right:15px;"><span style="color: black;">
+						</span></td>
+					</c:when>
+					<c:otherwise>
+					<td style="text-align: cemter; padding-right:15px;"><span style="color: black;">
+						[ ${dto.delivery_company } ]
+						</span></td>
+					</c:otherwise>
+					</c:choose>
+					
+					<td style="text-align: right; "><span style="color: black;">
+					<c:choose>
+					<c:when test="${dto.order_status eq '주문 수락'}">
+						(운송장번호 미등록)
+					</c:when>
+					<c:otherwise>
+						${dto.tracking_number}
+					</c:otherwise>
+					</c:choose>
+					</span></td>
 				</tr>
 				</table>
 				</div>

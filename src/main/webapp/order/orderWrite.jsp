@@ -512,7 +512,16 @@
   </script>
 
  	<br>
- 	<button type="submit" class="btn btn-primary" id="pay_btn" onclick="requestPay()" style="width: 100%;">결제하기</button>
+ 	<button type="submit" class="btn btn-primary" id="pay_btn" onclick="confirmPayment()" style="width: 100%;">결제하기</button>
+
+	<script>
+	function confirmPayment() {
+	  var confirmResult = confirm("결제를 진행하시겠습니까?");
+	  if (confirmResult) {
+	    requestPay();
+	  }
+	}
+	</script>
 
 </div>
 	<jsp:include page="../footer.jsp"/>
