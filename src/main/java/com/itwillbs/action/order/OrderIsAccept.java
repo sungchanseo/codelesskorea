@@ -35,7 +35,7 @@ public class OrderIsAccept implements Action {
 				jsf.alertAndMove(response, "주문 취소 완료", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
 			}
 			else if(is_accept == 1) {
-				jsf.alertAndMove(response, "주문이 수락되었습니다. \n 택배 발송 후 운송장정보를 등록해주세요 ! ", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
+				jsf.alertAndMove(response, "주문이 수락되었습니다. 택배 발송 후 운송장정보를 등록해주세요 ! ", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
 			}
 			else if(is_accept == 3) {
 				jsf.alertAndMove(response, "주문 확정 완료", "./OrderContent.or?product_id="+product_id+"&order_id="+order_id);
