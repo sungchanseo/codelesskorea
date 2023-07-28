@@ -26,7 +26,7 @@ public class MypageDAO {
 		Context initCTX = new InitialContext();
 		// 디비연결정보 불러와서 사용
 		DataSource ds 
-		   = (DataSource) initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
+		   = (DataSource) initCTX.lookup("java:comp/env/jdbc/CodeLess");
 		// 디비연결
 		con = ds.getConnection();
 		System.out.println(" DAO : 디비연결 성공! "+con);
