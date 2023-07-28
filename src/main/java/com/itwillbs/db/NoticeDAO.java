@@ -30,7 +30,7 @@ public class NoticeDAO {
 		// Context 객체생성
 		Context initCTX = new InitialContext();
 		// DB 연결정보 로드
-		DataSource ds = (DataSource)initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
+		DataSource ds = (DataSource)initCTX.lookup("java:comp/env/jdbc/CodeLess");
 		// DB 연결
 		con = ds.getConnection();
 		System.out.println(" DAO : DB 연결 성공! " + con);

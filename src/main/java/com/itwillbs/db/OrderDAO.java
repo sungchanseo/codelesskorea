@@ -26,7 +26,7 @@ public class OrderDAO {
 		// Context 객체생성
 		Context initCTX = new InitialContext();
 		// 디비 연결정보 불러와서 사용
-		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/c7d2301t1");
+		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/CodeLess");
 		con = ds.getConnection();
 		System.out.println("DAO : 디비 연결 성공(CP) : "+con);
 		return con;

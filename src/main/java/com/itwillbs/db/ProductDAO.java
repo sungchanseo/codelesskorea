@@ -24,7 +24,7 @@ public class ProductDAO {
 		// 0 - 디비 연결정보 (context.xml)
 		// 1 드라이버로드 2 디비연결
 		Context init = new InitialContext();
-		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/c7d2301t1");
+		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/CodeLess");
 		con = ds.getConnection();
 		System.out.println(" DAO : 디비 연결 성공(CP) ");
 		System.out.println(" DAO : "+con);
