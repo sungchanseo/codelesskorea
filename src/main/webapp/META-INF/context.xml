@@ -7,9 +7,9 @@
    	 auth="Container" 
    	 type="javax.sql.DataSource" 
    	 driverClassName="com.mysql.cj.jdbc.Driver" 
-   	 url ="jdbc:mysql://mydatabase.cyl3u8g42lem.ap-northeast-2.rds.amazonaws.com/CodeLess" 
+   	 url ="jdbc:mysql://my-database.cyl3u8g42lem.ap-northeast-2.rds.amazonaws.com/codeless" 
    	 username ="root" 
-   	 password ="root1234"   
+   	 password ="**tjdcks12"   
    	 maxWait="5000"	 	
    />
 </Context>
